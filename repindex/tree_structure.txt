@@ -1,0 +1,96 @@
+.
+├── .DS_Store
+├── .env
+├── .gitignore
+├── eslint.config.js
+├── filelist.txt
+├── index.html
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── repindex
+├── src
+│   ├── .DS_Store
+│   ├── App.tsx
+│   ├── components
+│   │   ├── DebugPanel.tsx
+│   │   ├── FileUpload
+│   │   │   ├── DropZone.tsx
+│   │   │   ├── UploadProgress.tsx
+│   │   │   └── index.tsx
+│   │   ├── ProcessStatus.tsx
+│   │   ├── TranscriptionControls
+│   │   │   ├── CopyButton.tsx
+│   │   │   ├── ExportButton.tsx
+│   │   │   └── index.tsx
+│   │   ├── TranscriptionControls.tsx
+│   │   ├── TranscriptionViewer
+│   │   │   ├── SpeakerEntry.tsx
+│   │   │   ├── TranscriptionHeader.tsx
+│   │   │   ├── TranscriptionStats.tsx
+│   │   │   └── index.tsx
+│   │   └── TranscriptionViewer.tsx
+│   ├── config
+│   │   ├── .env
+│   │   ├── api.ts
+│   │   ├── audio.ts
+│   │   ├── constants.ts
+│   │   └── env.ts
+│   ├── hooks
+│   │   ├── useProcessStatus.ts
+│   │   ├── useTranscriptionProcessing.ts
+│   │   ├── useTranscriptionUpload.ts
+│   │   └── useUpload.ts
+│   ├── index.css
+│   ├── main.tsx
+│   ├── services
+│   │   ├── .DS_Store
+│   │   ├── api
+│   │   │   ├── client.ts
+│   │   │   ├── errors.ts
+│   │   │   ├── index.ts
+│   │   │   ├── transcription.ts
+│   │   │   ├── types.ts
+│   │   │   ├── upload.ts
+│   │   │   └── utils.ts
+│   │   ├── api.ts
+│   │   ├── transcription
+│   │   │   ├── processing.ts
+│   │   │   └── validation.ts
+│   │   └── upload
+│   │       ├── client.ts
+│   │       ├── types.ts
+│   │       ├── uploader.ts
+│   │       ├── url-generator.ts
+│   │       ├── validation.ts
+│   │       └── xhr.ts
+│   ├── store
+│   │   └── transcription.ts
+│   ├── types
+│   │   └── index.ts
+│   ├── utils
+│   │   ├── audio
+│   │   │   ├── constants.ts
+│   │   │   ├── error-handler.ts
+│   │   │   ├── index.ts
+│   │   │   ├── logger.ts
+│   │   │   ├── processing.ts
+│   │   │   └── validation.ts
+│   │   ├── audio.ts
+│   │   ├── export.ts
+│   │   ├── format.ts
+│   │   ├── logger
+│   │   │   ├── core.ts
+│   │   │   ├── formatter.ts
+│   │   │   ├── index.ts
+│   │   │   ├── status.ts
+│   │   │   └── types.ts
+│   │   ├── logger.ts
+│   │   └── text
+│   │       └── processing.ts
+│   └── vite-env.d.ts
+├── tailwind.config.js
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts

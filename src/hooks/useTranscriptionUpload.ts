@@ -1,6 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useTranscriptionStore } from '../store/transcription';
-import { generateUploadUrl, uploadFile, requestTranscription } from '../services/api';
+import { generateUploadUrl, uploadFile } from '../services/api/upload';
+import { requestTranscription } from '../services/api/transcription';
 import { logger } from '../utils/logger';
 import type { ProcessError } from '../types';
 

@@ -1,4 +1,4 @@
-export const API_CONFIG = {
+export const RETRY_CONFIG = {
   MAX_RETRIES: 3,
   RETRY_DELAY: 1000, // Base delay in ms
   POLLING_INTERVAL: 2000, // Base polling interval in ms

@@ -1,21 +1,21 @@
-import { API } from '../../config/api';
+import { API_CONFIG } from '../../config/api';
 import { APIError } from '../api/errors';
 import { logger } from '../../utils/logger';
 import type { SignedUrlResponse, UploadOptions } from './types';
 
 export async function generateSignedUrl(filename: string): Promise<SignedUrlResponse> {
   const requestId = Math.random().toString(36).substr(2, 9);
-  
+
   logger.debug('Generating signed URL', {
     requestId,
     filename,
-    endpoint: API.endpoints.generateUploadUrl(filename)
+    endpoint: API_CONFIG.endpoints.generateUploadUrl(filename)
   });
 
   try {
-    const response = await fetch(API.endpoints.generateUploadUrl(filename), {
+    const response = await fetch(API_CONFIG.endpoints.generateUploadUrl(filename), {
       method: 'POST',
-      headers: API.headers.base
+      headers: API_CONFIG.headers.base
     });
 
     if (!response.ok) {
@@ -53,7 +53,7 @@ export async function uploadToSignedUrl(
   options: UploadOptions = {}
 ): Promise<void> {
   const requestId = Math.random().toString(36).substr(2, 9);
-  
+
   logger.debug('Starting file upload', {
     requestId,
     fileName: file.name,

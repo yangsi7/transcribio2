@@ -1,7 +1,8 @@
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { getTranscriptionResult } from '../services/api/transcription';
 import { logger } from '../utils/logger';
 import { API_CONFIG } from '../config/api';
+import { APIError } from '../services/api/errors';
 import type { TranscriptionResponse, ProcessError } from '../types';
 
 interface ProcessingState {
@@ -20,7 +21,7 @@ export function useTranscriptionProcessing() {
   });
 
   const processTranscription = useCallback(async (fileId: string) => {
-    setState(prev => ({ ...prev, isProcessing: true, error: null, progress: 0 }));
+    setState((prev: ProcessingState) => ({ ...prev, isProcessing: true, error: null, progress: 0 }));
     logger.debug('Starting transcription processing', { fileId });
 
     let attempts = 0;
@@ -36,19 +37,19 @@ export function useTranscriptionProcessing() {
             speakerCount: data.transcription.speakers.length,
           });
 
-          setState({
+          setState((prev: ProcessingState) => ({
+            ...prev,
             isProcessing: false,
             error: null,
             data,
             progress: 100,
-          });
+          }));
 
           return data;
         }
 
-        // Transcription in progress
         const progress = Math.min(90, ((attempts + 1) / maxAttempts) * 100);
-        setState(prev => ({ ...prev, progress }));
+        setState((prev: ProcessingState) => ({ ...prev, progress }));
 
         logger.debug('Transcription in progress', {
           fileId,
@@ -59,15 +60,10 @@ export function useTranscriptionProcessing() {
 
       } catch (error) {
         if (error instanceof APIError && error.status === 404) {
-          // Transcription not ready yet, continue polling
           logger.debug('Transcription not ready yet (404)', { fileId, attempts });
-
-          // Update progress
           const progress = Math.min(90, ((attempts + 1) / maxAttempts) * 100);
-          setState(prev => ({ ...prev, progress }));
-
+          setState((prev: ProcessingState) => ({ ...prev, progress }));
         } else {
-          // Other errors
           const processError: ProcessError = {
             code: 'TRANSCRIPTION_PROCESSING_ERROR',
             message: error instanceof Error ? error.message : 'Processing failed',
@@ -79,12 +75,13 @@ export function useTranscriptionProcessing() {
             { fileId, attempts }
           );
 
-          setState({
+          setState((prev: ProcessingState) => ({
+            ...prev,
             isProcessing: false,
             error: processError,
             data: null,
             progress: 0,
-          });
+          }));
 
           throw processError;
         }
@@ -96,7 +93,6 @@ export function useTranscriptionProcessing() {
       );
     }
 
-    // If maximum attempts reached
     const timeoutError: ProcessError = {
       code: 'TRANSCRIPTION_TIMEOUT',
       message: 'Transcription processing timed out',
@@ -108,12 +104,13 @@ export function useTranscriptionProcessing() {
       { fileId, attempts }
     );
 
-    setState({
+    setState((prev: ProcessingState) => ({
+      ...prev,
       isProcessing: false,
       error: timeoutError,
       data: null,
       progress: 0,
-    });
+    }));
 
     throw timeoutError;
   }, []);

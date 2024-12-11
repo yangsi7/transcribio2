@@ -14,13 +14,13 @@ export interface UploadOptions {
   signal?: AbortSignal;
 }
 
-export interface UploadUrlResponse {
+export interface SignedUrlResponse {
   upload_url: string;
   file_id: string;
 }
 
 export interface UploadState {
   progress: number;
-  status: 'idle' | 'preparing' | 'uploading' | 'processing' | 'completed' | 'error';
+  status: 'idle' | 'validating' | 'generating-url' | 'uploading' | 'requesting-transcription' | 'processing' | 'completed' | 'error';
   error: Error | null;
 }
