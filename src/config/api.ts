@@ -1,3 +1,4 @@
+// src/config/api.ts
 import { ENV } from './env';
 
 export const API_CONFIG = {
@@ -25,8 +26,8 @@ export const API_CONFIG = {
   },
   timeout: 600000, // 10 minutes
   polling: {
-    interval: 5000, // 5 seconds
-    maxAttempts: 60, // 5 minutes total
+    interval: 5000,
+    maxAttempts: 60,
   },
   retries: {
     max: 3,

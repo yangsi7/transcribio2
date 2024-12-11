@@ -1,12 +1,13 @@
+// src/config/constants.ts
 export const RETRY_CONFIG = {
   MAX_RETRIES: 3,
-  RETRY_DELAY: 1000, // Base delay in ms
-  POLLING_INTERVAL: 2000, // Base polling interval in ms
+  RETRY_DELAY: 1000,
+  POLLING_INTERVAL: 2000,
 } as const;
 
 export const LOG_CONFIG = {
   MAX_LOGS: 1000,
-  UPDATE_INTERVAL: 1000, // ms
+  UPDATE_INTERVAL: 1000,
   LEVELS: {
     DEBUG: 'debug',
     INFO: 'info',
@@ -14,10 +15,10 @@ export const LOG_CONFIG = {
     ERROR: 'error'
   } as const,
   COLORS: {
-    debug: '#6B7280', // gray-500
-    info: '#2563EB', // blue-600
-    warn: '#D97706', // yellow-600
-    error: '#DC2626' // red-600
+    debug: '#6B7280', 
+    info: '#2563EB',
+    warn: '#D97706',
+    error: '#DC2626'
   } as const,
   STYLES: {
     debug: 'color: #6B7280; font-weight: bold',

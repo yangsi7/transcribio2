@@ -1,6 +1,5 @@
 .
 ├── .DS_Store
-├── .env
 ├── .gitignore
 ├── eslint.config.js
 ├── filelist.txt
@@ -18,7 +17,9 @@
 │   │   │   ├── DropZone.tsx
 │   │   │   ├── UploadProgress.tsx
 │   │   │   └── index.tsx
+│   │   ├── MeetingCard.tsx
 │   │   ├── ProcessStatus.tsx
+│   │   ├── Sidebar.tsx
 │   │   ├── TranscriptionControls
 │   │   │   ├── CopyButton.tsx
 │   │   │   ├── ExportButton.tsx
@@ -29,9 +30,11 @@
 │   │   │   ├── TranscriptionHeader.tsx
 │   │   │   ├── TranscriptionStats.tsx
 │   │   │   └── index.tsx
-│   │   └── TranscriptionViewer.tsx
+│   │   ├── TranscriptionViewer.tsx
+│   │   └── calendar
+│   │       ├── FilterDropdown.tsx
+│   │       └── WeekHeader.tsx
 │   ├── config
-│   │   ├── .env
 │   │   ├── api.ts
 │   │   ├── audio.ts
 │   │   ├── constants.ts
@@ -43,6 +46,10 @@
 │   │   └── useUpload.ts
 │   ├── index.css
 │   ├── main.tsx
+│   ├── pages
+│   │   ├── ChatPage.tsx
+│   │   ├── MeetingHistory.tsx
+│   │   └── UploadPage.tsx
 │   ├── services
 │   │   ├── .DS_Store
 │   │   ├── api

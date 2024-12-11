@@ -29,12 +29,16 @@
         "src/components/TranscriptionViewer.tsx",
         "src/components/DebugPanel.tsx",
         "src/components/TranscriptionControls.tsx",
+        "src/components/MeetingCard.tsx",
+        "src/components/Sidebar.tsx",
         "src/components/TranscriptionControls/index.tsx",
         "src/components/TranscriptionControls/ExportButton.tsx",
         "src/components/TranscriptionControls/CopyButton.tsx",
         "src/components/FileUpload/index.tsx",
         "src/components/FileUpload/DropZone.tsx",
         "src/components/FileUpload/UploadProgress.tsx",
+        "src/components/calendar/WeekHeader.tsx",
+        "src/components/calendar/FilterDropdown.tsx",
         "src/components/TranscriptionViewer/index.tsx",
         "src/components/TranscriptionViewer/TranscriptionHeader.tsx",
         "src/components/TranscriptionViewer/SpeakerEntry.tsx",
@@ -43,6 +47,9 @@
         "src/hooks/useTranscriptionProcessing.ts",
         "src/hooks/useProcessStatus.ts",
         "src/hooks/useTranscriptionUpload.ts",
+        "src/pages/UploadPage.tsx",
+        "src/pages/MeetingHistory.tsx",
+        "src/pages/ChatPage.tsx",
         "src/services/api.ts",
         "src/services/transcription/validation.ts",
         "src/services/transcription/processing.ts",
@@ -62,31 +69,6 @@
         "src/store/transcription.ts"
     ],
     "edges": [
-        {
-            "from": "src/App.tsx",
-            "to": "src/store/transcription.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "sonner",
-                "./components/FileUpload",
-                "./components/TranscriptionViewer",
-                "./components/TranscriptionControls",
-                "./components/ProcessStatus",
-                "./components/DebugPanel",
-                "./store/transcription"
-            ]
-        },
-        {
-            "from": "src/main.tsx",
-            "to": "src/App.tsx",
-            "type": "import",
-            "objects": [
-                "react",
-                "react-dom/client",
-                "./App.tsx"
-            ]
-        },
         {
             "from": "src/config/api.ts",
             "to": "src/config/env.ts",
@@ -773,11 +755,26 @@
         },
         {
             "from": "src/hooks/useUpload.ts",
-            "to": "src/services/api/index.ts",
+            "to": "src/services/api/upload.ts",
             "type": "import",
             "objects": [
                 "react",
-                "../services/api",
+                "../services/api/upload",
+                "../services/api/transcription",
+                "../services/upload/xhr",
+                "../services/upload/validation",
+                "../utils/logger",
+                "../services/upload/types"
+            ]
+        },
+        {
+            "from": "src/hooks/useUpload.ts",
+            "to": "src/services/api/transcription.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "../services/api/upload",
+                "../services/api/transcription",
                 "../services/upload/xhr",
                 "../services/upload/validation",
                 "../utils/logger",
@@ -790,7 +787,8 @@
             "type": "import",
             "objects": [
                 "react",
-                "../services/api",
+                "../services/api/upload",
+                "../services/api/transcription",
                 "../services/upload/xhr",
                 "../services/upload/validation",
                 "../utils/logger",
@@ -803,7 +801,8 @@
             "type": "import",
             "objects": [
                 "react",
-                "../services/api",
+                "../services/api/upload",
+                "../services/api/transcription",
                 "../services/upload/xhr",
                 "../services/upload/validation",
                 "../utils/logger",
@@ -816,7 +815,8 @@
             "type": "import",
             "objects": [
                 "react",
-                "../services/api",
+                "../services/api/upload",
+                "../services/api/transcription",
                 "../services/upload/xhr",
                 "../services/upload/validation",
                 "../utils/logger",
@@ -829,7 +829,8 @@
             "type": "import",
             "objects": [
                 "react",
-                "../services/api",
+                "../services/api/upload",
+                "../services/api/transcription",
                 "../services/upload/xhr",
                 "../services/upload/validation",
                 "../utils/logger",
@@ -941,19 +942,34 @@
             "objects": [
                 "react",
                 "../store/transcription",
-                "../services/api",
+                "../services/api/upload",
+                "../services/api/transcription",
                 "../utils/logger",
                 "../types"
             ]
         },
         {
             "from": "src/hooks/useTranscriptionUpload.ts",
-            "to": "src/services/api/index.ts",
+            "to": "src/services/api/upload.ts",
             "type": "import",
             "objects": [
                 "react",
                 "../store/transcription",
-                "../services/api",
+                "../services/api/upload",
+                "../services/api/transcription",
+                "../utils/logger",
+                "../types"
+            ]
+        },
+        {
+            "from": "src/hooks/useTranscriptionUpload.ts",
+            "to": "src/services/api/transcription.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "../store/transcription",
+                "../services/api/upload",
+                "../services/api/transcription",
                 "../utils/logger",
                 "../types"
             ]
@@ -965,7 +981,8 @@
             "objects": [
                 "react",
                 "../store/transcription",
-                "../services/api",
+                "../services/api/upload",
+                "../services/api/transcription",
                 "../utils/logger",
                 "../types"
             ]
@@ -977,9 +994,25 @@
             "objects": [
                 "react",
                 "../store/transcription",
-                "../services/api",
+                "../services/api/upload",
+                "../services/api/transcription",
                 "../utils/logger",
                 "../types"
+            ]
+        },
+        {
+            "from": "src/pages/UploadPage.tsx",
+            "to": "src/store/transcription.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../components/FileUpload",
+                "../components/ProcessStatus",
+                "../components/TranscriptionControls",
+                "../components/TranscriptionViewer",
+                "../components/DebugPanel",
+                "../store/transcription"
             ]
         },
         {

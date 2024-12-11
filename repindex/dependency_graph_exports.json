@@ -29,12 +29,16 @@
         "src/components/TranscriptionViewer.tsx",
         "src/components/DebugPanel.tsx",
         "src/components/TranscriptionControls.tsx",
+        "src/components/MeetingCard.tsx",
+        "src/components/Sidebar.tsx",
         "src/components/TranscriptionControls/index.tsx",
         "src/components/TranscriptionControls/ExportButton.tsx",
         "src/components/TranscriptionControls/CopyButton.tsx",
         "src/components/FileUpload/index.tsx",
         "src/components/FileUpload/DropZone.tsx",
         "src/components/FileUpload/UploadProgress.tsx",
+        "src/components/calendar/WeekHeader.tsx",
+        "src/components/calendar/FilterDropdown.tsx",
         "src/components/TranscriptionViewer/index.tsx",
         "src/components/TranscriptionViewer/TranscriptionHeader.tsx",
         "src/components/TranscriptionViewer/SpeakerEntry.tsx",
@@ -43,6 +47,9 @@
         "src/hooks/useTranscriptionProcessing.ts",
         "src/hooks/useProcessStatus.ts",
         "src/hooks/useTranscriptionUpload.ts",
+        "src/pages/UploadPage.tsx",
+        "src/pages/MeetingHistory.tsx",
+        "src/pages/ChatPage.tsx",
         "src/services/api.ts",
         "src/services/transcription/validation.ts",
         "src/services/transcription/processing.ts",
@@ -177,7 +184,7 @@
             "to": null,
             "type": "export",
             "objects": [
-                "API_CONFIG",
+                "RETRY_CONFIG",
                 "LOG_CONFIG",
                 "PROCESS_STEPS"
             ]
@@ -187,7 +194,7 @@
             "to": null,
             "type": "export",
             "objects": [
-                "API_CONFIG",
+                "RETRY_CONFIG",
                 "LOG_CONFIG",
                 "PROCESS_STEPS"
             ]
@@ -197,7 +204,7 @@
             "to": null,
             "type": "export",
             "objects": [
-                "API_CONFIG",
+                "RETRY_CONFIG",
                 "LOG_CONFIG",
                 "PROCESS_STEPS"
             ]
@@ -503,6 +510,22 @@
             ]
         },
         {
+            "from": "src/components/MeetingCard.tsx",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "MeetingCard"
+            ]
+        },
+        {
+            "from": "src/components/Sidebar.tsx",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "Sidebar"
+            ]
+        },
+        {
             "from": "src/components/TranscriptionControls/index.tsx",
             "to": null,
             "type": "export",
@@ -558,6 +581,22 @@
             "type": "export",
             "objects": [
                 "UploadProgress"
+            ]
+        },
+        {
+            "from": "src/components/calendar/WeekHeader.tsx",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "WeekHeader"
+            ]
+        },
+        {
+            "from": "src/components/calendar/FilterDropdown.tsx",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "FilterDropdown"
             ]
         },
         {
@@ -622,6 +661,30 @@
             "type": "export",
             "objects": [
                 "useTranscriptionUpload"
+            ]
+        },
+        {
+            "from": "src/pages/UploadPage.tsx",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "UploadPage"
+            ]
+        },
+        {
+            "from": "src/pages/MeetingHistory.tsx",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "MeetingHistory"
+            ]
+        },
+        {
+            "from": "src/pages/ChatPage.tsx",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "ChatPage"
             ]
         },
         {
@@ -873,7 +936,7 @@
             "objects": [
                 "UploadProgress",
                 "UploadOptions",
-                "UploadUrlResponse",
+                "SignedUrlResponse",
                 "UploadState"
             ]
         },
@@ -884,7 +947,7 @@
             "objects": [
                 "UploadProgress",
                 "UploadOptions",
-                "UploadUrlResponse",
+                "SignedUrlResponse",
                 "UploadState"
             ]
         },
@@ -895,7 +958,7 @@
             "objects": [
                 "UploadProgress",
                 "UploadOptions",
-                "UploadUrlResponse",
+                "SignedUrlResponse",
                 "UploadState"
             ]
         },
@@ -906,7 +969,7 @@
             "objects": [
                 "UploadProgress",
                 "UploadOptions",
-                "UploadUrlResponse",
+                "SignedUrlResponse",
                 "UploadState"
             ]
         },

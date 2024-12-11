@@ -1,3 +1,4 @@
+// src/types/index.ts
 export interface Speaker {
   speaker: string;
   timestamp: [number, number];

@@ -1,3 +1,4 @@
+// src/config/audio.ts
 export const AUDIO_CONFIG = {
   FORMATS: {
     'audio/mpeg': ['.mp3'],

@@ -1,6 +1,7 @@
 ### vite.config.ts
 
 ```typescript
+// vite.config.ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
@@ -11,93 +12,71 @@ export default defineConfig({
     exclude: ['lucide-react'],
   },
 });
-
 ```
 
 ### src/App.tsx
 
 ```typescript
+// src/App.tsx
 import React from 'react';
-import { Toaster } from 'sonner';
-import { FileUpload } from './components/FileUpload';
-import { TranscriptionViewer } from './components/TranscriptionViewer';
-import { TranscriptionControls } from './components/TranscriptionControls';
-import { ProcessStatus } from './components/ProcessStatus';
-import { DebugPanel } from './components/DebugPanel';
-import { useTranscriptionStore } from './store/transcription';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { Sidebar } from './components/Sidebar';
+import { UploadPage } from './pages/UploadPage';
+import { MeetingHistory } from './pages/MeetingHistory';
+import { ChatPage } from './pages/ChatPage';
 
 function App() {
-  const { status, error } = useTranscriptionStore();
-
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto py-12 px-4">
-        <header className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Transcribio</h1>
-          <p className="mt-2 text-gray-600">
-            Upload your audio files and get accurate transcriptions with speaker detection
-          </p>
-        </header>
-
-        <main className="space-y-8">
-          <FileUpload />
-
-          {status !== 'idle' && status !== 'completed' && (
-            <div className="bg-white p-4 rounded-lg shadow">
-              <ProcessStatus status={status} />
-              {error && (
-                <div className="mt-2 text-sm text-red-600">
-                  {error.message}
-                </div>
-              )}
-            </div>
-          )}
-
-          {status === 'completed' && (
-            <>
-              <TranscriptionControls />
-              <TranscriptionViewer />
-            </>
-          )}
-        </main>
+    <div className="min-h-screen bg-gray-50 flex">
+      <Sidebar />
+      <div className="flex-1 p-6">
+        <Routes>
+          <Route path="/" element={<Navigate to="/upload" replace />} />
+          <Route path="/upload" element={<UploadPage />} />
+          <Route path="/history" element={<MeetingHistory />} />
+          <Route path="/chat" element={<ChatPage />} />
+        </Routes>
       </div>
-      <Toaster position="top-right" />
-      <DebugPanel />
     </div>
   );
 }
 
 export default App;
+
 ```
 
 ### src/main.tsx
 
 ```typescript
+// src/main.tsx
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import App from './App.tsx';
+import { BrowserRouter } from 'react-router-dom';
+import App from './App';
 import './index.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </StrictMode>
 );
-
 ```
 
 ### src/index.css
 
 ```css
+/* src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 ```
 
 ### src/vite-env.d.ts
 
 ```typescript
+// src/vite-env.d.ts
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
@@ -117,6 +96,7 @@ interface Window {
 ### src/types/index.ts
 
 ```typescript
+// src/types/index.ts
 export interface Speaker {
   speaker: string;
   timestamp: [number, number];
@@ -173,6 +153,7 @@ export interface TranscriptionState {
 ### src/config/audio.ts
 
 ```typescript
+// src/config/audio.ts
 export const AUDIO_CONFIG = {
   FORMATS: {
     'audio/mpeg': ['.mp3'],
@@ -197,6 +178,7 @@ export const AUDIO_CONFIG = {
 ### src/config/api.ts
 
 ```typescript
+// src/config/api.ts
 import { ENV } from './env';
 
 export const API_CONFIG = {
@@ -224,8 +206,8 @@ export const API_CONFIG = {
   },
   timeout: 600000, // 10 minutes
   polling: {
-    interval: 5000, // 5 seconds
-    maxAttempts: 60, // 5 minutes total
+    interval: 5000,
+    maxAttempts: 60,
   },
   retries: {
     max: 3,
@@ -237,21 +219,21 @@ export const API_CONFIG = {
     mode: 'cors' as RequestMode,
   }
 } as const;
-
 ```
 
 ### src/config/constants.ts
 
 ```typescript
-export const API_CONFIG = {
+// src/config/constants.ts
+export const RETRY_CONFIG = {
   MAX_RETRIES: 3,
-  RETRY_DELAY: 1000, // Base delay in ms
-  POLLING_INTERVAL: 2000, // Base polling interval in ms
+  RETRY_DELAY: 1000,
+  POLLING_INTERVAL: 2000,
 } as const;
 
 export const LOG_CONFIG = {
   MAX_LOGS: 1000,
-  UPDATE_INTERVAL: 1000, // ms
+  UPDATE_INTERVAL: 1000,
   LEVELS: {
     DEBUG: 'debug',
     INFO: 'info',
@@ -259,10 +241,10 @@ export const LOG_CONFIG = {
     ERROR: 'error'
   } as const,
   COLORS: {
-    debug: '#6B7280', // gray-500
-    info: '#2563EB', // blue-600
-    warn: '#D97706', // yellow-600
-    error: '#DC2626' // red-600
+    debug: '#6B7280', 
+    info: '#2563EB',
+    warn: '#D97706',
+    error: '#DC2626'
   } as const,
   STYLES: {
     debug: 'color: #6B7280; font-weight: bold',
@@ -307,7 +289,14 @@ export const PROCESS_STEPS = {
 ### src/config/env.ts
 
 ```typescript
+// src/config/env.ts
 import { logger } from '../utils/logger';
+
+// Instead of using import.meta.env directly, we can rely on vite to define them as global vars via define or just cast
+// Or ensure that tsconfig module is set to esnext and vite is configured properly.
+// Given that we've set module to esnext now, import.meta should be allowed.
+
+// After setting "module": "esnext" in tsconfig.json, we can leave this code as is:
 
 const getEnvVar = (key: string): string => {
   const value = import.meta.env[key];
@@ -324,7 +313,6 @@ export const ENV = {
   IS_DEV: import.meta.env.DEV,
 } as const;
 
-// Log environment configuration on startup
 logger.info('Environment configuration loaded', {
   API_URL: ENV.API_URL,
   IS_DEV: ENV.IS_DEV,
@@ -1703,6 +1691,161 @@ export function TranscriptionControls() {
 }
 ```
 
+### src/components/MeetingCard.tsx
+
+```typescript
+// src/components/MeetingCard.tsx
+import React from 'react';
+import { Calendar, Clock, Users, Tag, BarChart } from 'lucide-react';
+
+interface MeetingProps {
+  title: string;
+  date: string;
+  time?: string;
+  duration: string;
+  participants: string[];
+  summary: string;
+  tags?: string[];
+  isWeeklySummary?: boolean;
+  onClick?: () => void;
+}
+
+export function MeetingCard({
+  title,
+  date,
+  time,
+  duration,
+  participants,
+  summary,
+  tags = [],
+  isWeeklySummary = false,
+  onClick
+}: MeetingProps) {
+  return (
+    <div 
+      className={`p-6 hover:bg-gray-700/30 transition-colors cursor-pointer ${
+        isWeeklySummary ? 'bg-purple-900/20' : 'bg-gray-800/30'
+      }`}
+      onClick={onClick}
+    >
+      <div className="flex justify-between items-start mb-4">
+        <div className="flex items-center gap-3">
+          {isWeeklySummary ? (
+            <BarChart className="w-5 h-5 text-purple-400" />
+          ) : (
+            <Calendar className="w-5 h-5 text-blue-400" />
+          )}
+          <div>
+            <h4 className="text-lg font-semibold text-white">{title}</h4>
+            {time && (
+              <div className="flex items-center gap-2 text-sm text-gray-400 mt-1">
+                <Clock className="w-4 h-4" />
+                <span>{time}</span>
+                <span className="mx-1">•</span>
+                <span>{duration}</span>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      <p className="text-gray-300 mb-4">{summary}</p>
+
+      <div className="flex flex-wrap gap-2 mb-4">
+        {tags.map(tag => (
+          <span
+            key={tag}
+            className={`px-2 py-1 rounded-full text-sm font-medium flex items-center ${
+              tag === 'Weekly Summary'
+                ? 'bg-purple-500/20 text-purple-300'
+                : 'bg-gray-700 text-gray-300'
+            }`}
+          >
+            <Tag className="w-3 h-3 mr-1" />
+            {tag}
+          </span>
+        ))}
+      </div>
+
+      <div className="flex justify-between items-center">
+        <div className="flex -space-x-2">
+          {participants.map((participant, index) => (
+            <div
+              key={index}
+              className="w-8 h-8 rounded-full bg-gray-700 border-2 border-gray-800 flex items-center justify-center"
+              title={participant}
+            >
+              <span className="text-xs font-medium text-gray-300">
+                {participant.split(' ').map(n => n[0]).join('')}
+              </span>
+            </div>
+          ))}
+        </div>
+        <div className="flex items-center text-sm text-gray-400">
+          <Users className="w-4 h-4 mr-1" />
+          {participants.length} participants
+        </div>
+      </div>
+    </div>
+  );
+}
+```
+
+### src/components/Sidebar.tsx
+
+```typescript
+// src/components/Sidebar.tsx
+import React from 'react';
+import { NavLink } from 'react-router-dom';
+import { Upload, List, MessageSquare } from 'lucide-react';
+
+export function Sidebar() {
+  return (
+    <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
+      <div className="p-4 border-b border-gray-200">
+        <h1 className="text-2xl font-bold text-gray-900">Transcribio</h1>
+      </div>
+      <nav className="flex-1 p-4 space-y-2">
+        <NavLink
+          to="/upload"
+          className={({ isActive }) =>
+            `flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
+              isActive ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-100'
+            }`
+          }
+        >
+          <Upload className="w-4 h-4" />
+          Upload
+        </NavLink>
+        <NavLink
+          to="/history"
+          className={({ isActive }) =>
+            `flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
+              isActive ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-100'
+            }`
+          }
+        >
+          <List className="w-4 h-4" />
+          History
+        </NavLink>
+        <NavLink
+          to="/chat"
+          className={({ isActive }) =>
+            `flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
+              isActive ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-100'
+            }`
+          }
+        >
+          <MessageSquare className="w-4 h-4" />
+          Chat
+        </NavLink>
+      </nav>
+    </div>
+  );
+}
+
+```
+
 ### src/components/TranscriptionControls/index.tsx
 
 ```typescript
@@ -2010,6 +2153,157 @@ export function UploadProgress({
 }
 ```
 
+### src/components/calendar/WeekHeader.tsx
+
+```typescript
+// src/components/calendar/WeekHeader.tsx
+import React from 'react';
+import { format, eachDayOfInterval } from 'date-fns';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+
+interface WeekHeaderProps {
+  week: {
+    start: Date;
+    end: Date;
+  };
+}
+
+export function WeekHeader({ week }: WeekHeaderProps) {
+  const days = eachDayOfInterval({ start: week.start, end: week.end });
+
+  return (
+    <div className="bg-gray-800 rounded-xl p-4">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="text-lg font-semibold text-white">
+          {format(week.start, 'MMMM d')} - {format(week.end, 'MMMM d, yyyy')}
+        </h3>
+        <div className="flex items-center gap-2">
+          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+            <ChevronLeft className="w-5 h-5 text-gray-400" />
+          </button>
+          <button className="p-2 hover:bg-gray-700 rounded-lg transition-colors">
+            <ChevronRight className="w-5 h-5 text-gray-400" />
+          </button>
+        </div>
+      </div>
+
+      <div className="grid grid-cols-7 gap-4">
+        {days.map((day: Date) => (
+          <div key={day.toString()} className="text-center">
+            <div className="text-sm font-medium text-gray-400 mb-1">
+              {format(day, 'EEE')}
+            </div>
+            <div className={`text-2xl font-bold rounded-full w-10 h-10 flex items-center justify-center mx-auto ${
+              format(day, 'yyyy-MM-dd') === format(new Date(), 'yyyy-MM-dd')
+                ? 'bg-blue-500 text-white'
+                : 'text-white'
+            }`}>
+              {format(day, 'd')}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+```
+
+### src/components/calendar/FilterDropdown.tsx
+
+```typescript
+// src/components/calendar/FilterDropdown.tsx
+import React, { useState } from 'react';
+import { Filter, Tag, Clock, Users } from 'lucide-react';
+
+interface FilterDropdownProps {
+  onToggle: () => void;
+  isOpen: boolean;
+}
+
+const ALL_TAGS = ["Planning", "Q1", "Budget", "Design", "Product", "UI", "Team", "Sync", "Weekly Summary"];
+
+export function FilterDropdown({ onToggle, isOpen }: FilterDropdownProps) {
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [duration, setDuration] = useState<string>('');
+  const [participants, setParticipants] = useState<string[]>([]);
+
+  return (
+    <div className="relative">
+      <button
+        onClick={onToggle}
+        className="flex items-center gap-2 px-4 py-2 bg-gray-800 hover:bg-gray-700 rounded-lg transition-colors"
+      >
+        <Filter size={20} />
+        <span>Filters</span>
+      </button>
+
+      {isOpen && (
+        <div className="absolute right-0 top-full mt-2 w-80 bg-gray-800 rounded-xl p-6 shadow-lg border border-gray-700">
+          <div className="space-y-6">
+            <div>
+              <div className="flex items-center gap-2 text-white mb-3">
+                <Tag size={16} />
+                <h4 className="font-medium">Tags</h4>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {ALL_TAGS.map(tag => (
+                  <button
+                    key={tag}
+                    onClick={() => setSelectedTags(prev => 
+                      prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
+                    )}
+                    className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                      selectedTags.includes(tag)
+                        ? 'bg-blue-500 text-white'
+                        : 'bg-gray-700 text-gray-300 hover:bg-gray-600'
+                    }`}
+                  >
+                    {tag}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-2 text-white mb-3">
+                <Clock size={16} />
+                <h4 className="font-medium">Duration</h4>
+              </div>
+              <select
+                value={duration}
+                onChange={(e) => setDuration(e.target.value)}
+                className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              >
+                <option value="">Any duration</option>
+                <option value="short">Under 30 minutes</option>
+                <option value="medium">30-60 minutes</option>
+                <option value="long">Over 60 minutes</option>
+              </select>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-2 text-white mb-3">
+                <Users size={16} />
+                <h4 className="font-medium">Participants</h4>
+              </div>
+              <input
+                type="text"
+                placeholder="Search participants..."
+                className="w-full bg-gray-700 text-white rounded-lg px-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              />
+            </div>
+
+            <button className="w-full bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition-colors">
+              Apply Filters
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+```
+
 ### src/components/TranscriptionViewer/index.tsx
 
 ```typescript
@@ -2212,8 +2506,9 @@ export function TranscriptionStats({ stats }: TranscriptionStatsProps) {
 ### src/hooks/useUpload.ts
 
 ```typescript
-import { useState, useCallback } from 'react';
-import { generateUploadUrl, requestTranscription } from '../services/api';
+import React, { useState, useCallback } from 'react';
+import { generateUploadUrl } from '../services/api/upload';
+import { requestTranscription } from '../services/api/transcription';
 import { uploadWithXHR } from '../services/upload/xhr';
 import { validateFile } from '../services/upload/validation';
 import { logger } from '../utils/logger';
@@ -2227,31 +2522,31 @@ export function useUpload() {
   });
 
   const upload = useCallback(async (file: File) => {
-    setState({ progress: 0, status: 'preparing', error: null });
+    // Start by validating the file
+    setState({ progress: 0, status: 'validating', error: null });
 
     try {
       logger.debug('Starting upload process', { fileName: file.name });
 
-      // Validate file (await the validation)
       const validation = await validateFile(file);
       if (!validation.isValid) {
         throw new Error(validation.error);
       }
 
-      // Get upload URL
-      setState(s => ({ ...s, status: 'preparing' }));
+      // After validation, generate upload URL
+      setState((s: UploadState) => ({ ...s, status: 'generating-url' }));
       const { upload_url, file_id } = await generateUploadUrl(file.name);
 
       // Upload file
-      setState(s => ({ ...s, status: 'uploading' }));
+      setState((s: UploadState) => ({ ...s, status: 'uploading' }));
       await uploadWithXHR(upload_url, file, {
         onProgress: (progress) => {
-          setState(s => ({ ...s, progress: progress.percentage }));
+          setState((s: UploadState) => ({ ...s, progress: progress.percentage }));
         }
       });
 
       // Request transcription
-      setState(s => ({ ...s, status: 'processing' }));
+      setState((s: UploadState) => ({ ...s, status: 'requesting-transcription' }));
       await requestTranscription(file_id);
 
       setState({ progress: 100, status: 'completed', error: null });
@@ -2284,7 +2579,7 @@ export function useUpload() {
 ### src/hooks/useTranscriptionProcessing.ts
 
 ```typescript
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { getTranscriptionResult } from '../services/api/transcription';
 import { logger } from '../utils/logger';
 import { API_CONFIG } from '../config/api';
@@ -2307,7 +2602,7 @@ export function useTranscriptionProcessing() {
   });
 
   const processTranscription = useCallback(async (fileId: string) => {
-    setState(prev => ({ ...prev, isProcessing: true, error: null, progress: 0 }));
+    setState((prev: ProcessingState) => ({ ...prev, isProcessing: true, error: null, progress: 0 }));
     logger.debug('Starting transcription processing', { fileId });
 
     let attempts = 0;
@@ -2323,19 +2618,19 @@ export function useTranscriptionProcessing() {
             speakerCount: data.transcription.speakers.length,
           });
 
-          setState({
+          setState((prev: ProcessingState) => ({
+            ...prev,
             isProcessing: false,
             error: null,
             data,
             progress: 100,
-          });
+          }));
 
           return data;
         }
 
-        // Transcription in progress
         const progress = Math.min(90, ((attempts + 1) / maxAttempts) * 100);
-        setState(prev => ({ ...prev, progress }));
+        setState((prev: ProcessingState) => ({ ...prev, progress }));
 
         logger.debug('Transcription in progress', {
           fileId,
@@ -2346,12 +2641,9 @@ export function useTranscriptionProcessing() {
 
       } catch (error) {
         if (error instanceof APIError && error.status === 404) {
-          // Transcription not ready yet
           logger.debug('Transcription not ready yet (404)', { fileId, attempts });
-
           const progress = Math.min(90, ((attempts + 1) / maxAttempts) * 100);
-          setState(prev => ({ ...prev, progress }));
-
+          setState((prev: ProcessingState) => ({ ...prev, progress }));
         } else {
           const processError: ProcessError = {
             code: 'TRANSCRIPTION_PROCESSING_ERROR',
@@ -2364,12 +2656,13 @@ export function useTranscriptionProcessing() {
             { fileId, attempts }
           );
 
-          setState({
+          setState((prev: ProcessingState) => ({
+            ...prev,
             isProcessing: false,
             error: processError,
             data: null,
             progress: 0,
-          });
+          }));
 
           throw processError;
         }
@@ -2381,7 +2674,6 @@ export function useTranscriptionProcessing() {
       );
     }
 
-    // If maximum attempts reached
     const timeoutError: ProcessError = {
       code: 'TRANSCRIPTION_TIMEOUT',
       message: 'Transcription processing timed out',
@@ -2393,12 +2685,13 @@ export function useTranscriptionProcessing() {
       { fileId, attempts }
     );
 
-    setState({
+    setState((prev: ProcessingState) => ({
+      ...prev,
       isProcessing: false,
       error: timeoutError,
       data: null,
       progress: 0,
-    });
+    }));
 
     throw timeoutError;
   }, []);
@@ -2414,7 +2707,7 @@ export function useTranscriptionProcessing() {
 ### src/hooks/useProcessStatus.ts
 
 ```typescript
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { logStatusChange, logProcessStep } from '../utils/logger/status';
 import { PROCESS_STEPS } from '../config/constants';
 import type { ProcessStatus, ProcessError } from '../types';
@@ -2433,18 +2726,18 @@ export function useProcessStatus(initialStatus: ProcessStatus = 'idle') {
   });
 
   const setStatus = useCallback((newStatus: ProcessStatus) => {
-    setState(prev => {
+    setState((prev: ProcessState) => {
       logStatusChange(prev.status, newStatus);
       return { ...prev, status: newStatus };
     });
   }, []);
 
   const setError = useCallback((error: ProcessError | null) => {
-    setState(prev => ({ ...prev, error }));
+    setState((prev: ProcessState) => ({ ...prev, error }));
   }, []);
 
   const setProgress = useCallback((progress: number) => {
-    setState(prev => ({ ...prev, progress }));
+    setState((prev: ProcessState) => ({ ...prev, progress }));
   }, []);
 
   const reset = useCallback(() => {
@@ -2494,7 +2787,8 @@ export function useProcessStatus(initialStatus: ProcessStatus = 'idle') {
 ```typescript
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useTranscriptionStore } from '../store/transcription';
-import { generateUploadUrl, uploadFile, requestTranscription } from '../services/api';
+import { generateUploadUrl, uploadFile } from '../services/api/upload';
+import { requestTranscription } from '../services/api/transcription';
 import { logger } from '../utils/logger';
 import type { ProcessError } from '../types';
 
@@ -2585,6 +2879,270 @@ export function useTranscriptionUpload() {
     cancel 
   };
 }
+
+```
+
+### src/pages/UploadPage.tsx
+
+```typescript
+// src/pages/UploadPage.tsx
+import React from 'react';
+import { Toaster } from 'sonner';
+import { FileUpload } from '../components/FileUpload';
+import { ProcessStatus } from '../components/ProcessStatus';
+import { TranscriptionControls } from '../components/TranscriptionControls';
+import { TranscriptionViewer } from '../components/TranscriptionViewer';
+import { DebugPanel } from '../components/DebugPanel';
+import { useTranscriptionStore } from '../store/transcription';
+
+export function UploadPage() {
+  const { status, error } = useTranscriptionStore();
+
+  return (
+    <div className="max-w-4xl mx-auto">
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-900">Upload your Audio</h1>
+        <p className="mt-2 text-gray-600">
+          Easily upload audio files and transcribe them.
+        </p>
+      </header>
+      <main className="space-y-8">
+        <FileUpload />
+
+        {status !== 'idle' && status !== 'completed' && (
+          <div className="bg-white p-4 rounded-lg shadow">
+            <ProcessStatus status={status} />
+            {error && (
+              <div className="mt-2 text-sm text-red-600">
+                {error.message}
+              </div>
+            )}
+          </div>
+        )}
+
+        {status === 'completed' && (
+          <>
+            <TranscriptionControls />
+            <TranscriptionViewer />
+          </>
+        )}
+      </main>
+      <Toaster position="top-right" />
+      <DebugPanel />
+    </div>
+  );
+}
+
+```
+
+### src/pages/MeetingHistory.tsx
+
+```typescript
+// src/pages/MeetingHistory.tsx
+import React, { useState } from 'react';
+import { Search, Calendar, Tag, Filter, ChevronDown, ChevronRight, BarChart, Clock } from 'lucide-react';
+import { format, parseISO, startOfWeek, endOfWeek } from 'date-fns';
+import { MeetingCard } from '../components/MeetingCard';
+import { WeekHeader } from '../components/calendar/WeekHeader';
+import { FilterDropdown } from '../components/calendar/FilterDropdown';
+
+const MEETINGS_BY_DATE = {
+  'Today': [
+    {
+      id: 1,
+      title: "Q1 Planning Session",
+      date: "2024-03-15",
+      time: "10:00 AM",
+      duration: "1h 30m",
+      participants: ["Sarah Chen", "Michael Brown", "David Kim"],
+      summary: "Discussed Q1 objectives, budget allocation, and team expansion plans. Key decisions made on new product features.",
+      tags: ["Planning", "Q1", "Budget"]
+    }
+  ],
+  'Yesterday': [
+    {
+      id: 2,
+      title: "Product Design Review",
+      date: "2024-03-14",
+      time: "2:00 PM",
+      duration: "45m",
+      participants: ["Emma Wilson", "James Lee", "Lisa Park"],
+      summary: "Reviewed latest UI mockups, discussed user feedback, and finalized design system updates.",
+      tags: ["Design", "Product", "UI"]
+    },
+    {
+      id: 3,
+      title: "Team Sync",
+      date: "2024-03-14",
+      time: "4:30 PM",
+      duration: "30m",
+      participants: ["Emma Wilson", "James Lee"],
+      summary: "Weekly team sync to discuss ongoing projects and blockers.",
+      tags: ["Team", "Sync"]
+    }
+  ],
+  'Week 11': [
+    {
+      id: 'weekly-1',
+      title: "Week 11 Summary",
+      date: "2024-03-11/17",
+      duration: "12h 30m total",
+      participants: ["Team"],
+      summary: "8 meetings held this week. Key topics: Q1 Planning, Product Design, Team Syncs.",
+      tags: ["Weekly Summary"],
+      isWeeklySummary: true
+    }
+  ]
+};
+
+export function MeetingHistory() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [showFilters, setShowFilters] = useState(false);
+  const [expandedDates, setExpandedDates] = useState<string[]>(['Today', 'Yesterday']);
+  const [currentWeek, setCurrentWeek] = useState({
+    start: startOfWeek(new Date()),
+    end: endOfWeek(new Date())
+  });
+
+  const toggleDate = (date: string) => {
+    setExpandedDates(prev => 
+      prev.includes(date) ? prev.filter(d => d !== date) : [...prev, date]
+    );
+  };
+
+  const formatDateHeader = (date: string) => {
+    if (date === 'Today' || date === 'Yesterday') return date;
+    if (date.startsWith('Week')) return date;
+    const parsedDate = parseISO(date);
+    return format(parsedDate, 'EEEE, MMMM d');
+  };
+
+  return (
+    <div className="max-w-6xl mx-auto">
+      <div className="sticky top-0 bg-gray-950 z-10 pb-6">
+        <header className="mb-6">
+          <div className="flex justify-between items-center mb-6">
+            <div>
+              <h2 className="text-3xl font-bold text-white">Meeting History</h2>
+              <p className="text-gray-400">Browse and search through your past meetings</p>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 w-4 h-4" />
+                <input
+                  type="text"
+                  placeholder="Search meetings..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="w-64 bg-gray-800 text-white rounded-lg pl-10 pr-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                />
+              </div>
+              <FilterDropdown onToggle={() => setShowFilters(!showFilters)} isOpen={showFilters} />
+            </div>
+          </div>
+
+          <WeekHeader week={currentWeek} />
+        </header>
+      </div>
+
+      <div className="space-y-4">
+        {Object.entries(MEETINGS_BY_DATE).map(([date, meetings]) => (
+          <div key={date} className="bg-gray-800/50 rounded-xl overflow-hidden backdrop-blur-sm">
+            <button
+              onClick={() => toggleDate(date)}
+              className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-800/80 transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                {date.includes('Week') ? (
+                  <BarChart className="w-5 h-5 text-purple-400" />
+                ) : (
+                  <Calendar className="w-5 h-5 text-blue-400" />
+                )}
+                <span className="font-medium text-white">{formatDateHeader(date)}</span>
+                <div className="flex items-center gap-2 text-gray-400 text-sm">
+                  <Clock className="w-4 h-4" />
+                  <span>
+                    {meetings.reduce((acc, m: any) => {
+                      // This is just a placeholder calculation for total minutes.
+                      // In a real scenario, parse durations properly.
+                      if (m.duration.includes('h')) {
+                        const [hours, rest] = m.duration.split('h');
+                        const h = parseInt(hours.trim());
+                        const mins = rest.trim().split('m')[0];
+                        return acc + h * 60 + (parseInt(mins) || 0);
+                      } else {
+                        return acc + parseInt(m.duration);
+                      }
+                    }, 0)} min
+                  </span>
+                  <span className="mx-2">•</span>
+                  <span>{meetings.length} {meetings.length === 1 ? 'meeting' : 'meetings'}</span>
+                </div>
+              </div>
+              {expandedDates.includes(date) ? (
+                <ChevronDown className="w-5 h-5 text-gray-400" />
+              ) : (
+                <ChevronRight className="w-5 h-5 text-gray-400" />
+              )}
+            </button>
+
+            {expandedDates.includes(date) && (
+              <div className="divide-y divide-gray-700/50">
+                {meetings.map((meeting: any) => (
+                  <MeetingCard
+                    key={meeting.id}
+                    {...meeting}
+                    onClick={() => console.log('Navigate to meeting', meeting.id)}
+                  />
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+```
+
+### src/pages/ChatPage.tsx
+
+```typescript
+// src/pages/ChatPage.tsx
+import React from 'react';
+
+export function ChatPage() {
+  // In future this will have a chat interface
+  return (
+    <div className="max-w-4xl mx-auto">
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-900">Chat with Your Meetings</h1>
+        <p className="mt-2 text-gray-600">
+          Interact with past meeting transcriptions and summaries.
+        </p>
+      </header>
+      <main className="space-y-4">
+        {/* Placeholder for chat messages */}
+        <div className="bg-white p-4 rounded-lg shadow">
+          <p className="text-sm text-gray-800">User: Hi, can you summarize my last meeting?</p>
+        </div>
+        <div className="bg-white p-4 rounded-lg shadow">
+          <p className="text-sm text-gray-800">Bot: Sure, your last meeting was about...</p>
+        </div>
+        {/* Placeholder for input */}
+        <div className="mt-4">
+          <input
+            type="text"
+            placeholder="Type a message..."
+            className="w-full px-4 py-2 border border-gray-300 rounded text-sm text-gray-700"
+          />
+        </div>
+      </main>
+    </div>
+  );
+}
+
 ```
 
 ### src/services/api.ts
@@ -3073,7 +3631,9 @@ export async function requestTranscription(fileId: string, signal?: AbortSignal)
   const data = await handleResponse<TranscriptionResponse>(response);
   
   if (!data.transcription?.speakers) {
-    logger.error('Invalid transcription response', { data });
+    logger.error('Invalid transcription response', new Error('Invalid transcription response'), {
+      responseData: data
+    });
     throw new Error('Invalid transcription response');
   }
   
@@ -3085,7 +3645,6 @@ export async function requestTranscription(fileId: string, signal?: AbortSignal)
   return data;
 }
 
-// Added getTranscriptionResult function:
 export async function getTranscriptionResult(fileId: string, signal?: AbortSignal): Promise<TranscriptionResponse> {
   logger.debug('Getting transcription result', { fileId });
   const response = await fetch(
@@ -3378,16 +3937,17 @@ export interface UploadOptions {
   signal?: AbortSignal;
 }
 
-export interface UploadUrlResponse {
+export interface SignedUrlResponse {
   upload_url: string;
   file_id: string;
 }
 
 export interface UploadState {
   progress: number;
-  status: 'idle' | 'preparing' | 'uploading' | 'processing' | 'completed' | 'error';
+  status: 'idle' | 'validating' | 'generating-url' | 'uploading' | 'requesting-transcription' | 'processing' | 'completed' | 'error';
   error: Error | null;
 }
+
 ```
 
 ### src/services/upload/uploader.ts
