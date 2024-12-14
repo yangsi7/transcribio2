@@ -42,6 +42,7 @@ export const LOG_CONFIG = {
 export const PROCESS_STEPS = {
   VALIDATION: {
     start: 'Starting file validation',
+    progress: 'Validation in progress', // Added this line
     success: 'File validation successful',
     error: 'File validation failed'
   },

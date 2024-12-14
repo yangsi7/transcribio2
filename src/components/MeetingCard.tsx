@@ -1,6 +1,6 @@
 // src/components/MeetingCard.tsx
 import React from 'react';
-import { Calendar, Clock, Users, Tag, BarChart } from 'lucide-react';
+import { Calendar, Clock, Users, Tag, BarChart, Link as LinkIcon } from 'lucide-react';
 
 interface MeetingProps {
   title: string;
@@ -10,6 +10,13 @@ interface MeetingProps {
   participants: string[];
   summary: string;
   tags?: string[];
+  relationships?: {
+    source: string;
+    target: string;
+    description: string;
+    keywords: string[];
+    strength: number;
+  }[];
   isWeeklySummary?: boolean;
   onClick?: () => void;
 }
@@ -22,12 +29,13 @@ export function MeetingCard({
   participants,
   summary,
   tags = [],
+  relationships = [],
   isWeeklySummary = false,
   onClick
 }: MeetingProps) {
   return (
     <div 
-      className={`p-6 hover:bg-gray-700/30 transition-colors cursor-pointer ${
+      className={`p-6 hover:bg-gray-700/50 transition-colors cursor-pointer ${
         isWeeklySummary ? 'bg-purple-900/20' : 'bg-gray-800/30'
       }`}
       onClick={onClick}
@@ -40,7 +48,7 @@ export function MeetingCard({
             <Calendar className="w-5 h-5 text-blue-400" />
           )}
           <div>
-            <h4 className="text-lg font-semibold text-white">{title}</h4>
+            <h4 className="text-lg font-semibold text-gray-200">{title}</h4>
             {time && (
               <div className="flex items-center gap-2 text-sm text-gray-400 mt-1">
                 <Clock className="w-4 h-4" />
@@ -53,23 +61,38 @@ export function MeetingCard({
         </div>
       </div>
 
-      <p className="text-gray-300 mb-4">{summary}</p>
+      {summary && summary.trim().length > 0 && (
+        <p className="text-gray-300 mb-4 whitespace-pre-line">{summary}</p>
+      )}
 
-      <div className="flex flex-wrap gap-2 mb-4">
-        {tags.map(tag => (
-          <span
-            key={tag}
-            className={`px-2 py-1 rounded-full text-sm font-medium flex items-center ${
-              tag === 'Weekly Summary'
-                ? 'bg-purple-500/20 text-purple-300'
-                : 'bg-gray-700 text-gray-300'
-            }`}
-          >
-            <Tag className="w-3 h-3 mr-1" />
-            {tag}
-          </span>
-        ))}
-      </div>
+      {relationships.length > 0 && (
+        <div className="mb-4">
+          <h5 className="text-sm font-semibold text-gray-300 flex items-center gap-1 mb-2">
+            <LinkIcon className="w-4 h-4" /> Relationships
+          </h5>
+          <ul className="text-sm text-gray-400 list-disc list-inside space-y-1">
+            {relationships.map((r, idx) => (
+              <li key={idx}>
+                <span className="text-gray-200 font-medium">{r.source}</span> → <span className="text-gray-200 font-medium">{r.target}</span>: {r.description} (strength: {r.strength})
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {tags.length > 0 && (
+        <div className="flex flex-wrap gap-2 mb-4">
+          {tags.map(tag => (
+            <span
+              key={tag}
+              className="px-2 py-1 rounded-full text-sm font-medium flex items-center bg-gray-700 text-gray-300"
+            >
+              <Tag className="w-3 h-3 mr-1" />
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
 
       <div className="flex justify-between items-center">
         <div className="flex -space-x-2">

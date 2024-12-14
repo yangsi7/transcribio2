@@ -1,7 +1,6 @@
 ### vite.config.ts
 
 ```typescript
-// vite.config.ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
@@ -20,29 +19,35 @@ export default defineConfig({
 // src/App.tsx
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Sidebar } from './components/Sidebar';
 import { UploadPage } from './pages/UploadPage';
 import { MeetingHistory } from './pages/MeetingHistory';
 import { ChatPage } from './pages/ChatPage';
+import { APITestPage } from './pages/APITestPage';
+import { Sidebar } from './components/Sidebar'; // Navigation Sidebar
+import { DebugPanel } from './components/DebugPanel';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-[#1A1A1A] text-white flex">
+      {/* Navigation Sidebar */}
       <Sidebar />
-      <div className="flex-1 p-6">
+
+      {/* Main Content Area */}
+      <div className="flex-1 relative">
         <Routes>
-          <Route path="/" element={<Navigate to="/upload" replace />} />
           <Route path="/upload" element={<UploadPage />} />
           <Route path="/history" element={<MeetingHistory />} />
           <Route path="/chat" element={<ChatPage />} />
+          <Route path="/api-test" element={<APITestPage />} />
+          <Route path="*" element={<Navigate to="/upload" replace />} />
         </Routes>
+        <DebugPanel />
       </div>
     </div>
   );
 }
 
 export default App;
-
 ```
 
 ### src/main.tsx
@@ -67,16 +72,32 @@ createRoot(document.getElementById('root')!).render(
 ### src/index.css
 
 ```css
-/* src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  color-scheme: dark;
+}
+body {
+  @apply bg-gray-900 text-gray-100;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 4px;
+}
 ```
 
 ### src/vite-env.d.ts
 
 ```typescript
-// src/vite-env.d.ts
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
@@ -91,6 +112,46 @@ interface Window {
   AudioContext: typeof AudioContext
   webkitAudioContext: typeof AudioContext
 }
+```
+
+### src/types/graph.ts
+
+```typescript
+export interface Entity {
+    name: string;
+    type: string;
+    description: string;
+    meeting_id: string;
+    created_at: number;
+  }
+  
+  export interface Relationship {
+    source: string;
+    target: string;
+    description: string;
+    keywords: string[];
+    strength: number;
+    meeting_id: string;
+    created_at: number;
+  }
+  
+  export interface GraphData {
+    graph: {
+      entities: Entity[];
+      relationships: Relationship[];
+    };
+  }
+  
+  export interface ProcessedNode extends Entity {
+    id: string;
+    connections: number;
+  }
+  
+  export interface ProcessedLink extends Omit<Relationship, 'source' | 'target'> {
+    id: string;
+    source: ProcessedNode;
+    target: ProcessedNode;
+  }
 ```
 
 ### src/types/index.ts
@@ -112,6 +173,25 @@ export interface TranscriptionResponse {
     }[];
     text: string;
   };
+}
+
+export interface KnowledgeGraphEntity {
+  name: string;
+  type: string;
+  description: string;
+}
+
+export interface KnowledgeGraphRelationship {
+  source: string;
+  target: string;
+  description: string;
+  keywords: string[];
+  strength: number;
+}
+
+export interface KnowledgeGraph {
+  entities: KnowledgeGraphEntity[];
+  relationships: KnowledgeGraphRelationship[];
 }
 
 export type ExportFormat = 'txt' | 'md' | 'pdf' | 'docx' | 'rtf';
@@ -140,20 +220,43 @@ export interface TranscriptionState {
   error: ProcessError | null;
   transcription: TranscriptionResponse | null;
   speakerMap: Record<string, string>;
+  knowledgeGraph: KnowledgeGraph | null;
+  summary: string | null;
+
   setSpeakerName: (speaker: string, name: string) => void;
   setFile: (file: File) => void;
   setFileId: (id: string) => void;
   setStatus: (status: ProcessStatus) => void;
   setError: (error: ProcessError | null) => void;
   setTranscription: (transcription: TranscriptionResponse) => void;
+  setKnowledgeGraph: (kg: KnowledgeGraph | null) => void;
+  setSummary: (summary: string | null) => void;
   reset: () => void;
 }
+
+export interface EntityMapResponse {
+  graph: KnowledgeGraph;
+}
+
+export interface EntityMapRequest {
+  text: string;
+}
+
+export interface SummarizeRequest {
+  text: string;
+  knowledge_graph: KnowledgeGraph;
+  system_prompt: string;
+}
+
+export interface SummarizeResponse {
+  summary: string;
+}
+
 ```
 
 ### src/config/audio.ts
 
 ```typescript
-// src/config/audio.ts
 export const AUDIO_CONFIG = {
   FORMATS: {
     'audio/mpeg': ['.mp3'],
@@ -169,16 +272,15 @@ export const AUDIO_CONFIG = {
     'audio/flac': ['.flac'],
     'audio/x-flac': ['.flac']
   },
-  MAX_FILE_SIZE: 500 * 1024 * 1024, // 500MB
-  MIN_FILE_SIZE: 1024, // 1KB
-  PREVIEW_CHUNK_SIZE: 256 * 1024, // 256KB
+  MAX_FILE_SIZE: 500 * 1024 * 1024,
+  MIN_FILE_SIZE: 1024,
+  PREVIEW_CHUNK_SIZE: 256 * 1024,
 } as const;
 ```
 
 ### src/config/api.ts
 
 ```typescript
-// src/config/api.ts
 import { ENV } from './env';
 
 export const API_CONFIG = {
@@ -204,7 +306,7 @@ export const API_CONFIG = {
       'Content-Type': 'application/octet-stream',
     },
   },
-  timeout: 600000, // 10 minutes
+  timeout: 600000,
   polling: {
     interval: 5000,
     maxAttempts: 60,
@@ -268,6 +370,7 @@ export const LOG_CONFIG = {
 export const PROCESS_STEPS = {
   VALIDATION: {
     start: 'Starting file validation',
+    progress: 'Validation in progress', // Added this line
     success: 'File validation successful',
     error: 'File validation failed'
   },
@@ -290,13 +393,7 @@ export const PROCESS_STEPS = {
 
 ```typescript
 // src/config/env.ts
-import { logger } from '../utils/logger';
-
-// Instead of using import.meta.env directly, we can rely on vite to define them as global vars via define or just cast
-// Or ensure that tsconfig module is set to esnext and vite is configured properly.
-// Given that we've set module to esnext now, import.meta should be allowed.
-
-// After setting "module": "esnext" in tsconfig.json, we can leave this code as is:
+import { logger } from '../utils/logger/core';
 
 const getEnvVar = (key: string): string => {
   const value = import.meta.env[key];
@@ -309,15 +406,49 @@ const getEnvVar = (key: string): string => {
 
 export const ENV = {
   API_URL: import.meta.env.VITE_API_URL || 'https://api-service-1040094048579.us-central1.run.app',
+  API_URL_SECONDARY: import.meta.env.VITE_API_URL_SECONDARY || 'https://meeting-minutes-service-1040094048579.us-central1.run.app',
   API_KEY: getEnvVar('VITE_API_KEY'),
+  API_KEY_SECONDARY: getEnvVar('VITE_API_KEY_SECONDARY'),
   IS_DEV: import.meta.env.DEV,
 } as const;
 
 logger.info('Environment configuration loaded', {
   API_URL: ENV.API_URL,
+  API_URL_SECONDARY: ENV.API_URL_SECONDARY,
   IS_DEV: ENV.IS_DEV,
-  HAS_API_KEY: !!ENV.API_KEY
+  HAS_API_KEY: !!ENV.API_KEY,
+  HAS_API_KEY_SECONDARY: !!ENV.API_KEY_SECONDARY
 });
+
+```
+
+### src/utils/colors.ts
+
+```typescript
+export const ENTITY_COLORS = [
+    '#FF6B6B',
+    '#4ECDC4',
+    '#45B7D1',
+    '#96CEB4',
+    '#FFEEAD',
+    '#D4A5A5',
+    '#9ED2C6',
+    '#FFD93D',
+    '#FF9A8B',
+    '#98DDCA',
+    '#D4A5FF',
+    '#FF8B94',
+    '#91A6FF',
+    '#88D8B0',
+    '#FFAAA5',
+    '#B5EAD7',
+    '#C7CEEA',
+    '#E2F0CB',
+    '#FFDAC1',
+    '#E0BBE4',
+  ];
+  
+  export const DEFAULT_COLOR = '#607D8B';
 ```
 
 ### src/utils/audio.ts
@@ -344,6 +475,31 @@ export {
   getAcceptedFileTypes,
   // Logger
   logger as audioLogger,
+};
+```
+
+### src/utils/entityColors.ts
+
+```typescript
+import { ENTITY_COLORS, DEFAULT_COLOR } from './colors';
+import { ProcessedNode } from '../types/graph';
+
+export const getEntityColorMap = (nodes: ProcessedNode[]) => {
+  const typeCounts = nodes.reduce((acc, node) => {
+    acc[node.type] = (acc[node.type] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
+  const sortedTypes = Object.entries(typeCounts)
+    .sort(([, a], [, b]) => b - a)
+    .map(([type]) => type);
+
+  const colorMap = new Map<string, string>();
+  sortedTypes.forEach((type, index) => {
+    colorMap.set(type, index < ENTITY_COLORS.length ? ENTITY_COLORS[index] : DEFAULT_COLOR);
+  });
+
+  return colorMap;
 };
 ```
 
@@ -466,134 +622,6 @@ export async function exportTranscription(
 }
 ```
 
-### src/utils/logger.ts
-
-```typescript
-import { LOG_CONFIG } from '../config/constants';
-
-type LogLevel = typeof LOG_CONFIG.LEVELS[keyof typeof LOG_CONFIG.LEVELS];
-
-interface LogEntry {
-  id: string;
-  timestamp: string;
-  level: LogLevel;
-  message: string;
-  data?: unknown;
-  error?: Error;
-  context?: Record<string, unknown>;
-}
-
-class Logger {
-  private static instance: Logger;
-  private logs: LogEntry[] = [];
-  private readonly isDevelopment = import.meta.env.DEV;
-  private readonly maxLogs = LOG_CONFIG.MAX_LOGS;
-
-  private constructor() {
-    this.info('Logger initialized', { isDevelopment: this.isDevelopment });
-  }
-
-  static getInstance(): Logger {
-    if (!Logger.instance) {
-      Logger.instance = new Logger();
-    }
-    return Logger.instance;
-  }
-
-  private generateId(): string {
-    return Math.random().toString(36).substring(2, 15);
-  }
-
-  private createEntry(
-    level: LogLevel,
-    message: string,
-    error?: Error,
-    data?: unknown,
-    context?: Record<string, unknown>
-  ): LogEntry {
-    return {
-      id: this.generateId(),
-      timestamp: new Date().toISOString(),
-      level,
-      message,
-      error,
-      data,
-      context
-    };
-  }
-
-  private addLog(entry: LogEntry): void {
-    this.logs.unshift(entry);
-    if (this.logs.length > this.maxLogs) {
-      this.logs.pop();
-    }
-
-    if (this.isDevelopment) {
-      const prefix = `[${entry.level.toUpperCase()}]`;
-      const style = LOG_CONFIG.COLORS[entry.level];
-      
-      console.groupCollapsed(
-        `%c${prefix} %c${entry.message}`,
-        `color: ${style}; font-weight: bold`,
-        'color: inherit'
-      );
-      
-      if (entry.data) {
-        console.log('Data:', entry.data);
-      }
-      
-      if (entry.context) {
-        console.log('Context:', entry.context);
-      }
-      
-      if (entry.error) {
-        console.error('Error:', entry.error);
-        if (entry.error.stack) {
-          console.log('Stack:', entry.error.stack);
-        }
-      }
-      
-      console.groupEnd();
-    }
-  }
-
-  debug(message: string, data?: unknown, context?: Record<string, unknown>): void {
-    this.addLog(this.createEntry(LOG_CONFIG.LEVELS.DEBUG, message, undefined, data, context));
-  }
-
-  info(message: string, data?: unknown, context?: Record<string, unknown>): void {
-    this.addLog(this.createEntry(LOG_CONFIG.LEVELS.INFO, message, undefined, data, context));
-  }
-
-  warn(message: string, data?: unknown, context?: Record<string, unknown>): void {
-    this.addLog(this.createEntry(LOG_CONFIG.LEVELS.WARN, message, undefined, data, context));
-  }
-
-  error(message: string, error: Error, context?: Record<string, unknown>): void {
-    this.addLog(this.createEntry(LOG_CONFIG.LEVELS.ERROR, message, error, undefined, context));
-  }
-
-  getLogs(): LogEntry[] {
-    return [...this.logs];
-  }
-
-  getLogsByLevel(level: LogLevel): LogEntry[] {
-    return this.logs.filter(log => log.level === level);
-  }
-
-  getErrorLogs(): LogEntry[] {
-    return this.getLogsByLevel(LOG_CONFIG.LEVELS.ERROR);
-  }
-
-  clearLogs(): void {
-    this.logs = [];
-    this.info('Logs cleared');
-  }
-}
-
-export const logger = Logger.getInstance();
-```
-
 ### src/utils/format.ts
 
 ```typescript
@@ -623,16 +651,83 @@ export function formatFileSize(bytes: number): string {
 }
 ```
 
+### src/utils/processGraphData.ts
+
+```typescript
+import { GraphData, ProcessedNode, ProcessedLink } from '../types/graph';
+
+export const processGraphData = (data: GraphData) => {
+  const nodes = new Map<string, ProcessedNode>();
+  const links: ProcessedLink[] = [];
+
+  data.graph.entities.forEach((entity) => {
+    nodes.set(entity.name, {
+      ...entity,
+      id: entity.name,
+      connections: 0,
+    });
+  });
+
+  data.graph.relationships.forEach((rel) => {
+    const sourceNode = nodes.get(rel.source);
+    const targetNode = nodes.get(rel.target);
+
+    if (sourceNode && targetNode) {
+      sourceNode.connections++;
+      targetNode.connections++;
+
+      links.push({
+        ...rel,
+        id: `${rel.source}-${rel.target}`,
+        source: sourceNode,
+        target: targetNode,
+      });
+    }
+  });
+
+  return {
+    nodes: Array.from(nodes.values()),
+    links,
+  };
+};
+```
+
+### src/utils/keywords.ts
+
+```typescript
+import { ProcessedLink } from '../types/graph';
+
+interface KeywordCount {
+  keyword: string;
+  count: number;
+}
+
+export const extractKeywords = (links: ProcessedLink[]): KeywordCount[] => {
+  const keywordCounts = new Map<string, number>();
+  
+  links.forEach(link => {
+    link.keywords.forEach(keyword => {
+      keywordCounts.set(keyword, (keywordCounts.get(keyword) || 0) + 1);
+    });
+  });
+  
+  return Array.from(keywordCounts.entries())
+    .map(([keyword, count]) => ({ keyword, count }))
+    .sort((a, b) => b.count - a.count);
+};
+```
+
 ### src/utils/logger/status.ts
 
 ```typescript
+// src/utils/logger/status.ts
 import { LOG_CONFIG, PROCESS_STEPS } from '../../config/constants';
 import { logger } from './core';
 import type { ProcessStatus } from '../../types';
 
 export function logStatusChange(from: ProcessStatus, to: ProcessStatus): void {
-  logger.info('Status change', { 
-    from, 
+  logger.info('Status change', {
+    from,
     to,
     fromMessage: LOG_CONFIG.STATUS_MESSAGES[from],
     toMessage: LOG_CONFIG.STATUS_MESSAGES[to]
@@ -644,8 +739,9 @@ export function logProcessStep(
   status: 'start' | 'progress' | 'success' | 'error',
   details?: Record<string, unknown>
 ): void {
-  const message = PROCESS_STEPS[step][status];
-  
+  // After updating PROCESS_STEPS so all steps have all keys (start, progress, success, error):
+  const message = PROCESS_STEPS[step][status]; // Now safe, as all keys exist
+
   switch (status) {
     case 'start':
       logger.info(message, details);
@@ -701,10 +797,9 @@ class Logger {
   private constructor() {
     this.config = {
       maxLogs: LOG_CONFIG.MAX_LOGS,
-      isDevelopment: import.meta.env.DEV
+      isDevelopment: true // For consistent logging in dev
     };
-    // Initialize with a startup log
-    this.info('Logger initialized', { isDevelopment: this.config.isDevelopment });
+    this.info('Logger initialized', { forcedLogging: true });
   }
 
   static getInstance(): Logger {
@@ -729,10 +824,10 @@ class Logger {
       id: this.generateId(),
       timestamp: new Date().toISOString(),
       level,
-      message: String(message),
+      message
     };
 
-    if (error !== undefined) entry.error = error;
+    if (error) entry.error = error;
     if (data !== undefined) entry.data = data;
     if (context !== undefined) entry.context = context;
 
@@ -741,21 +836,13 @@ class Logger {
 
   private addLog(entry: LogEntry): void {
     try {
-      // Add to the beginning of the array for chronological order
       this.logs.unshift(entry);
-      
-      // Trim logs if we exceed the maximum
       if (this.logs.length > this.config.maxLogs) {
         this.logs.pop();
       }
-
-      // Format and display in console if in development
-      if (this.config.isDevelopment) {
-        formatLogEntry(entry);
-      }
-    } catch (error) {
-      // Fallback error handling if logging fails
-      console.error('Failed to add log entry:', error);
+      formatLogEntry(entry);
+    } catch (err) {
+      console.error('Failed to add log entry:', err);
       console.error('Problematic entry:', {
         ...entry,
         error: entry.error ? {
@@ -767,28 +854,24 @@ class Logger {
   }
 
   debug(message: string, data?: unknown, context?: Record<string, unknown>): void {
-    this.addLog(
-      this.createEntry(LOG_CONFIG.LEVELS.DEBUG, message, undefined, data, context)
-    );
+    console.log(`[DEBUG STDOUT] ${message}`, data, context);
+    this.addLog(this.createEntry(LOG_CONFIG.LEVELS.DEBUG, message, undefined, data, context));
   }
 
   info(message: string, data?: unknown, context?: Record<string, unknown>): void {
-    this.addLog(
-      this.createEntry(LOG_CONFIG.LEVELS.INFO, message, undefined, data, context)
-    );
+    console.log(`[INFO STDOUT] ${message}`, data, context);
+    this.addLog(this.createEntry(LOG_CONFIG.LEVELS.INFO, message, undefined, data, context));
   }
 
   warn(message: string, data?: unknown, context?: Record<string, unknown>): void {
-    this.addLog(
-      this.createEntry(LOG_CONFIG.LEVELS.WARN, message, undefined, data, context)
-    );
+    console.warn(`[WARN STDOUT] ${message}`, data, context);
+    this.addLog(this.createEntry(LOG_CONFIG.LEVELS.WARN, message, undefined, data, context));
   }
 
-  error(message: string, error: Error | unknown, context?: Record<string, unknown>): void {
+  error(message: string, error: unknown, context?: Record<string, unknown>): void {
     const normalizedError = error instanceof Error ? error : new Error(String(error));
-    this.addLog(
-      this.createEntry(LOG_CONFIG.LEVELS.ERROR, message, normalizedError, undefined, context)
-    );
+    console.error(`[ERROR STDOUT] ${message}`, normalizedError, context);
+    this.addLog(this.createEntry(LOG_CONFIG.LEVELS.ERROR, message, normalizedError, undefined, context));
   }
 
   getLogs(): LogEntry[] {
@@ -809,23 +892,32 @@ class Logger {
   }
 }
 
-// Export the singleton instance
 export const logger = Logger.getInstance();
 ```
 
 ### src/utils/logger/index.ts
 
 ```typescript
+import type { LOG_CONFIG } from '../../config/constants';
 import { logger } from './core';
-import type { LogEntry, LogLevel, LoggerConfig } from './types';
+export { logger };
+export type LogLevel = typeof LOG_CONFIG.LEVELS[keyof typeof LOG_CONFIG.LEVELS];
 
-export {
-  logger,
-  // Types
-  LogEntry,
-  LogLevel,
-  LoggerConfig
-};
+
+export interface LogEntry {
+  id: string;
+  timestamp: string;
+  level: LogLevel;
+  message: string;
+  data?: unknown;
+  error?: Error;
+  context?: Record<string, unknown>;
+}
+
+export interface LoggerConfig {
+  maxLogs: number;
+  isDevelopment: boolean;
+}
 ```
 
 ### src/utils/logger/formatter.ts
@@ -837,7 +929,7 @@ import type { LogEntry } from './types';
 function stringifyValue(value: unknown): string {
   try {
     return JSON.stringify(value, null, 2);
-  } catch (error) {
+  } catch {
     return String(value);
   }
 }
@@ -846,31 +938,21 @@ export function formatLogEntry(entry: LogEntry): void {
   const timestamp = new Date(entry.timestamp).toLocaleTimeString();
   const prefix = `[${timestamp}] [${entry.level.toUpperCase()}]`;
   const style = LOG_CONFIG.STYLES[entry.level];
-  
+
   console.groupCollapsed(
     `%c${prefix}%c ${entry.message}`,
     style,
     'color: inherit'
   );
-  
+
   if (entry.data !== undefined) {
-    console.log(
-      '%cData:%c\n',
-      'color: #4B5563; font-weight: bold',
-      'color: inherit',
-      stringifyValue(entry.data)
-    );
+    console.log('%cData:%c\n', 'color: #4B5563; font-weight: bold', 'color: inherit', stringifyValue(entry.data));
   }
-  
+
   if (entry.context) {
-    console.log(
-      '%cContext:%c\n',
-      'color: #4B5563; font-weight: bold',
-      'color: inherit',
-      stringifyValue(entry.context)
-    );
+    console.log('%cContext:%c\n', 'color: #4B5563; font-weight: bold', 'color: inherit', stringifyValue(entry.context));
   }
-  
+
   if (entry.error) {
     console.group('%cError Details:', 'color: #DC2626; font-weight: bold');
     console.error(entry.error);
@@ -882,7 +964,7 @@ export function formatLogEntry(entry: LogEntry): void {
     }
     console.groupEnd();
   }
-  
+
   console.groupEnd();
 }
 ```
@@ -890,7 +972,8 @@ export function formatLogEntry(entry: LogEntry): void {
 ### src/utils/audio/validation.ts
 
 ```typescript
-import { AUDIO_CONFIG } from './constants';
+// src/utils/audio/validation.ts
+import { AUDIO_CONFIG } from '../../config/audio';
 import { logger } from './logger';
 import { handleAudioError } from './error-handler';
 import { processAudioChunk } from './processing';
@@ -1068,6 +1151,7 @@ export function handleAudioError(error: Error, file?: File, context?: Record<str
 ### src/utils/audio/processing.ts
 
 ```typescript
+// src/utils/audio/processing.ts
 import { logger } from './logger';
 import { handleAudioError } from './error-handler';
 
@@ -1081,8 +1165,8 @@ export interface AudioProcessingResult {
 export async function processAudioChunk(chunk: ArrayBuffer): Promise<AudioProcessingResult> {
   logger.debug('Processing audio chunk', { size: chunk.byteLength });
 
+  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
   try {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     const audioBuffer = await audioContext.decodeAudioData(chunk);
 
     logger.debug('Audio chunk processed', {
@@ -1106,11 +1190,7 @@ export async function processAudioChunk(chunk: ArrayBuffer): Promise<AudioProces
       isValid: false
     };
   } finally {
-    // Clean up AudioContext
-    if (window.AudioContext || window.webkitAudioContext) {
-      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      await audioContext.close();
-    }
+    await audioContext.close();
   }
 }
 ```
@@ -1173,32 +1253,6 @@ class Logger {
 }
 
 export const logger = Logger.getInstance();
-```
-
-### src/utils/audio/constants.ts
-
-```typescript
-export const AUDIO_CONFIG = {
-  FORMATS: {
-    // Common formats
-    'audio/mpeg': ['.mp3'],
-    'audio/wav': ['.wav'],
-    'audio/wave': ['.wav'],
-    'audio/x-wav': ['.wav'],
-    'audio/mp4': ['.m4a', '.mp4a'],
-    'audio/x-m4a': ['.m4a'],
-    // Additional formats
-    'audio/aac': ['.aac'],
-    'audio/ogg': ['.ogg', '.oga'],
-    'audio/webm': ['.weba'],
-    'audio/x-aiff': ['.aif', '.aiff'],
-    'audio/flac': ['.flac'],
-    'audio/x-flac': ['.flac'],
-  },
-  MAX_FILE_SIZE: 500 * 1024 * 1024, // 500MB
-  MIN_FILE_SIZE: 1024, // 1KB
-  PREVIEW_CHUNK_SIZE: 256 * 1024, // 256KB for audio preview validation
-} as const;
 ```
 
 ### src/utils/audio/index.ts
@@ -1300,11 +1354,177 @@ export function concatenateTextBlocks(speakers: Speaker[]): ProcessedBlock[] {
 }
 ```
 
-### src/components/ProcessStatus.tsx
+### src/components/NodeConnections.tsx
 
 ```typescript
 import React from 'react';
-import { Loader2 } from 'lucide-react';
+import { ProcessedLink, ProcessedNode } from '../types/graph';
+
+interface NodeConnectionsProps {
+  node: ProcessedNode;
+  links: ProcessedLink[];
+  nodes: ProcessedNode[];
+  colorMap: Map<string, string>;
+}
+
+export const NodeConnections: React.FC<NodeConnectionsProps> = ({
+  node,
+  links,
+  nodes,
+  colorMap,
+}) => {
+  const nodeConnections = links.filter(
+    (link) => link.source.id === node.id || link.target.id === node.id
+  );
+
+  return (
+    <div className="space-y-4">
+      <h3 className="text-lg font-semibold border-b border-gray-700 pb-2">
+        Connections ({nodeConnections.length})
+      </h3>
+      <div className="space-y-3 max-h-[calc(100vh-400px)] overflow-y-auto pr-2">
+        {nodeConnections.map((connection) => {
+          const isSource = connection.source.id === node.id;
+          const connectedNode = isSource ? connection.target : connection.source;
+          const connectionKey = `${connection.id}-${isSource ? 'source' : 'target'}`;
+
+          return (
+            <div
+              key={connectionKey}
+              className="bg-gray-800 rounded-lg p-4 space-y-2"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <div
+                    className="w-3 h-3 rounded-full"
+                    style={{ backgroundColor: colorMap.get(connectedNode.type) }}
+                  />
+                  <span className="font-medium">{connectedNode.name}</span>
+                </div>
+                <span className="text-sm text-gray-400 capitalize">
+                  {connectedNode.type}
+                </span>
+              </div>
+              
+              <div className="flex items-center text-sm text-gray-400 mt-1">
+                <span className="flex-1 text-center">
+                  {isSource ? 'Connects to' : 'Connected from'}
+                </span>
+              </div>
+              
+              <p className="text-sm text-gray-300">{connection.description}</p>
+              
+              <div className="flex flex-wrap gap-2 mt-2">
+                {connection.keywords.map((keyword) => (
+                  <span
+                    key={`${connectionKey}-${keyword}`}
+                    className="px-2 py-1 text-xs bg-gray-700 rounded-full"
+                  >
+                    {keyword}
+                  </span>
+                ))}
+              </div>
+              
+              <div className="flex justify-between text-sm text-gray-400 mt-2">
+                <span>Strength: {connection.strength}</span>
+                <span>{new Date(connection.created_at).toLocaleDateString()}</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+```
+
+### src/components/EntitySummaryModal.tsx
+
+```typescript
+// src/components/EntitySummaryModal.tsx
+import React from 'react';
+import { X } from 'lucide-react';
+import type { KnowledgeGraph } from '../types';
+
+interface EntitySummaryModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  summary?: string | null;
+  knowledgeGraph?: KnowledgeGraph | null;
+}
+
+export function EntitySummaryModal({ isOpen, onClose, summary, knowledgeGraph }: EntitySummaryModalProps) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+      <div className="bg-gray-800 w-full max-w-2xl rounded-lg shadow-lg p-6 relative text-gray-200">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 p-1 text-gray-400 hover:bg-gray-700 rounded-full"
+          aria-label="Close"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        <h2 className="text-xl font-bold mb-4">Extracted Summary & Entities</h2>
+        
+        {summary && (
+          <div className="mb-6">
+            <h3 className="text-lg font-semibold mb-2 text-gray-200">Summary</h3>
+            <p className="text-gray-300 whitespace-pre-line">
+              {summary}
+            </p>
+          </div>
+        )}
+        
+        {knowledgeGraph?.entities && knowledgeGraph.entities.length > 0 && (
+          <div className="mb-6">
+            <h3 className="text-lg font-semibold mb-2 text-gray-200">Entities</h3>
+            <ul className="list-disc list-inside text-gray-300 space-y-1">
+              {knowledgeGraph.entities.map((e, i) => (
+                <li key={i}>
+                  <span className="font-semibold text-gray-200">{e.name}</span> ({e.type}): {e.description}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {knowledgeGraph?.relationships && knowledgeGraph.relationships.length > 0 && (
+          <div className="mb-6">
+            <h3 className="text-lg font-semibold mb-2 text-gray-200">Relationships</h3>
+            <ul className="list-disc list-inside text-gray-300 space-y-1">
+              {knowledgeGraph.relationships.map((r, i) => (
+                <li key={i}>
+                  <span className="font-semibold text-gray-200">{r.source}</span> → <span className="font-semibold text-gray-200">{r.target}</span>: {r.description} (Keywords: {r.keywords.join(', ')}, Strength: {r.strength})
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div className="text-right">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+```
+
+### src/components/ProcessStatus.tsx
+
+```typescript
+// src/components/ProcessStatus.tsx
+import React from 'react';
+import { Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import type { ProcessStatus } from '../types';
 
 const statusMessages: Record<ProcessStatus, string> = {
@@ -1319,103 +1539,24 @@ const statusMessages: Record<ProcessStatus, string> = {
   error: 'An error occurred'
 };
 
-interface ProcessStatusProps {
-  status: ProcessStatus;
-}
-
-export function ProcessStatus({ status }: ProcessStatusProps) {
+export function ProcessStatus({ status }: { status: ProcessStatus }) {
   const message = statusMessages[status];
-  const isProcessing = status !== 'completed' && status !== 'error' && status !== 'idle';
+  const isProcessing = !['completed', 'error', 'idle'].includes(status);
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 text-gray-200">
       {isProcessing && (
-        <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
+        <Loader2 className="w-4 h-4 animate-spin text-blue-400" />
       )}
-      <span className="text-sm font-medium text-gray-700">{message}</span>
-    </div>
-  );
-}
-```
-
-### src/components/TranscriptionViewer.tsx
-
-```typescript
-import React, { useState } from 'react';
-import { Clock, User, Edit2 } from 'lucide-react';
-import { useTranscriptionStore } from '../store/transcription';
-import { formatTimestamp } from '../utils/format';
-
-export function TranscriptionViewer() {
-  const { transcription, speakerMap, setSpeakerName } = useTranscriptionStore();
-  const [showTimestamps, setShowTimestamps] = useState(true);
-  const [editingSpeaker, setEditingSpeaker] = useState<string | null>(null);
-
-  if (!transcription) return null;
-
-  const handleSpeakerEdit = (speaker: string, newName: string) => {
-    setSpeakerName(speaker, newName);
-    setEditingSpeaker(null);
-  };
-
-  return (
-    <div className="bg-white rounded-lg shadow">
-      <div className="p-4 border-b">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">Transcription</h2>
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={showTimestamps}
-              onChange={(e) => setShowTimestamps(e.target.checked)}
-              className="rounded border-gray-300"
-            />
-            <span className="text-sm text-gray-600">Show timestamps</span>
-          </label>
-        </div>
-      </div>
-      <div className="p-4 space-y-4">
-        {transcription.transcription.speakers.map((entry, index) => (
-          <div key={index} className="flex gap-4">
-            <div className="flex-shrink-0 w-32">
-              <div className="flex items-center gap-2">
-                <User className="w-4 h-4 text-gray-400" />
-                {editingSpeaker === entry.speaker ? (
-                  <input
-                    type="text"
-                    defaultValue={speakerMap[entry.speaker] || entry.speaker}
-                    className="w-full px-2 py-1 text-sm border rounded"
-                    onBlur={(e) => handleSpeakerEdit(entry.speaker, e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        handleSpeakerEdit(entry.speaker, e.currentTarget.value);
-                      }
-                    }}
-                    autoFocus
-                  />
-                ) : (
-                  <button
-                    onClick={() => setEditingSpeaker(entry.speaker)}
-                    className="flex items-center gap-1 text-sm text-gray-700 hover:text-blue-600"
-                  >
-                    <span>{speakerMap[entry.speaker] || entry.speaker}</span>
-                    <Edit2 className="w-3 h-3" />
-                  </button>
-                )}
-              </div>
-              {showTimestamps && (
-                <div className="flex items-center gap-1 mt-1 text-xs text-gray-400">
-                  <Clock className="w-3 h-3" />
-                  <span>
-                    {formatTimestamp(entry.timestamp[0])}
-                  </span>
-                </div>
-              )}
-            </div>
-            <p className="flex-1 text-gray-800">{entry.text}</p>
-          </div>
-        ))}
-      </div>
+      {status === 'completed' && (
+        <CheckCircle className="w-4 h-4 text-green-400" />
+      )}
+      {status === 'error' && (
+        <AlertCircle className="w-4 h-4 text-red-400" />
+      )}
+      <span className="text-sm font-medium">
+        {message}
+      </span>
     </div>
   );
 }
@@ -1424,76 +1565,78 @@ export function TranscriptionViewer() {
 ### src/components/DebugPanel.tsx
 
 ```typescript
+// src/components/DebugPanel.tsx
 import React, { useState, useEffect, useCallback } from 'react';
 import { Terminal, X, ChevronUp, ChevronDown, RefreshCw } from 'lucide-react';
-import { logger } from '../utils/logger';
+import { logger } from '../utils/logger/index';
 import { LOG_CONFIG } from '../config/constants';
 import type { LogEntry } from '../utils/logger/types';
 
 function LogDisplay({ id, timestamp, level, message, data, error, context }: LogEntry) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const hasDetails = data !== undefined || error || context;
-  
+  const hasDetails = data !== undefined || error !== undefined || context !== undefined;
+
   const colorClass = {
-    [LOG_CONFIG.LEVELS.ERROR]: 'text-red-600',
-    [LOG_CONFIG.LEVELS.WARN]: 'text-yellow-600',
-    [LOG_CONFIG.LEVELS.INFO]: 'text-blue-600',
-    [LOG_CONFIG.LEVELS.DEBUG]: 'text-gray-500'
-  }[level] || 'text-gray-500';
+    [LOG_CONFIG.LEVELS.ERROR]: 'text-red-500',
+    [LOG_CONFIG.LEVELS.WARN]: 'text-yellow-400',
+    [LOG_CONFIG.LEVELS.INFO]: 'text-blue-400',
+    [LOG_CONFIG.LEVELS.DEBUG]: 'text-gray-400'
+  }[level] || 'text-gray-400';
 
   return (
-    <div key={id} className="border-b border-gray-200 py-2">
+    <div className="border-b border-gray-700 py-2">
       <div className="flex items-start gap-2">
-        <span className="text-xs text-gray-400 whitespace-nowrap">
+        <span className="text-xs text-gray-500 whitespace-nowrap">
           {new Date(timestamp).toLocaleTimeString()}
         </span>
         <span className={`text-xs font-medium ${colorClass}`}>
           {level.toUpperCase()}
         </span>
-        <span className="text-xs text-gray-700 break-all">{message}</span>
+        <span className="text-xs text-gray-200 break-all flex-1">{message}</span>
         {hasDetails && (
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="ml-auto p-1 hover:bg-gray-100 rounded shrink-0"
+            className="ml-auto p-1 hover:bg-gray-600 rounded shrink-0"
+            aria-label={isExpanded ? 'Collapse details' : 'Expand details'}
           >
             {isExpanded ? (
-              <ChevronUp className="w-3 h-3" />
+              <ChevronUp className="w-3 h-3 text-gray-300" />
             ) : (
-              <ChevronDown className="w-3 h-3" />
+              <ChevronDown className="w-3 h-3 text-gray-300" />
             )}
           </button>
         )}
       </div>
       {isExpanded && hasDetails && (
-        <div className="mt-2 space-y-2 text-xs">
+        <div className="mt-2 space-y-2 text-xs text-gray-200">
           {context && (
-            <details className="bg-gray-50 rounded p-2" open>
-              <summary className="font-medium text-gray-500 cursor-pointer">Context</summary>
-              <pre className="mt-1 overflow-x-auto whitespace-pre-wrap">
+            <details className="bg-gray-700 rounded p-2" open>
+              <summary className="font-medium text-gray-300 cursor-pointer">Context</summary>
+              <pre className="mt-1 overflow-x-auto whitespace-pre-wrap text-gray-200">
                 {JSON.stringify(context, null, 2)}
               </pre>
             </details>
           )}
           {data !== undefined && (
-            <details className="bg-gray-50 rounded p-2" open>
-              <summary className="font-medium text-gray-500 cursor-pointer">Data</summary>
-              <pre className="mt-1 overflow-x-auto whitespace-pre-wrap">
+            <details className="bg-gray-700 rounded p-2" open>
+              <summary className="font-medium text-gray-300 cursor-pointer">Data</summary>
+              <pre className="mt-1 overflow-x-auto whitespace-pre-wrap text-gray-200">
                 {JSON.stringify(data, null, 2)}
               </pre>
             </details>
           )}
           {error && (
-            <details className="bg-red-50 rounded p-2" open>
-              <summary className="font-medium text-red-500 cursor-pointer">Error</summary>
-              <div className="mt-1">
+            <details className="bg-red-900 rounded p-2" open>
+              <summary className="font-medium text-red-400 cursor-pointer">Error</summary>
+              <div className="mt-1 text-gray-200">
                 <div className="font-medium">Message:</div>
-                <pre className="text-red-600 overflow-x-auto whitespace-pre-wrap">
+                <pre className="text-red-300 overflow-x-auto whitespace-pre-wrap">
                   {error.message}
                 </pre>
                 {error.stack && (
                   <>
                     <div className="font-medium mt-2">Stack:</div>
-                    <pre className="text-red-600 overflow-x-auto whitespace-pre-wrap">
+                    <pre className="text-red-300 overflow-x-auto whitespace-pre-wrap">
                       {error.stack}
                     </pre>
                   </>
@@ -1507,8 +1650,8 @@ function LogDisplay({ id, timestamp, level, message, data, error, context }: Log
   );
 }
 
-export function DebugPanel() {
-  const [isOpen, setIsOpen] = useState(true);
+export const DebugPanel = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [autoRefresh, setAutoRefresh] = useState(true);
 
@@ -1516,7 +1659,6 @@ export function DebugPanel() {
     setLogs(logger.getLogs());
   }, []);
 
-  // Initialize with a test log to verify logging is working
   useEffect(() => {
     logger.debug('Debug panel initialized', { timestamp: new Date().toISOString() });
     refreshLogs();
@@ -1526,14 +1668,12 @@ export function DebugPanel() {
     if (!isOpen) return;
 
     refreshLogs();
-    
     if (autoRefresh) {
-      const interval = setInterval(refreshLogs, LOG_CONFIG.UPDATE_INTERVAL);
+      const interval = setInterval(refreshLogs, LOG_CONFIG.UPDATE_INTERVAL || 1000);
       return () => clearInterval(interval);
     }
   }, [isOpen, autoRefresh, refreshLogs]);
 
-  // Force development mode check
   if (!import.meta.env.DEV) {
     logger.warn('Debug panel disabled in production');
     return null;
@@ -1542,12 +1682,12 @@ export function DebugPanel() {
   return (
     <div className="fixed bottom-4 right-4 z-50">
       {isOpen ? (
-        <div className="bg-white rounded-lg shadow-lg border w-[32rem] max-h-[600px] flex flex-col">
-          <div className="p-2 border-b flex items-center justify-between bg-gray-50 sticky top-0">
+        <div className="bg-gray-800 rounded-lg shadow-lg border border-gray-700 w-[32rem] max-h-[600px] flex flex-col text-gray-200">
+          <div className="p-2 border-b border-gray-700 flex items-center justify-between bg-gray-700 sticky top-0">
             <div className="flex items-center gap-2">
-              <Terminal className="w-4 h-4" />
+              <Terminal className="w-4 h-4 text-gray-300" />
               <span className="text-sm font-medium">Debug Logs</span>
-              <span className="text-xs text-gray-500">({logs.length})</span>
+              <span className="text-xs text-gray-400">({logs.length})</span>
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -1555,8 +1695,8 @@ export function DebugPanel() {
                   refreshLogs();
                   setAutoRefresh(!autoRefresh);
                 }}
-                className={`p-1 rounded hover:bg-gray-200 ${
-                  autoRefresh ? 'text-blue-600' : 'text-gray-400'
+                className={`p-1 rounded hover:bg-gray-600 ${
+                  autoRefresh ? 'text-blue-400' : 'text-gray-500'
                 }`}
                 title={autoRefresh ? 'Auto-refresh enabled' : 'Auto-refresh disabled'}
               >
@@ -1567,27 +1707,26 @@ export function DebugPanel() {
                   logger.clearLogs();
                   refreshLogs();
                 }}
-                className="text-xs text-gray-500 hover:text-gray-700 px-2 py-1 hover:bg-gray-200 rounded"
+                className="text-xs text-gray-400 hover:text-gray-200 px-2 py-1 hover:bg-gray-600 rounded"
               >
                 Clear
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1 hover:bg-gray-200 rounded"
+                className="p-1 hover:bg-gray-600 rounded"
+                aria-label="Close debug panel"
               >
-                <X className="w-4 h-4" />
+                <X className="w-4 h-4 text-gray-300" />
               </button>
             </div>
           </div>
-          <div className="overflow-y-auto flex-1 p-2">
+          <div className="overflow-y-auto flex-1 p-2 text-gray-200">
             {logs.length === 0 ? (
-              <div className="text-center py-4 text-sm text-gray-500">
+              <div className="text-center py-4 text-sm text-gray-400">
                 No logs yet
               </div>
             ) : (
-              logs.map((log) => (
-                <LogDisplay key={log.id} {...log} />
-              ))
+              logs.map((log) => <LogDisplay key={log.id} {...log} />)
             )}
           </div>
         </div>
@@ -1597,7 +1736,7 @@ export function DebugPanel() {
             setIsOpen(true);
             refreshLogs();
           }}
-          className="bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700"
+          className="bg-gray-800 text-gray-200 p-2 rounded-full shadow-lg hover:bg-gray-700"
           title="Open Debug Panel"
         >
           <Terminal className="w-5 h-5" />
@@ -1605,90 +1744,178 @@ export function DebugPanel() {
       )}
     </div>
   );
-}
+};
 ```
 
-### src/components/TranscriptionControls.tsx
+### src/components/Graph.tsx
 
 ```typescript
-import React from 'react';
-import { Download, Copy, Loader2 } from 'lucide-react';
-import { useTranscriptionStore } from '../store/transcription';
-import { exportTranscription } from '../utils/export';
-import { toast } from 'sonner';
+import React, { useCallback, useRef, useState } from 'react';
+import ForceGraph2D from 'react-force-graph-2d';
+import { ProcessedNode, ProcessedLink } from '../types/graph';
 
-const EXPORT_FORMATS = ['txt', 'md', 'pdf', 'docx', 'rtf'] as const;
+interface GraphProps {
+  nodes: ProcessedNode[];
+  links: ProcessedLink[];
+  onNodeClick: (node: ProcessedNode) => void;
+  colorMap: Map<string, string>;
+  selectedNode: ProcessedNode | null;
+  filteredNodeIds?: Set<string>;
+}
 
-export function TranscriptionControls() {
-  const { transcription, status, speakerMap } = useTranscriptionStore();
+export const Graph: React.FC<GraphProps> = ({
+  nodes,
+  links,
+  onNodeClick,
+  colorMap,
+  selectedNode,
+  filteredNodeIds,
+}) => {
+  const fgRef = useRef<any>();
+  const [hoveredNode, setHoveredNode] = useState<ProcessedNode | null>(null);
 
-  const handleCopy = async () => {
-    if (!transcription) return;
+  const getNodeColor = useCallback((node: ProcessedNode) => {
+    const baseColor = colorMap.get(node.type) || '#607D8B';
+    if (filteredNodeIds && !filteredNodeIds.has(node.id)) {
+      return `${baseColor}33`;
+    }
     
-    try {
-      const text = transcription.transcription.speakers
-        .map(s => `${speakerMap[s.speaker] || s.speaker}: ${s.text}`)
-        .join('\n\n');
-      
-      await navigator.clipboard.writeText(text);
-      toast.success('Copied to clipboard');
-    } catch (error) {
-      toast.error('Failed to copy to clipboard');
+    const isSelected = selectedNode?.id === node.id;
+    const isConnected = selectedNode && links.some(
+      link => 
+        (link.source.id === selectedNode.id && link.target.id === node.id) ||
+        (link.target.id === selectedNode.id && link.source.id === node.id)
+    );
+    
+    if (isSelected) return `${baseColor}FF`;
+    if (isConnected) return `${baseColor}EE`;
+    return selectedNode ? `${baseColor}44` : `${baseColor}CC`;
+  }, [colorMap, selectedNode, links, filteredNodeIds]);
+
+  const getLinkColor = useCallback((link: ProcessedLink) => {
+    if (filteredNodeIds && (!filteredNodeIds.has(link.source.id) || !filteredNodeIds.has(link.target.id))) {
+      return '#88ccff22';
     }
-  };
-
-  const handleExport = async (format: string) => {
-    if (!transcription) return;
-
-    try {
-      await exportTranscription(
-        format,
-        {
-          speakers: transcription.transcription.speakers,
-          speakerMap,
-          text: transcription.transcription.text,
-        },
-        `transcription-${Date.now()}`
-      );
-      toast.success(`Exported as ${format.toUpperCase()}`);
-    } catch (error) {
-      toast.error(`Failed to export as ${format.toUpperCase()}`);
+    
+    if (selectedNode) {
+      const isConnected = link.source.id === selectedNode.id || link.target.id === selectedNode.id;
+      return isConnected ? '#88ccffFF' : '#88ccff22';
     }
-  };
+    return '#88ccffAA';
+  }, [selectedNode, filteredNodeIds]);
 
-  if (status !== 'completed') return null;
+  const paintNode = useCallback((node: any, ctx: CanvasRenderingContext2D) => {
+    const size = 6 + (node.connections * 2);
+    const finalSize = Math.min(size, 20);
+    const nodeColor = getNodeColor(node);
+    
+    if (selectedNode && (node.id === selectedNode.id || links.some(
+      link => 
+        (link.source.id === selectedNode.id && link.target.id === node.id) ||
+        (link.target.id === selectedNode.id && link.source.id === node.id)
+    ))) {
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, finalSize * 1.4, 0, 2 * Math.PI);
+      ctx.fillStyle = '#ffffff22';
+      ctx.fill();
+    }
+    
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, finalSize * 1.1, 0, 2 * Math.PI);
+    ctx.fillStyle = '#ffffff33';
+    ctx.fill();
+    
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, finalSize, 0, 2 * Math.PI);
+    ctx.fillStyle = nodeColor;
+    ctx.fill();
+    
+    ctx.strokeStyle = '#ffffff44';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }, [getNodeColor, selectedNode, links]);
 
   return (
-    <div className="flex gap-4">
-      <button
-        onClick={handleCopy}
-        className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
-      >
-        <Copy className="w-4 h-4" />
-        Copy
-      </button>
-      <div className="relative group">
-        <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">
-          <Download className="w-4 h-4" />
-          Export
+<ForceGraph2D
+  ref={fgRef}
+  graphData={{ nodes, links }}
+  nodeId="id"
+  nodeCanvasObject={paintNode}
+  nodeRelSize={6}
+  linkWidth={(link) => {
+    const strength = (link as ProcessedLink).strength;
+    return 0.5 + (strength * 2.5);
+  }}
+  linkColor={getLinkColor}
+  linkDirectionalParticles={2}
+  linkDirectionalParticleWidth={2}
+  // REMOVE linkOpacity={0.6}
+  backgroundColor="#1A1A1A"
+  linkDirectionalArrowLength={4}
+  linkDirectionalArrowRelPos={1}
+  linkDirectionalArrowColor={getLinkColor}
+  d3VelocityDecay={0.3}
+  cooldownTicks={100}
+  onNodeClick={(node) => onNodeClick(node as ProcessedNode)}
+  onNodeHover={setHoveredNode}
+  onEngineStop={() => {
+    if (fgRef.current) {
+      fgRef.current.zoomToFit(400, 50);
+    }
+  }}
+/>
+  );
+};
+```
+
+### src/components/InputSection.tsx
+
+```typescript
+import React, { useState } from 'react';
+import { FileUpload } from './FileUpload';
+
+interface InputSectionProps {
+  onDataLoad: (data: any) => void;
+}
+
+export const InputSection: React.FC<InputSectionProps> = ({ onDataLoad }) => {
+  const [jsonInput, setJsonInput] = useState('');
+
+  const handleJsonSubmit = () => {
+    try {
+      const data = JSON.parse(jsonInput);
+      onDataLoad(data);
+    } catch (error) {
+      console.error('Invalid JSON:', error);
+    }
+  };
+
+  return (
+    <div className="space-y-6 p-6 bg-gray-900 rounded-lg">
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-white">Upload Graph Data</h2>
+        {/* Pass onDataLoad here if you want FileUpload to handle JSON uploads */}
+        <FileUpload onDataLoad={onDataLoad} />
+      </div>
+
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-white">Or Paste JSON</h2>
+        <textarea
+          value={jsonInput}
+          onChange={(e) => setJsonInput(e.target.value)}
+          className="w-full h-40 p-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          placeholder="Paste your JSON here..."
+        />
+        <button
+          onClick={handleJsonSubmit}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          Load Graph
         </button>
-        <div className="absolute right-0 z-10 hidden w-48 mt-2 origin-top-right bg-white rounded-md shadow-lg group-hover:block">
-          <div className="py-1">
-            {EXPORT_FORMATS.map((format) => (
-              <button
-                key={format}
-                onClick={() => handleExport(format)}
-                className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100"
-              >
-                Export as {format.toUpperCase()}
-              </button>
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   );
-}
+};
 ```
 
 ### src/components/MeetingCard.tsx
@@ -1696,7 +1923,7 @@ export function TranscriptionControls() {
 ```typescript
 // src/components/MeetingCard.tsx
 import React from 'react';
-import { Calendar, Clock, Users, Tag, BarChart } from 'lucide-react';
+import { Calendar, Clock, Users, Tag, BarChart, Link as LinkIcon } from 'lucide-react';
 
 interface MeetingProps {
   title: string;
@@ -1706,6 +1933,13 @@ interface MeetingProps {
   participants: string[];
   summary: string;
   tags?: string[];
+  relationships?: {
+    source: string;
+    target: string;
+    description: string;
+    keywords: string[];
+    strength: number;
+  }[];
   isWeeklySummary?: boolean;
   onClick?: () => void;
 }
@@ -1718,12 +1952,13 @@ export function MeetingCard({
   participants,
   summary,
   tags = [],
+  relationships = [],
   isWeeklySummary = false,
   onClick
 }: MeetingProps) {
   return (
     <div 
-      className={`p-6 hover:bg-gray-700/30 transition-colors cursor-pointer ${
+      className={`p-6 hover:bg-gray-700/50 transition-colors cursor-pointer ${
         isWeeklySummary ? 'bg-purple-900/20' : 'bg-gray-800/30'
       }`}
       onClick={onClick}
@@ -1736,7 +1971,7 @@ export function MeetingCard({
             <Calendar className="w-5 h-5 text-blue-400" />
           )}
           <div>
-            <h4 className="text-lg font-semibold text-white">{title}</h4>
+            <h4 className="text-lg font-semibold text-gray-200">{title}</h4>
             {time && (
               <div className="flex items-center gap-2 text-sm text-gray-400 mt-1">
                 <Clock className="w-4 h-4" />
@@ -1749,23 +1984,38 @@ export function MeetingCard({
         </div>
       </div>
 
-      <p className="text-gray-300 mb-4">{summary}</p>
+      {summary && summary.trim().length > 0 && (
+        <p className="text-gray-300 mb-4 whitespace-pre-line">{summary}</p>
+      )}
 
-      <div className="flex flex-wrap gap-2 mb-4">
-        {tags.map(tag => (
-          <span
-            key={tag}
-            className={`px-2 py-1 rounded-full text-sm font-medium flex items-center ${
-              tag === 'Weekly Summary'
-                ? 'bg-purple-500/20 text-purple-300'
-                : 'bg-gray-700 text-gray-300'
-            }`}
-          >
-            <Tag className="w-3 h-3 mr-1" />
-            {tag}
-          </span>
-        ))}
-      </div>
+      {relationships.length > 0 && (
+        <div className="mb-4">
+          <h5 className="text-sm font-semibold text-gray-300 flex items-center gap-1 mb-2">
+            <LinkIcon className="w-4 h-4" /> Relationships
+          </h5>
+          <ul className="text-sm text-gray-400 list-disc list-inside space-y-1">
+            {relationships.map((r, idx) => (
+              <li key={idx}>
+                <span className="text-gray-200 font-medium">{r.source}</span> → <span className="text-gray-200 font-medium">{r.target}</span>: {r.description} (strength: {r.strength})
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {tags.length > 0 && (
+        <div className="flex flex-wrap gap-2 mb-4">
+          {tags.map(tag => (
+            <span
+              key={tag}
+              className="px-2 py-1 rounded-full text-sm font-medium flex items-center bg-gray-700 text-gray-300"
+            >
+              <Tag className="w-3 h-3 mr-1" />
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
 
       <div className="flex justify-between items-center">
         <div className="flex -space-x-2">
@@ -1797,20 +2047,20 @@ export function MeetingCard({
 // src/components/Sidebar.tsx
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Upload, List, MessageSquare } from 'lucide-react';
+import { Upload, List, MessageSquare, Server } from 'lucide-react';
 
 export function Sidebar() {
   return (
-    <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
-      <div className="p-4 border-b border-gray-200">
-        <h1 className="text-2xl font-bold text-gray-900">Transcribio</h1>
+    <div className="w-64 bg-gray-800 flex flex-col text-gray-100 border-r border-gray-700">
+      <div className="p-4 border-b border-gray-700">
+        <h1 className="text-2xl font-bold text-white">Transcribio</h1>
       </div>
       <nav className="flex-1 p-4 space-y-2">
         <NavLink
           to="/upload"
           className={({ isActive }) =>
             `flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
-              isActive ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-100'
+              isActive ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
             }`
           }
         >
@@ -1821,7 +2071,7 @@ export function Sidebar() {
           to="/history"
           className={({ isActive }) =>
             `flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
-              isActive ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-100'
+              isActive ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
             }`
           }
         >
@@ -1832,23 +2082,168 @@ export function Sidebar() {
           to="/chat"
           className={({ isActive }) =>
             `flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
-              isActive ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-100'
+              isActive ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
             }`
           }
         >
           <MessageSquare className="w-4 h-4" />
           Chat
         </NavLink>
+        <NavLink
+          to="/api-test"
+          className={({ isActive }) =>
+            `flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
+              isActive ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+            }`
+          }
+        >
+          <Server className="w-4 h-4" />
+          API Test
+        </NavLink>
       </nav>
     </div>
   );
 }
+```
 
+### src/components/SummaryViewer.tsx
+
+```typescript
+// src/components/SummaryViewer.tsx
+import React from 'react';
+
+interface SummaryViewerProps {
+  summary: string;
+}
+
+export function SummaryViewer({ summary }: SummaryViewerProps) {
+  const lines = summary.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+
+  const recognizedSections = ["Action Items:", "Decisions:", "Timeline:", "Summary:", "Key Points:"];
+
+  return (
+    <div className="bg-gray-800 text-gray-200 rounded p-4 shadow space-y-2">
+      <h2 className="text-lg font-semibold mb-2">Meeting Summary</h2>
+      {lines.map((line, i) => {
+        const isSectionTitle = recognizedSections.some(sec => line.toLowerCase().startsWith(sec.toLowerCase()));
+        return (
+          <div key={i}>
+            {isSectionTitle ? (
+              <h3 className="font-bold text-blue-400 mt-2">{line}</h3>
+            ) : (
+              <p className="text-sm text-gray-300 leading-relaxed">{line}</p>
+            )}
+          </div>
+        );
+      })}
+      {lines.length === 0 && (
+        <p className="text-sm text-gray-400 italic">No summary returned or summary is empty.</p>
+      )}
+    </div>
+  );
+}
+```
+
+### src/components/NodeSidebar.tsx
+
+```typescript
+// src/components/NodeSidebar.tsx
+import React from 'react';
+import { X } from 'lucide-react';
+import { ProcessedNode, ProcessedLink } from '../types/graph';
+import { NodeConnections } from './NodeConnections';
+
+interface NodeSidebarProps {
+  selectedNode: ProcessedNode | null;
+  onClose: () => void;
+  links: ProcessedLink[];
+  nodes: ProcessedNode[];
+  colorMap: Map<string, string>;
+}
+
+export const NodeSidebar: React.FC<NodeSidebarProps> = ({
+  selectedNode,
+  onClose,
+  links,
+  nodes,
+  colorMap,
+}) => {
+  if (!selectedNode) {
+    return (
+      <div className="fixed right-0 top-0 h-full w-64 bg-gray-900 text-white p-4 shadow-lg overflow-hidden">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-bold">Node Sidebar</h2>
+          <button
+            onClick={onClose}
+            className="p-1 hover:bg-gray-800 rounded-full transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+        <p className="text-gray-400">No node selected. Select a node from the graph.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="fixed right-0 top-0 h-full w-96 bg-gray-900 text-white p-6 shadow-lg transform transition-transform overflow-hidden">
+      <div className="flex justify-between items-center mb-6">
+        <div className="flex items-center space-x-2">
+          <div
+            className="w-4 h-4 rounded-full"
+            style={{ backgroundColor: colorMap.get(selectedNode.type) }}
+          />
+          <h2 className="text-xl font-bold">Node Details</h2>
+        </div>
+        <button
+          onClick={onClose}
+          className="p-1 hover:bg-gray-800 rounded-full transition-colors"
+        >
+          <X className="w-5 h-5" />
+        </button>
+      </div>
+
+      <div className="space-y-6">
+        <div className="space-y-4">
+          <div>
+            <h3 className="text-sm text-gray-400">Name</h3>
+            <p className="text-lg">{selectedNode.name}</p>
+          </div>
+
+          <div>
+            <h3 className="text-sm text-gray-400">Type</h3>
+            <p className="text-lg capitalize">{selectedNode.type}</p>
+          </div>
+
+          <div>
+            <h3 className="text-sm text-gray-400">Description</h3>
+            <p className="text-lg">{selectedNode.description}</p>
+          </div>
+
+          <div>
+            <h3 className="text-sm text-gray-400">Created</h3>
+            <p className="text-lg">
+              {new Date(selectedNode.created_at).toLocaleDateString()}
+            </p>
+          </div>
+        </div>
+
+        <NodeConnections
+          node={selectedNode}
+          links={links}
+          nodes={nodes}
+          colorMap={colorMap}
+        />
+      </div>
+    </div>
+  );
+};
 ```
 
 ### src/components/TranscriptionControls/index.tsx
 
 ```typescript
+// src/components/TranscriptionControls/index.tsx
 import React from 'react';
 import { toast } from 'sonner';
 import { useTranscriptionStore } from '../../store/transcription';
@@ -1865,13 +2260,12 @@ export function TranscriptionControls() {
 
   const handleCopy = async () => {
     if (!transcription) return;
-    
     try {
       const processedBlocks = concatenateTextBlocks(transcription.transcription.speakers);
       const text = processedBlocks
         .map(block => `${speakerMap[block.speaker] || block.speaker}: ${block.text}`)
         .join('\n\n');
-      
+
       await navigator.clipboard.writeText(text);
       toast.success('Copied to clipboard');
     } catch (error) {
@@ -1913,10 +2307,9 @@ export function TranscriptionControls() {
 ### src/components/TranscriptionControls/ExportButton.tsx
 
 ```typescript
+// src/components/TranscriptionControls/ExportButton.tsx
 import React from 'react';
 import { Download } from 'lucide-react';
-import { toast } from 'sonner';
-import { exportTranscription } from '../../utils/export';
 import type { ExportFormat } from '../../types';
 
 interface ExportButtonProps {
@@ -1927,17 +2320,17 @@ interface ExportButtonProps {
 export function ExportButton({ onExport, formats }: ExportButtonProps) {
   return (
     <div className="relative group">
-      <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">
+      <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-200 bg-gray-700 rounded-md hover:bg-gray-600">
         <Download className="w-4 h-4" />
         Export
       </button>
-      <div className="absolute right-0 z-10 hidden w-48 mt-2 origin-top-right bg-white rounded-md shadow-lg group-hover:block">
+      <div className="absolute right-0 z-10 hidden w-48 mt-2 origin-top-right bg-gray-800 rounded-md shadow-lg border border-gray-700 group-hover:block">
         <div className="py-1">
           {formats.map((format) => (
             <button
               key={format}
               onClick={() => onExport(format)}
-              className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100"
+              className="block w-full px-4 py-2 text-sm text-left text-gray-200 hover:bg-gray-700"
             >
               Export as {format.toUpperCase()}
             </button>
@@ -1952,6 +2345,7 @@ export function ExportButton({ onExport, formats }: ExportButtonProps) {
 ### src/components/TranscriptionControls/CopyButton.tsx
 
 ```typescript
+// src/components/TranscriptionControls/CopyButton.tsx
 import React from 'react';
 import { Copy } from 'lucide-react';
 
@@ -1963,7 +2357,7 @@ export function CopyButton({ onCopy }: CopyButtonProps) {
   return (
     <button
       onClick={onCopy}
-      className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+      className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-200 bg-gray-700 border border-gray-600 rounded-md hover:bg-gray-600"
     >
       <Copy className="w-4 h-4" />
       Copy
@@ -1984,13 +2378,39 @@ import { DropZone } from './DropZone';
 import { UploadProgress } from './UploadProgress';
 import { logger } from '../../utils/logger';
 
-export function FileUpload() {
+interface FileUploadProps {
+  onDataLoad?: (data: any) => void; // Make this optional if not always needed
+}
+
+export function FileUpload({ onDataLoad }: FileUploadProps) {
   const { setFile, status } = useTranscriptionStore();
   const { upload, uploadProgress, cancel } = useTranscriptionUpload();
 
   const handleFile = useCallback(async (selectedFile: File) => {
     if (!selectedFile) return;
 
+    const fileName = selectedFile.name.toLowerCase();
+    if (fileName.endsWith('.json') && onDataLoad) {
+      // Handle JSON file scenario
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const result = e.target?.result;
+          if (typeof result === 'string') {
+            const data = JSON.parse(result);
+            onDataLoad(data);
+          } else {
+            toast.error('Invalid file content.');
+          }
+        } catch (err) {
+          toast.error('Failed to parse JSON file.');
+        }
+      };
+      reader.readAsText(selectedFile);
+      return;
+    }
+
+    // Otherwise, handle audio upload
     logger.debug('File selected', {
       name: selectedFile.name,
       size: selectedFile.size,
@@ -2005,7 +2425,7 @@ export function FileUpload() {
       logger.error('File upload failed', error instanceof Error ? error : new Error(message));
       toast.error(message);
     }
-  }, [setFile, upload]);
+  }, [setFile, upload, onDataLoad]);
 
   const handleDrop = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -2024,6 +2444,7 @@ export function FileUpload() {
 
   const acceptedTypes = Object.entries(AUDIO_CONFIG.FORMATS)
     .flatMap(([mime, exts]) => [mime, ...exts])
+    .concat('.json') // Add json if you want to allow json uploads
     .join(',');
 
   const showProgress = ['uploading', 'requesting-transcription', 'generating-url'].includes(status);
@@ -2052,6 +2473,7 @@ export function FileUpload() {
 ### src/components/FileUpload/DropZone.tsx
 
 ```typescript
+// src/components/FileUpload/DropZone.tsx
 import React from 'react';
 import { Upload } from 'lucide-react';
 import { formatFileSize } from '../../utils/format';
@@ -2069,12 +2491,12 @@ export function DropZone({ onDrop, onFileSelect, acceptedTypes, isUploading }: D
     <div
       onDrop={onDrop}
       onDragOver={(e) => e.preventDefault()}
-      className="p-8 border-2 border-dashed rounded-lg text-center"
+      className="p-8 border-2 border-dashed rounded-lg text-center bg-gray-800 border-gray-700 text-gray-200"
     >
       <Upload className="mx-auto h-12 w-12 text-gray-400" />
       <div className="mt-4">
         <label htmlFor="file-upload" className="cursor-pointer">
-          <span className="text-blue-600 hover:text-blue-500">Upload a file</span>
+          <span className="text-blue-400 hover:text-blue-300">Upload a file</span>
           <input
             id="file-upload"
             type="file"
@@ -2084,10 +2506,10 @@ export function DropZone({ onDrop, onFileSelect, acceptedTypes, isUploading }: D
             disabled={isUploading}
           />
         </label>
-        <p className="mt-1 text-sm text-gray-500">or drag and drop</p>
+        <p className="mt-1 text-sm text-gray-400">or drag and drop</p>
       </div>
 
-      <p className="mt-2 text-xs text-gray-500">
+      <p className="mt-2 text-xs text-gray-400">
         Maximum file size: {formatFileSize(AUDIO_CONFIG.MAX_FILE_SIZE)}
       </p>
     </div>
@@ -2098,6 +2520,7 @@ export function DropZone({ onDrop, onFileSelect, acceptedTypes, isUploading }: D
 ### src/components/FileUpload/UploadProgress.tsx
 
 ```typescript
+// src/components/FileUpload/UploadProgress.tsx
 import React from 'react';
 import { X, Loader2 } from 'lucide-react';
 import type { ProcessStatus } from '../../types';
@@ -2117,33 +2540,33 @@ export function UploadProgress({
   const progressValue = Math.min(100, Math.max(0, progress));
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-sm border">
+    <div className="bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-700 text-gray-200">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
-          <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
+          <Loader2 className="w-4 h-4 animate-spin text-blue-400" />
           {showProgress && (
-            <span className="text-sm font-medium text-gray-700">
+            <span className="text-sm font-medium">
               Uploading... {Math.round(progressValue)}%
             </span>
           )}
           {!showProgress && (
-            <span className="text-sm font-medium text-gray-700">
+            <span className="text-sm font-medium">
               Processing...
             </span>
           )}
         </div>
         <button
           onClick={onCancel}
-          className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+          className="p-1 hover:bg-gray-600 rounded-full transition-colors"
           aria-label="Cancel upload"
         >
-          <X className="w-4 h-4 text-gray-500" />
+          <X className="w-4 h-4 text-gray-300" />
         </button>
       </div>
       {showProgress && (
-        <div className="relative w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+        <div className="relative w-full h-2 bg-gray-700 rounded-full overflow-hidden">
           <div
-            className="absolute left-0 top-0 h-full bg-blue-600 transition-all duration-300 ease-out"
+            className="absolute left-0 top-0 h-full bg-blue-500 transition-all duration-300 ease-out"
             style={{ width: `${progressValue}%` }}
           />
         </div>
@@ -2307,12 +2730,13 @@ export function FilterDropdown({ onToggle, isOpen }: FilterDropdownProps) {
 ### src/components/TranscriptionViewer/index.tsx
 
 ```typescript
+// src/components/TranscriptionViewer/index.tsx
 import React, { useState, useMemo } from 'react';
 import { useTranscriptionStore } from '../../store/transcription';
 import { TranscriptionHeader } from './TranscriptionHeader';
 import { SpeakerEntry } from './SpeakerEntry';
 import { concatenateTextBlocks } from '../../utils/text/processing';
-import { logger } from '../../utils/logger';
+import { logger } from '../../utils/logger/core';
 
 export function TranscriptionViewer() {
   const { transcription, speakerMap, setSpeakerName } = useTranscriptionStore();
@@ -2338,7 +2762,7 @@ export function TranscriptionViewer() {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow">
+    <div className="bg-gray-800 rounded-lg shadow text-gray-200">
       <TranscriptionHeader
         showTimestamps={showTimestamps}
         onToggleTimestamps={setShowTimestamps}
@@ -2364,6 +2788,7 @@ export function TranscriptionViewer() {
 ### src/components/TranscriptionViewer/TranscriptionHeader.tsx
 
 ```typescript
+// src/components/TranscriptionViewer/TranscriptionHeader.tsx
 import React from 'react';
 
 interface TranscriptionHeaderProps {
@@ -2376,17 +2801,17 @@ export function TranscriptionHeader({
   onToggleTimestamps 
 }: TranscriptionHeaderProps) {
   return (
-    <div className="p-4 border-b">
-      <div className="flex items-center justify-between">
+    <div className="p-4 border-b border-gray-700">
+      <div className="flex items-center justify-between text-gray-200">
         <h2 className="text-lg font-semibold">Transcription</h2>
         <label className="flex items-center gap-2">
           <input
             type="checkbox"
             checked={showTimestamps}
             onChange={(e) => onToggleTimestamps(e.target.checked)}
-            className="rounded border-gray-300"
+            className="rounded border-gray-600 bg-gray-800 text-blue-400 focus:ring-1 focus:ring-blue-400"
           />
-          <span className="text-sm text-gray-600">Show timestamps</span>
+          <span className="text-sm text-gray-300">Show timestamps</span>
         </label>
       </div>
     </div>
@@ -2397,6 +2822,7 @@ export function TranscriptionHeader({
 ### src/components/TranscriptionViewer/SpeakerEntry.tsx
 
 ```typescript
+// src/components/TranscriptionViewer/SpeakerEntry.tsx
 import React from 'react';
 import { User, Edit2, Clock } from 'lucide-react';
 import { formatTimestamp } from '../../utils/format';
@@ -2422,13 +2848,13 @@ export function SpeakerEntry({
   return (
     <div className="flex gap-4">
       <div className="flex-shrink-0 w-32">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 text-gray-200">
           <User className="w-4 h-4 text-gray-400" />
           {isEditing ? (
             <input
               type="text"
               defaultValue={speakerName}
-              className="w-full px-2 py-1 text-sm border rounded"
+              className="w-full px-2 py-1 text-sm border border-gray-600 rounded bg-gray-700 text-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-400"
               onBlur={(e) => onSave(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
@@ -2440,7 +2866,7 @@ export function SpeakerEntry({
           ) : (
             <button
               onClick={onEdit}
-              className="flex items-center gap-1 text-sm text-gray-700 hover:text-blue-600"
+              className="flex items-center gap-1 text-sm text-gray-300 hover:text-blue-400"
             >
               <span>{speakerName}</span>
               <Edit2 className="w-3 h-3" />
@@ -2456,7 +2882,7 @@ export function SpeakerEntry({
           </div>
         )}
       </div>
-      <p className="flex-1 text-gray-800">{entry.text}</p>
+      <p className="flex-1 text-gray-200">{entry.text}</p>
     </div>
   );
 }
@@ -2503,205 +2929,211 @@ export function TranscriptionStats({ stats }: TranscriptionStatsProps) {
 }
 ```
 
-### src/hooks/useUpload.ts
+### src/components/controls/FilterPanel.tsx
 
 ```typescript
-import React, { useState, useCallback } from 'react';
-import { generateUploadUrl } from '../services/api/upload';
-import { requestTranscription } from '../services/api/transcription';
-import { uploadWithXHR } from '../services/upload/xhr';
-import { validateFile } from '../services/upload/validation';
-import { logger } from '../utils/logger';
-import type { UploadState } from '../services/upload/types';
+import React, { useState } from 'react';
+import { Filter, ChevronDown, ChevronUp } from 'lucide-react';
 
-export function useUpload() {
-  const [state, setState] = useState<UploadState>({
-    progress: 0,
-    status: 'idle',
-    error: null
-  });
-
-  const upload = useCallback(async (file: File) => {
-    // Start by validating the file
-    setState({ progress: 0, status: 'validating', error: null });
-
-    try {
-      logger.debug('Starting upload process', { fileName: file.name });
-
-      const validation = await validateFile(file);
-      if (!validation.isValid) {
-        throw new Error(validation.error);
-      }
-
-      // After validation, generate upload URL
-      setState((s: UploadState) => ({ ...s, status: 'generating-url' }));
-      const { upload_url, file_id } = await generateUploadUrl(file.name);
-
-      // Upload file
-      setState((s: UploadState) => ({ ...s, status: 'uploading' }));
-      await uploadWithXHR(upload_url, file, {
-        onProgress: (progress) => {
-          setState((s: UploadState) => ({ ...s, progress: progress.percentage }));
-        }
-      });
-
-      // Request transcription
-      setState((s: UploadState) => ({ ...s, status: 'requesting-transcription' }));
-      await requestTranscription(file_id);
-
-      setState({ progress: 100, status: 'completed', error: null });
-      return file_id;
-    } catch (error) {
-      logger.error(
-        'Upload failed',
-        error instanceof Error ? error : new Error('Unknown error'),
-        { fileName: file.name }
-      );
-      setState({
-        progress: 0,
-        status: 'error',
-        error: error instanceof Error ? error : new Error('Upload failed')
-      });
-      throw error;
-    }
-  }, []);
-
-  return {
-    upload,
-    progress: state.progress,
-    status: state.status,
-    error: state.error
-  };
+interface KeywordCount {
+  keyword: string;
+  count: number;
 }
 
+interface FilterPanelProps {
+  categories: string[];
+  keywords: KeywordCount[];
+  selectedCategories: string[];
+  selectedKeywords: string[];
+  onCategoryChange: (category: string) => void;
+  onKeywordChange: (keyword: string) => void;
+  colorMap: Map<string, string>;
+}
+
+export const FilterPanel: React.FC<FilterPanelProps> = ({
+  categories,
+  keywords,
+  selectedCategories,
+  selectedKeywords,
+  onCategoryChange,
+  onKeywordChange,
+  colorMap,
+}) => {
+  const [showAllCategories, setShowAllCategories] = useState(false);
+  const [showAllKeywords, setShowAllKeywords] = useState(false);
+
+  const visibleCategories = showAllCategories ? categories : categories.slice(0, 8);
+  const visibleKeywords = showAllKeywords ? keywords : keywords.slice(0, 8);
+
+  return (
+    <div className="absolute left-4 top-4 bg-gray-900 rounded-lg p-4 w-64 shadow-lg max-h-[calc(100vh-2rem)] overflow-y-auto">
+      <div className="flex items-center space-x-2 mb-4">
+        <Filter className="w-4 h-4" />
+        <h3 className="font-semibold">Filters</h3>
+      </div>
+
+      <div className="space-y-4">
+        <div>
+          <h4 className="text-sm text-gray-400 mb-2">Categories</h4>
+          <div className="space-y-2">
+            {visibleCategories.map((category) => (
+              <label key={category} className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  checked={selectedCategories.includes(category)}
+                  onChange={() => onCategoryChange(category)}
+                  className="rounded border-gray-600"
+                />
+                <span className="flex items-center space-x-2">
+                  <div
+                    className="w-3 h-3 rounded-full"
+                    style={{ backgroundColor: colorMap.get(category) }}
+                  />
+                  <span className="text-sm capitalize">{category}</span>
+                </span>
+              </label>
+            ))}
+          </div>
+          {categories.length > 8 && (
+            <button
+              onClick={() => setShowAllCategories(!showAllCategories)}
+              className="flex items-center space-x-1 text-sm text-gray-400 mt-2 hover:text-gray-300"
+            >
+              <span>{showAllCategories ? 'Show Less' : `Show ${categories.length - 8} More`}</span>
+              {showAllCategories ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </button>
+          )}
+        </div>
+
+        <div>
+          <h4 className="text-sm text-gray-400 mb-2">Keywords</h4>
+          <div className="space-y-2">
+            {visibleKeywords.map(({ keyword, count }) => (
+              <label key={keyword} className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    checked={selectedKeywords.includes(keyword)}
+                    onChange={() => onKeywordChange(keyword)}
+                    className="rounded border-gray-600"
+                  />
+                  <span className="text-sm">{keyword}</span>
+                </div>
+                <span className="text-xs text-gray-400">{count}</span>
+              </label>
+            ))}
+          </div>
+          {keywords.length > 8 && (
+            <button
+              onClick={() => setShowAllKeywords(!showAllKeywords)}
+              className="flex items-center space-x-1 text-sm text-gray-400 mt-2 hover:text-gray-300"
+            >
+              <span>{showAllKeywords ? 'Show Less' : `Show ${keywords.length - 8} More`}</span>
+              {showAllKeywords ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 ```
 
-### src/hooks/useTranscriptionProcessing.ts
+### src/components/controls/TopEntitiesPanel.tsx
 
 ```typescript
-import React, { useState, useCallback } from 'react';
-import { getTranscriptionResult } from '../services/api/transcription';
-import { logger } from '../utils/logger';
-import { API_CONFIG } from '../config/api';
-import { APIError } from '../services/api/errors';
-import type { TranscriptionResponse, ProcessError } from '../types';
+import React, { useMemo } from 'react';
+import { BarChart2 } from 'lucide-react';
+import { ProcessedNode } from '../../types/graph';
 
-interface ProcessingState {
-  isProcessing: boolean;
-  error: ProcessError | null;
-  data: TranscriptionResponse | null;
-  progress: number;
+interface TopEntitiesPanelProps {
+  nodes: ProcessedNode[];
+  colorMap: Map<string, string>;
+  onNodeSelect: (node: ProcessedNode) => void;
 }
 
-export function useTranscriptionProcessing() {
-  const [state, setState] = useState<ProcessingState>({
-    isProcessing: false,
-    error: null,
-    data: null,
-    progress: 0,
-  });
+export const TopEntitiesPanel: React.FC<TopEntitiesPanelProps> = ({
+  nodes,
+  colorMap,
+  onNodeSelect,
+}) => {
+  const { topNodes, topCategories } = useMemo(() => {
+    const sortedNodes = [...nodes]
+      .sort((a, b) => b.connections - a.connections)
+      .slice(0, 10);
 
-  const processTranscription = useCallback(async (fileId: string) => {
-    setState((prev: ProcessingState) => ({ ...prev, isProcessing: true, error: null, progress: 0 }));
-    logger.debug('Starting transcription processing', { fileId });
+    const categoryStats = nodes.reduce((acc, node) => {
+      acc[node.type] = (acc[node.type] || 0) + node.connections;
+      return acc;
+    }, {} as Record<string, number>);
 
-    let attempts = 0;
-    const maxAttempts = API_CONFIG.polling.maxAttempts;
+    const sortedCategories = Object.entries(categoryStats)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 10)
+      .map(([category, connections]) => ({ category, connections }));
 
-    while (attempts < maxAttempts) {
-      try {
-        const data = await getTranscriptionResult(fileId);
-
-        if (data.transcription.speakers.length > 0) {
-          logger.info('Transcription completed', {
-            fileId,
-            speakerCount: data.transcription.speakers.length,
-          });
-
-          setState((prev: ProcessingState) => ({
-            ...prev,
-            isProcessing: false,
-            error: null,
-            data,
-            progress: 100,
-          }));
-
-          return data;
-        }
-
-        const progress = Math.min(90, ((attempts + 1) / maxAttempts) * 100);
-        setState((prev: ProcessingState) => ({ ...prev, progress }));
-
-        logger.debug('Transcription in progress', {
-          fileId,
-          attempt: attempts + 1,
-          maxAttempts,
-          progress,
-        });
-
-      } catch (error) {
-        if (error instanceof APIError && error.status === 404) {
-          logger.debug('Transcription not ready yet (404)', { fileId, attempts });
-          const progress = Math.min(90, ((attempts + 1) / maxAttempts) * 100);
-          setState((prev: ProcessingState) => ({ ...prev, progress }));
-        } else {
-          const processError: ProcessError = {
-            code: 'TRANSCRIPTION_PROCESSING_ERROR',
-            message: error instanceof Error ? error.message : 'Processing failed',
-          };
-
-          logger.error(
-            'Transcription processing failed',
-            error instanceof Error ? error : new Error(processError.message),
-            { fileId, attempts }
-          );
-
-          setState((prev: ProcessingState) => ({
-            ...prev,
-            isProcessing: false,
-            error: processError,
-            data: null,
-            progress: 0,
-          }));
-
-          throw processError;
-        }
-      }
-
-      attempts++;
-      await new Promise(resolve =>
-        setTimeout(resolve, API_CONFIG.polling.interval)
-      );
-    }
-
-    const timeoutError: ProcessError = {
-      code: 'TRANSCRIPTION_TIMEOUT',
-      message: 'Transcription processing timed out',
+    return {
+      topNodes: sortedNodes,
+      topCategories: sortedCategories,
     };
+  }, [nodes]);
 
-    logger.error(
-      'Transcription processing timed out',
-      new Error(timeoutError.message),
-      { fileId, attempts }
-    );
+  return (
+    <div className="absolute left-4 bottom-4 bg-gray-900 rounded-lg p-4 w-[400px] shadow-lg">
+      <div className="flex items-center space-x-2 mb-4">
+        <BarChart2 className="w-4 h-4" />
+        <h3 className="font-semibold">Top Entities & Categories</h3>
+      </div>
 
-    setState((prev: ProcessingState) => ({
-      ...prev,
-      isProcessing: false,
-      error: timeoutError,
-      data: null,
-      progress: 0,
-    }));
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <h4 className="text-sm text-gray-400 mb-2">Most Connected Entities</h4>
+          <div className="space-y-2">
+            {topNodes.map((node) => (
+              <button
+                key={node.id}
+                onClick={() => onNodeSelect(node)}
+                className="w-full text-left p-2 hover:bg-gray-800 rounded-lg transition-colors"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <div
+                      className="w-3 h-3 rounded-full"
+                      style={{ backgroundColor: colorMap.get(node.type) }}
+                    />
+                    <span className="text-sm truncate max-w-[120px]">{node.name}</span>
+                  </div>
+                  <span className="text-sm text-gray-400">{node.connections}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
 
-    throw timeoutError;
-  }, []);
-
-  return {
-    ...state,
-    processTranscription,
-  };
-}
-
+        <div>
+          <h4 className="text-sm text-gray-400 mb-2">Top Categories</h4>
+          <div className="space-y-2">
+            {topCategories.map(({ category, connections }) => (
+              <div
+                key={category}
+                className="flex items-center justify-between p-2"
+              >
+                <div className="flex items-center space-x-2">
+                  <div
+                    className="w-3 h-3 rounded-full"
+                    style={{ backgroundColor: colorMap.get(category) }}
+                  />
+                  <span className="text-sm capitalize truncate max-w-[120px]">{category}</span>
+                </div>
+                <span className="text-sm text-gray-400">{connections}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 ```
 
 ### src/hooks/useProcessStatus.ts
@@ -2785,16 +3217,18 @@ export function useProcessStatus(initialStatus: ProcessStatus = 'idle') {
 ### src/hooks/useTranscriptionUpload.ts
 
 ```typescript
+// src/hooks/useTranscriptionUpload.ts
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useTranscriptionStore } from '../store/transcription';
 import { generateUploadUrl, uploadFile } from '../services/api/upload';
 import { requestTranscription } from '../services/api/transcription';
 import { logger } from '../utils/logger';
+import { ENV } from '../config/env';
 import type { ProcessError } from '../types';
 
 export function useTranscriptionUpload() {
   const [uploadProgress, setUploadProgress] = useState(0);
-  const { setStatus, setError, setFileId, setTranscription } = useTranscriptionStore();
+  const { setStatus, setError, setFileId, setTranscription, setKnowledgeGraph, setSummary } = useTranscriptionStore();
   const abortControllerRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
@@ -2828,25 +3262,114 @@ export function useTranscriptionUpload() {
       setError(null);
       setUploadProgress(0);
 
+      logger.debug('Requesting upload URL from primary API');
       const { upload_url, file_id } = await generateUploadUrl(file.name, signal);
-      logger.debug('Generated upload URL', { file_id });
+      logger.debug('Received upload URL and file_id', { file_id });
       setFileId(file_id);
 
       setStatus('uploading');
+      logger.debug('Uploading file to signed URL');
       await uploadFile(upload_url, file, {
         signal,
         onProgress: (progress) => {
           setUploadProgress(progress.percentage);
-          logger.debug('Upload progress', { progress });
+          logger.debug('Upload progress event', { progress: progress.percentage });
         }
       });
 
       setStatus('requesting-transcription');
+      logger.debug('Requesting transcription from primary API');
       const transcriptionData = await requestTranscription(file_id, signal);
+
+      if (!transcriptionData?.transcription?.speakers || !transcriptionData?.transcription?.chunks || !transcriptionData?.transcription?.text) {
+        throw new Error('Invalid transcription response structure.');
+      }
+
+      logger.info('Transcription retrieved successfully', {
+        speakerCount: transcriptionData.transcription.speakers.length,
+        textLength: transcriptionData.transcription.text.length
+      });
+
       setTranscription(transcriptionData);
       setStatus('completed');
-      
-      logger.info('Upload and transcription process completed', { file_id });
+
+      if (transcriptionData.transcription.text) {
+        const text = transcriptionData.transcription.text;
+        logger.debug('Starting entity extraction process with secondary API', {
+          textLength: text.length,
+          endpoint: `${ENV.API_URL_SECONDARY}/entity_map_new`
+        });
+
+        const emResp = await fetch(`${ENV.API_URL_SECONDARY}/entity_map_new`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-API-Key': ENV.API_KEY_SECONDARY || ENV.API_KEY
+          },
+          body: JSON.stringify({ text }),
+          signal
+        });
+
+        if (!emResp.ok) {
+          const errorText = await emResp.text();
+          logger.error('Entity map request failed', new Error('Entity map request failed'), { response: errorText });
+          throw new Error(`Entity map request failed: ${errorText}`);
+        }
+
+        const entity_map_data = await emResp.json();
+        logger.info('Entity map retrieved successfully', { 
+          entityCount: entity_map_data?.graph?.entities?.length || 0,
+          relationshipCount: entity_map_data?.graph?.relationships?.length || 0
+        });
+
+        const graph = entity_map_data.graph || { entities: [], relationships: [] };
+        const kg = {
+          entities: graph.entities || [],
+          relationships: graph.relationships || []
+        };
+
+        setKnowledgeGraph(kg);
+
+        logger.debug('Starting summarization with secondary API', {
+          textLength: text.length,
+          entityCount: kg.entities?.length || 0,
+          relationshipCount: kg.relationships?.length || 0,
+          endpoint: `${ENV.API_URL_SECONDARY}/summarize`
+        });
+
+        const summarizePayload = {
+          text,
+          knowledge_graph: kg,
+          system_prompt: "You are an expert assistant skilled at converting raw meeting transcripts into meeting minutes. Include the extracted entities and relationships to produce a coherent summary."
+        };
+
+        const summarizeResp = await fetch(`${ENV.API_URL_SECONDARY}/summarize`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-API-Key': ENV.API_KEY_SECONDARY || ENV.API_KEY
+          },
+          body: JSON.stringify(summarizePayload),
+          signal
+        });
+
+        if (!summarizeResp.ok) {
+          const errorText = await summarizeResp.text();
+          logger.error('Summarization request failed', new Error('Summarization request failed'), { response: errorText });
+          throw new Error(`Summarization request failed: ${errorText}`);
+        }
+
+        const summaryData = await summarizeResp.json();
+        const summary = summaryData.summary || "No summary returned.";
+        logger.info('Summarization completed successfully', { summaryLength: summary.length });
+
+        setSummary(summary);
+
+        logger.info('All processes (upload, transcription, entity extraction, summarization) completed successfully', { file_id });
+      } else {
+        logger.warn('No transcription text found, skipping entity extraction and summarization');
+      }
+
     } catch (error) {
       if (signal.aborted) {
         logger.info('Operation cancelled by user');
@@ -2860,10 +3383,9 @@ export function useTranscriptionUpload() {
         details: { fileName: file.name }
       };
       
-      logger.error('Upload process failed', 
-        error instanceof Error ? error : new Error(processError.message),
-        { fileName: file.name }
-      );
+      logger.error('Upload process failed', error instanceof Error ? error : new Error(processError.message), {
+        fileName: file.name
+      });
       
       setStatus('error');
       setError(processError);
@@ -2871,7 +3393,7 @@ export function useTranscriptionUpload() {
       setUploadProgress(0);
       abortControllerRef.current = null;
     }
-  }, [setStatus, setError, setFileId, setTranscription]);
+  }, [setStatus, setError, setFileId, setTranscription, setKnowledgeGraph, setSummary]);
 
   return { 
     upload, 
@@ -2879,7 +3401,6 @@ export function useTranscriptionUpload() {
     cancel 
   };
 }
-
 ```
 
 ### src/pages/UploadPage.tsx
@@ -2901,19 +3422,21 @@ export function UploadPage() {
   return (
     <div className="max-w-4xl mx-auto">
       <header className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Upload your Audio</h1>
-        <p className="mt-2 text-gray-600">
+        <h1 className="text-3xl font-bold text-white">Upload your Audio</h1>
+        <p className="mt-2 text-gray-400">
           Easily upload audio files and transcribe them.
         </p>
       </header>
       <main className="space-y-8">
-        <FileUpload />
+        <div className="bg-gray-800 p-4 rounded-lg shadow text-gray-200">
+          <FileUpload />
+        </div>
 
-        {status !== 'idle' && status !== 'completed' && (
-          <div className="bg-white p-4 rounded-lg shadow">
+        {(status !== 'idle' && status !== 'completed') && (
+          <div className="bg-gray-800 p-4 rounded-lg shadow text-gray-200">
             <ProcessStatus status={status} />
             {error && (
-              <div className="mt-2 text-sm text-red-600">
+              <div className="mt-2 text-sm text-red-400">
                 {error.message}
               </div>
             )}
@@ -2922,8 +3445,12 @@ export function UploadPage() {
 
         {status === 'completed' && (
           <>
-            <TranscriptionControls />
-            <TranscriptionViewer />
+            <div className="bg-gray-800 p-4 rounded-lg shadow text-gray-200">
+              <TranscriptionControls />
+            </div>
+            <div className="bg-gray-800 p-4 rounded-lg shadow text-gray-200">
+              <TranscriptionViewer />
+            </div>
           </>
         )}
       </main>
@@ -2940,86 +3467,68 @@ export function UploadPage() {
 ```typescript
 // src/pages/MeetingHistory.tsx
 import React, { useState } from 'react';
-import { Search, Calendar, Tag, Filter, ChevronDown, ChevronRight, BarChart, Clock } from 'lucide-react';
-import { format, parseISO, startOfWeek, endOfWeek } from 'date-fns';
+import { Search, Calendar, Filter, ChevronDown, ChevronRight, Clock } from 'lucide-react';
+import { format, startOfWeek, endOfWeek } from 'date-fns';
 import { MeetingCard } from '../components/MeetingCard';
 import { WeekHeader } from '../components/calendar/WeekHeader';
 import { FilterDropdown } from '../components/calendar/FilterDropdown';
-
-const MEETINGS_BY_DATE = {
-  'Today': [
-    {
-      id: 1,
-      title: "Q1 Planning Session",
-      date: "2024-03-15",
-      time: "10:00 AM",
-      duration: "1h 30m",
-      participants: ["Sarah Chen", "Michael Brown", "David Kim"],
-      summary: "Discussed Q1 objectives, budget allocation, and team expansion plans. Key decisions made on new product features.",
-      tags: ["Planning", "Q1", "Budget"]
-    }
-  ],
-  'Yesterday': [
-    {
-      id: 2,
-      title: "Product Design Review",
-      date: "2024-03-14",
-      time: "2:00 PM",
-      duration: "45m",
-      participants: ["Emma Wilson", "James Lee", "Lisa Park"],
-      summary: "Reviewed latest UI mockups, discussed user feedback, and finalized design system updates.",
-      tags: ["Design", "Product", "UI"]
-    },
-    {
-      id: 3,
-      title: "Team Sync",
-      date: "2024-03-14",
-      time: "4:30 PM",
-      duration: "30m",
-      participants: ["Emma Wilson", "James Lee"],
-      summary: "Weekly team sync to discuss ongoing projects and blockers.",
-      tags: ["Team", "Sync"]
-    }
-  ],
-  'Week 11': [
-    {
-      id: 'weekly-1',
-      title: "Week 11 Summary",
-      date: "2024-03-11/17",
-      duration: "12h 30m total",
-      participants: ["Team"],
-      summary: "8 meetings held this week. Key topics: Q1 Planning, Product Design, Team Syncs.",
-      tags: ["Weekly Summary"],
-      isWeeklySummary: true
-    }
-  ]
-};
+import { useTranscriptionStore } from '../store/transcription';
+import { logger } from '../utils/logger/core';
+import { EntitySummaryModal } from '../components/EntitySummaryModal';
 
 export function MeetingHistory() {
+  logger.debug('Rendering MeetingHistory page');
   const [searchTerm, setSearchTerm] = useState('');
   const [showFilters, setShowFilters] = useState(false);
-  const [expandedDates, setExpandedDates] = useState<string[]>(['Today', 'Yesterday']);
+  const [expandedDates, setExpandedDates] = useState<string[]>(['Today']);
   const [currentWeek, setCurrentWeek] = useState({
     start: startOfWeek(new Date()),
     end: endOfWeek(new Date())
   });
 
+  const { summary, knowledgeGraph } = useTranscriptionStore();
+  const [showModal, setShowModal] = useState(false);
+
+  let meetingsByDate: Record<string, any[]> = {};
+
+  // If we have a transcription summary and KG, let's show a "Transcribed Meeting"
+  if (summary) {
+    const entityTags = knowledgeGraph?.entities.map(e => e.name) || [];
+    const relationships = knowledgeGraph?.relationships || [];
+    meetingsByDate['Today'] = [{
+      id: 'meeting-1',
+      title: "Transcribed Meeting",
+      date: format(new Date(), 'yyyy-MM-dd'),
+      time: "9:00 AM",
+      duration: "45m",
+      participants: ["John Doe", "Jane Smith"],
+      summary: summary,
+      tags: entityTags,
+      relationships: relationships
+    }];
+  }
+
+  const filteredMeetings = Object.entries(meetingsByDate).reduce((acc, [date, meetings]) => {
+    const filtered = meetings.filter(m => {
+      const combinedText = `${m.title} ${m.summary} ${(m.tags || []).join(' ')} ${m.participants.join(' ')}`;
+      return combinedText.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+    if (filtered.length > 0) {
+      acc[date] = filtered;
+    }
+    return acc;
+  }, {} as Record<string, any[]>);
+
   const toggleDate = (date: string) => {
+    logger.debug('Toggling date expansion', { date });
     setExpandedDates(prev => 
       prev.includes(date) ? prev.filter(d => d !== date) : [...prev, date]
     );
   };
 
-  const formatDateHeader = (date: string) => {
-    if (date === 'Today' || date === 'Yesterday') return date;
-    if (date.startsWith('Week')) return date;
-    const parsedDate = parseISO(date);
-    return format(parsedDate, 'EEEE, MMMM d');
-  };
-
   return (
     <div className="max-w-6xl mx-auto">
-      <div className="sticky top-0 bg-gray-950 z-10 pb-6">
+      <div className="sticky top-0 bg-gray-900 z-10 pb-6">
         <header className="mb-6">
           <div className="flex justify-between items-center mb-6">
             <div>
@@ -3034,7 +3543,7 @@ export function MeetingHistory() {
                   placeholder="Search meetings..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-64 bg-gray-800 text-white rounded-lg pl-10 pr-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  className="w-64 bg-gray-800 text-gray-200 rounded-lg pl-10 pr-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
                 />
               </div>
               <FilterDropdown onToggle={() => setShowFilters(!showFilters)} isOpen={showFilters} />
@@ -3045,34 +3554,39 @@ export function MeetingHistory() {
         </header>
       </div>
 
+      {/* If summary and knowledgeGraph exist, show a button to view Entity Summary */}
+      {summary && knowledgeGraph && (
+        <div className="mb-4 flex justify-end">
+          <button
+            onClick={() => setShowModal(true)}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-400"
+          >
+            View Summary &amp; Entities
+          </button>
+        </div>
+      )}
+
       <div className="space-y-4">
-        {Object.entries(MEETINGS_BY_DATE).map(([date, meetings]) => (
-          <div key={date} className="bg-gray-800/50 rounded-xl overflow-hidden backdrop-blur-sm">
+        {Object.keys(filteredMeetings).length === 0 && (
+          <div className="text-gray-300 bg-gray-800 p-4 rounded-md">
+            No meetings found. Process a file to see results here.
+          </div>
+        )}
+
+        {Object.entries(filteredMeetings).map(([date, meetings]) => (
+          <div key={date} className="bg-gray-800/30 rounded-xl overflow-hidden backdrop-blur-sm border border-gray-700">
             <button
               onClick={() => toggleDate(date)}
-              className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-800/80 transition-colors"
+              className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-700 transition-colors text-gray-200"
             >
               <div className="flex items-center gap-3">
-                {date.includes('Week') ? (
-                  <BarChart className="w-5 h-5 text-purple-400" />
-                ) : (
-                  <Calendar className="w-5 h-5 text-blue-400" />
-                )}
-                <span className="font-medium text-white">{formatDateHeader(date)}</span>
+                <Calendar className="w-5 h-5 text-blue-400" />
+                <span className="font-medium text-gray-200">{date}</span>
                 <div className="flex items-center gap-2 text-gray-400 text-sm">
                   <Clock className="w-4 h-4" />
                   <span>
                     {meetings.reduce((acc, m: any) => {
-                      // This is just a placeholder calculation for total minutes.
-                      // In a real scenario, parse durations properly.
-                      if (m.duration.includes('h')) {
-                        const [hours, rest] = m.duration.split('h');
-                        const h = parseInt(hours.trim());
-                        const mins = rest.trim().split('m')[0];
-                        return acc + h * 60 + (parseInt(mins) || 0);
-                      } else {
-                        return acc + parseInt(m.duration);
-                      }
+                      return acc + 45; 
                     }, 0)} min
                   </span>
                   <span className="mx-2">•</span>
@@ -3092,7 +3606,7 @@ export function MeetingHistory() {
                   <MeetingCard
                     key={meeting.id}
                     {...meeting}
-                    onClick={() => console.log('Navigate to meeting', meeting.id)}
+                    onClick={() => logger.info('Meeting card clicked', { meetingId: meeting.id })}
                   />
                 ))}
               </div>
@@ -3100,10 +3614,242 @@ export function MeetingHistory() {
           </div>
         ))}
       </div>
+
+      {summary && knowledgeGraph && (
+        <EntitySummaryModal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          summary={summary}
+          knowledgeGraph={knowledgeGraph}
+        />
+      )}
     </div>
   );
 }
 
+```
+
+### src/pages/APITestPage.tsx
+
+```typescript
+// src/pages/APITestPage.tsx
+import React, { useState, useMemo } from 'react';
+import { ENV } from '../config/env';
+import { logger } from '../utils/logger/index';
+import { toast } from 'sonner';
+import { SummaryViewer } from '../components/SummaryViewer';
+import { processGraphData } from '../utils/processGraphData';
+import { getEntityColorMap } from '../utils/entityColors';
+import { Graph } from '../components/Graph';
+import { Sidebar } from '../components/Sidebar';
+import type { ProcessedNode, ProcessedLink } from '../types/graph';
+
+export function APITestPage() {
+  const [testText, setTestText] = useState("This is a sample meeting text about Product and Budget.");
+  const [graphData, setGraphData] = useState<{entities: any[], relationships: any[]}|null>(null);
+  const [summaryText, setSummaryText] = useState<string>('');
+  const [entityError, setEntityError] = useState<string | null>(null);
+  const [selectedNode, setSelectedNode] = useState<ProcessedNode | null>(null);
+  
+  const apiKey = ENV.API_KEY_SECONDARY || ENV.API_KEY;
+  const secondaryUrl = ENV.API_URL_SECONDARY;
+
+  const testEntityMap = async () => {
+    logger.info('Testing entity map API', { textLength: testText.length });
+    if (!apiKey || !secondaryUrl) {
+      toast.error('Missing API key or secondary URL. Check logs.');
+      logger.error('Entity map test aborted due to missing keys or URL.', new Error('Missing keys or URL'));
+      return;
+    }
+
+    try {
+      const resp = await fetch(`${secondaryUrl}/entity_map_new`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': apiKey
+        },
+        body: JSON.stringify({ text: testText })
+      });
+
+      if (!resp.ok) {
+        const errorText = await resp.text();
+        logger.error('Entity map request failed', new Error('Entity map request failed'), { response: errorText });
+        toast.error(`Entity map failed: ${errorText}`);
+        setEntityError(`Failed with status ${resp.status}: ${errorText}`);
+        return;
+      }
+
+      const data = await resp.json();
+      logger.info('Entity map success', data);
+
+      const { graph } = data;
+      if (!graph || !Array.isArray(graph.entities) || !Array.isArray(graph.relationships)) {
+        logger.error('Entity map schema mismatch', new Error('Invalid graph structure'), { data });
+        toast.error('Entity map schema mismatch. Check logs.');
+        setEntityError('Schema mismatch: graph.entities or graph.relationships missing.');
+        return;
+      }
+
+      if (graph.entities.length === 0 && graph.relationships.length === 0) {
+        logger.warn('Entity map returned empty entities and relationships', { data });
+        toast('Entity map is empty, nothing to visualize.');
+      }
+
+      setGraphData({ entities: graph.entities, relationships: graph.relationships });
+      toast.success('Entity map success! Visualization ready.');
+    } catch (error) {
+      const errObj = error instanceof Error ? error : new Error(String(error));
+      logger.error('Entity map request error', errObj);
+      toast.error('Entity map request error. Check logs.');
+      setEntityError(errObj.message);
+    }
+  };
+
+  const testSummarize = async () => {
+    logger.info('Testing summarization API', { textLength: testText.length });
+    if (!apiKey || !secondaryUrl) {
+      toast.error('Missing API key or secondary URL. Check logs.');
+      logger.error('Summarization test aborted due to missing keys or URL.', new Error('Missing keys or URL'));
+      return;
+    }
+
+    try {
+      const summarizePayload = {
+        text: testText,
+        knowledge_graph: { entities: [], relationships: [] },
+        system_prompt: "You are an expert assistant skilled at converting raw meeting transcripts into structured meeting minutes. Include extracted entities."
+      };
+
+      const resp = await fetch(`${secondaryUrl}/summarize`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': apiKey
+        },
+        body: JSON.stringify(summarizePayload)
+      });
+
+      if (!resp.ok) {
+        const errorText = await resp.text();
+        logger.error('Summarization request failed', new Error('Summarization request failed'), { response: errorText });
+        toast.error(`Summarization failed: ${errorText}`);
+        return;
+      }
+
+      const data = await resp.json();
+      logger.info('Summarization success', data);
+      const summary = data.summary || 'No summary returned.';
+      setSummaryText(summary);
+      toast.success('Summarization success! Check logs and visualization.');
+    } catch (error) {
+      const errObj = error instanceof Error ? error : new Error(String(error));
+      logger.error('Summarization request error', errObj);
+      toast.error('Summarization request error. Check logs.');
+    }
+  };
+
+  let processedData: { nodes: ProcessedNode[], links: ProcessedLink[] } | null = null;
+  if (graphData) {
+    const processed = processGraphData({
+      graph: {
+        entities: graphData.entities.map(e => ({
+          ...e,
+          meeting_id: 'unknown',
+          created_at: Date.now()
+        })),
+        relationships: graphData.relationships.map(r => ({
+          ...r,
+          meeting_id: 'unknown',
+          created_at: Date.now()
+        }))
+      }
+    });
+    processedData = processed;
+  }
+
+  const colorMap = useMemo(() => {
+    if (!processedData) return new Map();
+    return getEntityColorMap(processedData.nodes);
+  }, [processedData]);
+
+  return (
+    <div className="max-w-4xl mx-auto space-y-4 text-gray-200">
+      <h1 className="text-3xl font-bold text-white">API Test Page</h1>
+      <p className="text-gray-400">Enter some text and test the secondary APIs</p>
+
+      <textarea
+        className="w-full h-32 p-2 bg-gray-800 text-gray-200 rounded border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        value={testText}
+        onChange={(e) => setTestText(e.target.value)}
+      />
+
+      <div className="flex gap-4">
+        <button
+          onClick={testEntityMap}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-400"
+        >
+          Test Entity Map
+        </button>
+        <button
+          onClick={testSummarize}
+          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-400"
+        >
+          Test Summarize
+        </button>
+      </div>
+
+      {!apiKey && (
+        <div className="text-red-400 text-sm mt-4">
+          Warning: No API Key found. Please set VITE_API_KEY or VITE_API_KEY_SECONDARY.
+        </div>
+      )}
+      {!secondaryUrl && (
+        <div className="text-red-400 text-sm mt-2">
+          Warning: No secondary URL found. Please set VITE_API_URL_SECONDARY.
+        </div>
+      )}
+
+      {summaryText && (
+        <SummaryViewer summary={summaryText} />
+      )}
+
+      {entityError && (
+        <div className="bg-red-800 text-white p-4 rounded">
+          <h2 className="font-bold mb-2">Entity Map Error</h2>
+          <p className="text-sm">{entityError}</p>
+          <p className="text-xs mt-2">Check debug panel for more details.</p>
+        </div>
+      )}
+
+      {processedData && !entityError && (
+        processedData.nodes.length > 0 || processedData.links.length > 0 ? (
+          <div className="relative w-full h-[600px] bg-gray-900 rounded-lg p-4">
+            <Graph
+              nodes={processedData.nodes}
+              links={processedData.links}
+              onNodeClick={setSelectedNode}
+              colorMap={colorMap}
+              selectedNode={selectedNode}
+            />
+            <Sidebar
+              selectedNode={selectedNode}
+              onClose={() => setSelectedNode(null)}
+              links={processedData.links}
+              nodes={processedData.nodes}
+              colorMap={colorMap}
+            />
+          </div>
+        ) : (
+          <div className="bg-gray-700 p-4 rounded text-white">
+            <h2 className="font-semibold mb-2">No Entities/Relationships to Show</h2>
+            <p className="text-sm">The entity map is empty. Check logs or try different text.</p>
+          </div>
+        )
+      )}
+    </div>
+  );
+}
 ```
 
 ### src/pages/ChatPage.tsx
@@ -3113,65 +3859,32 @@ export function MeetingHistory() {
 import React from 'react';
 
 export function ChatPage() {
-  // In future this will have a chat interface
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto text-gray-200">
       <header className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Chat with Your Meetings</h1>
-        <p className="mt-2 text-gray-600">
+        <h1 className="text-3xl font-bold text-white">Chat with Your Meetings</h1>
+        <p className="mt-2 text-gray-400">
           Interact with past meeting transcriptions and summaries.
         </p>
       </header>
       <main className="space-y-4">
-        {/* Placeholder for chat messages */}
-        <div className="bg-white p-4 rounded-lg shadow">
-          <p className="text-sm text-gray-800">User: Hi, can you summarize my last meeting?</p>
+        <div className="bg-gray-800 p-4 rounded-lg shadow">
+          <p className="text-sm text-gray-300">User: Hi, can you summarize my last meeting?</p>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow">
-          <p className="text-sm text-gray-800">Bot: Sure, your last meeting was about...</p>
+        <div className="bg-gray-800 p-4 rounded-lg shadow">
+          <p className="text-sm text-gray-300">Bot: Sure, your last meeting was about...</p>
         </div>
-        {/* Placeholder for input */}
         <div className="mt-4">
           <input
             type="text"
             placeholder="Type a message..."
-            className="w-full px-4 py-2 border border-gray-300 rounded text-sm text-gray-700"
+            className="w-full px-4 py-2 border border-gray-700 bg-gray-800 text-gray-200 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         </div>
       </main>
     </div>
   );
 }
-
-```
-
-### src/services/api.ts
-
-```typescript
-import { API_CONFIG } from '../config/api';
-
-// NOTE: The above APIError definition must be removed as per corrections.
-// We have a better APIError in services/api/errors.ts.
-// We will remove this entire class and rely solely on the one from errors.ts.
-
-// After removal of the inline APIError and extra imports, the file becomes unnecessary.
-// The user requested all files that need corrections. If this file was originally part of the codebase,
-// we must show its corrected version, which no longer defines APIError internally.
-
-// The prompt code from "services/api.ts" was actually showing a repeated APIError. We must remove it.
-// The code snippet given at the start for `services/api.ts` is minimal and references no other code.
-// According to the initial code listing, `services/api.ts` only had references to `API_CONFIG` and `ENV`.
-// We'll present a corrected version without the inline APIError definition and no duplicate imports.
-
-
-// Final corrected version of services/api.ts:
-
-
-// If there's no other content here (the original snippet does not show more),
-// we can leave this file as is, just removing the inline APIError definition and duplicates.
-
-export { API_CONFIG };
-
 ```
 
 ### src/services/transcription/validation.ts
@@ -3386,6 +4099,119 @@ export interface UploadOptions {
 }
 ```
 
+### src/services/api/knowledgeGraph.ts
+
+```typescript
+import { KnowledgeGraph } from '../../types';
+import { ENV } from '../../config/env';
+import { logger } from '../../utils/logger';
+import { APIError } from './errors';
+
+const SECONDARY_API_URL = ENV.API_URL_SECONDARY;
+const API_KEY = ENV.API_KEY_SECONDARY || ENV.API_KEY;
+
+export async function fetchKnowledgeGraph(): Promise<KnowledgeGraph> {
+  const response = await fetch('/api/knowledge-graph');
+  const data = await response.json();
+
+  console.log('Knowledge Graph API Response:', data);
+
+  // Expecting data to have a graph object
+  if (!data.graph || !Array.isArray(data.graph.entities) || !Array.isArray(data.graph.relationships)) {
+    throw new Error('Invalid API response: graph.entities or graph.relationships are not arrays');
+  }
+
+  return data.graph as KnowledgeGraph;
+}
+
+export async function generateEntityMap(text: string): Promise<KnowledgeGraph> {
+  if (!SECONDARY_API_URL || !API_KEY) {
+    throw new APIError({
+      code: 'CONFIG_ERROR',
+      message: 'Missing API configuration',
+    });
+  }
+
+  const payload = { text };
+
+  try {
+    const response = await fetch(`${SECONDARY_API_URL}/entity_map_new`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-API-Key': API_KEY,
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new APIError({
+        code: `HTTP_${response.status}`,
+        message: 'Entity map request failed',
+        status: response.status,
+      });
+    }
+
+    const data = await response.json();
+
+    if (!data.graph || !Array.isArray(data.graph.entities) || !Array.isArray(data.graph.relationships)) {
+      throw new APIError({
+        code: 'INVALID_RESPONSE',
+        message: 'Entity map response missing required arrays in graph',
+      });
+    }
+
+    return data.graph;
+  } catch (error) {
+    logger.error('Entity map request failed', error instanceof Error ? error : new Error(String(error)));
+    throw error;
+  }
+}
+
+export async function generateSummary(
+  text: string,
+  knowledgeGraph: KnowledgeGraph
+): Promise<string> {
+  if (!SECONDARY_API_URL || !API_KEY) {
+    throw new APIError({
+      code: 'CONFIG_ERROR',
+      message: 'Missing API configuration',
+    });
+  }
+
+  const payload = {
+    text,
+    knowledge_graph: knowledgeGraph,
+    system_prompt: "You are an expert assistant skilled at converting raw meeting transcripts into meeting minutes. Include the extracted entities and relationships to produce a coherent summary.",
+  };
+
+  try {
+    const response = await fetch(`${SECONDARY_API_URL}/summarize`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-API-Key': API_KEY,
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new APIError({
+        code: `HTTP_${response.status}`,
+        message: 'Summarization request failed',
+        status: response.status,
+      });
+    }
+
+    const data = await response.json();
+    return data.summary;
+  } catch (error) {
+    logger.error('Summarization request failed', error instanceof Error ? error : new Error(String(error)));
+    throw error;
+  }
+}
+```
+
 ### src/services/api/client.ts
 
 ```typescript
@@ -3458,7 +4284,7 @@ export async function apiRequest<T>(
     context.duration = `${(performance.now() - startTime).toFixed(2)}ms`;
 
     if (error instanceof APIError) {
-      logger.error('API Error', error, context);
+      logger.error('API Error', error, { ...context }); 
       throw error;
     }
 
@@ -3472,7 +4298,7 @@ export async function apiRequest<T>(
         });
       }
 
-      logger.error('Request failed', error, context);
+      logger.error('Request failed', error, { ...context }); 
       throw new APIError({
         message: error.message,
         code: 'REQUEST_FAILED',
@@ -3480,8 +4306,7 @@ export async function apiRequest<T>(
       });
     }
 
-    logger.error('Unknown error', new Error('Unknown error'), context);
-    throw new APIError({
+logger.error('Unknown error', new Error('Unknown error'), { ...context });    throw new APIError({
       message: 'An unknown error occurred',
       code: 'UNKNOWN_ERROR',
       details: context
@@ -3498,7 +4323,8 @@ export * from './upload';
 export * from './errors';
 export * from './utils';
 export * from './types';
-export * from './client'; // Added this line to ensure apiRequest is exported
+export * from './client';
+export * from './knowledgeGraph';
 
 ```
 
@@ -3666,569 +4492,13 @@ export async function getTranscriptionResult(fileId: string, signal?: AbortSigna
 
 ```
 
-### src/services/upload/validation.ts
-
-```typescript
-import { logger } from '../../utils/logger';
-import { AUDIO_CONFIG } from '../../config/audio';
-import { formatFileSize } from '../../utils/format';
-
-export interface ValidationResult {
-  isValid: boolean;
-  error?: string;
-}
-
-export function validateFileType(file: File): ValidationResult {
-  const acceptedTypes = Object.keys(AUDIO_CONFIG.FORMATS);
-  if (!acceptedTypes.includes(file.type)) {
-    return {
-      isValid: false,
-      error: `Invalid file type. Supported formats: ${acceptedTypes.join(', ')}`
-    };
-  }
-  return { isValid: true };
-}
-
-export function validateFileSize(file: File): ValidationResult {
-  if (file.size > AUDIO_CONFIG.MAX_FILE_SIZE) {
-    return {
-      isValid: false,
-      error: `File size exceeds maximum limit of ${formatFileSize(AUDIO_CONFIG.MAX_FILE_SIZE)}`
-    };
-  }
-  if (file.size < AUDIO_CONFIG.MIN_FILE_SIZE) {
-    return {
-      isValid: false,
-      error: `File size is below minimum of ${formatFileSize(AUDIO_CONFIG.MIN_FILE_SIZE)}`
-    };
-  }
-  return { isValid: true };
-}
-
-export async function validateAudioContent(file: File): Promise<ValidationResult> {
-  try {
-    const chunk = file.slice(0, AUDIO_CONFIG.PREVIEW_CHUNK_SIZE);
-    const arrayBuffer = await chunk.arrayBuffer();
-    
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-    
-    if (audioBuffer.duration < 0.1) {
-      return {
-        isValid: false,
-        error: 'Audio file appears to be empty or corrupted'
-      };
-    }
-    
-    if (audioBuffer.numberOfChannels === 0) {
-      return {
-        isValid: false,
-        error: 'Audio file contains no audio channels'
-      };
-    }
-    
-    return { isValid: true };
-  } catch (error) {
-    logger.error('Audio content validation failed', error instanceof Error ? error : new Error('Unknown error'));
-    return {
-      isValid: false,
-      error: 'Unable to validate audio content. The file may be corrupted.'
-    };
-  }
-}
-
-export async function validateFile(file: File): Promise<ValidationResult> {
-  logger.debug('Starting file validation', {
-    name: file.name,
-    size: file.size,
-    type: file.type
-  });
-
-  // Check file type
-  const typeValidation = validateFileType(file);
-  if (!typeValidation.isValid) {
-    logger.warn('File type validation failed', { error: typeValidation.error });
-    return typeValidation;
-  }
-
-  // Check file size
-  const sizeValidation = validateFileSize(file);
-  if (!sizeValidation.isValid) {
-    logger.warn('File size validation failed', { error: sizeValidation.error });
-    return sizeValidation;
-  }
-
-  // Validate audio content
-  const contentValidation = await validateAudioContent(file);
-  if (!contentValidation.isValid) {
-    logger.warn('Audio content validation failed', { error: contentValidation.error });
-    return contentValidation;
-  }
-
-  logger.debug('File validation successful');
-  return { isValid: true };
-}
-```
-
-### src/services/upload/url-generator.ts
-
-```typescript
-import { API_CONFIG } from '../../config/api';
-import { logger } from '../../utils/logger';
-import type { UploadUrlResponse } from './types';
-
-export async function generateUploadUrl(
-  filename: string,
-  signal?: AbortSignal
-): Promise<UploadUrlResponse> {
-  logger.debug('Generating upload URL', { 
-    filename,
-    apiUrl: API_CONFIG.baseUrl 
-  });
-
-  try {
-    const response = await fetch(
-      API_CONFIG.endpoints.generateUploadUrl(filename),
-      {
-        method: 'POST',
-        headers: {
-          ...API_CONFIG.headers.base,
-          'Content-Type': 'application/json'
-        },
-        signal
-      }
-    );
-
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({}));
-      logger.error('Failed to generate upload URL', new Error(error.message || 'Network error'), {
-        status: response.status,
-        filename,
-        endpoint: API_CONFIG.endpoints.generateUploadUrl(filename)
-      });
-      throw new Error(error.message || 'Failed to generate upload URL');
-    }
-
-    const data = await response.json();
-    
-    if (!data.upload_url || !data.file_id) {
-      logger.error('Invalid upload URL response', new Error('Missing required fields'), { 
-        data,
-        endpoint: API_CONFIG.endpoints.generateUploadUrl(filename)
-      });
-      throw new Error('Invalid response from server');
-    }
-
-    logger.info('Upload URL generated successfully', {
-      fileId: data.file_id,
-      uploadUrlLength: data.upload_url.length,
-      endpoint: API_CONFIG.endpoints.generateUploadUrl(filename)
-    });
-
-    return data;
-  } catch (error) {
-    logger.error(
-      'Error generating upload URL',
-      error instanceof Error ? error : new Error('Unknown error'),
-      { filename, apiUrl: API_CONFIG.baseUrl }
-    );
-    throw error;
-  }
-}
-```
-
-### src/services/upload/xhr.ts
-
-```typescript
-import { logger } from '../../utils/logger';
-import type { UploadOptions, UploadProgress } from './types';
-
-export function uploadWithXHR(url: string, file: File, options: UploadOptions = {}): Promise<void> {
-  const requestId = Math.random().toString(36).substring(7);
-  
-  logger.debug('Starting XHR upload', {
-    requestId,
-    fileName: file.name,
-    fileSize: file.size,
-    fileType: file.type
-  });
-
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-
-    if (options.signal) {
-      options.signal.addEventListener('abort', () => xhr.abort());
-    }
-
-    xhr.upload.addEventListener('progress', (event) => {
-      if (event.lengthComputable) {
-        const progress: UploadProgress = {
-          loaded: event.loaded,
-          total: event.total,
-          percentage: Math.round((event.loaded / event.total) * 100)
-        };
-        
-        logger.debug('Upload progress', {
-          requestId,
-          ...progress
-        });
-        
-        options.onProgress?.(progress);
-      }
-    });
-
-    xhr.addEventListener('load', () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        logger.debug('Upload completed successfully', {
-          requestId,
-          status: xhr.status
-        });
-        options.onComplete?.();
-        resolve();
-      } else {
-        const error = new Error(`Upload failed with status ${xhr.status}`);
-        logger.error('Upload failed', error, {
-          requestId,
-          status: xhr.status,
-          response: xhr.responseText
-        });
-        options.onError?.(error);
-        reject(error);
-      }
-    });
-
-    xhr.addEventListener('error', () => {
-      const error = new Error('Network error during upload');
-      logger.error('Upload network error', error, { requestId });
-      options.onError?.(error);
-      reject(error);
-    });
-
-    xhr.addEventListener('abort', () => {
-      const error = new Error('Upload was aborted');
-      logger.error('Upload aborted', error, { requestId });
-      options.onError?.(error);
-      reject(error);
-    });
-
-    xhr.open('PUT', url);
-    xhr.setRequestHeader('Content-Type', 'application/octet-stream');
-    xhr.send(file);
-  });
-}
-```
-
-### src/services/upload/types.ts
-
-```typescript
-import type { APIError } from '../api/errors';
-
-export interface UploadProgress {
-  loaded: number;
-  total: number;
-  percentage: number;
-}
-
-export interface UploadOptions {
-  onStart?: () => void;
-  onProgress?: (progress: UploadProgress) => void;
-  onComplete?: () => void;
-  onError?: (error: APIError) => void;
-  signal?: AbortSignal;
-}
-
-export interface SignedUrlResponse {
-  upload_url: string;
-  file_id: string;
-}
-
-export interface UploadState {
-  progress: number;
-  status: 'idle' | 'validating' | 'generating-url' | 'uploading' | 'requesting-transcription' | 'processing' | 'completed' | 'error';
-  error: Error | null;
-}
-
-```
-
-### src/services/upload/uploader.ts
-
-```typescript
-import { logger } from '../../utils/logger';
-import { APIError } from '../api/errors';
-import type { UploadOptions, UploadProgress } from './types';
-
-export function uploadToUrl(
-  url: string,
-  file: File,
-  options: UploadOptions = {}
-): Promise<void> {
-  const requestId = Math.random().toString(36).substring(7);
-  
-  logger.debug('Starting file upload', {
-    requestId,
-    fileName: file.name,
-    fileSize: file.size,
-    fileType: file.type,
-    uploadUrlLength: url.length
-  });
-
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.withCredentials = false;
-    xhr.timeout = 300000; // 5 minutes for large files
-
-    if (options.signal) {
-      options.signal.addEventListener('abort', () => xhr.abort());
-    }
-
-    xhr.upload.addEventListener('loadstart', () => {
-      logger.debug('Upload started', { requestId });
-      options.onStart?.();
-    });
-
-    xhr.upload.addEventListener('progress', (event) => {
-      if (event.lengthComputable) {
-        const progress: UploadProgress = {
-          loaded: event.loaded,
-          total: event.total,
-          percentage: Math.round((event.loaded / event.total) * 100)
-        };
-        
-        logger.debug('Upload progress', {
-          requestId,
-          ...progress
-        });
-        
-        options.onProgress?.(progress);
-      }
-    });
-
-    xhr.addEventListener('load', () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        logger.info('Upload completed successfully', {
-          requestId,
-          status: xhr.status,
-          responseLength: xhr.responseText.length
-        });
-        options.onComplete?.();
-        resolve();
-      } else {
-        const error = new APIError({
-          message: `Upload failed with status ${xhr.status}`,
-          status: xhr.status,
-          code: `UPLOAD_ERROR_${xhr.status}`,
-          details: {
-            requestId,
-            status: xhr.status,
-            response: xhr.responseText
-          }
-        });
-        logger.error('Upload failed', error, { requestId });
-        options.onError?.(error);
-        reject(error);
-      }
-    });
-
-    xhr.addEventListener('error', () => {
-      const error = new APIError({
-        message: 'Network error during upload',
-        code: 'UPLOAD_NETWORK_ERROR',
-        details: {
-          requestId,
-          readyState: xhr.readyState,
-          status: xhr.status
-        }
-      });
-      logger.error('Upload network error', error, { requestId });
-      options.onError?.(error);
-      reject(error);
-    });
-
-    xhr.addEventListener('timeout', () => {
-      const error = new APIError({
-        message: 'Upload timeout',
-        code: 'UPLOAD_TIMEOUT',
-        details: {
-          requestId,
-          timeout: xhr.timeout
-        }
-      });
-      logger.error('Upload timeout', error, { requestId });
-      options.onError?.(error);
-      reject(error);
-    });
-
-    xhr.addEventListener('abort', () => {
-      const error = new APIError({
-        message: 'Upload was aborted',
-        code: 'UPLOAD_ABORTED',
-        details: { requestId }
-      });
-      logger.error('Upload aborted', error, { requestId });
-      options.onError?.(error);
-      reject(error);
-    });
-
-    try {
-      xhr.open('PUT', url, true);
-      xhr.setRequestHeader('Content-Type', 'application/octet-stream');
-      xhr.send(file);
-    } catch (error) {
-      const err = new APIError({
-        message: 'Failed to initiate upload',
-        code: 'UPLOAD_INIT_ERROR',
-        details: {
-          requestId,
-          error: error instanceof Error ? error.message : 'Unknown error'
-        }
-      });
-      logger.error('Failed to initiate upload', err, { requestId });
-      reject(err);
-    }
-  });
-}
-```
-
-### src/services/upload/client.ts
-
-```typescript
-import { API_CONFIG } from '../../config/api';
-import { APIError } from '../api/errors';
-import { logger } from '../../utils/logger';
-import type { SignedUrlResponse, UploadOptions } from './types';
-
-export async function generateSignedUrl(filename: string): Promise<SignedUrlResponse> {
-  const requestId = Math.random().toString(36).substr(2, 9);
-
-  logger.debug('Generating signed URL', {
-    requestId,
-    filename,
-    endpoint: API_CONFIG.endpoints.generateUploadUrl(filename)
-  });
-
-  try {
-    const response = await fetch(API_CONFIG.endpoints.generateUploadUrl(filename), {
-      method: 'POST',
-      headers: API_CONFIG.headers.base
-    });
-
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({}));
-      throw new APIError({
-        code: error.code || `HTTP_${response.status}`,
-        message: error.message || 'Failed to generate signed URL',
-        status: response.status,
-        details: { filename, requestId }
-      });
-    }
-
-    const data = await response.json();
-    
-    logger.debug('Successfully generated signed URL', {
-      requestId,
-      fileId: data.file_id,
-      urlLength: data.upload_url.length
-    });
-
-    return data;
-  } catch (error) {
-    logger.error(
-      'Failed to generate signed URL',
-      error instanceof Error ? error : new Error('Unknown error'),
-      { requestId, filename }
-    );
-    throw error;
-  }
-}
-
-export async function uploadToSignedUrl(
-  url: string,
-  file: File,
-  options: UploadOptions = {}
-): Promise<void> {
-  const requestId = Math.random().toString(36).substr(2, 9);
-
-  logger.debug('Starting file upload', {
-    requestId,
-    fileName: file.name,
-    fileSize: file.size,
-    fileType: file.type
-  });
-
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-
-    xhr.upload.addEventListener('progress', (event) => {
-      if (event.lengthComputable) {
-        const progress = {
-          loaded: event.loaded,
-          total: event.total,
-          percentage: (event.loaded / event.total) * 100
-        };
-        
-        logger.debug('Upload progress', {
-          requestId,
-          ...progress
-        });
-        
-        options.onProgress?.(progress);
-      }
-    });
-
-    xhr.addEventListener('load', () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        logger.debug('Upload completed successfully', {
-          requestId,
-          status: xhr.status
-        });
-        options.onComplete?.();
-        resolve();
-      } else {
-        const error = new APIError({
-          code: `UPLOAD_ERROR_${xhr.status}`,
-          message: `Upload failed with status ${xhr.status}`,
-          status: xhr.status
-        });
-        logger.error('Upload failed', error, { requestId });
-        options.onError?.(error);
-        reject(error);
-      }
-    });
-
-    xhr.addEventListener('error', () => {
-      const error = new APIError({
-        code: 'UPLOAD_NETWORK_ERROR',
-        message: 'Network error during upload'
-      });
-      logger.error('Upload network error', error, { requestId });
-      options.onError?.(error);
-      reject(error);
-    });
-
-    xhr.addEventListener('abort', () => {
-      const error = new APIError({
-        code: 'UPLOAD_ABORTED',
-        message: 'Upload was aborted'
-      });
-      logger.error('Upload aborted', error, { requestId });
-      options.onError?.(error);
-      reject(error);
-    });
-
-    xhr.open('PUT', url);
-    xhr.setRequestHeader('Content-Type', 'application/octet-stream');
-    xhr.send(file);
-  });
-}
-
-```
-
 ### src/store/transcription.ts
 
 ```typescript
+// src/store/transcription.ts
 import { create } from 'zustand';
-import type { TranscriptionState, ProcessError, ProcessStatus } from '../types';
-import { logger } from '../utils/logger';
+import type { TranscriptionState, ProcessError, ProcessStatus, KnowledgeGraph } from '../types';
+import { logger } from '../utils/logger/core';
 
 export const useTranscriptionStore = create<TranscriptionState>((set, get) => ({
   file: null,
@@ -4237,6 +4507,9 @@ export const useTranscriptionStore = create<TranscriptionState>((set, get) => ({
   error: null,
   transcription: null,
   speakerMap: {},
+  knowledgeGraph: null,
+  summary: null,
+
   setSpeakerName: (speaker, name) => {
     logger.debug('Updating speaker name', { speaker, name });
     set((state) => ({
@@ -4279,6 +4552,23 @@ export const useTranscriptionStore = create<TranscriptionState>((set, get) => ({
     });
     set({ transcription });
   },
+  setKnowledgeGraph: (kg: KnowledgeGraph | null) => {
+    if (kg) {
+      logger.info('Setting knowledge graph', {
+        entities: kg.entities?.length || 0,
+        relationships: kg.relationships?.length || 0
+      });
+    } else {
+      logger.info('Setting knowledge graph to null');
+    }
+    set({ knowledgeGraph: kg });
+  },
+  setSummary: (summary: string | null) => {
+    logger.info('Setting summary', {
+      length: summary?.length || 0
+    });
+    set({ summary });
+  },
   reset: () => {
     logger.info('Resetting transcription state');
     set({
@@ -4288,8 +4578,11 @@ export const useTranscriptionStore = create<TranscriptionState>((set, get) => ({
       error: null,
       transcription: null,
       speakerMap: {},
+      knowledgeGraph: null,
+      summary: null
     });
   },
 }));
+
 ```
 

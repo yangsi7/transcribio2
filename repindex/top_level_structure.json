@@ -1,0 +1,707 @@
+{
+    "vite.config.ts": {
+        "imports": [
+            "vite",
+            "@vitejs/plugin-react"
+        ],
+        "exports": [
+            "defineConfig"
+        ]
+    },
+    "src/App.tsx": {
+        "imports": [
+            "react",
+            "react-router-dom",
+            "./pages/UploadPage",
+            "./pages/MeetingHistory",
+            "./pages/ChatPage",
+            "./pages/APITestPage",
+            "./components/Sidebar",
+            "./components/DebugPanel"
+        ],
+        "exports": [
+            "App"
+        ]
+    },
+    "src/main.tsx": {
+        "imports": [
+            "react",
+            "react-dom/client",
+            "react-router-dom",
+            "./App"
+        ],
+        "exports": []
+    },
+    "src/vite-env.d.ts": {
+        "imports": [],
+        "exports": []
+    },
+    "src/types/graph.ts": {
+        "imports": [],
+        "exports": [
+            "Entity",
+            "Relationship",
+            "GraphData",
+            "ProcessedNode",
+            "ProcessedLink"
+        ]
+    },
+    "src/types/index.ts": {
+        "imports": [],
+        "exports": [
+            "Speaker",
+            "TranscriptionResponse",
+            "KnowledgeGraphEntity",
+            "KnowledgeGraphRelationship",
+            "KnowledgeGraph",
+            "ExportFormat",
+            "ProcessStatus",
+            "ProcessError",
+            "TranscriptionState",
+            "EntityMapResponse",
+            "EntityMapRequest",
+            "SummarizeRequest",
+            "SummarizeResponse"
+        ]
+    },
+    "src/config/audio.ts": {
+        "imports": [],
+        "exports": [
+            "AUDIO_CONFIG"
+        ]
+    },
+    "src/config/api.ts": {
+        "imports": [
+            "./env"
+        ],
+        "exports": [
+            "API_CONFIG"
+        ]
+    },
+    "src/config/constants.ts": {
+        "imports": [],
+        "exports": [
+            "RETRY_CONFIG",
+            "LOG_CONFIG",
+            "PROCESS_STEPS"
+        ]
+    },
+    "src/config/env.ts": {
+        "imports": [
+            "../utils/logger/core"
+        ],
+        "exports": [
+            "ENV"
+        ]
+    },
+    "src/utils/colors.ts": {
+        "imports": [],
+        "exports": [
+            "ENTITY_COLORS",
+            "DEFAULT_COLOR"
+        ]
+    },
+    "src/utils/audio.ts": {
+        "imports": [
+            "./audio/constants",
+            "./audio/validation",
+            "./audio/logger"
+        ],
+        "exports": []
+    },
+    "src/utils/entityColors.ts": {
+        "imports": [
+            "./colors",
+            "../types/graph"
+        ],
+        "exports": [
+            "getEntityColorMap"
+        ]
+    },
+    "src/utils/export.ts": {
+        "imports": [
+            "docx",
+            "file-saver",
+            "jspdf",
+            "../types"
+        ],
+        "exports": [
+            "async"
+        ]
+    },
+    "src/utils/format.ts": {
+        "imports": [],
+        "exports": [
+            "formatTimestamp",
+            "formatDuration",
+            "formatFileSize"
+        ]
+    },
+    "src/utils/processGraphData.ts": {
+        "imports": [
+            "../types/graph"
+        ],
+        "exports": [
+            "processGraphData"
+        ]
+    },
+    "src/utils/keywords.ts": {
+        "imports": [
+            "../types/graph"
+        ],
+        "exports": [
+            "extractKeywords"
+        ]
+    },
+    "src/utils/logger/status.ts": {
+        "imports": [
+            "../../config/constants",
+            "./core",
+            "../../types"
+        ],
+        "exports": [
+            "logStatusChange",
+            "logProcessStep"
+        ]
+    },
+    "src/utils/logger/types.ts": {
+        "imports": [
+            "../../config/constants"
+        ],
+        "exports": [
+            "LogLevel",
+            "LogEntry",
+            "LoggerConfig"
+        ]
+    },
+    "src/utils/logger/core.ts": {
+        "imports": [
+            "../../config/constants",
+            "./formatter",
+            "./types"
+        ],
+        "exports": [
+            "logger"
+        ]
+    },
+    "src/utils/logger/index.ts": {
+        "imports": [
+            "../../config/constants",
+            "./core"
+        ],
+        "exports": [
+            "LogLevel",
+            "LogEntry",
+            "LoggerConfig"
+        ]
+    },
+    "src/utils/logger/formatter.ts": {
+        "imports": [
+            "../../config/constants",
+            "./types"
+        ],
+        "exports": [
+            "formatLogEntry"
+        ]
+    },
+    "src/utils/audio/validation.ts": {
+        "imports": [
+            "../../config/audio",
+            "./logger",
+            "./error-handler",
+            "./processing",
+            "../format"
+        ],
+        "exports": [
+            "AudioValidationResult",
+            "validateAudioFile",
+            "getAcceptedFileTypes",
+            "async"
+        ]
+    },
+    "src/utils/audio/error-handler.ts": {
+        "imports": [
+            "./logger"
+        ],
+        "exports": [
+            "ErrorLogData",
+            "AudioProcessingError",
+            "createErrorLog",
+            "handleAudioError"
+        ]
+    },
+    "src/utils/audio/processing.ts": {
+        "imports": [
+            "./logger",
+            "./error-handler"
+        ],
+        "exports": [
+            "AudioProcessingResult",
+            "async"
+        ]
+    },
+    "src/utils/audio/logger.ts": {
+        "imports": [],
+        "exports": [
+            "logger"
+        ]
+    },
+    "src/utils/audio/index.ts": {
+        "imports": [
+            "./constants",
+            "./validation",
+            "./processing",
+            "./logger",
+            "./error-handler"
+        ],
+        "exports": []
+    },
+    "src/utils/text/processing.ts": {
+        "imports": [
+            "../logger",
+            "../../types"
+        ],
+        "exports": [
+            "ProcessedBlock",
+            "concatenateTextBlocks"
+        ]
+    },
+    "src/components/NodeConnections.tsx": {
+        "imports": [
+            "react",
+            "../types/graph"
+        ],
+        "exports": [
+            "NodeConnections"
+        ]
+    },
+    "src/components/EntitySummaryModal.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../types"
+        ],
+        "exports": [
+            "EntitySummaryModal"
+        ]
+    },
+    "src/components/ProcessStatus.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../types"
+        ],
+        "exports": [
+            "ProcessStatus"
+        ]
+    },
+    "src/components/DebugPanel.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../utils/logger/index",
+            "../config/constants",
+            "../utils/logger/types"
+        ],
+        "exports": [
+            "DebugPanel"
+        ]
+    },
+    "src/components/Graph.tsx": {
+        "imports": [
+            "react",
+            "react-force-graph-2d",
+            "../types/graph"
+        ],
+        "exports": [
+            "Graph"
+        ]
+    },
+    "src/components/InputSection.tsx": {
+        "imports": [
+            "react",
+            "./FileUpload"
+        ],
+        "exports": [
+            "InputSection"
+        ]
+    },
+    "src/components/MeetingCard.tsx": {
+        "imports": [
+            "react",
+            "lucide-react"
+        ],
+        "exports": [
+            "MeetingCard"
+        ]
+    },
+    "src/components/Sidebar.tsx": {
+        "imports": [
+            "react",
+            "react-router-dom",
+            "lucide-react"
+        ],
+        "exports": [
+            "Sidebar"
+        ]
+    },
+    "src/components/SummaryViewer.tsx": {
+        "imports": [
+            "react"
+        ],
+        "exports": [
+            "SummaryViewer"
+        ]
+    },
+    "src/components/NodeSidebar.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../types/graph",
+            "./NodeConnections"
+        ],
+        "exports": [
+            "NodeSidebar"
+        ]
+    },
+    "src/components/TranscriptionControls/index.tsx": {
+        "imports": [
+            "react",
+            "sonner",
+            "../../store/transcription",
+            "../../utils/export",
+            "../../utils/text/processing",
+            "./CopyButton",
+            "./ExportButton",
+            "../../types"
+        ],
+        "exports": [
+            "TranscriptionControls",
+            "as"
+        ]
+    },
+    "src/components/TranscriptionControls/ExportButton.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../../types"
+        ],
+        "exports": [
+            "ExportButton"
+        ]
+    },
+    "src/components/TranscriptionControls/CopyButton.tsx": {
+        "imports": [
+            "react",
+            "lucide-react"
+        ],
+        "exports": [
+            "CopyButton"
+        ]
+    },
+    "src/components/FileUpload/index.tsx": {
+        "imports": [
+            "react",
+            "sonner",
+            "../../store/transcription",
+            "../../hooks/useTranscriptionUpload",
+            "../../config/audio",
+            "./DropZone",
+            "./UploadProgress",
+            "../../utils/logger"
+        ],
+        "exports": [
+            "FileUpload"
+        ]
+    },
+    "src/components/FileUpload/DropZone.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../../utils/format",
+            "../../config/audio"
+        ],
+        "exports": [
+            "DropZone"
+        ]
+    },
+    "src/components/FileUpload/UploadProgress.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../../types"
+        ],
+        "exports": [
+            "UploadProgress"
+        ]
+    },
+    "src/components/calendar/WeekHeader.tsx": {
+        "imports": [
+            "react",
+            "date-fns",
+            "lucide-react"
+        ],
+        "exports": [
+            "WeekHeader"
+        ]
+    },
+    "src/components/calendar/FilterDropdown.tsx": {
+        "imports": [
+            "react",
+            "lucide-react"
+        ],
+        "exports": [
+            "FilterDropdown"
+        ]
+    },
+    "src/components/TranscriptionViewer/index.tsx": {
+        "imports": [
+            "react",
+            "../../store/transcription",
+            "./TranscriptionHeader",
+            "./SpeakerEntry",
+            "../../utils/text/processing",
+            "../../utils/logger/core"
+        ],
+        "exports": [
+            "TranscriptionViewer"
+        ]
+    },
+    "src/components/TranscriptionViewer/TranscriptionHeader.tsx": {
+        "imports": [
+            "react"
+        ],
+        "exports": [
+            "TranscriptionHeader"
+        ]
+    },
+    "src/components/TranscriptionViewer/SpeakerEntry.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../../utils/format",
+            "../../utils/text/processing"
+        ],
+        "exports": [
+            "SpeakerEntry"
+        ]
+    },
+    "src/components/TranscriptionViewer/TranscriptionStats.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../../utils/format",
+            "../../services/transcription/processing"
+        ],
+        "exports": [
+            "TranscriptionStats"
+        ]
+    },
+    "src/components/controls/FilterPanel.tsx": {
+        "imports": [
+            "react",
+            "lucide-react"
+        ],
+        "exports": [
+            "FilterPanel"
+        ]
+    },
+    "src/components/controls/TopEntitiesPanel.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../../types/graph"
+        ],
+        "exports": [
+            "TopEntitiesPanel"
+        ]
+    },
+    "src/hooks/useProcessStatus.ts": {
+        "imports": [
+            "react",
+            "../utils/logger/status",
+            "../config/constants",
+            "../types"
+        ],
+        "exports": [
+            "useProcessStatus"
+        ]
+    },
+    "src/hooks/useTranscriptionUpload.ts": {
+        "imports": [
+            "react",
+            "../store/transcription",
+            "../services/api/upload",
+            "../services/api/transcription",
+            "../utils/logger",
+            "../config/env",
+            "../types"
+        ],
+        "exports": [
+            "useTranscriptionUpload"
+        ]
+    },
+    "src/pages/UploadPage.tsx": {
+        "imports": [
+            "react",
+            "sonner",
+            "../components/FileUpload",
+            "../components/ProcessStatus",
+            "../components/TranscriptionControls",
+            "../components/TranscriptionViewer",
+            "../components/DebugPanel",
+            "../store/transcription"
+        ],
+        "exports": [
+            "UploadPage"
+        ]
+    },
+    "src/pages/MeetingHistory.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "date-fns",
+            "../components/MeetingCard",
+            "../components/calendar/WeekHeader",
+            "../components/calendar/FilterDropdown",
+            "../store/transcription",
+            "../utils/logger/core",
+            "../components/EntitySummaryModal"
+        ],
+        "exports": [
+            "MeetingHistory"
+        ]
+    },
+    "src/pages/APITestPage.tsx": {
+        "imports": [
+            "react",
+            "../config/env",
+            "../utils/logger/index",
+            "sonner",
+            "../components/SummaryViewer",
+            "../utils/processGraphData",
+            "../utils/entityColors",
+            "../components/Graph",
+            "../components/Sidebar",
+            "../types/graph"
+        ],
+        "exports": [
+            "APITestPage"
+        ]
+    },
+    "src/pages/ChatPage.tsx": {
+        "imports": [
+            "react"
+        ],
+        "exports": [
+            "ChatPage"
+        ]
+    },
+    "src/services/transcription/validation.ts": {
+        "imports": [
+            "../../utils/logger",
+            "../../types"
+        ],
+        "exports": [
+            "ValidationResult",
+            "validateTranscriptionResponse"
+        ]
+    },
+    "src/services/transcription/processing.ts": {
+        "imports": [
+            "../../utils/logger",
+            "../../types"
+        ],
+        "exports": [
+            "ProcessedTranscription",
+            "processTranscriptionResponse"
+        ]
+    },
+    "src/services/api/errors.ts": {
+        "imports": [],
+        "exports": [
+            "APIErrorOptions",
+            "APIError"
+        ]
+    },
+    "src/services/api/utils.ts": {
+        "imports": [
+            "./errors"
+        ],
+        "exports": [
+            "async"
+        ]
+    },
+    "src/services/api/types.ts": {
+        "imports": [],
+        "exports": [
+            "APIResponse",
+            "SignedUrlResponse",
+            "APIRequestContext",
+            "UploadProgress",
+            "UploadOptions"
+        ]
+    },
+    "src/services/api/knowledgeGraph.ts": {
+        "imports": [
+            "../../types",
+            "../../config/env",
+            "../../utils/logger",
+            "./errors"
+        ],
+        "exports": [
+            "async",
+            "async",
+            "async"
+        ]
+    },
+    "src/services/api/client.ts": {
+        "imports": [
+            "../../config/api",
+            "./errors",
+            "../../utils/logger",
+            "./types"
+        ],
+        "exports": [
+            "async"
+        ]
+    },
+    "src/services/api/index.ts": {
+        "imports": [],
+        "exports": []
+    },
+    "src/services/api/upload.ts": {
+        "imports": [
+            "../../config/api",
+            "./utils",
+            "../../utils/logger",
+            "./types"
+        ],
+        "exports": [
+            "async",
+            "async"
+        ]
+    },
+    "src/services/api/transcription.ts": {
+        "imports": [
+            "../../config/api",
+            "./utils",
+            "../../utils/logger",
+            "../../types"
+        ],
+        "exports": [
+            "async",
+            "async"
+        ]
+    },
+    "src/store/transcription.ts": {
+        "imports": [
+            "zustand",
+            "../types",
+            "../utils/logger/core"
+        ],
+        "exports": [
+            "useTranscriptionStore"
+        ]
+    }
+}

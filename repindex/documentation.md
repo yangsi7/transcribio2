@@ -42,27 +42,24 @@
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
-
 ```
 
 ### tailwind.config.js
 
 ```
 // tailwind.config.js
-export default {
+module.exports = {
   content: ["./index.html", "./src/**/*.{ts,tsx}"],
   theme: {
     extend: {},
   },
   plugins: [],
-}
+};
 ```
 
 ### .DS_Store
 
-
-Error: Could not read file content
-
+Error reading file.
 
 ### tsconfig.app.json
 
@@ -137,32 +134,32 @@ dist-ssr
       "name": "transcribio",
       "version": "0.0.0",
       "dependencies": {
-        "date-fns": "^4.1.0",
+        "date-fns": "^2.30.0",
         "docx": "^8.5.0",
         "file-saver": "^2.0.5",
         "jspdf": "^2.5.1",
         "lucide-react": "^0.344.0",
         "react": "^18.3.1",
         "react-dom": "^18.3.1",
+        "react-force-graph-2d": "^1.26.1",
         "react-router-dom": "^6.14.0",
         "sonner": "^1.4.3",
         "zustand": "^4.5.2"
       },
       "devDependencies": {
         "@eslint/js": "^9.9.1",
-        "@types/date-fns": "^2.6.3",
         "@types/file-saver": "^2.0.7",
         "@types/react": "^18.3.16",
         "@types/react-dom": "^18.3.5",
         "@types/react-router-dom": "^5.3.3",
         "@vitejs/plugin-react": "^4.3.1",
-        "autoprefixer": "^10.4.18",
+        "autoprefixer": "^10.4.20",
         "eslint": "^9.9.1",
         "eslint-plugin-react-hooks": "^5.1.0-rc.0",
         "eslint-plugin-react-refresh": "^0.4.11",
         "globals": "^15.9.0",
-        "postcss": "^8.4.35",
-        "tailwindcss": "^3.4.1",
+        "postcss": "^8.4.49",
+        "tailwindcss": "^3.4.16",
         "typescript": "^5.5.3",
         "typescript-eslint": "^8.3.0",
         "vite": "^5.4.2"
@@ -194,12 +191,13 @@ dist-ssr
       }
     },
     "node_modules/@babel/code-frame": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.25.7.tgz",
-      "integrity": "sha512-0xZJFNE5XMpENsgfHYTw8FbX4kv53mFLn2i3XPoq69LyhYSCBJtitaHx9QnsVTrsogI4Z3+HtEfZ2/GFPOtf5g==",
+      "version": "7.26.2",
+      "resolved": "https://registry.npmjs.org/@babel/code-frame/-/code-frame-7.26.2.tgz",
+      "integrity": "sha512-RJlIHRueQgwWitWgF8OdFYGZX328Ax5BCemNGlqHfplnRT9ESi8JkFlvaVYbS+UubVY6dpv87Fs2u5M29iNFVQ==",
       "dev": true,
       "dependencies": {
-        "@babel/highlight": "^7.25.7",
+        "@babel/helper-validator-identifier": "^7.25.9",
+        "js-tokens": "^4.0.0",
         "picocolors": "^1.0.0"
       },
       "engines": {
@@ -207,30 +205,30 @@ dist-ssr
       }
     },
     "node_modules/@babel/compat-data": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/compat-data/-/compat-data-7.25.7.tgz",
-      "integrity": "sha512-9ickoLz+hcXCeh7jrcin+/SLWm+GkxE2kTvoYyp38p4WkdFXfQJxDFGWp/YHjiKLPx06z2A7W8XKuqbReXDzsw==",
+      "version": "7.26.3",
+      "resolved": "https://registry.npmjs.org/@babel/compat-data/-/compat-data-7.26.3.tgz",
+      "integrity": "sha512-nHIxvKPniQXpmQLb0vhY3VaFb3S0YrTAwpOWJZh1wn3oJPjJk9Asva204PsBdmAE8vpzfHudT8DB0scYvy9q0g==",
       "dev": true,
       "engines": {
         "node": ">=6.9.0"
       }
     },
     "node_modules/@babel/core": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/core/-/core-7.25.7.tgz",
-      "integrity": "sha512-yJ474Zv3cwiSOO9nXJuqzvwEeM+chDuQ8GJirw+pZ91sCGCyOZ3dJkVE09fTV0VEVzXyLWhh3G/AolYTPX7Mow==",
+      "version": "7.26.0",
+      "resolved": "https://registry.npmjs.org/@babel/core/-/core-7.26.0.tgz",
+      "integrity": "sha512-i1SLeK+DzNnQ3LL/CswPCa/E5u4lh1k6IAEphON8F+cXt0t9euTshDru0q7/IqMa1PMPz5RnHuHscF8/ZJsStg==",
       "dev": true,
       "dependencies": {
         "@ampproject/remapping": "^2.2.0",
-        "@babel/code-frame": "^7.25.7",
-        "@babel/generator": "^7.25.7",
-        "@babel/helper-compilation-targets": "^7.25.7",
-        "@babel/helper-module-transforms": "^7.25.7",
-        "@babel/helpers": "^7.25.7",
-        "@babel/parser": "^7.25.7",
-        "@babel/template": "^7.25.7",
-        "@babel/traverse": "^7.25.7",
-        "@babel/types": "^7.25.7",
+        "@babel/code-frame": "^7.26.0",
+        "@babel/generator": "^7.26.0",
+        "@babel/helper-compilation-targets": "^7.25.9",
+        "@babel/helper-module-transforms": "^7.26.0",
+        "@babel/helpers": "^7.26.0",
+        "@babel/parser": "^7.26.0",
+        "@babel/template": "^7.25.9",
+        "@babel/traverse": "^7.25.9",
+        "@babel/types": "^7.26.0",
         "convert-source-map": "^2.0.0",
         "debug": "^4.1.0",
         "gensync": "^1.0.0-beta.2",
@@ -246,12 +244,13 @@ dist-ssr
       }
     },
     "node_modules/@babel/generator": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/generator/-/generator-7.25.7.tgz",
-      "integrity": "sha512-5Dqpl5fyV9pIAD62yK9P7fcA768uVPUyrQmqpqstHWgMma4feF1x/oFysBCVZLY5wJ2GkMUCdsNDnGZrPoR6rA==",
+      "version": "7.26.3",
+      "resolved": "https://registry.npmjs.org/@babel/generator/-/generator-7.26.3.tgz",
+      "integrity": "sha512-6FF/urZvD0sTeO7k6/B15pMLC4CHUv1426lzr3N01aHJTl046uCAh9LXW/fzeXXjPNCJ6iABW5XaWOsIZB93aQ==",
       "dev": true,
       "dependencies": {
-        "@babel/types": "^7.25.7",
+        "@babel/parser": "^7.26.3",
+        "@babel/types": "^7.26.3",
         "@jridgewell/gen-mapping": "^0.3.5",
         "@jridgewell/trace-mapping": "^0.3.25",
         "jsesc": "^3.0.2"
@@ -261,13 +260,13 @@ dist-ssr
       }
     },
     "node_modules/@babel/helper-compilation-targets": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/helper-compilation-targets/-/helper-compilation-targets-7.25.7.tgz",
-      "integrity": "sha512-DniTEax0sv6isaw6qSQSfV4gVRNtw2rte8HHM45t9ZR0xILaufBRNkpMifCRiAPyvL4ACD6v0gfCwCmtOQaV4A==",
+      "version": "7.25.9",
+      "resolved": "https://registry.npmjs.org/@babel/helper-compilation-targets/-/helper-compilation-targets-7.25.9.tgz",
+      "integrity": "sha512-j9Db8Suy6yV/VHa4qzrj9yZfZxhLWQdVnRlXxmKLYlhWUVB1sB2G5sxuWYXk/whHD9iW76PmNzxZ4UCnTQTVEQ==",
       "dev": true,
       "dependencies": {
-        "@babel/compat-data": "^7.25.7",
-        "@babel/helper-validator-option": "^7.25.7",
+        "@babel/compat-data": "^7.25.9",
+        "@babel/helper-validator-option": "^7.25.9",
         "browserslist": "^4.24.0",
         "lru-cache": "^5.1.1",
         "semver": "^6.3.1"
@@ -277,28 +276,27 @@ dist-ssr
       }
     },
     "node_modules/@babel/helper-module-imports": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/helper-module-imports/-/helper-module-imports-7.25.7.tgz",
-      "integrity": "sha512-o0xCgpNmRohmnoWKQ0Ij8IdddjyBFE4T2kagL/x6M3+4zUgc+4qTOUBoNe4XxDskt1HPKO007ZPiMgLDq2s7Kw==",
+      "version": "7.25.9",
+      "resolved": "https://registry.npmjs.org/@babel/helper-module-imports/-/helper-module-imports-7.25.9.tgz",
+      "integrity": "sha512-tnUA4RsrmflIM6W6RFTLFSXITtl0wKjgpnLgXyowocVPrbYrLUXSBXDgTs8BlbmIzIdlBySRQjINYs2BAkiLtw==",
       "dev": true,
       "dependencies": {
-        "@babel/traverse": "^7.25.7",
-        "@babel/types": "^7.25.7"
+        "@babel/traverse": "^7.25.9",
+        "@babel/types": "^7.25.9"
       },
       "engines": {
         "node": ">=6.9.0"
       }
     },
     "node_modules/@babel/helper-module-transforms": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/helper-module-transforms/-/helper-module-transforms-7.25.7.tgz",
-      "integrity": "sha512-k/6f8dKG3yDz/qCwSM+RKovjMix563SLxQFo0UhRNo239SP6n9u5/eLtKD6EAjwta2JHJ49CsD8pms2HdNiMMQ==",
+      "version": "7.26.0",
+      "resolved": "https://registry.npmjs.org/@babel/helper-module-transforms/-/helper-module-transforms-7.26.0.tgz",
+      "integrity": "sha512-xO+xu6B5K2czEnQye6BHA7DolFFmS3LB7stHZFaOLb1pAwO1HWLS8fXA+eh0A2yIvltPVmx3eNNDBJA2SLHXFw==",
       "dev": true,
       "dependencies": {
-        "@babel/helper-module-imports": "^7.25.7",
-        "@babel/helper-simple-access": "^7.25.7",
-        "@babel/helper-validator-identifier": "^7.25.7",
-        "@babel/traverse": "^7.25.7"
+        "@babel/helper-module-imports": "^7.25.9",
+        "@babel/helper-validator-identifier": "^7.25.9",
+        "@babel/traverse": "^7.25.9"
       },
       "engines": {
         "node": ">=6.9.0"
@@ -308,89 +306,61 @@ dist-ssr
       }
     },
     "node_modules/@babel/helper-plugin-utils": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/helper-plugin-utils/-/helper-plugin-utils-7.25.7.tgz",
-      "integrity": "sha512-eaPZai0PiqCi09pPs3pAFfl/zYgGaE6IdXtYvmf0qlcDTd3WCtO7JWCcRd64e0EQrcYgiHibEZnOGsSY4QSgaw==",
+      "version": "7.25.9",
+      "resolved": "https://registry.npmjs.org/@babel/helper-plugin-utils/-/helper-plugin-utils-7.25.9.tgz",
+      "integrity": "sha512-kSMlyUVdWe25rEsRGviIgOWnoT/nfABVWlqt9N19/dIPWViAOW2s9wznP5tURbs/IDuNk4gPy3YdYRgH3uxhBw==",
       "dev": true,
-      "engines": {
-        "node": ">=6.9.0"
-      }
-    },
-    "node_modules/@babel/helper-simple-access": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/helper-simple-access/-/helper-simple-access-7.25.7.tgz",
-      "integrity": "sha512-FPGAkJmyoChQeM+ruBGIDyrT2tKfZJO8NcxdC+CWNJi7N8/rZpSxK7yvBJ5O/nF1gfu5KzN7VKG3YVSLFfRSxQ==",
-      "dev": true,
-      "dependencies": {
-        "@babel/traverse": "^7.25.7",
-        "@babel/types": "^7.25.7"
-      },
       "engines": {
         "node": ">=6.9.0"
       }
     },
     "node_modules/@babel/helper-string-parser": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/helper-string-parser/-/helper-string-parser-7.25.7.tgz",
-      "integrity": "sha512-CbkjYdsJNHFk8uqpEkpCvRs3YRp9tY6FmFY7wLMSYuGYkrdUi7r2lc4/wqsvlHoMznX3WJ9IP8giGPq68T/Y6g==",
+      "version": "7.25.9",
+      "resolved": "https://registry.npmjs.org/@babel/helper-string-parser/-/helper-string-parser-7.25.9.tgz",
+      "integrity": "sha512-4A/SCr/2KLd5jrtOMFzaKjVtAei3+2r/NChoBNoZ3EyP/+GlhoaEGoWOZUmFmoITP7zOJyHIMm+DYRd8o3PvHA==",
       "dev": true,
       "engines": {
         "node": ">=6.9.0"
       }
     },
     "node_modules/@babel/helper-validator-identifier": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/helper-validator-identifier/-/helper-validator-identifier-7.25.7.tgz",
-      "integrity": "sha512-AM6TzwYqGChO45oiuPqwL2t20/HdMC1rTPAesnBCgPCSF1x3oN9MVUwQV2iyz4xqWrctwK5RNC8LV22kaQCNYg==",
+      "version": "7.25.9",
+      "resolved": "https://registry.npmjs.org/@babel/helper-validator-identifier/-/helper-validator-identifier-7.25.9.tgz",
+      "integrity": "sha512-Ed61U6XJc3CVRfkERJWDz4dJwKe7iLmmJsbOGu9wSloNSFttHV0I8g6UAgb7qnK5ly5bGLPd4oXZlxCdANBOWQ==",
       "dev": true,
       "engines": {
         "node": ">=6.9.0"
       }
     },
     "node_modules/@babel/helper-validator-option": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/helper-validator-option/-/helper-validator-option-7.25.7.tgz",
-      "integrity": "sha512-ytbPLsm+GjArDYXJ8Ydr1c/KJuutjF2besPNbIZnZ6MKUxi/uTA22t2ymmA4WFjZFpjiAMO0xuuJPqK2nvDVfQ==",
+      "version": "7.25.9",
+      "resolved": "https://registry.npmjs.org/@babel/helper-validator-option/-/helper-validator-option-7.25.9.tgz",
+      "integrity": "sha512-e/zv1co8pp55dNdEcCynfj9X7nyUKUXoUEwfXqaZt0omVOmDe9oOTdKStH4GmAw6zxMFs50ZayuMfHDKlO7Tfw==",
       "dev": true,
       "engines": {
         "node": ">=6.9.0"
       }
     },
     "node_modules/@babel/helpers": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/helpers/-/helpers-7.25.7.tgz",
-      "integrity": "sha512-Sv6pASx7Esm38KQpF/U/OXLwPPrdGHNKoeblRxgZRLXnAtnkEe4ptJPDtAZM7fBLadbc1Q07kQpSiGQ0Jg6tRA==",
+      "version": "7.26.0",
+      "resolved": "https://registry.npmjs.org/@babel/helpers/-/helpers-7.26.0.tgz",
+      "integrity": "sha512-tbhNuIxNcVb21pInl3ZSjksLCvgdZy9KwJ8brv993QtIVKJBBkYXz4q4ZbAv31GdnC+R90np23L5FbEBlthAEw==",
       "dev": true,
       "dependencies": {
-        "@babel/template": "^7.25.7",
-        "@babel/types": "^7.25.7"
-      },
-      "engines": {
-        "node": ">=6.9.0"
-      }
-    },
-    "node_modules/@babel/highlight": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/highlight/-/highlight-7.25.7.tgz",
-      "integrity": "sha512-iYyACpW3iW8Fw+ZybQK+drQre+ns/tKpXbNESfrhNnPLIklLbXr7MYJ6gPEd0iETGLOK+SxMjVvKb/ffmk+FEw==",
-      "dev": true,
-      "dependencies": {
-        "@babel/helper-validator-identifier": "^7.25.7",
-        "chalk": "^2.4.2",
-        "js-tokens": "^4.0.0",
-        "picocolors": "^1.0.0"
+        "@babel/template": "^7.25.9",
+        "@babel/types": "^7.26.0"
       },
       "engines": {
         "node": ">=6.9.0"
       }
     },
     "node_modules/@babel/parser": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/parser/-/parser-7.25.7.tgz",
-      "integrity": "sha512-aZn7ETtQsjjGG5HruveUK06cU3Hljuhd9Iojm4M8WWv3wLE6OkE5PWbDUkItmMgegmccaITudyuW5RPYrYlgWw==",
+      "version": "7.26.3",
+      "resolved": "https://registry.npmjs.org/@babel/parser/-/parser-7.26.3.tgz",
+      "integrity": "sha512-WJ/CvmY8Mea8iDXo6a7RK2wbmJITT5fN3BEkRuFlxVyNx8jOKIIhmC4fSkTcPcf8JyavbBwIe6OpiCOBXt/IcA==",
       "dev": true,
       "dependencies": {
-        "@babel/types": "^7.25.7"
+        "@babel/types": "^7.26.3"
       },
       "bin": {
         "parser": "bin/babel-parser.js"
@@ -400,12 +370,12 @@ dist-ssr
       }
     },
     "node_modules/@babel/plugin-transform-react-jsx-self": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/plugin-transform-react-jsx-self/-/plugin-transform-react-jsx-self-7.25.7.tgz",
-      "integrity": "sha512-JD9MUnLbPL0WdVK8AWC7F7tTG2OS6u/AKKnsK+NdRhUiVdnzyR1S3kKQCaRLOiaULvUiqK6Z4JQE635VgtCFeg==",
+      "version": "7.25.9",
+      "resolved": "https://registry.npmjs.org/@babel/plugin-transform-react-jsx-self/-/plugin-transform-react-jsx-self-7.25.9.tgz",
+      "integrity": "sha512-y8quW6p0WHkEhmErnfe58r7x0A70uKphQm8Sp8cV7tjNQwK56sNVK0M73LK3WuYmsuyrftut4xAkjjgU0twaMg==",
       "dev": true,
       "dependencies": {
-        "@babel/helper-plugin-utils": "^7.25.7"
+        "@babel/helper-plugin-utils": "^7.25.9"
       },
       "engines": {
         "node": ">=6.9.0"
@@ -415,12 +385,12 @@ dist-ssr
       }
     },
     "node_modules/@babel/plugin-transform-react-jsx-source": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/plugin-transform-react-jsx-source/-/plugin-transform-react-jsx-source-7.25.7.tgz",
-      "integrity": "sha512-S/JXG/KrbIY06iyJPKfxr0qRxnhNOdkNXYBl/rmwgDd72cQLH9tEGkDm/yJPGvcSIUoikzfjMios9i+xT/uv9w==",
+      "version": "7.25.9",
+      "resolved": "https://registry.npmjs.org/@babel/plugin-transform-react-jsx-source/-/plugin-transform-react-jsx-source-7.25.9.tgz",
+      "integrity": "sha512-+iqjT8xmXhhYv4/uiYd8FNQsraMFZIfxVSqxxVSZP0WbbSAWvBXAul0m/zu+7Vv4O/3WtApy9pmaTMiumEZgfg==",
       "dev": true,
       "dependencies": {
-        "@babel/helper-plugin-utils": "^7.25.7"
+        "@babel/helper-plugin-utils": "^7.25.9"
       },
       "engines": {
         "node": ">=6.9.0"
@@ -441,30 +411,30 @@ dist-ssr
       }
     },
     "node_modules/@babel/template": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/template/-/template-7.25.7.tgz",
-      "integrity": "sha512-wRwtAgI3bAS+JGU2upWNL9lSlDcRCqD05BZ1n3X2ONLH1WilFP6O1otQjeMK/1g0pvYcXC7b/qVUB1keofjtZA==",
+      "version": "7.25.9",
+      "resolved": "https://registry.npmjs.org/@babel/template/-/template-7.25.9.tgz",
+      "integrity": "sha512-9DGttpmPvIxBb/2uwpVo3dqJ+O6RooAFOS+lB+xDqoE2PVCE8nfoHMdZLpfCQRLwvohzXISPZcgxt80xLfsuwg==",
       "dev": true,
       "dependencies": {
-        "@babel/code-frame": "^7.25.7",
-        "@babel/parser": "^7.25.7",
-        "@babel/types": "^7.25.7"
+        "@babel/code-frame": "^7.25.9",
+        "@babel/parser": "^7.25.9",
+        "@babel/types": "^7.25.9"
       },
       "engines": {
         "node": ">=6.9.0"
       }
     },
     "node_modules/@babel/traverse": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/traverse/-/traverse-7.25.7.tgz",
-      "integrity": "sha512-jatJPT1Zjqvh/1FyJs6qAHL+Dzb7sTb+xr7Q+gM1b+1oBsMsQQ4FkVKb6dFlJvLlVssqkRzV05Jzervt9yhnzg==",
+      "version": "7.26.4",
+      "resolved": "https://registry.npmjs.org/@babel/traverse/-/traverse-7.26.4.tgz",
+      "integrity": "sha512-fH+b7Y4p3yqvApJALCPJcwb0/XaOSgtK4pzV6WVjPR5GLFQBRI7pfoX2V2iM48NXvX07NUxxm1Vw98YjqTcU5w==",
       "dev": true,
       "dependencies": {
-        "@babel/code-frame": "^7.25.7",
-        "@babel/generator": "^7.25.7",
-        "@babel/parser": "^7.25.7",
-        "@babel/template": "^7.25.7",
-        "@babel/types": "^7.25.7",
+        "@babel/code-frame": "^7.26.2",
+        "@babel/generator": "^7.26.3",
+        "@babel/parser": "^7.26.3",
+        "@babel/template": "^7.25.9",
+        "@babel/types": "^7.26.3",
         "debug": "^4.3.1",
         "globals": "^11.1.0"
       },
@@ -482,14 +452,13 @@ dist-ssr
       }
     },
     "node_modules/@babel/types": {
-      "version": "7.25.7",
-      "resolved": "https://registry.npmjs.org/@babel/types/-/types-7.25.7.tgz",
-      "integrity": "sha512-vwIVdXG+j+FOpkwqHRcBgHLYNL7XMkufrlaFvL9o6Ai9sJn9+PdyIL5qa0XzTZw084c+u9LOls53eoZWP/W5WQ==",
+      "version": "7.26.3",
+      "resolved": "https://registry.npmjs.org/@babel/types/-/types-7.26.3.tgz",
+      "integrity": "sha512-vN5p+1kl59GVKMvTHt55NzzmYVxprfJD+ql7U9NFIfKCBkYE55LYtS+WtPlaYOyzydrKI8Nezd+aZextrd+FMA==",
       "dev": true,
       "dependencies": {
-        "@babel/helper-string-parser": "^7.25.7",
-        "@babel/helper-validator-identifier": "^7.25.7",
-        "to-fast-properties": "^2.0.0"
+        "@babel/helper-string-parser": "^7.25.9",
+        "@babel/helper-validator-identifier": "^7.25.9"
       },
       "engines": {
         "node": ">=6.9.0"
@@ -891,21 +860,21 @@ dist-ssr
       }
     },
     "node_modules/@eslint-community/regexpp": {
-      "version": "4.11.1",
-      "resolved": "https://registry.npmjs.org/@eslint-community/regexpp/-/regexpp-4.11.1.tgz",
-      "integrity": "sha512-m4DVN9ZqskZoLU5GlWZadwDnYo3vAEydiUayB9widCl9ffWx2IvPnp6n3on5rJmziJSw9Bv+Z3ChDVdMwXCY8Q==",
+      "version": "4.12.1",
+      "resolved": "https://registry.npmjs.org/@eslint-community/regexpp/-/regexpp-4.12.1.tgz",
+      "integrity": "sha512-CCZCDJuduB9OUkFkY2IgppNZMi2lBQgD2qzwXkEia16cge2pijY/aXi96CJMquDMn3nJdlPV1A5KrJEXwfLNzQ==",
       "dev": true,
       "engines": {
         "node": "^12.0.0 || ^14.0.0 || >=16.0.0"
       }
     },
     "node_modules/@eslint/config-array": {
-      "version": "0.18.0",
-      "resolved": "https://registry.npmjs.org/@eslint/config-array/-/config-array-0.18.0.tgz",
-      "integrity": "sha512-fTxvnS1sRMu3+JjXwJG0j/i4RT9u4qJ+lqS/yCGap4lH4zZGzQ7tu+xZqQmcMZq5OBZDL4QRxQzRjkWcGt8IVw==",
+      "version": "0.19.1",
+      "resolved": "https://registry.npmjs.org/@eslint/config-array/-/config-array-0.19.1.tgz",
+      "integrity": "sha512-fo6Mtm5mWyKjA/Chy1BYTdn5mGJoDNjC7C64ug20ADsRDGrA85bN3uK3MaKbeRkRuuIEAR5N33Jr1pbm411/PA==",
       "dev": true,
       "dependencies": {
-        "@eslint/object-schema": "^2.1.4",
+        "@eslint/object-schema": "^2.1.5",
         "debug": "^4.3.1",
         "minimatch": "^3.1.2"
       },
@@ -914,18 +883,21 @@ dist-ssr
       }
     },
     "node_modules/@eslint/core": {
-      "version": "0.6.0",
-      "resolved": "https://registry.npmjs.org/@eslint/core/-/core-0.6.0.tgz",
-      "integrity": "sha512-8I2Q8ykA4J0x0o7cg67FPVnehcqWTBehu/lmY+bolPFHGjh49YzGBMXTvpqVgEbBdvNCSxj6iFgiIyHzf03lzg==",
+      "version": "0.9.1",
+      "resolved": "https://registry.npmjs.org/@eslint/core/-/core-0.9.1.tgz",
+      "integrity": "sha512-GuUdqkyyzQI5RMIWkHhvTWLCyLo1jNK3vzkSyaExH5kHPDHcuL2VOpHjmMY+y3+NC69qAKToBqldTBgYeLSr9Q==",
       "dev": true,
+      "dependencies": {
+        "@types/json-schema": "^7.0.15"
+      },
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
       }
     },
     "node_modules/@eslint/eslintrc": {
-      "version": "3.1.0",
-      "resolved": "https://registry.npmjs.org/@eslint/eslintrc/-/eslintrc-3.1.0.tgz",
-      "integrity": "sha512-4Bfj15dVJdoy3RfZmmo86RK1Fwzn6SstsvK9JS+BaVKqC6QQQQyXekNaC+g+LKNgkQ+2VhGAzm6hO40AhMR3zQ==",
+      "version": "3.2.0",
+      "resolved": "https://registry.npmjs.org/@eslint/eslintrc/-/eslintrc-3.2.0.tgz",
+      "integrity": "sha512-grOjVNN8P3hjJn/eIETF1wwd12DdnwFDoyceUJLYYdkpbwq3nLi+4fqrTAONx7XDALqlL220wC/RHSC/QTI/0w==",
       "dev": true,
       "dependencies": {
         "ajv": "^6.12.4",
@@ -958,27 +930,27 @@ dist-ssr
       }
     },
     "node_modules/@eslint/js": {
-      "version": "9.12.0",
-      "resolved": "https://registry.npmjs.org/@eslint/js/-/js-9.12.0.tgz",
-      "integrity": "sha512-eohesHH8WFRUprDNyEREgqP6beG6htMeUYeCpkEgBCieCMme5r9zFWjzAJp//9S+Kub4rqE+jXe9Cp1a7IYIIA==",
+      "version": "9.17.0",
+      "resolved": "https://registry.npmjs.org/@eslint/js/-/js-9.17.0.tgz",
+      "integrity": "sha512-Sxc4hqcs1kTu0iID3kcZDW3JHq2a77HO9P8CP6YEA/FpH3Ll8UXE2r/86Rz9YJLKme39S9vU5OWNjC6Xl0Cr3w==",
       "dev": true,
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
       }
     },
     "node_modules/@eslint/object-schema": {
-      "version": "2.1.4",
-      "resolved": "https://registry.npmjs.org/@eslint/object-schema/-/object-schema-2.1.4.tgz",
-      "integrity": "sha512-BsWiH1yFGjXXS2yvrf5LyuoSIIbPrGUWob917o+BTKuZ7qJdxX8aJLRxs1fS9n6r7vESrq1OUqb68dANcFXuQQ==",
+      "version": "2.1.5",
+      "resolved": "https://registry.npmjs.org/@eslint/object-schema/-/object-schema-2.1.5.tgz",
+      "integrity": "sha512-o0bhxnL89h5Bae5T318nFoFzGy+YE5i/gGkoPAgkmTVdRKTiv3p8JHevPiPaMwoloKfEiiaHlawCqaZMqRm+XQ==",
       "dev": true,
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
       }
     },
     "node_modules/@eslint/plugin-kit": {
-      "version": "0.2.0",
-      "resolved": "https://registry.npmjs.org/@eslint/plugin-kit/-/plugin-kit-0.2.0.tgz",
-      "integrity": "sha512-vH9PiIMMwvhCx31Af3HiGzsVNULDbyVkHXwlemn/B0TFj/00ho3y55efXrUZTfQipxoHC5u4xq6zblww1zm1Ig==",
+      "version": "0.2.4",
+      "resolved": "https://registry.npmjs.org/@eslint/plugin-kit/-/plugin-kit-0.2.4.tgz",
+      "integrity": "sha512-zSkKow6H5Kdm0ZUQUB2kV5JIXqoG0+uH5YADhaEHswm664N9Db8dXSi0nMJpacpMf+MyyglF1vnZohpEg5yUtg==",
       "dev": true,
       "dependencies": {
         "levn": "^0.4.1"
@@ -988,25 +960,38 @@ dist-ssr
       }
     },
     "node_modules/@humanfs/core": {
-      "version": "0.19.0",
-      "resolved": "https://registry.npmjs.org/@humanfs/core/-/core-0.19.0.tgz",
-      "integrity": "sha512-2cbWIHbZVEweE853g8jymffCA+NCMiuqeECeBBLm8dg2oFdjuGJhgN4UAbI+6v0CKbbhvtXA4qV8YR5Ji86nmw==",
+      "version": "0.19.1",
+      "resolved": "https://registry.npmjs.org/@humanfs/core/-/core-0.19.1.tgz",
+      "integrity": "sha512-5DyQ4+1JEUzejeK1JGICcideyfUbGixgS9jNgex5nqkW+cY7WZhxBigmieN5Qnw9ZosSNVC9KQKyb+GUaGyKUA==",
       "dev": true,
       "engines": {
         "node": ">=18.18.0"
       }
     },
     "node_modules/@humanfs/node": {
-      "version": "0.16.5",
-      "resolved": "https://registry.npmjs.org/@humanfs/node/-/node-0.16.5.tgz",
-      "integrity": "sha512-KSPA4umqSG4LHYRodq31VDwKAvaTF4xmVlzM8Aeh4PlU1JQ3IG0wiA8C25d3RQ9nJyM3mBHyI53K06VVL/oFFg==",
+      "version": "0.16.6",
+      "resolved": "https://registry.npmjs.org/@humanfs/node/-/node-0.16.6.tgz",
+      "integrity": "sha512-YuI2ZHQL78Q5HbhDiBA1X4LmYdXCKCMQIfw0pw7piHJwyREFebJUvrQN4cMssyES6x+vfUbx1CIpaQUKYdQZOw==",
       "dev": true,
       "dependencies": {
-        "@humanfs/core": "^0.19.0",
+        "@humanfs/core": "^0.19.1",
         "@humanwhocodes/retry": "^0.3.0"
       },
       "engines": {
         "node": ">=18.18.0"
+      }
+    },
+    "node_modules/@humanfs/node/node_modules/@humanwhocodes/retry": {
+      "version": "0.3.1",
+      "resolved": "https://registry.npmjs.org/@humanwhocodes/retry/-/retry-0.3.1.tgz",
+      "integrity": "sha512-JBxkERygn7Bv/GbN5Rv8Ul6LVknS+5Bp6RgDC/O8gEBU/yeH5Ui5C/OlWrTb6qct7LjjfT6Re2NxB0ln0yYybA==",
+      "dev": true,
+      "engines": {
+        "node": ">=18.18"
+      },
+      "funding": {
+        "type": "github",
+        "url": "https://github.com/sponsors/nzakas"
       }
     },
     "node_modules/@humanwhocodes/module-importer": {
@@ -1023,9 +1008,9 @@ dist-ssr
       }
     },
     "node_modules/@humanwhocodes/retry": {
-      "version": "0.3.1",
-      "resolved": "https://registry.npmjs.org/@humanwhocodes/retry/-/retry-0.3.1.tgz",
-      "integrity": "sha512-JBxkERygn7Bv/GbN5Rv8Ul6LVknS+5Bp6RgDC/O8gEBU/yeH5Ui5C/OlWrTb6qct7LjjfT6Re2NxB0ln0yYybA==",
+      "version": "0.4.1",
+      "resolved": "https://registry.npmjs.org/@humanwhocodes/retry/-/retry-0.4.1.tgz",
+      "integrity": "sha512-c7hNEllBlenFTHBky65mhq8WD2kbN9Q6gk0bTk8lSBvc554jpXSkST1iePudpt7+A/AQvuHs9EMqjHDXMY1lrA==",
       "dev": true,
       "engines": {
         "node": ">=18.18"
@@ -1361,6 +1346,11 @@ dist-ssr
         "win32"
       ]
     },
+    "node_modules/@tweenjs/tween.js": {
+      "version": "25.0.0",
+      "resolved": "https://registry.npmjs.org/@tweenjs/tween.js/-/tween.js-25.0.0.tgz",
+      "integrity": "sha512-XKLA6syeBUaPzx4j3qwMqzzq+V4uo72BnlbOjmuljLrRqdsd3qnzvZZoxvMHZ23ndsRS4aufU6JOZYpCbU6T1A=="
+    },
     "node_modules/@types/babel__core": {
       "version": "7.20.5",
       "resolved": "https://registry.npmjs.org/@types/babel__core/-/babel__core-7.20.5.tgz",
@@ -1402,16 +1392,6 @@ dist-ssr
         "@babel/types": "^7.20.7"
       }
     },
-    "node_modules/@types/date-fns": {
-      "version": "2.6.3",
-      "resolved": "https://registry.npmjs.org/@types/date-fns/-/date-fns-2.6.3.tgz",
-      "integrity": "sha512-Ke1lw2Ni1t/wMUoLtKFmSNCLozcTBd6vmMqFP4hRzXn6qzkNt97bPAX0x5Y/c15DP43kKvwW1ycStD5+43jVQA==",
-      "deprecated": "This is a stub types definition. date-fns provides its own type definitions, so you do not need this installed.",
-      "dev": true,
-      "dependencies": {
-        "date-fns": "*"
-      }
-    },
     "node_modules/@types/estree": {
       "version": "1.0.6",
       "resolved": "https://registry.npmjs.org/@types/estree/-/estree-1.0.6.tgz",
@@ -1437,17 +1417,20 @@ dist-ssr
       "dev": true
     },
     "node_modules/@types/node": {
-      "version": "20.17.9",
-      "resolved": "https://registry.npmjs.org/@types/node/-/node-20.17.9.tgz",
-      "integrity": "sha512-0JOXkRyLanfGPE2QRCwgxhzlBAvaRdCNMcvbd7jFfpmD4eEXll7LRwy5ymJmyeZqk7Nh7eD2LeUyQ68BbndmXw==",
+      "version": "22.10.2",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-22.10.2.tgz",
+      "integrity": "sha512-Xxr6BBRCAOQixvonOye19wnzyDiUtTeqldOOmj3CkeblonbccA12PFwlufvRdrpjXxqnmUaeiU5EOA+7s5diUQ==",
+      "dev": true,
+      "optional": true,
+      "peer": true,
       "dependencies": {
-        "undici-types": "~6.19.2"
+        "undici-types": "~6.20.0"
       }
     },
     "node_modules/@types/prop-types": {
-      "version": "15.7.13",
-      "resolved": "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.13.tgz",
-      "integrity": "sha512-hCZTSvwbzWGvhqxp/RqVqwU999pBf2vp7hzIjiYOsl8wqOmUxkQ6ddw1cV3l8811+kdUFus/q4d1Y3E3SyEifA==",
+      "version": "15.7.14",
+      "resolved": "https://registry.npmjs.org/@types/prop-types/-/prop-types-15.7.14.tgz",
+      "integrity": "sha512-gNMvNH49DJ7OJYv+KAKn0Xp45p8PLl6zo2YnvDIbTd4J6MER2BmWN49TG7n9LvkyihINxeKW8+3bfS2yDC9dzQ==",
       "devOptional": true
     },
     "node_modules/@types/raf": {
@@ -1497,16 +1480,16 @@ dist-ssr
       }
     },
     "node_modules/@typescript-eslint/eslint-plugin": {
-      "version": "8.8.1",
-      "resolved": "https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-8.8.1.tgz",
-      "integrity": "sha512-xfvdgA8AP/vxHgtgU310+WBnLB4uJQ9XdyP17RebG26rLtDrQJV3ZYrcopX91GrHmMoH8bdSwMRh2a//TiJ1jQ==",
+      "version": "8.18.0",
+      "resolved": "https://registry.npmjs.org/@typescript-eslint/eslint-plugin/-/eslint-plugin-8.18.0.tgz",
+      "integrity": "sha512-NR2yS7qUqCL7AIxdJUQf2MKKNDVNaig/dEB0GBLU7D+ZdHgK1NoH/3wsgO3OnPVipn51tG3MAwaODEGil70WEw==",
       "dev": true,
       "dependencies": {
         "@eslint-community/regexpp": "^4.10.0",
-        "@typescript-eslint/scope-manager": "8.8.1",
-        "@typescript-eslint/type-utils": "8.8.1",
-        "@typescript-eslint/utils": "8.8.1",
-        "@typescript-eslint/visitor-keys": "8.8.1",
+        "@typescript-eslint/scope-manager": "8.18.0",
+        "@typescript-eslint/type-utils": "8.18.0",
+        "@typescript-eslint/utils": "8.18.0",
+        "@typescript-eslint/visitor-keys": "8.18.0",
         "graphemer": "^1.4.0",
         "ignore": "^5.3.1",
         "natural-compare": "^1.4.0",
@@ -1521,24 +1504,20 @@ dist-ssr
       },
       "peerDependencies": {
         "@typescript-eslint/parser": "^8.0.0 || ^8.0.0-alpha.0",
-        "eslint": "^8.57.0 || ^9.0.0"
-      },
-      "peerDependenciesMeta": {
-        "typescript": {
-          "optional": true
-        }
+        "eslint": "^8.57.0 || ^9.0.0",
+        "typescript": ">=4.8.4 <5.8.0"
       }
     },
     "node_modules/@typescript-eslint/parser": {
-      "version": "8.8.1",
-      "resolved": "https://registry.npmjs.org/@typescript-eslint/parser/-/parser-8.8.1.tgz",
-      "integrity": "sha512-hQUVn2Lij2NAxVFEdvIGxT9gP1tq2yM83m+by3whWFsWC+1y8pxxxHUFE1UqDu2VsGi2i6RLcv4QvouM84U+ow==",
+      "version": "8.18.0",
+      "resolved": "https://registry.npmjs.org/@typescript-eslint/parser/-/parser-8.18.0.tgz",
+      "integrity": "sha512-hgUZ3kTEpVzKaK3uNibExUYm6SKKOmTU2BOxBSvOYwtJEPdVQ70kZJpPjstlnhCHcuc2WGfSbpKlb/69ttyN5Q==",
       "dev": true,
       "dependencies": {
-        "@typescript-eslint/scope-manager": "8.8.1",
-        "@typescript-eslint/types": "8.8.1",
-        "@typescript-eslint/typescript-estree": "8.8.1",
-        "@typescript-eslint/visitor-keys": "8.8.1",
+        "@typescript-eslint/scope-manager": "8.18.0",
+        "@typescript-eslint/types": "8.18.0",
+        "@typescript-eslint/typescript-estree": "8.18.0",
+        "@typescript-eslint/visitor-keys": "8.18.0",
         "debug": "^4.3.4"
       },
       "engines": {
@@ -1549,22 +1528,18 @@ dist-ssr
         "url": "https://opencollective.com/typescript-eslint"
       },
       "peerDependencies": {
-        "eslint": "^8.57.0 || ^9.0.0"
-      },
-      "peerDependenciesMeta": {
-        "typescript": {
-          "optional": true
-        }
+        "eslint": "^8.57.0 || ^9.0.0",
+        "typescript": ">=4.8.4 <5.8.0"
       }
     },
     "node_modules/@typescript-eslint/scope-manager": {
-      "version": "8.8.1",
-      "resolved": "https://registry.npmjs.org/@typescript-eslint/scope-manager/-/scope-manager-8.8.1.tgz",
-      "integrity": "sha512-X4JdU+66Mazev/J0gfXlcC/dV6JI37h+93W9BRYXrSn0hrE64IoWgVkO9MSJgEzoWkxONgaQpICWg8vAN74wlA==",
+      "version": "8.18.0",
+      "resolved": "https://registry.npmjs.org/@typescript-eslint/scope-manager/-/scope-manager-8.18.0.tgz",
+      "integrity": "sha512-PNGcHop0jkK2WVYGotk/hxj+UFLhXtGPiGtiaWgVBVP1jhMoMCHlTyJA+hEj4rszoSdLTK3fN4oOatrL0Cp+Xw==",
       "dev": true,
       "dependencies": {
-        "@typescript-eslint/types": "8.8.1",
-        "@typescript-eslint/visitor-keys": "8.8.1"
+        "@typescript-eslint/types": "8.18.0",
+        "@typescript-eslint/visitor-keys": "8.18.0"
       },
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
@@ -1575,13 +1550,13 @@ dist-ssr
       }
     },
     "node_modules/@typescript-eslint/type-utils": {
-      "version": "8.8.1",
-      "resolved": "https://registry.npmjs.org/@typescript-eslint/type-utils/-/type-utils-8.8.1.tgz",
-      "integrity": "sha512-qSVnpcbLP8CALORf0za+vjLYj1Wp8HSoiI8zYU5tHxRVj30702Z1Yw4cLwfNKhTPWp5+P+k1pjmD5Zd1nhxiZA==",
+      "version": "8.18.0",
+      "resolved": "https://registry.npmjs.org/@typescript-eslint/type-utils/-/type-utils-8.18.0.tgz",
+      "integrity": "sha512-er224jRepVAVLnMF2Q7MZJCq5CsdH2oqjP4dT7K6ij09Kyd+R21r7UVJrF0buMVdZS5QRhDzpvzAxHxabQadow==",
       "dev": true,
       "dependencies": {
-        "@typescript-eslint/typescript-estree": "8.8.1",
-        "@typescript-eslint/utils": "8.8.1",
+        "@typescript-eslint/typescript-estree": "8.18.0",
+        "@typescript-eslint/utils": "8.18.0",
         "debug": "^4.3.4",
         "ts-api-utils": "^1.3.0"
       },
@@ -1592,16 +1567,15 @@ dist-ssr
         "type": "opencollective",
         "url": "https://opencollective.com/typescript-eslint"
       },
-      "peerDependenciesMeta": {
-        "typescript": {
-          "optional": true
-        }
+      "peerDependencies": {
+        "eslint": "^8.57.0 || ^9.0.0",
+        "typescript": ">=4.8.4 <5.8.0"
       }
     },
     "node_modules/@typescript-eslint/types": {
-      "version": "8.8.1",
-      "resolved": "https://registry.npmjs.org/@typescript-eslint/types/-/types-8.8.1.tgz",
-      "integrity": "sha512-WCcTP4SDXzMd23N27u66zTKMuEevH4uzU8C9jf0RO4E04yVHgQgW+r+TeVTNnO1KIfrL8ebgVVYYMMO3+jC55Q==",
+      "version": "8.18.0",
+      "resolved": "https://registry.npmjs.org/@typescript-eslint/types/-/types-8.18.0.tgz",
+      "integrity": "sha512-FNYxgyTCAnFwTrzpBGq+zrnoTO4x0c1CKYY5MuUTzpScqmY5fmsh2o3+57lqdI3NZucBDCzDgdEbIaNfAjAHQA==",
       "dev": true,
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
@@ -1612,13 +1586,13 @@ dist-ssr
       }
     },
     "node_modules/@typescript-eslint/typescript-estree": {
-      "version": "8.8.1",
-      "resolved": "https://registry.npmjs.org/@typescript-eslint/typescript-estree/-/typescript-estree-8.8.1.tgz",
-      "integrity": "sha512-A5d1R9p+X+1js4JogdNilDuuq+EHZdsH9MjTVxXOdVFfTJXunKJR/v+fNNyO4TnoOn5HqobzfRlc70NC6HTcdg==",
+      "version": "8.18.0",
+      "resolved": "https://registry.npmjs.org/@typescript-eslint/typescript-estree/-/typescript-estree-8.18.0.tgz",
+      "integrity": "sha512-rqQgFRu6yPkauz+ms3nQpohwejS8bvgbPyIDq13cgEDbkXt4LH4OkDMT0/fN1RUtzG8e8AKJyDBoocuQh8qNeg==",
       "dev": true,
       "dependencies": {
-        "@typescript-eslint/types": "8.8.1",
-        "@typescript-eslint/visitor-keys": "8.8.1",
+        "@typescript-eslint/types": "8.18.0",
+        "@typescript-eslint/visitor-keys": "8.18.0",
         "debug": "^4.3.4",
         "fast-glob": "^3.3.2",
         "is-glob": "^4.0.3",
@@ -1633,10 +1607,8 @@ dist-ssr
         "type": "opencollective",
         "url": "https://opencollective.com/typescript-eslint"
       },
-      "peerDependenciesMeta": {
-        "typescript": {
-          "optional": true
-        }
+      "peerDependencies": {
+        "typescript": ">=4.8.4 <5.8.0"
       }
     },
     "node_modules/@typescript-eslint/typescript-estree/node_modules/brace-expansion": {
@@ -1676,15 +1648,15 @@ dist-ssr
       }
     },
     "node_modules/@typescript-eslint/utils": {
-      "version": "8.8.1",
-      "resolved": "https://registry.npmjs.org/@typescript-eslint/utils/-/utils-8.8.1.tgz",
-      "integrity": "sha512-/QkNJDbV0bdL7H7d0/y0qBbV2HTtf0TIyjSDTvvmQEzeVx8jEImEbLuOA4EsvE8gIgqMitns0ifb5uQhMj8d9w==",
+      "version": "8.18.0",
+      "resolved": "https://registry.npmjs.org/@typescript-eslint/utils/-/utils-8.18.0.tgz",
+      "integrity": "sha512-p6GLdY383i7h5b0Qrfbix3Vc3+J2k6QWw6UMUeY5JGfm3C5LbZ4QIZzJNoNOfgyRe0uuYKjvVOsO/jD4SJO+xg==",
       "dev": true,
       "dependencies": {
         "@eslint-community/eslint-utils": "^4.4.0",
-        "@typescript-eslint/scope-manager": "8.8.1",
-        "@typescript-eslint/types": "8.8.1",
-        "@typescript-eslint/typescript-estree": "8.8.1"
+        "@typescript-eslint/scope-manager": "8.18.0",
+        "@typescript-eslint/types": "8.18.0",
+        "@typescript-eslint/typescript-estree": "8.18.0"
       },
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
@@ -1694,17 +1666,18 @@ dist-ssr
         "url": "https://opencollective.com/typescript-eslint"
       },
       "peerDependencies": {
-        "eslint": "^8.57.0 || ^9.0.0"
+        "eslint": "^8.57.0 || ^9.0.0",
+        "typescript": ">=4.8.4 <5.8.0"
       }
     },
     "node_modules/@typescript-eslint/visitor-keys": {
-      "version": "8.8.1",
-      "resolved": "https://registry.npmjs.org/@typescript-eslint/visitor-keys/-/visitor-keys-8.8.1.tgz",
-      "integrity": "sha512-0/TdC3aeRAsW7MDvYRwEc1Uwm0TIBfzjPFgg60UU2Haj5qsCs9cc3zNgY71edqE3LbWfF/WoZQd3lJoDXFQpag==",
+      "version": "8.18.0",
+      "resolved": "https://registry.npmjs.org/@typescript-eslint/visitor-keys/-/visitor-keys-8.18.0.tgz",
+      "integrity": "sha512-pCh/qEA8Lb1wVIqNvBke8UaRjJ6wrAWkJO5yyIbs8Yx6TNGYyfNjOo61tLv+WwLvoLPp4BQ8B7AHKijl8NGUfw==",
       "dev": true,
       "dependencies": {
-        "@typescript-eslint/types": "8.8.1",
-        "eslint-visitor-keys": "^3.4.3"
+        "@typescript-eslint/types": "8.18.0",
+        "eslint-visitor-keys": "^4.2.0"
       },
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
@@ -1714,27 +1687,15 @@ dist-ssr
         "url": "https://opencollective.com/typescript-eslint"
       }
     },
-    "node_modules/@typescript-eslint/visitor-keys/node_modules/eslint-visitor-keys": {
-      "version": "3.4.3",
-      "resolved": "https://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-3.4.3.tgz",
-      "integrity": "sha512-wpc+LXeiyiisxPlEkUzU6svyS1frIO3Mgxj1fdy7Pm8Ygzguax2N3Fa/D/ag1WqbOprdI+uY6wMUl8/a2G+iag==",
-      "dev": true,
-      "engines": {
-        "node": "^12.22.0 || ^14.17.0 || >=16.0.0"
-      },
-      "funding": {
-        "url": "https://opencollective.com/eslint"
-      }
-    },
     "node_modules/@vitejs/plugin-react": {
-      "version": "4.3.2",
-      "resolved": "https://registry.npmjs.org/@vitejs/plugin-react/-/plugin-react-4.3.2.tgz",
-      "integrity": "sha512-hieu+o05v4glEBucTcKMK3dlES0OeJlD9YVOAPraVMOInBCwzumaIFiUjr4bHK7NPgnAHgiskUoceKercrN8vg==",
+      "version": "4.3.4",
+      "resolved": "https://registry.npmjs.org/@vitejs/plugin-react/-/plugin-react-4.3.4.tgz",
+      "integrity": "sha512-SCCPBJtYLdE8PX/7ZQAs1QAZ8Jqwih+0VBLum1EGqmCCQal+MIUqLCzj3ZUy8ufbC0cAM4LRlSTm7IQJwWT4ug==",
       "dev": true,
       "dependencies": {
-        "@babel/core": "^7.25.2",
-        "@babel/plugin-transform-react-jsx-self": "^7.24.7",
-        "@babel/plugin-transform-react-jsx-source": "^7.24.7",
+        "@babel/core": "^7.26.0",
+        "@babel/plugin-transform-react-jsx-self": "^7.25.9",
+        "@babel/plugin-transform-react-jsx-source": "^7.25.9",
         "@types/babel__core": "^7.20.5",
         "react-refresh": "^0.14.2"
       },
@@ -1742,13 +1703,21 @@ dist-ssr
         "node": "^14.18.0 || >=16.0.0"
       },
       "peerDependencies": {
-        "vite": "^4.2.0 || ^5.0.0"
+        "vite": "^4.2.0 || ^5.0.0 || ^6.0.0"
+      }
+    },
+    "node_modules/accessor-fn": {
+      "version": "1.5.1",
+      "resolved": "https://registry.npmjs.org/accessor-fn/-/accessor-fn-1.5.1.tgz",
+      "integrity": "sha512-zZpFYBqIL1Aqg+f2qmYHJ8+yIZF7/tP6PUGx2/QM0uGPSO5UegpinmkNwDohxWtOj586BpMPVRUjce2HI6xB3A==",
+      "engines": {
+        "node": ">=12"
       }
     },
     "node_modules/acorn": {
-      "version": "8.12.1",
-      "resolved": "https://registry.npmjs.org/acorn/-/acorn-8.12.1.tgz",
-      "integrity": "sha512-tcpGyI9zbizT9JbV6oYE477V6mTlXvvi0T0G3SNIYE2apm/G5huBa1+K89VGeovbg+jycCrfhl3ADxErOuO6Jg==",
+      "version": "8.14.0",
+      "resolved": "https://registry.npmjs.org/acorn/-/acorn-8.14.0.tgz",
+      "integrity": "sha512-cl669nCJTZBsL97OF4kUQm5g5hC2uihk0NxY3WENAC0TYdILVkAyHymAntgxGkl7K+t0cXIrH5siy5S4XkFycA==",
       "dev": true,
       "bin": {
         "acorn": "bin/acorn"
@@ -1792,18 +1761,6 @@ dist-ssr
       },
       "funding": {
         "url": "https://github.com/chalk/ansi-regex?sponsor=1"
-      }
-    },
-    "node_modules/ansi-styles": {
-      "version": "3.2.1",
-      "resolved": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-3.2.1.tgz",
-      "integrity": "sha512-VT0ZI6kZRdTh8YyJw3SMbYm/u+NqfsAxEpWO0Pf9sq8/e94WxxOpPKx9FR1FlyCtOVDNOQ+8ntlqFxiRc+r5qA==",
-      "dev": true,
-      "dependencies": {
-        "color-convert": "^1.9.0"
-      },
-      "engines": {
-        "node": ">=4"
       }
     },
     "node_modules/any-promise": {
@@ -1898,6 +1855,15 @@ dist-ssr
       "optional": true,
       "engines": {
         "node": ">= 0.6.0"
+      }
+    },
+    "node_modules/bezier-js": {
+      "version": "6.1.4",
+      "resolved": "https://registry.npmjs.org/bezier-js/-/bezier-js-6.1.4.tgz",
+      "integrity": "sha512-PA0FW9ZpcHbojUCMu28z9Vg/fNkwTj5YhusSAjHHDfHDGLxJ6YUKrAN2vk1fP2MMOxVw4Oko16FMlRGVBGqLKg==",
+      "funding": {
+        "type": "individual",
+        "url": "https://github.com/Pomax/bezierjs/blob/master/FUNDING.md"
       }
     },
     "node_modules/binary-extensions": {
@@ -2015,6 +1981,17 @@ dist-ssr
         }
       ]
     },
+    "node_modules/canvas-color-tracker": {
+      "version": "1.3.1",
+      "resolved": "https://registry.npmjs.org/canvas-color-tracker/-/canvas-color-tracker-1.3.1.tgz",
+      "integrity": "sha512-eNycxGS7oQ3IS/9QQY41f/aQjiO9Y/MtedhCgSdsbLSxC9EyUD8L3ehl/Q3Kfmvt8um79S45PBV+5Rxm5ztdSw==",
+      "dependencies": {
+        "tinycolor2": "^1.6.0"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
     "node_modules/canvg": {
       "version": "3.0.10",
       "resolved": "https://registry.npmjs.org/canvg/-/canvg-3.0.10.tgz",
@@ -2039,20 +2016,6 @@ dist-ssr
       "resolved": "https://registry.npmjs.org/regenerator-runtime/-/regenerator-runtime-0.13.11.tgz",
       "integrity": "sha512-kY1AZVr2Ra+t+piVaJ4gxaFaReZVH40AKNo7UCX6W+dEwBo/2oZJzqfuN1qLq1oL45o56cPaTXELwrTh8Fpggg==",
       "optional": true
-    },
-    "node_modules/chalk": {
-      "version": "2.4.2",
-      "resolved": "https://registry.npmjs.org/chalk/-/chalk-2.4.2.tgz",
-      "integrity": "sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==",
-      "dev": true,
-      "dependencies": {
-        "ansi-styles": "^3.2.1",
-        "escape-string-regexp": "^1.0.5",
-        "supports-color": "^5.3.0"
-      },
-      "engines": {
-        "node": ">=4"
-      }
     },
     "node_modules/chokidar": {
       "version": "3.6.0",
@@ -2089,21 +2052,6 @@ dist-ssr
       "engines": {
         "node": ">= 6"
       }
-    },
-    "node_modules/color-convert": {
-      "version": "1.9.3",
-      "resolved": "https://registry.npmjs.org/color-convert/-/color-convert-1.9.3.tgz",
-      "integrity": "sha512-QfAUtd+vFdAtFQcC8CCyYt1fYWxSqAiK2cSD6zDB8N3cpsEBAvRxp9zOGg6G/SHHJYAT88/az/IuDGALsNVbGg==",
-      "dev": true,
-      "dependencies": {
-        "color-name": "1.1.3"
-      }
-    },
-    "node_modules/color-name": {
-      "version": "1.1.3",
-      "resolved": "https://registry.npmjs.org/color-name/-/color-name-1.1.3.tgz",
-      "integrity": "sha512-72fSenhMw2HZMTVHeCA9KCmpEIbzWiQsjN+BHcBbS9vr1mtt+vJjPdksIBNUmKAW8TFUDPJK5SUU3QhE9NEXDw==",
-      "dev": true
     },
     "node_modules/commander": {
       "version": "4.1.1",
@@ -2143,9 +2091,9 @@ dist-ssr
       "integrity": "sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ=="
     },
     "node_modules/cross-spawn": {
-      "version": "7.0.3",
-      "resolved": "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.3.tgz",
-      "integrity": "sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==",
+      "version": "7.0.6",
+      "resolved": "https://registry.npmjs.org/cross-spawn/-/cross-spawn-7.0.6.tgz",
+      "integrity": "sha512-uV2QOWP2nWzsy2aMp8aRibhi9dlzF5Hgh5SHaB9OiTGEyDTiJJyx0uy51QXdyWbtAHNua4XJzUKca3OzKUd3vA==",
       "dev": true,
       "dependencies": {
         "path-key": "^3.1.0",
@@ -2183,13 +2131,216 @@ dist-ssr
       "integrity": "sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==",
       "devOptional": true
     },
-    "node_modules/date-fns": {
+    "node_modules/d3-array": {
+      "version": "3.2.4",
+      "resolved": "https://registry.npmjs.org/d3-array/-/d3-array-3.2.4.tgz",
+      "integrity": "sha512-tdQAmyA18i4J7wprpYq8ClcxZy3SC31QMeByyCFyRt7BVHdREQZ5lpzoe5mFEYZUWe+oq8HBvk9JjpibyEV4Jg==",
+      "dependencies": {
+        "internmap": "1 - 2"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-binarytree": {
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/d3-binarytree/-/d3-binarytree-1.0.2.tgz",
+      "integrity": "sha512-cElUNH+sHu95L04m92pG73t2MEJXKu+GeKUN1TJkFsu93E5W8E9Sc3kHEGJKgenGvj19m6upSn2EunvMgMD2Yw=="
+    },
+    "node_modules/d3-color": {
+      "version": "3.1.0",
+      "resolved": "https://registry.npmjs.org/d3-color/-/d3-color-3.1.0.tgz",
+      "integrity": "sha512-zg/chbXyeBtMQ1LbD/WSoW2DpC3I0mpmPdW+ynRTj/x2DAWYrIY7qeZIHidozwV24m4iavr15lNwIwLxRmOxhA==",
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-dispatch": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/d3-dispatch/-/d3-dispatch-3.0.1.tgz",
+      "integrity": "sha512-rzUyPU/S7rwUflMyLc1ETDeBj0NRuHKKAcvukozwhshr6g6c5d8zh4c2gQjY2bZ0dXeGLWc1PF174P2tVvKhfg==",
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-drag": {
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/d3-drag/-/d3-drag-3.0.0.tgz",
+      "integrity": "sha512-pWbUJLdETVA8lQNJecMxoXfH6x+mO2UQo8rSmZ+QqxcbyA3hfeprFgIT//HW2nlHChWeIIMwS2Fq+gEARkhTkg==",
+      "dependencies": {
+        "d3-dispatch": "1 - 3",
+        "d3-selection": "3"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-ease": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/d3-ease/-/d3-ease-3.0.1.tgz",
+      "integrity": "sha512-wR/XK3D3XcLIZwpbvQwQ5fK+8Ykds1ip7A2Txe0yxncXSdq1L9skcG7blcedkOX+ZcgxGAmLX1FrRGbADwzi0w==",
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-force-3d": {
+      "version": "3.0.5",
+      "resolved": "https://registry.npmjs.org/d3-force-3d/-/d3-force-3d-3.0.5.tgz",
+      "integrity": "sha512-tdwhAhoTYZY/a6eo9nR7HP3xSW/C6XvJTbeRpR92nlPzH6OiE+4MliN9feuSFd0tPtEUo+191qOhCTWx3NYifg==",
+      "dependencies": {
+        "d3-binarytree": "1",
+        "d3-dispatch": "1 - 3",
+        "d3-octree": "1",
+        "d3-quadtree": "1 - 3",
+        "d3-timer": "1 - 3"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-format": {
+      "version": "3.1.0",
+      "resolved": "https://registry.npmjs.org/d3-format/-/d3-format-3.1.0.tgz",
+      "integrity": "sha512-YyUI6AEuY/Wpt8KWLgZHsIU86atmikuoOmCfommt0LYHiQSPjvX2AcFc38PX0CBpr2RCyZhjex+NS/LPOv6YqA==",
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-interpolate": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/d3-interpolate/-/d3-interpolate-3.0.1.tgz",
+      "integrity": "sha512-3bYs1rOD33uo8aqJfKP3JWPAibgw8Zm2+L9vBKEHJ2Rg+viTR7o5Mmv5mZcieN+FRYaAOWX5SJATX6k1PWz72g==",
+      "dependencies": {
+        "d3-color": "1 - 3"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-octree": {
+      "version": "1.0.2",
+      "resolved": "https://registry.npmjs.org/d3-octree/-/d3-octree-1.0.2.tgz",
+      "integrity": "sha512-Qxg4oirJrNXauiuC94uKMbgxwnhdda9xRLl9ihq45srlJ4Ga3CSgqGcAL8iW7N5CIv4Oz8x3E734ulxyvHPvwA=="
+    },
+    "node_modules/d3-quadtree": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/d3-quadtree/-/d3-quadtree-3.0.1.tgz",
+      "integrity": "sha512-04xDrxQTDTCFwP5H6hRhsRcb9xxv2RzkcsygFzmkSIOJy3PeRJP7sNk3VRIbKXcog561P9oU0/rVH6vDROAgUw==",
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-scale": {
+      "version": "4.0.2",
+      "resolved": "https://registry.npmjs.org/d3-scale/-/d3-scale-4.0.2.tgz",
+      "integrity": "sha512-GZW464g1SH7ag3Y7hXjf8RoUuAFIqklOAq3MRl4OaWabTFJY9PN/E1YklhXLh+OQ3fM9yS2nOkCoS+WLZ6kvxQ==",
+      "dependencies": {
+        "d3-array": "2.10.0 - 3",
+        "d3-format": "1 - 3",
+        "d3-interpolate": "1.2.0 - 3",
+        "d3-time": "2.1.1 - 3",
+        "d3-time-format": "2 - 4"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-scale-chromatic": {
+      "version": "3.1.0",
+      "resolved": "https://registry.npmjs.org/d3-scale-chromatic/-/d3-scale-chromatic-3.1.0.tgz",
+      "integrity": "sha512-A3s5PWiZ9YCXFye1o246KoscMWqf8BsD9eRiJ3He7C9OBaxKhAd5TFCdEx/7VbKtxxTsu//1mMJFrEt572cEyQ==",
+      "dependencies": {
+        "d3-color": "1 - 3",
+        "d3-interpolate": "1 - 3"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-selection": {
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/d3-selection/-/d3-selection-3.0.0.tgz",
+      "integrity": "sha512-fmTRWbNMmsmWq6xJV8D19U/gw/bwrHfNXxrIN+HfZgnzqTHp9jOmKMhsTUjXOJnZOdZY9Q28y4yebKzqDKlxlQ==",
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-time": {
+      "version": "3.1.0",
+      "resolved": "https://registry.npmjs.org/d3-time/-/d3-time-3.1.0.tgz",
+      "integrity": "sha512-VqKjzBLejbSMT4IgbmVgDjpkYrNWUYJnbCGo874u7MMKIWsILRX+OpX/gTk8MqjpT1A/c6HY2dCA77ZN0lkQ2Q==",
+      "dependencies": {
+        "d3-array": "2 - 3"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-time-format": {
       "version": "4.1.0",
-      "resolved": "https://registry.npmjs.org/date-fns/-/date-fns-4.1.0.tgz",
-      "integrity": "sha512-Ukq0owbQXxa/U3EGtsdVBkR1w7KOQ5gIBqdH2hkvknzZPYvBxb/aa6E8L7tmjFtkwZBu3UXBbjIgPo/Ez4xaNg==",
+      "resolved": "https://registry.npmjs.org/d3-time-format/-/d3-time-format-4.1.0.tgz",
+      "integrity": "sha512-dJxPBlzC7NugB2PDLwo9Q8JiTR3M3e4/XANkreKSUxF8vvXKqm1Yfq4Q5dl8budlunRVlUUaDUgFt7eA8D6NLg==",
+      "dependencies": {
+        "d3-time": "1 - 3"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-timer": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/d3-timer/-/d3-timer-3.0.1.tgz",
+      "integrity": "sha512-ndfJ/JxxMd3nw31uyKoY2naivF+r29V+Lc0svZxe1JvvIRmi8hUsrMvdOwgS1o6uBHmiz91geQ0ylPP0aj1VUA==",
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/d3-transition": {
+      "version": "3.0.1",
+      "resolved": "https://registry.npmjs.org/d3-transition/-/d3-transition-3.0.1.tgz",
+      "integrity": "sha512-ApKvfjsSR6tg06xrL434C0WydLr7JewBB3V+/39RMHsaXTOG0zmt/OAXeng5M5LBm0ojmxJrpomQVZ1aPvBL4w==",
+      "dependencies": {
+        "d3-color": "1 - 3",
+        "d3-dispatch": "1 - 3",
+        "d3-ease": "1 - 3",
+        "d3-interpolate": "1 - 3",
+        "d3-timer": "1 - 3"
+      },
+      "engines": {
+        "node": ">=12"
+      },
+      "peerDependencies": {
+        "d3-selection": "2 - 3"
+      }
+    },
+    "node_modules/d3-zoom": {
+      "version": "3.0.0",
+      "resolved": "https://registry.npmjs.org/d3-zoom/-/d3-zoom-3.0.0.tgz",
+      "integrity": "sha512-b8AmV3kfQaqWAuacbPuNbL6vahnOJflOhexLzMMNLga62+/nh0JzvJ0aO/5a5MVgUFGS7Hu1P9P03o3fJkDCyw==",
+      "dependencies": {
+        "d3-dispatch": "1 - 3",
+        "d3-drag": "2 - 3",
+        "d3-interpolate": "1 - 3",
+        "d3-selection": "2 - 3",
+        "d3-transition": "2 - 3"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
+    "node_modules/date-fns": {
+      "version": "2.30.0",
+      "resolved": "https://registry.npmjs.org/date-fns/-/date-fns-2.30.0.tgz",
+      "integrity": "sha512-fnULvOpxnC5/Vg3NCiWelDsLiUc9bRwAPs/+LfTLNvetFCtCTN+yQz15C/fs4AwX1R9K5GLtLfn8QW+dWisaAw==",
+      "dependencies": {
+        "@babel/runtime": "^7.21.0"
+      },
+      "engines": {
+        "node": ">=0.11"
+      },
       "funding": {
-        "type": "github",
-        "url": "https://github.com/sponsors/kossnocorp"
+        "type": "opencollective",
+        "url": "https://opencollective.com/date-fns"
       }
     },
     "node_modules/debug": {
@@ -2242,6 +2393,14 @@ dist-ssr
         "node": ">=10"
       }
     },
+    "node_modules/docx/node_modules/@types/node": {
+      "version": "20.17.10",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-20.17.10.tgz",
+      "integrity": "sha512-/jrvh5h6NXhEauFFexRin69nA0uHJ5gwk4iDivp/DeoEua3uwCUto6PC86IpRITBOs4+6i2I56K5x5b6WYGXHA==",
+      "dependencies": {
+        "undici-types": "~6.19.2"
+      }
+    },
     "node_modules/docx/node_modules/nanoid": {
       "version": "5.0.9",
       "resolved": "https://registry.npmjs.org/nanoid/-/nanoid-5.0.9.tgz",
@@ -2258,6 +2417,11 @@ dist-ssr
       "engines": {
         "node": "^18 || >=20"
       }
+    },
+    "node_modules/docx/node_modules/undici-types": {
+      "version": "6.19.8",
+      "resolved": "https://registry.npmjs.org/undici-types/-/undici-types-6.19.8.tgz",
+      "integrity": "sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw=="
     },
     "node_modules/dompurify": {
       "version": "2.5.7",
@@ -2330,41 +2494,32 @@ dist-ssr
         "node": ">=6"
       }
     },
-    "node_modules/escape-string-regexp": {
-      "version": "1.0.5",
-      "resolved": "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-1.0.5.tgz",
-      "integrity": "sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg==",
-      "dev": true,
-      "engines": {
-        "node": ">=0.8.0"
-      }
-    },
     "node_modules/eslint": {
-      "version": "9.12.0",
-      "resolved": "https://registry.npmjs.org/eslint/-/eslint-9.12.0.tgz",
-      "integrity": "sha512-UVIOlTEWxwIopRL1wgSQYdnVDcEvs2wyaO6DGo5mXqe3r16IoCNWkR29iHhyaP4cICWjbgbmFUGAhh0GJRuGZw==",
+      "version": "9.17.0",
+      "resolved": "https://registry.npmjs.org/eslint/-/eslint-9.17.0.tgz",
+      "integrity": "sha512-evtlNcpJg+cZLcnVKwsai8fExnqjGPicK7gnUtlNuzu+Fv9bI0aLpND5T44VLQtoMEnI57LoXO9XAkIXwohKrA==",
       "dev": true,
       "dependencies": {
         "@eslint-community/eslint-utils": "^4.2.0",
-        "@eslint-community/regexpp": "^4.11.0",
-        "@eslint/config-array": "^0.18.0",
-        "@eslint/core": "^0.6.0",
-        "@eslint/eslintrc": "^3.1.0",
-        "@eslint/js": "9.12.0",
-        "@eslint/plugin-kit": "^0.2.0",
-        "@humanfs/node": "^0.16.5",
+        "@eslint-community/regexpp": "^4.12.1",
+        "@eslint/config-array": "^0.19.0",
+        "@eslint/core": "^0.9.0",
+        "@eslint/eslintrc": "^3.2.0",
+        "@eslint/js": "9.17.0",
+        "@eslint/plugin-kit": "^0.2.3",
+        "@humanfs/node": "^0.16.6",
         "@humanwhocodes/module-importer": "^1.0.1",
-        "@humanwhocodes/retry": "^0.3.1",
+        "@humanwhocodes/retry": "^0.4.1",
         "@types/estree": "^1.0.6",
         "@types/json-schema": "^7.0.15",
         "ajv": "^6.12.4",
         "chalk": "^4.0.0",
-        "cross-spawn": "^7.0.2",
+        "cross-spawn": "^7.0.6",
         "debug": "^4.3.2",
         "escape-string-regexp": "^4.0.0",
-        "eslint-scope": "^8.1.0",
-        "eslint-visitor-keys": "^4.1.0",
-        "espree": "^10.2.0",
+        "eslint-scope": "^8.2.0",
+        "eslint-visitor-keys": "^4.2.0",
+        "espree": "^10.3.0",
         "esquery": "^1.5.0",
         "esutils": "^2.0.2",
         "fast-deep-equal": "^3.1.3",
@@ -2378,8 +2533,7 @@ dist-ssr
         "lodash.merge": "^4.6.2",
         "minimatch": "^3.1.2",
         "natural-compare": "^1.4.0",
-        "optionator": "^0.9.3",
-        "text-table": "^0.2.0"
+        "optionator": "^0.9.3"
       },
       "bin": {
         "eslint": "bin/eslint.js"
@@ -2400,9 +2554,9 @@ dist-ssr
       }
     },
     "node_modules/eslint-plugin-react-hooks": {
-      "version": "5.1.0-rc-fb9a90fa48-20240614",
-      "resolved": "https://registry.npmjs.org/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-5.1.0-rc-fb9a90fa48-20240614.tgz",
-      "integrity": "sha512-xsiRwaDNF5wWNC4ZHLut+x/YcAxksUd9Rizt7LaEn3bV8VyYRpXnRJQlLOfYaVy9esk4DFP4zPPnoNVjq5Gc0w==",
+      "version": "5.1.0",
+      "resolved": "https://registry.npmjs.org/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-5.1.0.tgz",
+      "integrity": "sha512-mpJRtPgHN2tNAvZ35AMfqeB3Xqeo273QxrHJsbBEPWODRM4r0yB6jfoROqKEYrOn27UtRPpcpHc2UqyBSuUNTw==",
       "dev": true,
       "engines": {
         "node": ">=10"
@@ -2412,18 +2566,18 @@ dist-ssr
       }
     },
     "node_modules/eslint-plugin-react-refresh": {
-      "version": "0.4.12",
-      "resolved": "https://registry.npmjs.org/eslint-plugin-react-refresh/-/eslint-plugin-react-refresh-0.4.12.tgz",
-      "integrity": "sha512-9neVjoGv20FwYtCP6CB1dzR1vr57ZDNOXst21wd2xJ/cTlM2xLq0GWVlSNTdMn/4BtP6cHYBMCSp1wFBJ9jBsg==",
+      "version": "0.4.16",
+      "resolved": "https://registry.npmjs.org/eslint-plugin-react-refresh/-/eslint-plugin-react-refresh-0.4.16.tgz",
+      "integrity": "sha512-slterMlxAhov/DZO8NScf6mEeMBBXodFUolijDvrtTxyezyLoTQaa73FyYus/VbTdftd8wBgBxPMRk3poleXNQ==",
       "dev": true,
       "peerDependencies": {
-        "eslint": ">=7"
+        "eslint": ">=8.40"
       }
     },
     "node_modules/eslint-scope": {
-      "version": "8.1.0",
-      "resolved": "https://registry.npmjs.org/eslint-scope/-/eslint-scope-8.1.0.tgz",
-      "integrity": "sha512-14dSvlhaVhKKsa9Fx1l8A17s7ah7Ef7wCakJ10LYk6+GYmP9yDti2oq2SEwcyndt6knfcZyhyxwY3i9yL78EQw==",
+      "version": "8.2.0",
+      "resolved": "https://registry.npmjs.org/eslint-scope/-/eslint-scope-8.2.0.tgz",
+      "integrity": "sha512-PHlWUfG6lvPc3yvP5A4PNyBL1W8fkDUccmI21JUu/+GKZBoH/W5u6usENXUrWFRsyoW5ACUjFGgAFQp5gUlb/A==",
       "dev": true,
       "dependencies": {
         "esrecurse": "^4.3.0",
@@ -2437,9 +2591,9 @@ dist-ssr
       }
     },
     "node_modules/eslint-visitor-keys": {
-      "version": "4.1.0",
-      "resolved": "https://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-4.1.0.tgz",
-      "integrity": "sha512-Q7lok0mqMUSf5a/AdAZkA5a/gHcO6snwQClVNNvFKCAVlxXucdU8pKydU5ZVZjBx5xr37vGbFFWtLQYreLzrZg==",
+      "version": "4.2.0",
+      "resolved": "https://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-4.2.0.tgz",
+      "integrity": "sha512-UyLnSehNt62FFhSwjZlHmeokpRK59rcz29j+F1/aDgbkbRTk7wIc9XzdoasMUbRNKDM0qQt/+BJ4BrpFeABemw==",
       "dev": true,
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
@@ -2531,14 +2685,14 @@ dist-ssr
       }
     },
     "node_modules/espree": {
-      "version": "10.2.0",
-      "resolved": "https://registry.npmjs.org/espree/-/espree-10.2.0.tgz",
-      "integrity": "sha512-upbkBJbckcCNBDBDXEbuhjbP68n+scUd3k/U2EkyM9nw+I/jPiL4cLF/Al06CF96wRltFda16sxDFrxsI1v0/g==",
+      "version": "10.3.0",
+      "resolved": "https://registry.npmjs.org/espree/-/espree-10.3.0.tgz",
+      "integrity": "sha512-0QYC8b24HWY8zjRnDTL6RiHfDbAWn63qb4LMj1Z4b076A4une81+z03Kg7l7mn/48PUTqoLptSXez8oknU8Clg==",
       "dev": true,
       "dependencies": {
-        "acorn": "^8.12.0",
+        "acorn": "^8.14.0",
         "acorn-jsx": "^5.3.2",
-        "eslint-visitor-keys": "^4.1.0"
+        "eslint-visitor-keys": "^4.2.0"
       },
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
@@ -2713,6 +2867,30 @@ dist-ssr
       "integrity": "sha512-X8cqMLLie7KsNUDSdzeN8FYK9rEt4Dt67OsG/DNGnYTSDBG4uFAJFBnUeiV+zCVAvwFy56IjM9sH51jVaEhNxw==",
       "dev": true
     },
+    "node_modules/force-graph": {
+      "version": "1.47.1",
+      "resolved": "https://registry.npmjs.org/force-graph/-/force-graph-1.47.1.tgz",
+      "integrity": "sha512-NF0prpR8tNGq7oCE/aFImT/6/3wSk585bcp39UAj6SNSPjvKbX6ktCH6cZnjfsnPNx/DYj1rn+cvvjH814HCFA==",
+      "dependencies": {
+        "@tweenjs/tween.js": "18 - 25",
+        "accessor-fn": "1",
+        "bezier-js": "3 - 6",
+        "canvas-color-tracker": "^1.3",
+        "d3-array": "1 - 3",
+        "d3-drag": "2 - 3",
+        "d3-force-3d": "2 - 3",
+        "d3-scale": "1 - 4",
+        "d3-scale-chromatic": "1 - 3",
+        "d3-selection": "2 - 3",
+        "d3-zoom": "2 - 3",
+        "index-array-by": "1",
+        "kapsule": "^1.16",
+        "lodash-es": "4"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
     "node_modules/foreground-child": {
       "version": "3.3.0",
       "resolved": "https://registry.npmjs.org/foreground-child/-/foreground-child-3.3.0.tgz",
@@ -2831,9 +3009,9 @@ dist-ssr
       }
     },
     "node_modules/globals": {
-      "version": "15.11.0",
-      "resolved": "https://registry.npmjs.org/globals/-/globals-15.11.0.tgz",
-      "integrity": "sha512-yeyNSjdbyVaWurlwCpcA6XNBrHTMIeDdj0/hnvX/OLJ9ekOXYbLsLinH/MucQyGvNnXhidTdNhTtJaffL2sMfw==",
+      "version": "15.13.0",
+      "resolved": "https://registry.npmjs.org/globals/-/globals-15.13.0.tgz",
+      "integrity": "sha512-49TewVEz0UxZjr1WYYsWpPrhyC/B/pA8Bq0fUmet2n+eR7yn0IvNzNaoBwnK6mdkzcN+se7Ez9zUgULTz2QH4g==",
       "dev": true,
       "engines": {
         "node": ">=18"
@@ -2847,15 +3025,6 @@ dist-ssr
       "resolved": "https://registry.npmjs.org/graphemer/-/graphemer-1.4.0.tgz",
       "integrity": "sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==",
       "dev": true
-    },
-    "node_modules/has-flag": {
-      "version": "3.0.0",
-      "resolved": "https://registry.npmjs.org/has-flag/-/has-flag-3.0.0.tgz",
-      "integrity": "sha512-sKJf1+ceQBr4SMkvQnBDNDtf4TXpVhVGateu0t918bl30FnbE2m4vNLX+VWe/dpjlb+HugGYzW7uQXH98HPEYw==",
-      "dev": true,
-      "engines": {
-        "node": ">=4"
-      }
     },
     "node_modules/hasown": {
       "version": "2.0.2",
@@ -2921,10 +3090,26 @@ dist-ssr
         "node": ">=0.8.19"
       }
     },
+    "node_modules/index-array-by": {
+      "version": "1.4.2",
+      "resolved": "https://registry.npmjs.org/index-array-by/-/index-array-by-1.4.2.tgz",
+      "integrity": "sha512-SP23P27OUKzXWEC/TOyWlwLviofQkCSCKONnc62eItjp69yCZZPqDQtr3Pw5gJDnPeUMqExmKydNZaJO0FU9pw==",
+      "engines": {
+        "node": ">=12"
+      }
+    },
     "node_modules/inherits": {
       "version": "2.0.4",
       "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.4.tgz",
       "integrity": "sha512-k/vGaX4/Yla3WzyMCvTQOXYeIHvqOKtnqBduzTHpzpQZzAskKMhZ2K+EnBiSM9zGSoIFeMpXKxa4dYeZIQqewQ=="
+    },
+    "node_modules/internmap": {
+      "version": "2.0.3",
+      "resolved": "https://registry.npmjs.org/internmap/-/internmap-2.0.3.tgz",
+      "integrity": "sha512-5Hh7Y1wQbvY5ooGgPbDaL5iYLAPzMTUrjMulskHLH6wnv/A+1q5rgEaiuqEjB+oxGXIVZs1FF+R/KPN3ZSQYYg==",
+      "engines": {
+        "node": ">=12"
+      }
     },
     "node_modules/is-binary-path": {
       "version": "2.1.0",
@@ -3018,6 +3203,14 @@ dist-ssr
         "@pkgjs/parseargs": "^0.11.0"
       }
     },
+    "node_modules/jerrypick": {
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/jerrypick/-/jerrypick-1.1.1.tgz",
+      "integrity": "sha512-XTtedPYEyVp4t6hJrXuRKr/jHj8SC4z+4K0b396PMkov6muL+i8IIamJIvZWe3jUspgIJak0P+BaWKawMYNBLg==",
+      "engines": {
+        "node": ">=12"
+      }
+    },
     "node_modules/jiti": {
       "version": "1.21.6",
       "resolved": "https://registry.npmjs.org/jiti/-/jiti-1.21.6.tgz",
@@ -3045,9 +3238,9 @@ dist-ssr
       }
     },
     "node_modules/jsesc": {
-      "version": "3.0.2",
-      "resolved": "https://registry.npmjs.org/jsesc/-/jsesc-3.0.2.tgz",
-      "integrity": "sha512-xKqzzWXDttJuOcawBt4KnKHHIf5oQ/Cxax+0PWFG+DFDgHNAdi+TXECADI+RYiFUMmx8792xsMbbgXj4CwnP4g==",
+      "version": "3.1.0",
+      "resolved": "https://registry.npmjs.org/jsesc/-/jsesc-3.1.0.tgz",
+      "integrity": "sha512-/sM3dO2FOzXjKQhJuo0Q173wf2KOo8t4I8vHy6lF9poUp7bKT0/NHE8fPX23PwfhnykfqnC2xRxOnVw5XuGIaA==",
       "dev": true,
       "bin": {
         "jsesc": "bin/jsesc"
@@ -3114,6 +3307,17 @@ dist-ssr
         "setimmediate": "^1.0.5"
       }
     },
+    "node_modules/kapsule": {
+      "version": "1.16.0",
+      "resolved": "https://registry.npmjs.org/kapsule/-/kapsule-1.16.0.tgz",
+      "integrity": "sha512-4f/z/Luu0cEXmagCwaFyzvfZai2HKgB4CQLwmsMUA+jlUbW94HfFSX+TWZxzWoMSO6b6aR+FD2Xd5z88VYZJTw==",
+      "dependencies": {
+        "lodash-es": "4"
+      },
+      "engines": {
+        "node": ">=12"
+      }
+    },
     "node_modules/keyv": {
       "version": "4.5.4",
       "resolved": "https://registry.npmjs.org/keyv/-/keyv-4.5.4.tgz",
@@ -3145,12 +3349,15 @@ dist-ssr
       }
     },
     "node_modules/lilconfig": {
-      "version": "2.1.0",
-      "resolved": "https://registry.npmjs.org/lilconfig/-/lilconfig-2.1.0.tgz",
-      "integrity": "sha512-utWOt/GHzuUxnLKxB6dk81RoOeoNeHgbrXiuGk4yyF5qlRz+iIVWu56E2fqGHFrXz0QNUhLB/8nKqvRH66JKGQ==",
+      "version": "3.1.3",
+      "resolved": "https://registry.npmjs.org/lilconfig/-/lilconfig-3.1.3.tgz",
+      "integrity": "sha512-/vlFKAoH5Cgt3Ie+JLhRbwOsCQePABiU3tJ1egGvyQ+33R/vcwM2Zl2QR/LzjsBeItPt3oSVXapn+m4nQDvpzw==",
       "dev": true,
       "engines": {
-        "node": ">=10"
+        "node": ">=14"
+      },
+      "funding": {
+        "url": "https://github.com/sponsors/antonk52"
       }
     },
     "node_modules/lines-and-columns": {
@@ -3173,6 +3380,11 @@ dist-ssr
       "funding": {
         "url": "https://github.com/sponsors/sindresorhus"
       }
+    },
+    "node_modules/lodash-es": {
+      "version": "4.17.21",
+      "resolved": "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.21.tgz",
+      "integrity": "sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw=="
     },
     "node_modules/lodash.merge": {
       "version": "4.6.2",
@@ -3320,7 +3532,6 @@ dist-ssr
       "version": "4.1.1",
       "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.1.tgz",
       "integrity": "sha512-rJgTQnkUnH1sFw8yT6VSU3zD3sWmu6sZhIseY8VX+GRu3P6F7Fu+JNDoXfklElbLJSnc3FUQHVe4cU5hj+BcUg==",
-      "dev": true,
       "engines": {
         "node": ">=0.10.0"
       }
@@ -3457,9 +3668,9 @@ dist-ssr
       "optional": true
     },
     "node_modules/picocolors": {
-      "version": "1.1.0",
-      "resolved": "https://registry.npmjs.org/picocolors/-/picocolors-1.1.0.tgz",
-      "integrity": "sha512-TQ92mBOW0l3LeMeyLV6mzy/kWr8lkd/hp3mTg7wYK7zJhuBStmGMBG0BdeDZS/dZx1IukaX6Bk11zcln25o1Aw==",
+      "version": "1.1.1",
+      "resolved": "https://registry.npmjs.org/picocolors/-/picocolors-1.1.1.tgz",
+      "integrity": "sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==",
       "dev": true
     },
     "node_modules/picomatch": {
@@ -3493,9 +3704,9 @@ dist-ssr
       }
     },
     "node_modules/postcss": {
-      "version": "8.4.47",
-      "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.4.47.tgz",
-      "integrity": "sha512-56rxCq7G/XfB4EkXq9Egn5GCqugWvDFjafDOThIdMBsI15iqPqR5r15TfSr1YPYeEI19YeaXMCbY6u88Y76GLQ==",
+      "version": "8.4.49",
+      "resolved": "https://registry.npmjs.org/postcss/-/postcss-8.4.49.tgz",
+      "integrity": "sha512-OCVPnIObs4N29kxTjzLfUryOkvZEq+pf8jTF0lg8E7uETuWHA+v7j3c/xJmiqpX450191LlmZfUKkXxkTry7nA==",
       "dev": true,
       "funding": [
         {
@@ -3513,7 +3724,7 @@ dist-ssr
       ],
       "dependencies": {
         "nanoid": "^3.3.7",
-        "picocolors": "^1.1.0",
+        "picocolors": "^1.1.1",
         "source-map-js": "^1.2.1"
       },
       "engines": {
@@ -3591,18 +3802,6 @@ dist-ssr
         }
       }
     },
-    "node_modules/postcss-load-config/node_modules/lilconfig": {
-      "version": "3.1.2",
-      "resolved": "https://registry.npmjs.org/lilconfig/-/lilconfig-3.1.2.tgz",
-      "integrity": "sha512-eop+wDAvpItUys0FWkHIKeC9ybYrTGbU41U5K7+bttZZeohvnY7M9dZ5kB21GNWiFT2q1OoPTvncPCgSOVO5ow==",
-      "dev": true,
-      "engines": {
-        "node": ">=14"
-      },
-      "funding": {
-        "url": "https://github.com/sponsors/antonk52"
-      }
-    },
     "node_modules/postcss-nested": {
       "version": "6.2.0",
       "resolved": "https://registry.npmjs.org/postcss-nested/-/postcss-nested-6.2.0.tgz",
@@ -3660,6 +3859,16 @@ dist-ssr
       "version": "2.0.1",
       "resolved": "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-2.0.1.tgz",
       "integrity": "sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag=="
+    },
+    "node_modules/prop-types": {
+      "version": "15.8.1",
+      "resolved": "https://registry.npmjs.org/prop-types/-/prop-types-15.8.1.tgz",
+      "integrity": "sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==",
+      "dependencies": {
+        "loose-envify": "^1.4.0",
+        "object-assign": "^4.1.1",
+        "react-is": "^16.13.1"
+      }
     },
     "node_modules/punycode": {
       "version": "2.3.1",
@@ -3720,6 +3929,41 @@ dist-ssr
       },
       "peerDependencies": {
         "react": "^18.3.1"
+      }
+    },
+    "node_modules/react-force-graph-2d": {
+      "version": "1.26.1",
+      "resolved": "https://registry.npmjs.org/react-force-graph-2d/-/react-force-graph-2d-1.26.1.tgz",
+      "integrity": "sha512-7dRD0zNjMpeNghc6dwqzKrdWz45kM1/RNQ7OfR/Y4t9cK02NvHjtmA5JeKePAmzZajqmQQFCbTtwxEfhKgcsww==",
+      "dependencies": {
+        "force-graph": "^1.47",
+        "prop-types": "15",
+        "react-kapsule": "^2.5"
+      },
+      "engines": {
+        "node": ">=12"
+      },
+      "peerDependencies": {
+        "react": "*"
+      }
+    },
+    "node_modules/react-is": {
+      "version": "16.13.1",
+      "resolved": "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz",
+      "integrity": "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="
+    },
+    "node_modules/react-kapsule": {
+      "version": "2.5.6",
+      "resolved": "https://registry.npmjs.org/react-kapsule/-/react-kapsule-2.5.6.tgz",
+      "integrity": "sha512-aE4Nq7dDG8R/LdNmvOL6Azjr97I2E7ycFDJRkoHJSp9OQgTJDT3MHTJtJDrOTwzCl6sllYSqrtcndaCzizyAjQ==",
+      "dependencies": {
+        "jerrypick": "^1.1.1"
+      },
+      "engines": {
+        "node": ">=12"
+      },
+      "peerDependencies": {
+        "react": ">=16.13.1"
       }
     },
     "node_modules/react-refresh": {
@@ -3970,9 +4214,9 @@ dist-ssr
       }
     },
     "node_modules/sonner": {
-      "version": "1.7.0",
-      "resolved": "https://registry.npmjs.org/sonner/-/sonner-1.7.0.tgz",
-      "integrity": "sha512-W6dH7m5MujEPyug3lpI2l3TC3Pp1+LTgK0Efg+IHDrBbtEjyCmCHHo6yfNBOsf1tFZ6zf+jceWwB38baC8yO9g==",
+      "version": "1.7.1",
+      "resolved": "https://registry.npmjs.org/sonner/-/sonner-1.7.1.tgz",
+      "integrity": "sha512-b6LHBfH32SoVasRFECrdY8p8s7hXPDn3OHUFbZZbiB1ctLS9Gdh6rpX2dVrpQA0kiL5jcRzDDldwwLkSKk3+QQ==",
       "peerDependencies": {
         "react": "^18.0.0 || ^19.0.0 || ^19.0.0-rc",
         "react-dom": "^18.0.0 || ^19.0.0 || ^19.0.0-rc"
@@ -4134,18 +4378,6 @@ dist-ssr
         "node": ">=16 || 14 >=14.17"
       }
     },
-    "node_modules/supports-color": {
-      "version": "5.5.0",
-      "resolved": "https://registry.npmjs.org/supports-color/-/supports-color-5.5.0.tgz",
-      "integrity": "sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==",
-      "dev": true,
-      "dependencies": {
-        "has-flag": "^3.0.0"
-      },
-      "engines": {
-        "node": ">=4"
-      }
-    },
     "node_modules/supports-preserve-symlinks-flag": {
       "version": "1.0.0",
       "resolved": "https://registry.npmjs.org/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz",
@@ -4168,33 +4400,33 @@ dist-ssr
       }
     },
     "node_modules/tailwindcss": {
-      "version": "3.4.13",
-      "resolved": "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.4.13.tgz",
-      "integrity": "sha512-KqjHOJKogOUt5Bs752ykCeiwvi0fKVkr5oqsFNt/8px/tA8scFPIlkygsf6jXrfCqGHz7VflA6+yytWuM+XhFw==",
+      "version": "3.4.16",
+      "resolved": "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.4.16.tgz",
+      "integrity": "sha512-TI4Cyx7gDiZ6r44ewaJmt0o6BrMCT5aK5e0rmJ/G9Xq3w7CX/5VXl/zIPEJZFUK5VEqwByyhqNPycPlvcK4ZNw==",
       "dev": true,
       "dependencies": {
         "@alloc/quick-lru": "^5.2.0",
         "arg": "^5.0.2",
-        "chokidar": "^3.5.3",
+        "chokidar": "^3.6.0",
         "didyoumean": "^1.2.2",
         "dlv": "^1.1.3",
-        "fast-glob": "^3.3.0",
+        "fast-glob": "^3.3.2",
         "glob-parent": "^6.0.2",
         "is-glob": "^4.0.3",
-        "jiti": "^1.21.0",
-        "lilconfig": "^2.1.0",
-        "micromatch": "^4.0.5",
+        "jiti": "^1.21.6",
+        "lilconfig": "^3.1.3",
+        "micromatch": "^4.0.8",
         "normalize-path": "^3.0.0",
         "object-hash": "^3.0.0",
-        "picocolors": "^1.0.0",
-        "postcss": "^8.4.23",
+        "picocolors": "^1.1.1",
+        "postcss": "^8.4.47",
         "postcss-import": "^15.1.0",
         "postcss-js": "^4.0.1",
-        "postcss-load-config": "^4.0.1",
-        "postcss-nested": "^6.0.1",
-        "postcss-selector-parser": "^6.0.11",
-        "resolve": "^1.22.2",
-        "sucrase": "^3.32.0"
+        "postcss-load-config": "^4.0.2",
+        "postcss-nested": "^6.2.0",
+        "postcss-selector-parser": "^6.1.2",
+        "resolve": "^1.22.8",
+        "sucrase": "^3.35.0"
       },
       "bin": {
         "tailwind": "lib/cli.js",
@@ -4212,12 +4444,6 @@ dist-ssr
       "dependencies": {
         "utrie": "^1.0.2"
       }
-    },
-    "node_modules/text-table": {
-      "version": "0.2.0",
-      "resolved": "https://registry.npmjs.org/text-table/-/text-table-0.2.0.tgz",
-      "integrity": "sha512-N+8UisAXDGk8PFXP4HAzVR9nbfmVJ3zYLAWiTIoqC5v5isinhr+r5uaO8+7r3BMfuNIufIsA7RdpVgacC2cSpw==",
-      "dev": true
     },
     "node_modules/thenify": {
       "version": "3.3.1",
@@ -4240,14 +4466,10 @@ dist-ssr
         "node": ">=0.8"
       }
     },
-    "node_modules/to-fast-properties": {
-      "version": "2.0.0",
-      "resolved": "https://registry.npmjs.org/to-fast-properties/-/to-fast-properties-2.0.0.tgz",
-      "integrity": "sha512-/OaKK0xYrs3DmxRYqL/yDc+FxFUVYhDlXMhRmv3z915w2HF1tnN1omB354j8VUGO/hbRzyD6Y3sA7v7GS/ceog==",
-      "dev": true,
-      "engines": {
-        "node": ">=4"
-      }
+    "node_modules/tinycolor2": {
+      "version": "1.6.0",
+      "resolved": "https://registry.npmjs.org/tinycolor2/-/tinycolor2-1.6.0.tgz",
+      "integrity": "sha512-XPaBkWQJdsf3pLKJV9p4qN/S+fm2Oj8AIPo1BTUhg5oxkvm9+SVEGFdhyOz7tTdUTfvxMiAs4sp6/eZO2Ew+pw=="
     },
     "node_modules/to-regex-range": {
       "version": "5.0.1",
@@ -4292,9 +4514,9 @@ dist-ssr
       }
     },
     "node_modules/typescript": {
-      "version": "5.6.3",
-      "resolved": "https://registry.npmjs.org/typescript/-/typescript-5.6.3.tgz",
-      "integrity": "sha512-hjcS1mhfuyi4WW8IWtjP7brDrG2cuDZukyrYrSauoXGNgx0S7zceP07adYkJycEr56BOUTNPzbInooiN3fn1qw==",
+      "version": "5.7.2",
+      "resolved": "https://registry.npmjs.org/typescript/-/typescript-5.7.2.tgz",
+      "integrity": "sha512-i5t66RHxDvVN40HfDd1PsEThGNnlMCMT3jMUuoh9/0TaqWevNontacunWyN02LA9/fIbEWlcHZcgTKb9QoaLfg==",
       "dev": true,
       "bin": {
         "tsc": "bin/tsc",
@@ -4305,14 +4527,14 @@ dist-ssr
       }
     },
     "node_modules/typescript-eslint": {
-      "version": "8.8.1",
-      "resolved": "https://registry.npmjs.org/typescript-eslint/-/typescript-eslint-8.8.1.tgz",
-      "integrity": "sha512-R0dsXFt6t4SAFjUSKFjMh4pXDtq04SsFKCVGDP3ZOzNP7itF0jBcZYU4fMsZr4y7O7V7Nc751dDeESbe4PbQMQ==",
+      "version": "8.18.0",
+      "resolved": "https://registry.npmjs.org/typescript-eslint/-/typescript-eslint-8.18.0.tgz",
+      "integrity": "sha512-Xq2rRjn6tzVpAyHr3+nmSg1/9k9aIHnJ2iZeOH7cfGOWqTkXTm3kwpQglEuLGdNrYvPF+2gtAs+/KF5rjVo+WQ==",
       "dev": true,
       "dependencies": {
-        "@typescript-eslint/eslint-plugin": "8.8.1",
-        "@typescript-eslint/parser": "8.8.1",
-        "@typescript-eslint/utils": "8.8.1"
+        "@typescript-eslint/eslint-plugin": "8.18.0",
+        "@typescript-eslint/parser": "8.18.0",
+        "@typescript-eslint/utils": "8.18.0"
       },
       "engines": {
         "node": "^18.18.0 || ^20.9.0 || >=21.1.0"
@@ -4321,16 +4543,18 @@ dist-ssr
         "type": "opencollective",
         "url": "https://opencollective.com/typescript-eslint"
       },
-      "peerDependenciesMeta": {
-        "typescript": {
-          "optional": true
-        }
+      "peerDependencies": {
+        "eslint": "^8.57.0 || ^9.0.0",
+        "typescript": ">=4.8.4 <5.8.0"
       }
     },
     "node_modules/undici-types": {
-      "version": "6.19.8",
-      "resolved": "https://registry.npmjs.org/undici-types/-/undici-types-6.19.8.tgz",
-      "integrity": "sha512-ve2KP6f/JnbPBFyobGHuerC9g1FYGn/F8n1LWTwNxCEzd6IfqTwUQcNXgEtmmQ6DlRrC1hrSrBnCZPokRrDHjw=="
+      "version": "6.20.0",
+      "resolved": "https://registry.npmjs.org/undici-types/-/undici-types-6.20.0.tgz",
+      "integrity": "sha512-Ny6QZ2Nju20vw1SRHe3d9jVu6gJ+4e3+MMpqu7pqE5HT6WsTSlce++GQmK5UXS8mzV8DSYHrQH+Xrf2jVcuKNg==",
+      "dev": true,
+      "optional": true,
+      "peer": true
     },
     "node_modules/update-browserslist-db": {
       "version": "1.1.1",
@@ -4394,9 +4618,9 @@ dist-ssr
       }
     },
     "node_modules/vite": {
-      "version": "5.4.8",
-      "resolved": "https://registry.npmjs.org/vite/-/vite-5.4.8.tgz",
-      "integrity": "sha512-FqrItQ4DT1NC4zCUqMB4c4AZORMKIa0m8/URVCZ77OZ/QSNeJ54bU1vrFADbDsuwfIPcgknRkmqakQcgnL4GiQ==",
+      "version": "5.4.11",
+      "resolved": "https://registry.npmjs.org/vite/-/vite-5.4.11.tgz",
+      "integrity": "sha512-c7jFQRklXua0mTzneGW9QVyxFjUgwcihC4bXEtujIo2ouWCe1Ajt/amn2PCxYnhYfd5k09JX3SB7OYWFKYqj8Q==",
       "dev": true,
       "dependencies": {
         "esbuild": "^0.21.3",
@@ -4681,7 +4905,6 @@ dist-ssr
 {
   "name": "transcribio",
   "private": true,
-  "type": "module",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
@@ -4690,32 +4913,32 @@ dist-ssr
     "preview": "vite preview"
   },
   "dependencies": {
-    "date-fns": "^4.1.0",
+    "date-fns": "^2.30.0",
     "docx": "^8.5.0",
     "file-saver": "^2.0.5",
     "jspdf": "^2.5.1",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-force-graph-2d": "^1.26.1",
     "react-router-dom": "^6.14.0",
     "sonner": "^1.4.3",
     "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.9.1",
-    "@types/date-fns": "^2.6.3",
     "@types/file-saver": "^2.0.7",
     "@types/react": "^18.3.16",
     "@types/react-dom": "^18.3.5",
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^4.3.1",
-    "autoprefixer": "^10.4.18",
+    "autoprefixer": "^10.4.20",
     "eslint": "^9.9.1",
     "eslint-plugin-react-hooks": "^5.1.0-rc.0",
     "eslint-plugin-react-refresh": "^0.4.11",
     "globals": "^15.9.0",
-    "postcss": "^8.4.35",
-    "tailwindcss": "^3.4.1",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.16",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.3.0",
     "vite": "^5.4.2"
@@ -4729,6 +4952,8 @@ dist-ssr
 ```
 VITE_API_KEY=FySHbrXGZ_xVV53LJgTdrl__Iko-Hh7QS2r7uia3kro
 VITE_API_URL=https://api-service-1040094048579.us-central1.run.app
+VITE_API_KEY_SECONDARY=FySHbrXGZ_xVV53LJgTdrl__Iko-Hh7QS2r7uia3kro
+VITE_API_URL_SECONDARY=https://meeting-minutes-service-1040094048579.us-central1.run.app
 ```
 
 ### tsconfig.json
@@ -4744,15 +4969,15 @@ VITE_API_URL=https://api-service-1040094048579.us-central1.run.app
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
     "allowSyntheticDefaultImports": true
   },
-  "include": ["./src"]
+  "include": ["src", "vite.config.ts"]
 }
 ```
 
@@ -4793,7 +5018,6 @@ export default tseslint.config(
 ### vite.config.ts
 
 ```typescript
-// vite.config.ts
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
@@ -4809,7 +5033,7 @@ export default defineConfig({
 ### postcss.config.js
 
 ```
-export default {
+module.exports = {
   plugins: {
     tailwindcss: {},
     autoprefixer: {},
@@ -24520,15 +24744,19 @@ validation.ts
         "src/App.tsx",
         "src/main.tsx",
         "src/vite-env.d.ts",
+        "src/types/graph.ts",
         "src/types/index.ts",
         "src/config/audio.ts",
         "src/config/api.ts",
         "src/config/constants.ts",
         "src/config/env.ts",
+        "src/utils/colors.ts",
         "src/utils/audio.ts",
+        "src/utils/entityColors.ts",
         "src/utils/export.ts",
-        "src/utils/logger.ts",
         "src/utils/format.ts",
+        "src/utils/processGraphData.ts",
+        "src/utils/keywords.ts",
         "src/utils/logger/status.ts",
         "src/utils/logger/types.ts",
         "src/utils/logger/core.ts",
@@ -24538,15 +24766,18 @@ validation.ts
         "src/utils/audio/error-handler.ts",
         "src/utils/audio/processing.ts",
         "src/utils/audio/logger.ts",
-        "src/utils/audio/constants.ts",
         "src/utils/audio/index.ts",
         "src/utils/text/processing.ts",
+        "src/components/NodeConnections.tsx",
+        "src/components/EntitySummaryModal.tsx",
         "src/components/ProcessStatus.tsx",
-        "src/components/TranscriptionViewer.tsx",
         "src/components/DebugPanel.tsx",
-        "src/components/TranscriptionControls.tsx",
+        "src/components/Graph.tsx",
+        "src/components/InputSection.tsx",
         "src/components/MeetingCard.tsx",
         "src/components/Sidebar.tsx",
+        "src/components/SummaryViewer.tsx",
+        "src/components/NodeSidebar.tsx",
         "src/components/TranscriptionControls/index.tsx",
         "src/components/TranscriptionControls/ExportButton.tsx",
         "src/components/TranscriptionControls/CopyButton.tsx",
@@ -24559,29 +24790,24 @@ validation.ts
         "src/components/TranscriptionViewer/TranscriptionHeader.tsx",
         "src/components/TranscriptionViewer/SpeakerEntry.tsx",
         "src/components/TranscriptionViewer/TranscriptionStats.tsx",
-        "src/hooks/useUpload.ts",
-        "src/hooks/useTranscriptionProcessing.ts",
+        "src/components/controls/FilterPanel.tsx",
+        "src/components/controls/TopEntitiesPanel.tsx",
         "src/hooks/useProcessStatus.ts",
         "src/hooks/useTranscriptionUpload.ts",
         "src/pages/UploadPage.tsx",
         "src/pages/MeetingHistory.tsx",
+        "src/pages/APITestPage.tsx",
         "src/pages/ChatPage.tsx",
-        "src/services/api.ts",
         "src/services/transcription/validation.ts",
         "src/services/transcription/processing.ts",
         "src/services/api/errors.ts",
         "src/services/api/utils.ts",
         "src/services/api/types.ts",
+        "src/services/api/knowledgeGraph.ts",
         "src/services/api/client.ts",
         "src/services/api/index.ts",
         "src/services/api/upload.ts",
         "src/services/api/transcription.ts",
-        "src/services/upload/validation.ts",
-        "src/services/upload/url-generator.ts",
-        "src/services/upload/xhr.ts",
-        "src/services/upload/types.ts",
-        "src/services/upload/uploader.ts",
-        "src/services/upload/client.ts",
         "src/store/transcription.ts"
     ],
     "edges": [
@@ -24602,16 +24828,15 @@ validation.ts
             ]
         },
         {
-            "from": "src/types/index.ts",
+            "from": "src/types/graph.ts",
             "to": null,
             "type": "export",
             "objects": [
-                "Speaker",
-                "TranscriptionResponse",
-                "ExportFormat",
-                "ProcessStatus",
-                "ProcessError",
-                "TranscriptionState"
+                "Entity",
+                "Relationship",
+                "GraphData",
+                "ProcessedNode",
+                "ProcessedLink"
             ]
         },
         {
@@ -24621,62 +24846,17 @@ validation.ts
             "objects": [
                 "Speaker",
                 "TranscriptionResponse",
+                "KnowledgeGraphEntity",
+                "KnowledgeGraphRelationship",
+                "KnowledgeGraph",
                 "ExportFormat",
                 "ProcessStatus",
                 "ProcessError",
-                "TranscriptionState"
-            ]
-        },
-        {
-            "from": "src/types/index.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "Speaker",
-                "TranscriptionResponse",
-                "ExportFormat",
-                "ProcessStatus",
-                "ProcessError",
-                "TranscriptionState"
-            ]
-        },
-        {
-            "from": "src/types/index.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "Speaker",
-                "TranscriptionResponse",
-                "ExportFormat",
-                "ProcessStatus",
-                "ProcessError",
-                "TranscriptionState"
-            ]
-        },
-        {
-            "from": "src/types/index.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "Speaker",
-                "TranscriptionResponse",
-                "ExportFormat",
-                "ProcessStatus",
-                "ProcessError",
-                "TranscriptionState"
-            ]
-        },
-        {
-            "from": "src/types/index.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "Speaker",
-                "TranscriptionResponse",
-                "ExportFormat",
-                "ProcessStatus",
-                "ProcessError",
-                "TranscriptionState"
+                "TranscriptionState",
+                "EntityMapResponse",
+                "EntityMapRequest",
+                "SummarizeRequest",
+                "SummarizeResponse"
             ]
         },
         {
@@ -24706,31 +24886,28 @@ validation.ts
             ]
         },
         {
-            "from": "src/config/constants.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "RETRY_CONFIG",
-                "LOG_CONFIG",
-                "PROCESS_STEPS"
-            ]
-        },
-        {
-            "from": "src/config/constants.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "RETRY_CONFIG",
-                "LOG_CONFIG",
-                "PROCESS_STEPS"
-            ]
-        },
-        {
             "from": "src/config/env.ts",
             "to": null,
             "type": "export",
             "objects": [
                 "ENV"
+            ]
+        },
+        {
+            "from": "src/utils/colors.ts",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "ENTITY_COLORS",
+                "DEFAULT_COLOR"
+            ]
+        },
+        {
+            "from": "src/utils/entityColors.ts",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "getEntityColorMap"
             ]
         },
         {
@@ -24742,14 +24919,6 @@ validation.ts
             ]
         },
         {
-            "from": "src/utils/logger.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "logger"
-            ]
-        },
-        {
             "from": "src/utils/format.ts",
             "to": null,
             "type": "export",
@@ -24760,23 +24929,19 @@ validation.ts
             ]
         },
         {
-            "from": "src/utils/format.ts",
+            "from": "src/utils/processGraphData.ts",
             "to": null,
             "type": "export",
             "objects": [
-                "formatTimestamp",
-                "formatDuration",
-                "formatFileSize"
+                "processGraphData"
             ]
         },
         {
-            "from": "src/utils/format.ts",
+            "from": "src/utils/keywords.ts",
             "to": null,
             "type": "export",
             "objects": [
-                "formatTimestamp",
-                "formatDuration",
-                "formatFileSize"
+                "extractKeywords"
             ]
         },
         {
@@ -24786,35 +24951,6 @@ validation.ts
             "objects": [
                 "logStatusChange",
                 "logProcessStep"
-            ]
-        },
-        {
-            "from": "src/utils/logger/status.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "logStatusChange",
-                "logProcessStep"
-            ]
-        },
-        {
-            "from": "src/utils/logger/types.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "LogLevel",
-                "LogEntry",
-                "LoggerConfig"
-            ]
-        },
-        {
-            "from": "src/utils/logger/types.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "LogLevel",
-                "LogEntry",
-                "LoggerConfig"
             ]
         },
         {
@@ -24833,6 +24969,16 @@ validation.ts
             "type": "export",
             "objects": [
                 "logger"
+            ]
+        },
+        {
+            "from": "src/utils/logger/index.ts",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "LogLevel",
+                "LogEntry",
+                "LoggerConfig"
             ]
         },
         {
@@ -24855,39 +25001,6 @@ validation.ts
             ]
         },
         {
-            "from": "src/utils/audio/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "AudioValidationResult",
-                "validateAudioFile",
-                "getAcceptedFileTypes",
-                "async"
-            ]
-        },
-        {
-            "from": "src/utils/audio/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "AudioValidationResult",
-                "validateAudioFile",
-                "getAcceptedFileTypes",
-                "async"
-            ]
-        },
-        {
-            "from": "src/utils/audio/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "AudioValidationResult",
-                "validateAudioFile",
-                "getAcceptedFileTypes",
-                "async"
-            ]
-        },
-        {
             "from": "src/utils/audio/error-handler.ts",
             "to": null,
             "type": "export",
@@ -24896,48 +25009,6 @@ validation.ts
                 "AudioProcessingError",
                 "createErrorLog",
                 "handleAudioError"
-            ]
-        },
-        {
-            "from": "src/utils/audio/error-handler.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ErrorLogData",
-                "AudioProcessingError",
-                "createErrorLog",
-                "handleAudioError"
-            ]
-        },
-        {
-            "from": "src/utils/audio/error-handler.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ErrorLogData",
-                "AudioProcessingError",
-                "createErrorLog",
-                "handleAudioError"
-            ]
-        },
-        {
-            "from": "src/utils/audio/error-handler.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ErrorLogData",
-                "AudioProcessingError",
-                "createErrorLog",
-                "handleAudioError"
-            ]
-        },
-        {
-            "from": "src/utils/audio/processing.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "AudioProcessingResult",
-                "async"
             ]
         },
         {
@@ -24958,14 +25029,6 @@ validation.ts
             ]
         },
         {
-            "from": "src/utils/audio/constants.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "AUDIO_CONFIG"
-            ]
-        },
-        {
             "from": "src/utils/text/processing.ts",
             "to": null,
             "type": "export",
@@ -24975,12 +25038,19 @@ validation.ts
             ]
         },
         {
-            "from": "src/utils/text/processing.ts",
+            "from": "src/components/NodeConnections.tsx",
             "to": null,
             "type": "export",
             "objects": [
-                "ProcessedBlock",
-                "concatenateTextBlocks"
+                "NodeConnections"
+            ]
+        },
+        {
+            "from": "src/components/EntitySummaryModal.tsx",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "EntitySummaryModal"
             ]
         },
         {
@@ -24992,14 +25062,6 @@ validation.ts
             ]
         },
         {
-            "from": "src/components/TranscriptionViewer.tsx",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "TranscriptionViewer"
-            ]
-        },
-        {
             "from": "src/components/DebugPanel.tsx",
             "to": null,
             "type": "export",
@@ -25008,21 +25070,19 @@ validation.ts
             ]
         },
         {
-            "from": "src/components/TranscriptionControls.tsx",
+            "from": "src/components/Graph.tsx",
             "to": null,
             "type": "export",
             "objects": [
-                "TranscriptionControls",
-                "as"
+                "Graph"
             ]
         },
         {
-            "from": "src/components/TranscriptionControls.tsx",
+            "from": "src/components/InputSection.tsx",
             "to": null,
             "type": "export",
             "objects": [
-                "TranscriptionControls",
-                "as"
+                "InputSection"
             ]
         },
         {
@@ -25042,12 +25102,19 @@ validation.ts
             ]
         },
         {
-            "from": "src/components/TranscriptionControls/index.tsx",
+            "from": "src/components/SummaryViewer.tsx",
             "to": null,
             "type": "export",
             "objects": [
-                "TranscriptionControls",
-                "as"
+                "SummaryViewer"
+            ]
+        },
+        {
+            "from": "src/components/NodeSidebar.tsx",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "NodeSidebar"
             ]
         },
         {
@@ -25148,19 +25215,19 @@ validation.ts
             ]
         },
         {
-            "from": "src/hooks/useUpload.ts",
+            "from": "src/components/controls/FilterPanel.tsx",
             "to": null,
             "type": "export",
             "objects": [
-                "useUpload"
+                "FilterPanel"
             ]
         },
         {
-            "from": "src/hooks/useTranscriptionProcessing.ts",
+            "from": "src/components/controls/TopEntitiesPanel.tsx",
             "to": null,
             "type": "export",
             "objects": [
-                "useTranscriptionProcessing"
+                "TopEntitiesPanel"
             ]
         },
         {
@@ -25196,6 +25263,14 @@ validation.ts
             ]
         },
         {
+            "from": "src/pages/APITestPage.tsx",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "APITestPage"
+            ]
+        },
+        {
             "from": "src/pages/ChatPage.tsx",
             "to": null,
             "type": "export",
@@ -25213,39 +25288,12 @@ validation.ts
             ]
         },
         {
-            "from": "src/services/transcription/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ValidationResult",
-                "validateTranscriptionResponse"
-            ]
-        },
-        {
             "from": "src/services/transcription/processing.ts",
             "to": null,
             "type": "export",
             "objects": [
                 "ProcessedTranscription",
                 "processTranscriptionResponse"
-            ]
-        },
-        {
-            "from": "src/services/transcription/processing.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ProcessedTranscription",
-                "processTranscriptionResponse"
-            ]
-        },
-        {
-            "from": "src/services/api/errors.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "APIErrorOptions",
-                "APIError"
             ]
         },
         {
@@ -25278,51 +25326,13 @@ validation.ts
             ]
         },
         {
-            "from": "src/services/api/types.ts",
+            "from": "src/services/api/knowledgeGraph.ts",
             "to": null,
             "type": "export",
             "objects": [
-                "APIResponse",
-                "SignedUrlResponse",
-                "APIRequestContext",
-                "UploadProgress",
-                "UploadOptions"
-            ]
-        },
-        {
-            "from": "src/services/api/types.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "APIResponse",
-                "SignedUrlResponse",
-                "APIRequestContext",
-                "UploadProgress",
-                "UploadOptions"
-            ]
-        },
-        {
-            "from": "src/services/api/types.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "APIResponse",
-                "SignedUrlResponse",
-                "APIRequestContext",
-                "UploadProgress",
-                "UploadOptions"
-            ]
-        },
-        {
-            "from": "src/services/api/types.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "APIResponse",
-                "SignedUrlResponse",
-                "APIRequestContext",
-                "UploadProgress",
-                "UploadOptions"
+                "async",
+                "async",
+                "async"
             ]
         },
         {
@@ -25343,171 +25353,7 @@ validation.ts
             ]
         },
         {
-            "from": "src/services/api/upload.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "async",
-                "async"
-            ]
-        },
-        {
             "from": "src/services/api/transcription.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "async",
-                "async"
-            ]
-        },
-        {
-            "from": "src/services/api/transcription.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "async",
-                "async"
-            ]
-        },
-        {
-            "from": "src/services/upload/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ValidationResult",
-                "validateFileType",
-                "validateFileSize",
-                "async",
-                "async"
-            ]
-        },
-        {
-            "from": "src/services/upload/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ValidationResult",
-                "validateFileType",
-                "validateFileSize",
-                "async",
-                "async"
-            ]
-        },
-        {
-            "from": "src/services/upload/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ValidationResult",
-                "validateFileType",
-                "validateFileSize",
-                "async",
-                "async"
-            ]
-        },
-        {
-            "from": "src/services/upload/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ValidationResult",
-                "validateFileType",
-                "validateFileSize",
-                "async",
-                "async"
-            ]
-        },
-        {
-            "from": "src/services/upload/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ValidationResult",
-                "validateFileType",
-                "validateFileSize",
-                "async",
-                "async"
-            ]
-        },
-        {
-            "from": "src/services/upload/url-generator.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "async"
-            ]
-        },
-        {
-            "from": "src/services/upload/xhr.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "uploadWithXHR"
-            ]
-        },
-        {
-            "from": "src/services/upload/types.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "UploadProgress",
-                "UploadOptions",
-                "SignedUrlResponse",
-                "UploadState"
-            ]
-        },
-        {
-            "from": "src/services/upload/types.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "UploadProgress",
-                "UploadOptions",
-                "SignedUrlResponse",
-                "UploadState"
-            ]
-        },
-        {
-            "from": "src/services/upload/types.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "UploadProgress",
-                "UploadOptions",
-                "SignedUrlResponse",
-                "UploadState"
-            ]
-        },
-        {
-            "from": "src/services/upload/types.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "UploadProgress",
-                "UploadOptions",
-                "SignedUrlResponse",
-                "UploadState"
-            ]
-        },
-        {
-            "from": "src/services/upload/uploader.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "uploadToUrl"
-            ]
-        },
-        {
-            "from": "src/services/upload/client.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "async",
-                "async"
-            ]
-        },
-        {
-            "from": "src/services/upload/client.ts",
             "to": null,
             "type": "export",
             "objects": [
@@ -25532,6 +25378,7 @@ validation.ts
 ```
 .
 ├── .DS_Store
+├── .env
 ├── .gitignore
 ├── eslint.config.js
 ├── filelist.txt
@@ -25543,42 +25390,50 @@ validation.ts
 ├── src
 │   ├── .DS_Store
 │   ├── App.tsx
+│   ├── asd.json
 │   ├── components
 │   │   ├── DebugPanel.tsx
+│   │   ├── EntitySummaryModal.tsx
 │   │   ├── FileUpload
 │   │   │   ├── DropZone.tsx
 │   │   │   ├── UploadProgress.tsx
 │   │   │   └── index.tsx
+│   │   ├── Graph.tsx
+│   │   ├── InputSection.tsx
 │   │   ├── MeetingCard.tsx
+│   │   ├── NodeConnections.tsx
+│   │   ├── NodeSidebar.tsx
 │   │   ├── ProcessStatus.tsx
 │   │   ├── Sidebar.tsx
+│   │   ├── SummaryViewer.tsx
 │   │   ├── TranscriptionControls
 │   │   │   ├── CopyButton.tsx
 │   │   │   ├── ExportButton.tsx
 │   │   │   └── index.tsx
-│   │   ├── TranscriptionControls.tsx
 │   │   ├── TranscriptionViewer
 │   │   │   ├── SpeakerEntry.tsx
 │   │   │   ├── TranscriptionHeader.tsx
 │   │   │   ├── TranscriptionStats.tsx
 │   │   │   └── index.tsx
-│   │   ├── TranscriptionViewer.tsx
-│   │   └── calendar
-│   │       ├── FilterDropdown.tsx
-│   │       └── WeekHeader.tsx
+│   │   ├── calendar
+│   │   │   ├── FilterDropdown.tsx
+│   │   │   └── WeekHeader.tsx
+│   │   └── controls
+│   │       ├── FilterPanel.tsx
+│   │       └── TopEntitiesPanel.tsx
 │   ├── config
+│   │   ├── .env
 │   │   ├── api.ts
 │   │   ├── audio.ts
 │   │   ├── constants.ts
 │   │   └── env.ts
 │   ├── hooks
 │   │   ├── useProcessStatus.ts
-│   │   ├── useTranscriptionProcessing.ts
-│   │   ├── useTranscriptionUpload.ts
-│   │   └── useUpload.ts
+│   │   └── useTranscriptionUpload.ts
 │   ├── index.css
 │   ├── main.tsx
 │   ├── pages
+│   │   ├── APITestPage.tsx
 │   │   ├── ChatPage.tsx
 │   │   ├── MeetingHistory.tsx
 │   │   └── UploadPage.tsx
@@ -25588,43 +25443,39 @@ validation.ts
 │   │   │   ├── client.ts
 │   │   │   ├── errors.ts
 │   │   │   ├── index.ts
+│   │   │   ├── knowledgeGraph.ts
 │   │   │   ├── transcription.ts
 │   │   │   ├── types.ts
 │   │   │   ├── upload.ts
 │   │   │   └── utils.ts
-│   │   ├── api.ts
-│   │   ├── transcription
-│   │   │   ├── processing.ts
-│   │   │   └── validation.ts
-│   │   └── upload
-│   │       ├── client.ts
-│   │       ├── types.ts
-│   │       ├── uploader.ts
-│   │       ├── url-generator.ts
-│   │       ├── validation.ts
-│   │       └── xhr.ts
+│   │   └── transcription
+│   │       ├── processing.ts
+│   │       └── validation.ts
 │   ├── store
 │   │   └── transcription.ts
 │   ├── types
+│   │   ├── graph.ts
 │   │   └── index.ts
 │   ├── utils
 │   │   ├── audio
-│   │   │   ├── constants.ts
 │   │   │   ├── error-handler.ts
 │   │   │   ├── index.ts
 │   │   │   ├── logger.ts
 │   │   │   ├── processing.ts
 │   │   │   └── validation.ts
 │   │   ├── audio.ts
+│   │   ├── colors.ts
+│   │   ├── entityColors.ts
 │   │   ├── export.ts
 │   │   ├── format.ts
+│   │   ├── keywords.ts
 │   │   ├── logger
 │   │   │   ├── core.ts
 │   │   │   ├── formatter.ts
 │   │   │   ├── index.ts
 │   │   │   ├── status.ts
 │   │   │   └── types.ts
-│   │   ├── logger.ts
+│   │   ├── processGraphData.ts
 │   │   └── text
 │   │       └── processing.ts
 │   └── vite-env.d.ts
@@ -25645,15 +25496,19 @@ validation.ts
         "src/App.tsx",
         "src/main.tsx",
         "src/vite-env.d.ts",
+        "src/types/graph.ts",
         "src/types/index.ts",
         "src/config/audio.ts",
         "src/config/api.ts",
         "src/config/constants.ts",
         "src/config/env.ts",
+        "src/utils/colors.ts",
         "src/utils/audio.ts",
+        "src/utils/entityColors.ts",
         "src/utils/export.ts",
-        "src/utils/logger.ts",
         "src/utils/format.ts",
+        "src/utils/processGraphData.ts",
+        "src/utils/keywords.ts",
         "src/utils/logger/status.ts",
         "src/utils/logger/types.ts",
         "src/utils/logger/core.ts",
@@ -25663,15 +25518,18 @@ validation.ts
         "src/utils/audio/error-handler.ts",
         "src/utils/audio/processing.ts",
         "src/utils/audio/logger.ts",
-        "src/utils/audio/constants.ts",
         "src/utils/audio/index.ts",
         "src/utils/text/processing.ts",
+        "src/components/NodeConnections.tsx",
+        "src/components/EntitySummaryModal.tsx",
         "src/components/ProcessStatus.tsx",
-        "src/components/TranscriptionViewer.tsx",
         "src/components/DebugPanel.tsx",
-        "src/components/TranscriptionControls.tsx",
+        "src/components/Graph.tsx",
+        "src/components/InputSection.tsx",
         "src/components/MeetingCard.tsx",
         "src/components/Sidebar.tsx",
+        "src/components/SummaryViewer.tsx",
+        "src/components/NodeSidebar.tsx",
         "src/components/TranscriptionControls/index.tsx",
         "src/components/TranscriptionControls/ExportButton.tsx",
         "src/components/TranscriptionControls/CopyButton.tsx",
@@ -25684,29 +25542,24 @@ validation.ts
         "src/components/TranscriptionViewer/TranscriptionHeader.tsx",
         "src/components/TranscriptionViewer/SpeakerEntry.tsx",
         "src/components/TranscriptionViewer/TranscriptionStats.tsx",
-        "src/hooks/useUpload.ts",
-        "src/hooks/useTranscriptionProcessing.ts",
+        "src/components/controls/FilterPanel.tsx",
+        "src/components/controls/TopEntitiesPanel.tsx",
         "src/hooks/useProcessStatus.ts",
         "src/hooks/useTranscriptionUpload.ts",
         "src/pages/UploadPage.tsx",
         "src/pages/MeetingHistory.tsx",
+        "src/pages/APITestPage.tsx",
         "src/pages/ChatPage.tsx",
-        "src/services/api.ts",
         "src/services/transcription/validation.ts",
         "src/services/transcription/processing.ts",
         "src/services/api/errors.ts",
         "src/services/api/utils.ts",
         "src/services/api/types.ts",
+        "src/services/api/knowledgeGraph.ts",
         "src/services/api/client.ts",
         "src/services/api/index.ts",
         "src/services/api/upload.ts",
         "src/services/api/transcription.ts",
-        "src/services/upload/validation.ts",
-        "src/services/upload/url-generator.ts",
-        "src/services/upload/xhr.ts",
-        "src/services/upload/types.ts",
-        "src/services/upload/uploader.ts",
-        "src/services/upload/client.ts",
         "src/store/transcription.ts"
     ],
     "edges": [
@@ -25720,6 +25573,96 @@ validation.ts
         },
         {
             "from": "src/App.tsx",
+            "to": "src/pages/UploadPage.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "react-router-dom",
+                "./pages/UploadPage",
+                "./pages/MeetingHistory",
+                "./pages/ChatPage",
+                "./pages/APITestPage",
+                "./components/Sidebar",
+                "./components/DebugPanel"
+            ]
+        },
+        {
+            "from": "src/App.tsx",
+            "to": "src/pages/MeetingHistory.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "react-router-dom",
+                "./pages/UploadPage",
+                "./pages/MeetingHistory",
+                "./pages/ChatPage",
+                "./pages/APITestPage",
+                "./components/Sidebar",
+                "./components/DebugPanel"
+            ]
+        },
+        {
+            "from": "src/App.tsx",
+            "to": "src/pages/ChatPage.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "react-router-dom",
+                "./pages/UploadPage",
+                "./pages/MeetingHistory",
+                "./pages/ChatPage",
+                "./pages/APITestPage",
+                "./components/Sidebar",
+                "./components/DebugPanel"
+            ]
+        },
+        {
+            "from": "src/App.tsx",
+            "to": "src/pages/APITestPage.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "react-router-dom",
+                "./pages/UploadPage",
+                "./pages/MeetingHistory",
+                "./pages/ChatPage",
+                "./pages/APITestPage",
+                "./components/Sidebar",
+                "./components/DebugPanel"
+            ]
+        },
+        {
+            "from": "src/App.tsx",
+            "to": "src/components/Sidebar.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "react-router-dom",
+                "./pages/UploadPage",
+                "./pages/MeetingHistory",
+                "./pages/ChatPage",
+                "./pages/APITestPage",
+                "./components/Sidebar",
+                "./components/DebugPanel"
+            ]
+        },
+        {
+            "from": "src/App.tsx",
+            "to": "src/components/DebugPanel.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "react-router-dom",
+                "./pages/UploadPage",
+                "./pages/MeetingHistory",
+                "./pages/ChatPage",
+                "./pages/APITestPage",
+                "./components/Sidebar",
+                "./components/DebugPanel"
+            ]
+        },
+        {
+            "from": "src/App.tsx",
             "to": null,
             "type": "export",
             "objects": [
@@ -25727,16 +25670,26 @@ validation.ts
             ]
         },
         {
-            "from": "src/types/index.ts",
+            "from": "src/main.tsx",
+            "to": "src/App.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "react-dom/client",
+                "react-router-dom",
+                "./App"
+            ]
+        },
+        {
+            "from": "src/types/graph.ts",
             "to": null,
             "type": "export",
             "objects": [
-                "Speaker",
-                "TranscriptionResponse",
-                "ExportFormat",
-                "ProcessStatus",
-                "ProcessError",
-                "TranscriptionState"
+                "Entity",
+                "Relationship",
+                "GraphData",
+                "ProcessedNode",
+                "ProcessedLink"
             ]
         },
         {
@@ -25746,62 +25699,17 @@ validation.ts
             "objects": [
                 "Speaker",
                 "TranscriptionResponse",
+                "KnowledgeGraphEntity",
+                "KnowledgeGraphRelationship",
+                "KnowledgeGraph",
                 "ExportFormat",
                 "ProcessStatus",
                 "ProcessError",
-                "TranscriptionState"
-            ]
-        },
-        {
-            "from": "src/types/index.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "Speaker",
-                "TranscriptionResponse",
-                "ExportFormat",
-                "ProcessStatus",
-                "ProcessError",
-                "TranscriptionState"
-            ]
-        },
-        {
-            "from": "src/types/index.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "Speaker",
-                "TranscriptionResponse",
-                "ExportFormat",
-                "ProcessStatus",
-                "ProcessError",
-                "TranscriptionState"
-            ]
-        },
-        {
-            "from": "src/types/index.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "Speaker",
-                "TranscriptionResponse",
-                "ExportFormat",
-                "ProcessStatus",
-                "ProcessError",
-                "TranscriptionState"
-            ]
-        },
-        {
-            "from": "src/types/index.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "Speaker",
-                "TranscriptionResponse",
-                "ExportFormat",
-                "ProcessStatus",
-                "ProcessError",
-                "TranscriptionState"
+                "TranscriptionState",
+                "EntityMapResponse",
+                "EntityMapRequest",
+                "SummarizeRequest",
+                "SummarizeResponse"
             ]
         },
         {
@@ -25839,31 +25747,11 @@ validation.ts
             ]
         },
         {
-            "from": "src/config/constants.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "RETRY_CONFIG",
-                "LOG_CONFIG",
-                "PROCESS_STEPS"
-            ]
-        },
-        {
-            "from": "src/config/constants.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "RETRY_CONFIG",
-                "LOG_CONFIG",
-                "PROCESS_STEPS"
-            ]
-        },
-        {
             "from": "src/config/env.ts",
-            "to": "src/utils/logger/index.ts",
+            "to": "src/utils/logger/core.ts",
             "type": "import",
             "objects": [
-                "../utils/logger"
+                "../utils/logger/core"
             ]
         },
         {
@@ -25875,13 +25763,12 @@ validation.ts
             ]
         },
         {
-            "from": "src/utils/audio.ts",
-            "to": "src/utils/audio/constants.ts",
-            "type": "import",
+            "from": "src/utils/colors.ts",
+            "to": null,
+            "type": "export",
             "objects": [
-                "./audio/constants",
-                "./audio/validation",
-                "./audio/logger"
+                "ENTITY_COLORS",
+                "DEFAULT_COLOR"
             ]
         },
         {
@@ -25905,6 +25792,32 @@ validation.ts
             ]
         },
         {
+            "from": "src/utils/entityColors.ts",
+            "to": "src/utils/colors.ts",
+            "type": "import",
+            "objects": [
+                "./colors",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/utils/entityColors.ts",
+            "to": "src/types/graph.ts",
+            "type": "import",
+            "objects": [
+                "./colors",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/utils/entityColors.ts",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "getEntityColorMap"
+            ]
+        },
+        {
             "from": "src/utils/export.ts",
             "to": "src/types/index.ts",
             "type": "import",
@@ -25924,49 +25837,45 @@ validation.ts
             ]
         },
         {
-            "from": "src/utils/logger.ts",
-            "to": "src/config/constants.ts",
+            "from": "src/utils/format.ts",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "formatTimestamp",
+                "formatDuration",
+                "formatFileSize"
+            ]
+        },
+        {
+            "from": "src/utils/processGraphData.ts",
+            "to": "src/types/graph.ts",
             "type": "import",
             "objects": [
-                "../config/constants"
+                "../types/graph"
             ]
         },
         {
-            "from": "src/utils/logger.ts",
+            "from": "src/utils/processGraphData.ts",
             "to": null,
             "type": "export",
             "objects": [
-                "logger"
+                "processGraphData"
             ]
         },
         {
-            "from": "src/utils/format.ts",
-            "to": null,
-            "type": "export",
+            "from": "src/utils/keywords.ts",
+            "to": "src/types/graph.ts",
+            "type": "import",
             "objects": [
-                "formatTimestamp",
-                "formatDuration",
-                "formatFileSize"
+                "../types/graph"
             ]
         },
         {
-            "from": "src/utils/format.ts",
+            "from": "src/utils/keywords.ts",
             "to": null,
             "type": "export",
             "objects": [
-                "formatTimestamp",
-                "formatDuration",
-                "formatFileSize"
-            ]
-        },
-        {
-            "from": "src/utils/format.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "formatTimestamp",
-                "formatDuration",
-                "formatFileSize"
+                "extractKeywords"
             ]
         },
         {
@@ -26009,40 +25918,11 @@ validation.ts
             ]
         },
         {
-            "from": "src/utils/logger/status.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "logStatusChange",
-                "logProcessStep"
-            ]
-        },
-        {
             "from": "src/utils/logger/types.ts",
             "to": "src/config/constants.ts",
             "type": "import",
             "objects": [
                 "../../config/constants"
-            ]
-        },
-        {
-            "from": "src/utils/logger/types.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "LogLevel",
-                "LogEntry",
-                "LoggerConfig"
-            ]
-        },
-        {
-            "from": "src/utils/logger/types.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "LogLevel",
-                "LogEntry",
-                "LoggerConfig"
             ]
         },
         {
@@ -26095,20 +25975,30 @@ validation.ts
         },
         {
             "from": "src/utils/logger/index.ts",
-            "to": "src/utils/logger/core.ts",
+            "to": "src/config/constants.ts",
             "type": "import",
             "objects": [
-                "./core",
-                "./types"
+                "../../config/constants",
+                "./core"
             ]
         },
         {
             "from": "src/utils/logger/index.ts",
-            "to": "src/utils/logger/types.ts",
+            "to": "src/utils/logger/core.ts",
             "type": "import",
             "objects": [
-                "./core",
-                "./types"
+                "../../config/constants",
+                "./core"
+            ]
+        },
+        {
+            "from": "src/utils/logger/index.ts",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "LogLevel",
+                "LogEntry",
+                "LoggerConfig"
             ]
         },
         {
@@ -26139,10 +26029,10 @@ validation.ts
         },
         {
             "from": "src/utils/audio/validation.ts",
-            "to": "src/utils/audio/constants.ts",
+            "to": "src/config/audio.ts",
             "type": "import",
             "objects": [
-                "./constants",
+                "../../config/audio",
                 "./logger",
                 "./error-handler",
                 "./processing",
@@ -26154,7 +26044,7 @@ validation.ts
             "to": "src/utils/audio/logger.ts",
             "type": "import",
             "objects": [
-                "./constants",
+                "../../config/audio",
                 "./logger",
                 "./error-handler",
                 "./processing",
@@ -26166,7 +26056,7 @@ validation.ts
             "to": "src/utils/audio/error-handler.ts",
             "type": "import",
             "objects": [
-                "./constants",
+                "../../config/audio",
                 "./logger",
                 "./error-handler",
                 "./processing",
@@ -26178,7 +26068,7 @@ validation.ts
             "to": "src/utils/audio/processing.ts",
             "type": "import",
             "objects": [
-                "./constants",
+                "../../config/audio",
                 "./logger",
                 "./error-handler",
                 "./processing",
@@ -26190,44 +26080,11 @@ validation.ts
             "to": "src/utils/format.ts",
             "type": "import",
             "objects": [
-                "./constants",
+                "../../config/audio",
                 "./logger",
                 "./error-handler",
                 "./processing",
                 "../format"
-            ]
-        },
-        {
-            "from": "src/utils/audio/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "AudioValidationResult",
-                "validateAudioFile",
-                "getAcceptedFileTypes",
-                "async"
-            ]
-        },
-        {
-            "from": "src/utils/audio/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "AudioValidationResult",
-                "validateAudioFile",
-                "getAcceptedFileTypes",
-                "async"
-            ]
-        },
-        {
-            "from": "src/utils/audio/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "AudioValidationResult",
-                "validateAudioFile",
-                "getAcceptedFileTypes",
-                "async"
             ]
         },
         {
@@ -26261,39 +26118,6 @@ validation.ts
             ]
         },
         {
-            "from": "src/utils/audio/error-handler.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ErrorLogData",
-                "AudioProcessingError",
-                "createErrorLog",
-                "handleAudioError"
-            ]
-        },
-        {
-            "from": "src/utils/audio/error-handler.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ErrorLogData",
-                "AudioProcessingError",
-                "createErrorLog",
-                "handleAudioError"
-            ]
-        },
-        {
-            "from": "src/utils/audio/error-handler.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ErrorLogData",
-                "AudioProcessingError",
-                "createErrorLog",
-                "handleAudioError"
-            ]
-        },
-        {
             "from": "src/utils/audio/processing.ts",
             "to": "src/utils/audio/logger.ts",
             "type": "import",
@@ -26321,40 +26145,11 @@ validation.ts
             ]
         },
         {
-            "from": "src/utils/audio/processing.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "AudioProcessingResult",
-                "async"
-            ]
-        },
-        {
             "from": "src/utils/audio/logger.ts",
             "to": null,
             "type": "export",
             "objects": [
                 "logger"
-            ]
-        },
-        {
-            "from": "src/utils/audio/constants.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "AUDIO_CONFIG"
-            ]
-        },
-        {
-            "from": "src/utils/audio/index.ts",
-            "to": "src/utils/audio/constants.ts",
-            "type": "import",
-            "objects": [
-                "./constants",
-                "./validation",
-                "./processing",
-                "./logger",
-                "./error-handler"
             ]
         },
         {
@@ -26433,12 +26228,38 @@ validation.ts
             ]
         },
         {
-            "from": "src/utils/text/processing.ts",
+            "from": "src/components/NodeConnections.tsx",
+            "to": "src/types/graph.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/components/NodeConnections.tsx",
             "to": null,
             "type": "export",
             "objects": [
-                "ProcessedBlock",
-                "concatenateTextBlocks"
+                "NodeConnections"
+            ]
+        },
+        {
+            "from": "src/components/EntitySummaryModal.tsx",
+            "to": "src/types/index.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "lucide-react",
+                "../types"
+            ]
+        },
+        {
+            "from": "src/components/EntitySummaryModal.tsx",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "EntitySummaryModal"
             ]
         },
         {
@@ -26460,43 +26281,13 @@ validation.ts
             ]
         },
         {
-            "from": "src/components/TranscriptionViewer.tsx",
-            "to": "src/store/transcription.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "lucide-react",
-                "../store/transcription",
-                "../utils/format"
-            ]
-        },
-        {
-            "from": "src/components/TranscriptionViewer.tsx",
-            "to": "src/utils/format.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "lucide-react",
-                "../store/transcription",
-                "../utils/format"
-            ]
-        },
-        {
-            "from": "src/components/TranscriptionViewer.tsx",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "TranscriptionViewer"
-            ]
-        },
-        {
             "from": "src/components/DebugPanel.tsx",
             "to": "src/utils/logger/index.ts",
             "type": "import",
             "objects": [
                 "react",
                 "lucide-react",
-                "../utils/logger",
+                "../utils/logger/index",
                 "../config/constants",
                 "../utils/logger/types"
             ]
@@ -26508,7 +26299,7 @@ validation.ts
             "objects": [
                 "react",
                 "lucide-react",
-                "../utils/logger",
+                "../utils/logger/index",
                 "../config/constants",
                 "../utils/logger/types"
             ]
@@ -26520,7 +26311,7 @@ validation.ts
             "objects": [
                 "react",
                 "lucide-react",
-                "../utils/logger",
+                "../utils/logger/index",
                 "../config/constants",
                 "../utils/logger/types"
             ]
@@ -26534,45 +26325,38 @@ validation.ts
             ]
         },
         {
-            "from": "src/components/TranscriptionControls.tsx",
-            "to": "src/store/transcription.ts",
+            "from": "src/components/Graph.tsx",
+            "to": "src/types/graph.ts",
             "type": "import",
             "objects": [
                 "react",
-                "lucide-react",
-                "../store/transcription",
-                "../utils/export",
-                "sonner"
+                "react-force-graph-2d",
+                "../types/graph"
             ]
         },
         {
-            "from": "src/components/TranscriptionControls.tsx",
-            "to": "src/utils/export.ts",
+            "from": "src/components/Graph.tsx",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "Graph"
+            ]
+        },
+        {
+            "from": "src/components/InputSection.tsx",
+            "to": "src/components/FileUpload/index.tsx",
             "type": "import",
             "objects": [
                 "react",
-                "lucide-react",
-                "../store/transcription",
-                "../utils/export",
-                "sonner"
+                "./FileUpload"
             ]
         },
         {
-            "from": "src/components/TranscriptionControls.tsx",
+            "from": "src/components/InputSection.tsx",
             "to": null,
             "type": "export",
             "objects": [
-                "TranscriptionControls",
-                "as"
-            ]
-        },
-        {
-            "from": "src/components/TranscriptionControls.tsx",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "TranscriptionControls",
-                "as"
+                "InputSection"
             ]
         },
         {
@@ -26589,6 +26373,44 @@ validation.ts
             "type": "export",
             "objects": [
                 "Sidebar"
+            ]
+        },
+        {
+            "from": "src/components/SummaryViewer.tsx",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "SummaryViewer"
+            ]
+        },
+        {
+            "from": "src/components/NodeSidebar.tsx",
+            "to": "src/types/graph.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "lucide-react",
+                "../types/graph",
+                "./NodeConnections"
+            ]
+        },
+        {
+            "from": "src/components/NodeSidebar.tsx",
+            "to": "src/components/NodeConnections.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "lucide-react",
+                "../types/graph",
+                "./NodeConnections"
+            ]
+        },
+        {
+            "from": "src/components/NodeSidebar.tsx",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "NodeSidebar"
             ]
         },
         {
@@ -26638,6 +26460,36 @@ validation.ts
         },
         {
             "from": "src/components/TranscriptionControls/index.tsx",
+            "to": "src/components/TranscriptionControls/CopyButton.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../../store/transcription",
+                "../../utils/export",
+                "../../utils/text/processing",
+                "./CopyButton",
+                "./ExportButton",
+                "../../types"
+            ]
+        },
+        {
+            "from": "src/components/TranscriptionControls/index.tsx",
+            "to": "src/components/TranscriptionControls/ExportButton.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../../store/transcription",
+                "../../utils/export",
+                "../../utils/text/processing",
+                "./CopyButton",
+                "./ExportButton",
+                "../../types"
+            ]
+        },
+        {
+            "from": "src/components/TranscriptionControls/index.tsx",
             "to": "src/types/index.ts",
             "type": "import",
             "objects": [
@@ -26661,35 +26513,12 @@ validation.ts
             ]
         },
         {
-            "from": "src/components/TranscriptionControls/index.tsx",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "TranscriptionControls",
-                "as"
-            ]
-        },
-        {
-            "from": "src/components/TranscriptionControls/ExportButton.tsx",
-            "to": "src/utils/export.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "lucide-react",
-                "sonner",
-                "../../utils/export",
-                "../../types"
-            ]
-        },
-        {
             "from": "src/components/TranscriptionControls/ExportButton.tsx",
             "to": "src/types/index.ts",
             "type": "import",
             "objects": [
                 "react",
                 "lucide-react",
-                "sonner",
-                "../../utils/export",
                 "../../types"
             ]
         },
@@ -26742,6 +26571,36 @@ validation.ts
         {
             "from": "src/components/FileUpload/index.tsx",
             "to": "src/config/audio.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../../store/transcription",
+                "../../hooks/useTranscriptionUpload",
+                "../../config/audio",
+                "./DropZone",
+                "./UploadProgress",
+                "../../utils/logger"
+            ]
+        },
+        {
+            "from": "src/components/FileUpload/index.tsx",
+            "to": "src/components/FileUpload/DropZone.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../../store/transcription",
+                "../../hooks/useTranscriptionUpload",
+                "../../config/audio",
+                "./DropZone",
+                "./UploadProgress",
+                "../../utils/logger"
+            ]
+        },
+        {
+            "from": "src/components/FileUpload/index.tsx",
+            "to": "src/components/FileUpload/UploadProgress.tsx",
             "type": "import",
             "objects": [
                 "react",
@@ -26851,7 +26710,33 @@ validation.ts
                 "./TranscriptionHeader",
                 "./SpeakerEntry",
                 "../../utils/text/processing",
-                "../../utils/logger"
+                "../../utils/logger/core"
+            ]
+        },
+        {
+            "from": "src/components/TranscriptionViewer/index.tsx",
+            "to": "src/components/TranscriptionViewer/TranscriptionHeader.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "../../store/transcription",
+                "./TranscriptionHeader",
+                "./SpeakerEntry",
+                "../../utils/text/processing",
+                "../../utils/logger/core"
+            ]
+        },
+        {
+            "from": "src/components/TranscriptionViewer/index.tsx",
+            "to": "src/components/TranscriptionViewer/SpeakerEntry.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "../../store/transcription",
+                "./TranscriptionHeader",
+                "./SpeakerEntry",
+                "../../utils/text/processing",
+                "../../utils/logger/core"
             ]
         },
         {
@@ -26864,12 +26749,12 @@ validation.ts
                 "./TranscriptionHeader",
                 "./SpeakerEntry",
                 "../../utils/text/processing",
-                "../../utils/logger"
+                "../../utils/logger/core"
             ]
         },
         {
             "from": "src/components/TranscriptionViewer/index.tsx",
-            "to": "src/utils/logger/index.ts",
+            "to": "src/utils/logger/core.ts",
             "type": "import",
             "objects": [
                 "react",
@@ -26877,7 +26762,7 @@ validation.ts
                 "./TranscriptionHeader",
                 "./SpeakerEntry",
                 "../../utils/text/processing",
-                "../../utils/logger"
+                "../../utils/logger/core"
             ]
         },
         {
@@ -26957,168 +26842,29 @@ validation.ts
             ]
         },
         {
-            "from": "src/hooks/useUpload.ts",
-            "to": "src/services/api/upload.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/upload",
-                "../services/api/transcription",
-                "../services/upload/xhr",
-                "../services/upload/validation",
-                "../utils/logger",
-                "../services/upload/types"
-            ]
-        },
-        {
-            "from": "src/hooks/useUpload.ts",
-            "to": "src/services/api/transcription.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/upload",
-                "../services/api/transcription",
-                "../services/upload/xhr",
-                "../services/upload/validation",
-                "../utils/logger",
-                "../services/upload/types"
-            ]
-        },
-        {
-            "from": "src/hooks/useUpload.ts",
-            "to": "src/services/upload/xhr.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/upload",
-                "../services/api/transcription",
-                "../services/upload/xhr",
-                "../services/upload/validation",
-                "../utils/logger",
-                "../services/upload/types"
-            ]
-        },
-        {
-            "from": "src/hooks/useUpload.ts",
-            "to": "src/services/upload/validation.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/upload",
-                "../services/api/transcription",
-                "../services/upload/xhr",
-                "../services/upload/validation",
-                "../utils/logger",
-                "../services/upload/types"
-            ]
-        },
-        {
-            "from": "src/hooks/useUpload.ts",
-            "to": "src/utils/logger/index.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/upload",
-                "../services/api/transcription",
-                "../services/upload/xhr",
-                "../services/upload/validation",
-                "../utils/logger",
-                "../services/upload/types"
-            ]
-        },
-        {
-            "from": "src/hooks/useUpload.ts",
-            "to": "src/services/upload/types.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/upload",
-                "../services/api/transcription",
-                "../services/upload/xhr",
-                "../services/upload/validation",
-                "../utils/logger",
-                "../services/upload/types"
-            ]
-        },
-        {
-            "from": "src/hooks/useUpload.ts",
+            "from": "src/components/controls/FilterPanel.tsx",
             "to": null,
             "type": "export",
             "objects": [
-                "useUpload"
+                "FilterPanel"
             ]
         },
         {
-            "from": "src/hooks/useTranscriptionProcessing.ts",
-            "to": "src/services/api/transcription.ts",
+            "from": "src/components/controls/TopEntitiesPanel.tsx",
+            "to": "src/types/graph.ts",
             "type": "import",
             "objects": [
                 "react",
-                "../services/api/transcription",
-                "../utils/logger",
-                "../config/api",
-                "../services/api/errors",
-                "../types"
+                "lucide-react",
+                "../../types/graph"
             ]
         },
         {
-            "from": "src/hooks/useTranscriptionProcessing.ts",
-            "to": "src/utils/logger/index.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/transcription",
-                "../utils/logger",
-                "../config/api",
-                "../services/api/errors",
-                "../types"
-            ]
-        },
-        {
-            "from": "src/hooks/useTranscriptionProcessing.ts",
-            "to": "src/config/api.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/transcription",
-                "../utils/logger",
-                "../config/api",
-                "../services/api/errors",
-                "../types"
-            ]
-        },
-        {
-            "from": "src/hooks/useTranscriptionProcessing.ts",
-            "to": "src/services/api/errors.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/transcription",
-                "../utils/logger",
-                "../config/api",
-                "../services/api/errors",
-                "../types"
-            ]
-        },
-        {
-            "from": "src/hooks/useTranscriptionProcessing.ts",
-            "to": "src/types/index.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/transcription",
-                "../utils/logger",
-                "../config/api",
-                "../services/api/errors",
-                "../types"
-            ]
-        },
-        {
-            "from": "src/hooks/useTranscriptionProcessing.ts",
+            "from": "src/components/controls/TopEntitiesPanel.tsx",
             "to": null,
             "type": "export",
             "objects": [
-                "useTranscriptionProcessing"
+                "TopEntitiesPanel"
             ]
         },
         {
@@ -27172,6 +26918,7 @@ validation.ts
                 "../services/api/upload",
                 "../services/api/transcription",
                 "../utils/logger",
+                "../config/env",
                 "../types"
             ]
         },
@@ -27185,6 +26932,7 @@ validation.ts
                 "../services/api/upload",
                 "../services/api/transcription",
                 "../utils/logger",
+                "../config/env",
                 "../types"
             ]
         },
@@ -27198,6 +26946,7 @@ validation.ts
                 "../services/api/upload",
                 "../services/api/transcription",
                 "../utils/logger",
+                "../config/env",
                 "../types"
             ]
         },
@@ -27211,6 +26960,21 @@ validation.ts
                 "../services/api/upload",
                 "../services/api/transcription",
                 "../utils/logger",
+                "../config/env",
+                "../types"
+            ]
+        },
+        {
+            "from": "src/hooks/useTranscriptionUpload.ts",
+            "to": "src/config/env.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "../store/transcription",
+                "../services/api/upload",
+                "../services/api/transcription",
+                "../utils/logger",
+                "../config/env",
                 "../types"
             ]
         },
@@ -27224,6 +26988,7 @@ validation.ts
                 "../services/api/upload",
                 "../services/api/transcription",
                 "../utils/logger",
+                "../config/env",
                 "../types"
             ]
         },
@@ -27233,6 +26998,81 @@ validation.ts
             "type": "export",
             "objects": [
                 "useTranscriptionUpload"
+            ]
+        },
+        {
+            "from": "src/pages/UploadPage.tsx",
+            "to": "src/components/FileUpload/index.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../components/FileUpload",
+                "../components/ProcessStatus",
+                "../components/TranscriptionControls",
+                "../components/TranscriptionViewer",
+                "../components/DebugPanel",
+                "../store/transcription"
+            ]
+        },
+        {
+            "from": "src/pages/UploadPage.tsx",
+            "to": "src/components/ProcessStatus.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../components/FileUpload",
+                "../components/ProcessStatus",
+                "../components/TranscriptionControls",
+                "../components/TranscriptionViewer",
+                "../components/DebugPanel",
+                "../store/transcription"
+            ]
+        },
+        {
+            "from": "src/pages/UploadPage.tsx",
+            "to": "src/components/TranscriptionControls/index.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../components/FileUpload",
+                "../components/ProcessStatus",
+                "../components/TranscriptionControls",
+                "../components/TranscriptionViewer",
+                "../components/DebugPanel",
+                "../store/transcription"
+            ]
+        },
+        {
+            "from": "src/pages/UploadPage.tsx",
+            "to": "src/components/TranscriptionViewer/index.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../components/FileUpload",
+                "../components/ProcessStatus",
+                "../components/TranscriptionControls",
+                "../components/TranscriptionViewer",
+                "../components/DebugPanel",
+                "../store/transcription"
+            ]
+        },
+        {
+            "from": "src/pages/UploadPage.tsx",
+            "to": "src/components/DebugPanel.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../components/FileUpload",
+                "../components/ProcessStatus",
+                "../components/TranscriptionControls",
+                "../components/TranscriptionViewer",
+                "../components/DebugPanel",
+                "../store/transcription"
             ]
         },
         {
@@ -27260,10 +27100,250 @@ validation.ts
         },
         {
             "from": "src/pages/MeetingHistory.tsx",
+            "to": "src/components/MeetingCard.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "lucide-react",
+                "date-fns",
+                "../components/MeetingCard",
+                "../components/calendar/WeekHeader",
+                "../components/calendar/FilterDropdown",
+                "../store/transcription",
+                "../utils/logger/core",
+                "../components/EntitySummaryModal"
+            ]
+        },
+        {
+            "from": "src/pages/MeetingHistory.tsx",
+            "to": "src/components/calendar/WeekHeader.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "lucide-react",
+                "date-fns",
+                "../components/MeetingCard",
+                "../components/calendar/WeekHeader",
+                "../components/calendar/FilterDropdown",
+                "../store/transcription",
+                "../utils/logger/core",
+                "../components/EntitySummaryModal"
+            ]
+        },
+        {
+            "from": "src/pages/MeetingHistory.tsx",
+            "to": "src/components/calendar/FilterDropdown.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "lucide-react",
+                "date-fns",
+                "../components/MeetingCard",
+                "../components/calendar/WeekHeader",
+                "../components/calendar/FilterDropdown",
+                "../store/transcription",
+                "../utils/logger/core",
+                "../components/EntitySummaryModal"
+            ]
+        },
+        {
+            "from": "src/pages/MeetingHistory.tsx",
+            "to": "src/store/transcription.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "lucide-react",
+                "date-fns",
+                "../components/MeetingCard",
+                "../components/calendar/WeekHeader",
+                "../components/calendar/FilterDropdown",
+                "../store/transcription",
+                "../utils/logger/core",
+                "../components/EntitySummaryModal"
+            ]
+        },
+        {
+            "from": "src/pages/MeetingHistory.tsx",
+            "to": "src/utils/logger/core.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "lucide-react",
+                "date-fns",
+                "../components/MeetingCard",
+                "../components/calendar/WeekHeader",
+                "../components/calendar/FilterDropdown",
+                "../store/transcription",
+                "../utils/logger/core",
+                "../components/EntitySummaryModal"
+            ]
+        },
+        {
+            "from": "src/pages/MeetingHistory.tsx",
+            "to": "src/components/EntitySummaryModal.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "lucide-react",
+                "date-fns",
+                "../components/MeetingCard",
+                "../components/calendar/WeekHeader",
+                "../components/calendar/FilterDropdown",
+                "../store/transcription",
+                "../utils/logger/core",
+                "../components/EntitySummaryModal"
+            ]
+        },
+        {
+            "from": "src/pages/MeetingHistory.tsx",
             "to": null,
             "type": "export",
             "objects": [
                 "MeetingHistory"
+            ]
+        },
+        {
+            "from": "src/pages/APITestPage.tsx",
+            "to": "src/config/env.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "../config/env",
+                "../utils/logger/index",
+                "sonner",
+                "../components/SummaryViewer",
+                "../utils/processGraphData",
+                "../utils/entityColors",
+                "../components/Graph",
+                "../components/Sidebar",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/pages/APITestPage.tsx",
+            "to": "src/utils/logger/index.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "../config/env",
+                "../utils/logger/index",
+                "sonner",
+                "../components/SummaryViewer",
+                "../utils/processGraphData",
+                "../utils/entityColors",
+                "../components/Graph",
+                "../components/Sidebar",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/pages/APITestPage.tsx",
+            "to": "src/components/SummaryViewer.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "../config/env",
+                "../utils/logger/index",
+                "sonner",
+                "../components/SummaryViewer",
+                "../utils/processGraphData",
+                "../utils/entityColors",
+                "../components/Graph",
+                "../components/Sidebar",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/pages/APITestPage.tsx",
+            "to": "src/utils/processGraphData.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "../config/env",
+                "../utils/logger/index",
+                "sonner",
+                "../components/SummaryViewer",
+                "../utils/processGraphData",
+                "../utils/entityColors",
+                "../components/Graph",
+                "../components/Sidebar",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/pages/APITestPage.tsx",
+            "to": "src/utils/entityColors.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "../config/env",
+                "../utils/logger/index",
+                "sonner",
+                "../components/SummaryViewer",
+                "../utils/processGraphData",
+                "../utils/entityColors",
+                "../components/Graph",
+                "../components/Sidebar",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/pages/APITestPage.tsx",
+            "to": "src/components/Graph.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "../config/env",
+                "../utils/logger/index",
+                "sonner",
+                "../components/SummaryViewer",
+                "../utils/processGraphData",
+                "../utils/entityColors",
+                "../components/Graph",
+                "../components/Sidebar",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/pages/APITestPage.tsx",
+            "to": "src/components/Sidebar.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "../config/env",
+                "../utils/logger/index",
+                "sonner",
+                "../components/SummaryViewer",
+                "../utils/processGraphData",
+                "../utils/entityColors",
+                "../components/Graph",
+                "../components/Sidebar",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/pages/APITestPage.tsx",
+            "to": "src/types/graph.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "../config/env",
+                "../utils/logger/index",
+                "sonner",
+                "../components/SummaryViewer",
+                "../utils/processGraphData",
+                "../utils/entityColors",
+                "../components/Graph",
+                "../components/Sidebar",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/pages/APITestPage.tsx",
+            "to": null,
+            "type": "export",
+            "objects": [
+                "APITestPage"
             ]
         },
         {
@@ -27275,14 +27355,6 @@ validation.ts
             ]
         },
         {
-            "from": "src/services/api.ts",
-            "to": "src/config/api.ts",
-            "type": "import",
-            "objects": [
-                "../config/api"
-            ]
-        },
-        {
             "from": "src/services/transcription/validation.ts",
             "to": "src/utils/logger/index.ts",
             "type": "import",
@@ -27298,15 +27370,6 @@ validation.ts
             "objects": [
                 "../../utils/logger",
                 "../../types"
-            ]
-        },
-        {
-            "from": "src/services/transcription/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ValidationResult",
-                "validateTranscriptionResponse"
             ]
         },
         {
@@ -27343,24 +27406,6 @@ validation.ts
             "objects": [
                 "ProcessedTranscription",
                 "processTranscriptionResponse"
-            ]
-        },
-        {
-            "from": "src/services/transcription/processing.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ProcessedTranscription",
-                "processTranscriptionResponse"
-            ]
-        },
-        {
-            "from": "src/services/api/errors.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "APIErrorOptions",
-                "APIError"
             ]
         },
         {
@@ -27401,51 +27446,57 @@ validation.ts
             ]
         },
         {
-            "from": "src/services/api/types.ts",
-            "to": null,
-            "type": "export",
+            "from": "src/services/api/knowledgeGraph.ts",
+            "to": "src/types/index.ts",
+            "type": "import",
             "objects": [
-                "APIResponse",
-                "SignedUrlResponse",
-                "APIRequestContext",
-                "UploadProgress",
-                "UploadOptions"
+                "../../types",
+                "../../config/env",
+                "../../utils/logger",
+                "./errors"
             ]
         },
         {
-            "from": "src/services/api/types.ts",
-            "to": null,
-            "type": "export",
+            "from": "src/services/api/knowledgeGraph.ts",
+            "to": "src/config/env.ts",
+            "type": "import",
             "objects": [
-                "APIResponse",
-                "SignedUrlResponse",
-                "APIRequestContext",
-                "UploadProgress",
-                "UploadOptions"
+                "../../types",
+                "../../config/env",
+                "../../utils/logger",
+                "./errors"
             ]
         },
         {
-            "from": "src/services/api/types.ts",
-            "to": null,
-            "type": "export",
+            "from": "src/services/api/knowledgeGraph.ts",
+            "to": "src/utils/logger/index.ts",
+            "type": "import",
             "objects": [
-                "APIResponse",
-                "SignedUrlResponse",
-                "APIRequestContext",
-                "UploadProgress",
-                "UploadOptions"
+                "../../types",
+                "../../config/env",
+                "../../utils/logger",
+                "./errors"
             ]
         },
         {
-            "from": "src/services/api/types.ts",
+            "from": "src/services/api/knowledgeGraph.ts",
+            "to": "src/services/api/errors.ts",
+            "type": "import",
+            "objects": [
+                "../../types",
+                "../../config/env",
+                "../../utils/logger",
+                "./errors"
+            ]
+        },
+        {
+            "from": "src/services/api/knowledgeGraph.ts",
             "to": null,
             "type": "export",
             "objects": [
-                "APIResponse",
-                "SignedUrlResponse",
-                "APIRequestContext",
-                "UploadProgress",
-                "UploadOptions"
+                "async",
+                "async",
+                "async"
             ]
         },
         {
@@ -27554,15 +27605,6 @@ validation.ts
             ]
         },
         {
-            "from": "src/services/api/upload.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "async",
-                "async"
-            ]
-        },
-        {
             "from": "src/services/api/transcription.ts",
             "to": "src/config/api.ts",
             "type": "import",
@@ -27616,338 +27658,23 @@ validation.ts
             ]
         },
         {
-            "from": "src/services/api/transcription.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "async",
-                "async"
-            ]
-        },
-        {
-            "from": "src/services/upload/validation.ts",
-            "to": "src/utils/logger/index.ts",
-            "type": "import",
-            "objects": [
-                "../../utils/logger",
-                "../../config/audio",
-                "../../utils/format"
-            ]
-        },
-        {
-            "from": "src/services/upload/validation.ts",
-            "to": "src/config/audio.ts",
-            "type": "import",
-            "objects": [
-                "../../utils/logger",
-                "../../config/audio",
-                "../../utils/format"
-            ]
-        },
-        {
-            "from": "src/services/upload/validation.ts",
-            "to": "src/utils/format.ts",
-            "type": "import",
-            "objects": [
-                "../../utils/logger",
-                "../../config/audio",
-                "../../utils/format"
-            ]
-        },
-        {
-            "from": "src/services/upload/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ValidationResult",
-                "validateFileType",
-                "validateFileSize",
-                "async",
-                "async"
-            ]
-        },
-        {
-            "from": "src/services/upload/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ValidationResult",
-                "validateFileType",
-                "validateFileSize",
-                "async",
-                "async"
-            ]
-        },
-        {
-            "from": "src/services/upload/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ValidationResult",
-                "validateFileType",
-                "validateFileSize",
-                "async",
-                "async"
-            ]
-        },
-        {
-            "from": "src/services/upload/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ValidationResult",
-                "validateFileType",
-                "validateFileSize",
-                "async",
-                "async"
-            ]
-        },
-        {
-            "from": "src/services/upload/validation.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "ValidationResult",
-                "validateFileType",
-                "validateFileSize",
-                "async",
-                "async"
-            ]
-        },
-        {
-            "from": "src/services/upload/url-generator.ts",
-            "to": "src/config/api.ts",
-            "type": "import",
-            "objects": [
-                "../../config/api",
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/url-generator.ts",
-            "to": "src/utils/logger/index.ts",
-            "type": "import",
-            "objects": [
-                "../../config/api",
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/url-generator.ts",
-            "to": "src/services/upload/types.ts",
-            "type": "import",
-            "objects": [
-                "../../config/api",
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/url-generator.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "async"
-            ]
-        },
-        {
-            "from": "src/services/upload/xhr.ts",
-            "to": "src/utils/logger/index.ts",
-            "type": "import",
-            "objects": [
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/xhr.ts",
-            "to": "src/services/upload/types.ts",
-            "type": "import",
-            "objects": [
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/xhr.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "uploadWithXHR"
-            ]
-        },
-        {
-            "from": "src/services/upload/types.ts",
-            "to": "src/services/api/errors.ts",
-            "type": "import",
-            "objects": [
-                "../api/errors"
-            ]
-        },
-        {
-            "from": "src/services/upload/types.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "UploadProgress",
-                "UploadOptions",
-                "SignedUrlResponse",
-                "UploadState"
-            ]
-        },
-        {
-            "from": "src/services/upload/types.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "UploadProgress",
-                "UploadOptions",
-                "SignedUrlResponse",
-                "UploadState"
-            ]
-        },
-        {
-            "from": "src/services/upload/types.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "UploadProgress",
-                "UploadOptions",
-                "SignedUrlResponse",
-                "UploadState"
-            ]
-        },
-        {
-            "from": "src/services/upload/types.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "UploadProgress",
-                "UploadOptions",
-                "SignedUrlResponse",
-                "UploadState"
-            ]
-        },
-        {
-            "from": "src/services/upload/uploader.ts",
-            "to": "src/utils/logger/index.ts",
-            "type": "import",
-            "objects": [
-                "../../utils/logger",
-                "../api/errors",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/uploader.ts",
-            "to": "src/services/api/errors.ts",
-            "type": "import",
-            "objects": [
-                "../../utils/logger",
-                "../api/errors",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/uploader.ts",
-            "to": "src/services/upload/types.ts",
-            "type": "import",
-            "objects": [
-                "../../utils/logger",
-                "../api/errors",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/uploader.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "uploadToUrl"
-            ]
-        },
-        {
-            "from": "src/services/upload/client.ts",
-            "to": "src/config/api.ts",
-            "type": "import",
-            "objects": [
-                "../../config/api",
-                "../api/errors",
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/client.ts",
-            "to": "src/services/api/errors.ts",
-            "type": "import",
-            "objects": [
-                "../../config/api",
-                "../api/errors",
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/client.ts",
-            "to": "src/utils/logger/index.ts",
-            "type": "import",
-            "objects": [
-                "../../config/api",
-                "../api/errors",
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/client.ts",
-            "to": "src/services/upload/types.ts",
-            "type": "import",
-            "objects": [
-                "../../config/api",
-                "../api/errors",
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/client.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "async",
-                "async"
-            ]
-        },
-        {
-            "from": "src/services/upload/client.ts",
-            "to": null,
-            "type": "export",
-            "objects": [
-                "async",
-                "async"
-            ]
-        },
-        {
             "from": "src/store/transcription.ts",
             "to": "src/types/index.ts",
             "type": "import",
             "objects": [
                 "zustand",
                 "../types",
-                "../utils/logger"
+                "../utils/logger/core"
             ]
         },
         {
             "from": "src/store/transcription.ts",
-            "to": "src/utils/logger/index.ts",
+            "to": "src/utils/logger/core.ts",
             "type": "import",
             "objects": [
                 "zustand",
                 "../types",
-                "../utils/logger"
+                "../utils/logger/core"
             ]
         },
         {
@@ -27962,6 +27689,718 @@ validation.ts
 }
 ```
 
+### repindex/top_level_structure.json
+
+```
+{
+    "vite.config.ts": {
+        "imports": [
+            "vite",
+            "@vitejs/plugin-react"
+        ],
+        "exports": [
+            "defineConfig"
+        ]
+    },
+    "src/App.tsx": {
+        "imports": [
+            "react",
+            "react-router-dom",
+            "./pages/UploadPage",
+            "./pages/MeetingHistory",
+            "./pages/ChatPage",
+            "./pages/APITestPage",
+            "./components/Sidebar",
+            "./components/DebugPanel"
+        ],
+        "exports": [
+            "App"
+        ]
+    },
+    "src/main.tsx": {
+        "imports": [
+            "react",
+            "react-dom/client",
+            "react-router-dom",
+            "./App"
+        ],
+        "exports": []
+    },
+    "src/vite-env.d.ts": {
+        "imports": [],
+        "exports": []
+    },
+    "src/types/graph.ts": {
+        "imports": [],
+        "exports": [
+            "Entity",
+            "Relationship",
+            "GraphData",
+            "ProcessedNode",
+            "ProcessedLink"
+        ]
+    },
+    "src/types/index.ts": {
+        "imports": [],
+        "exports": [
+            "Speaker",
+            "TranscriptionResponse",
+            "KnowledgeGraphEntity",
+            "KnowledgeGraphRelationship",
+            "KnowledgeGraph",
+            "ExportFormat",
+            "ProcessStatus",
+            "ProcessError",
+            "TranscriptionState",
+            "EntityMapResponse",
+            "EntityMapRequest",
+            "SummarizeRequest",
+            "SummarizeResponse"
+        ]
+    },
+    "src/config/audio.ts": {
+        "imports": [],
+        "exports": [
+            "AUDIO_CONFIG"
+        ]
+    },
+    "src/config/api.ts": {
+        "imports": [
+            "./env"
+        ],
+        "exports": [
+            "API_CONFIG"
+        ]
+    },
+    "src/config/constants.ts": {
+        "imports": [],
+        "exports": [
+            "RETRY_CONFIG",
+            "LOG_CONFIG",
+            "PROCESS_STEPS"
+        ]
+    },
+    "src/config/env.ts": {
+        "imports": [
+            "../utils/logger/core"
+        ],
+        "exports": [
+            "ENV"
+        ]
+    },
+    "src/utils/colors.ts": {
+        "imports": [],
+        "exports": [
+            "ENTITY_COLORS",
+            "DEFAULT_COLOR"
+        ]
+    },
+    "src/utils/audio.ts": {
+        "imports": [
+            "./audio/constants",
+            "./audio/validation",
+            "./audio/logger"
+        ],
+        "exports": []
+    },
+    "src/utils/entityColors.ts": {
+        "imports": [
+            "./colors",
+            "../types/graph"
+        ],
+        "exports": [
+            "getEntityColorMap"
+        ]
+    },
+    "src/utils/export.ts": {
+        "imports": [
+            "docx",
+            "file-saver",
+            "jspdf",
+            "../types"
+        ],
+        "exports": [
+            "async"
+        ]
+    },
+    "src/utils/format.ts": {
+        "imports": [],
+        "exports": [
+            "formatTimestamp",
+            "formatDuration",
+            "formatFileSize"
+        ]
+    },
+    "src/utils/processGraphData.ts": {
+        "imports": [
+            "../types/graph"
+        ],
+        "exports": [
+            "processGraphData"
+        ]
+    },
+    "src/utils/keywords.ts": {
+        "imports": [
+            "../types/graph"
+        ],
+        "exports": [
+            "extractKeywords"
+        ]
+    },
+    "src/utils/logger/status.ts": {
+        "imports": [
+            "../../config/constants",
+            "./core",
+            "../../types"
+        ],
+        "exports": [
+            "logStatusChange",
+            "logProcessStep"
+        ]
+    },
+    "src/utils/logger/types.ts": {
+        "imports": [
+            "../../config/constants"
+        ],
+        "exports": [
+            "LogLevel",
+            "LogEntry",
+            "LoggerConfig"
+        ]
+    },
+    "src/utils/logger/core.ts": {
+        "imports": [
+            "../../config/constants",
+            "./formatter",
+            "./types"
+        ],
+        "exports": [
+            "logger"
+        ]
+    },
+    "src/utils/logger/index.ts": {
+        "imports": [
+            "../../config/constants",
+            "./core"
+        ],
+        "exports": [
+            "LogLevel",
+            "LogEntry",
+            "LoggerConfig"
+        ]
+    },
+    "src/utils/logger/formatter.ts": {
+        "imports": [
+            "../../config/constants",
+            "./types"
+        ],
+        "exports": [
+            "formatLogEntry"
+        ]
+    },
+    "src/utils/audio/validation.ts": {
+        "imports": [
+            "../../config/audio",
+            "./logger",
+            "./error-handler",
+            "./processing",
+            "../format"
+        ],
+        "exports": [
+            "AudioValidationResult",
+            "validateAudioFile",
+            "getAcceptedFileTypes",
+            "async"
+        ]
+    },
+    "src/utils/audio/error-handler.ts": {
+        "imports": [
+            "./logger"
+        ],
+        "exports": [
+            "ErrorLogData",
+            "AudioProcessingError",
+            "createErrorLog",
+            "handleAudioError"
+        ]
+    },
+    "src/utils/audio/processing.ts": {
+        "imports": [
+            "./logger",
+            "./error-handler"
+        ],
+        "exports": [
+            "AudioProcessingResult",
+            "async"
+        ]
+    },
+    "src/utils/audio/logger.ts": {
+        "imports": [],
+        "exports": [
+            "logger"
+        ]
+    },
+    "src/utils/audio/index.ts": {
+        "imports": [
+            "./constants",
+            "./validation",
+            "./processing",
+            "./logger",
+            "./error-handler"
+        ],
+        "exports": []
+    },
+    "src/utils/text/processing.ts": {
+        "imports": [
+            "../logger",
+            "../../types"
+        ],
+        "exports": [
+            "ProcessedBlock",
+            "concatenateTextBlocks"
+        ]
+    },
+    "src/components/NodeConnections.tsx": {
+        "imports": [
+            "react",
+            "../types/graph"
+        ],
+        "exports": [
+            "NodeConnections"
+        ]
+    },
+    "src/components/EntitySummaryModal.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../types"
+        ],
+        "exports": [
+            "EntitySummaryModal"
+        ]
+    },
+    "src/components/ProcessStatus.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../types"
+        ],
+        "exports": [
+            "ProcessStatus"
+        ]
+    },
+    "src/components/DebugPanel.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../utils/logger/index",
+            "../config/constants",
+            "../utils/logger/types"
+        ],
+        "exports": [
+            "DebugPanel"
+        ]
+    },
+    "src/components/Graph.tsx": {
+        "imports": [
+            "react",
+            "react-force-graph-2d",
+            "../types/graph"
+        ],
+        "exports": [
+            "Graph"
+        ]
+    },
+    "src/components/InputSection.tsx": {
+        "imports": [
+            "react",
+            "./FileUpload"
+        ],
+        "exports": [
+            "InputSection"
+        ]
+    },
+    "src/components/MeetingCard.tsx": {
+        "imports": [
+            "react",
+            "lucide-react"
+        ],
+        "exports": [
+            "MeetingCard"
+        ]
+    },
+    "src/components/Sidebar.tsx": {
+        "imports": [
+            "react",
+            "react-router-dom",
+            "lucide-react"
+        ],
+        "exports": [
+            "Sidebar"
+        ]
+    },
+    "src/components/SummaryViewer.tsx": {
+        "imports": [
+            "react"
+        ],
+        "exports": [
+            "SummaryViewer"
+        ]
+    },
+    "src/components/NodeSidebar.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../types/graph",
+            "./NodeConnections"
+        ],
+        "exports": [
+            "NodeSidebar"
+        ]
+    },
+    "src/components/TranscriptionControls/index.tsx": {
+        "imports": [
+            "react",
+            "sonner",
+            "../../store/transcription",
+            "../../utils/export",
+            "../../utils/text/processing",
+            "./CopyButton",
+            "./ExportButton",
+            "../../types"
+        ],
+        "exports": [
+            "TranscriptionControls",
+            "as"
+        ]
+    },
+    "src/components/TranscriptionControls/ExportButton.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../../types"
+        ],
+        "exports": [
+            "ExportButton"
+        ]
+    },
+    "src/components/TranscriptionControls/CopyButton.tsx": {
+        "imports": [
+            "react",
+            "lucide-react"
+        ],
+        "exports": [
+            "CopyButton"
+        ]
+    },
+    "src/components/FileUpload/index.tsx": {
+        "imports": [
+            "react",
+            "sonner",
+            "../../store/transcription",
+            "../../hooks/useTranscriptionUpload",
+            "../../config/audio",
+            "./DropZone",
+            "./UploadProgress",
+            "../../utils/logger"
+        ],
+        "exports": [
+            "FileUpload"
+        ]
+    },
+    "src/components/FileUpload/DropZone.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../../utils/format",
+            "../../config/audio"
+        ],
+        "exports": [
+            "DropZone"
+        ]
+    },
+    "src/components/FileUpload/UploadProgress.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../../types"
+        ],
+        "exports": [
+            "UploadProgress"
+        ]
+    },
+    "src/components/calendar/WeekHeader.tsx": {
+        "imports": [
+            "react",
+            "date-fns",
+            "lucide-react"
+        ],
+        "exports": [
+            "WeekHeader"
+        ]
+    },
+    "src/components/calendar/FilterDropdown.tsx": {
+        "imports": [
+            "react",
+            "lucide-react"
+        ],
+        "exports": [
+            "FilterDropdown"
+        ]
+    },
+    "src/components/TranscriptionViewer/index.tsx": {
+        "imports": [
+            "react",
+            "../../store/transcription",
+            "./TranscriptionHeader",
+            "./SpeakerEntry",
+            "../../utils/text/processing",
+            "../../utils/logger/core"
+        ],
+        "exports": [
+            "TranscriptionViewer"
+        ]
+    },
+    "src/components/TranscriptionViewer/TranscriptionHeader.tsx": {
+        "imports": [
+            "react"
+        ],
+        "exports": [
+            "TranscriptionHeader"
+        ]
+    },
+    "src/components/TranscriptionViewer/SpeakerEntry.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../../utils/format",
+            "../../utils/text/processing"
+        ],
+        "exports": [
+            "SpeakerEntry"
+        ]
+    },
+    "src/components/TranscriptionViewer/TranscriptionStats.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../../utils/format",
+            "../../services/transcription/processing"
+        ],
+        "exports": [
+            "TranscriptionStats"
+        ]
+    },
+    "src/components/controls/FilterPanel.tsx": {
+        "imports": [
+            "react",
+            "lucide-react"
+        ],
+        "exports": [
+            "FilterPanel"
+        ]
+    },
+    "src/components/controls/TopEntitiesPanel.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "../../types/graph"
+        ],
+        "exports": [
+            "TopEntitiesPanel"
+        ]
+    },
+    "src/hooks/useProcessStatus.ts": {
+        "imports": [
+            "react",
+            "../utils/logger/status",
+            "../config/constants",
+            "../types"
+        ],
+        "exports": [
+            "useProcessStatus"
+        ]
+    },
+    "src/hooks/useTranscriptionUpload.ts": {
+        "imports": [
+            "react",
+            "../store/transcription",
+            "../services/api/upload",
+            "../services/api/transcription",
+            "../utils/logger",
+            "../config/env",
+            "../types"
+        ],
+        "exports": [
+            "useTranscriptionUpload"
+        ]
+    },
+    "src/pages/UploadPage.tsx": {
+        "imports": [
+            "react",
+            "sonner",
+            "../components/FileUpload",
+            "../components/ProcessStatus",
+            "../components/TranscriptionControls",
+            "../components/TranscriptionViewer",
+            "../components/DebugPanel",
+            "../store/transcription"
+        ],
+        "exports": [
+            "UploadPage"
+        ]
+    },
+    "src/pages/MeetingHistory.tsx": {
+        "imports": [
+            "react",
+            "lucide-react",
+            "date-fns",
+            "../components/MeetingCard",
+            "../components/calendar/WeekHeader",
+            "../components/calendar/FilterDropdown",
+            "../store/transcription",
+            "../utils/logger/core",
+            "../components/EntitySummaryModal"
+        ],
+        "exports": [
+            "MeetingHistory"
+        ]
+    },
+    "src/pages/APITestPage.tsx": {
+        "imports": [
+            "react",
+            "../config/env",
+            "../utils/logger/index",
+            "sonner",
+            "../components/SummaryViewer",
+            "../utils/processGraphData",
+            "../utils/entityColors",
+            "../components/Graph",
+            "../components/Sidebar",
+            "../types/graph"
+        ],
+        "exports": [
+            "APITestPage"
+        ]
+    },
+    "src/pages/ChatPage.tsx": {
+        "imports": [
+            "react"
+        ],
+        "exports": [
+            "ChatPage"
+        ]
+    },
+    "src/services/transcription/validation.ts": {
+        "imports": [
+            "../../utils/logger",
+            "../../types"
+        ],
+        "exports": [
+            "ValidationResult",
+            "validateTranscriptionResponse"
+        ]
+    },
+    "src/services/transcription/processing.ts": {
+        "imports": [
+            "../../utils/logger",
+            "../../types"
+        ],
+        "exports": [
+            "ProcessedTranscription",
+            "processTranscriptionResponse"
+        ]
+    },
+    "src/services/api/errors.ts": {
+        "imports": [],
+        "exports": [
+            "APIErrorOptions",
+            "APIError"
+        ]
+    },
+    "src/services/api/utils.ts": {
+        "imports": [
+            "./errors"
+        ],
+        "exports": [
+            "async"
+        ]
+    },
+    "src/services/api/types.ts": {
+        "imports": [],
+        "exports": [
+            "APIResponse",
+            "SignedUrlResponse",
+            "APIRequestContext",
+            "UploadProgress",
+            "UploadOptions"
+        ]
+    },
+    "src/services/api/knowledgeGraph.ts": {
+        "imports": [
+            "../../types",
+            "../../config/env",
+            "../../utils/logger",
+            "./errors"
+        ],
+        "exports": [
+            "async",
+            "async",
+            "async"
+        ]
+    },
+    "src/services/api/client.ts": {
+        "imports": [
+            "../../config/api",
+            "./errors",
+            "../../utils/logger",
+            "./types"
+        ],
+        "exports": [
+            "async"
+        ]
+    },
+    "src/services/api/index.ts": {
+        "imports": [],
+        "exports": []
+    },
+    "src/services/api/upload.ts": {
+        "imports": [
+            "../../config/api",
+            "./utils",
+            "../../utils/logger",
+            "./types"
+        ],
+        "exports": [
+            "async",
+            "async"
+        ]
+    },
+    "src/services/api/transcription.ts": {
+        "imports": [
+            "../../config/api",
+            "./utils",
+            "../../utils/logger",
+            "../../types"
+        ],
+        "exports": [
+            "async",
+            "async"
+        ]
+    },
+    "src/store/transcription.ts": {
+        "imports": [
+            "zustand",
+            "../types",
+            "../utils/logger/core"
+        ],
+        "exports": [
+            "useTranscriptionStore"
+        ]
+    }
+}
+```
+
 ### repindex/dependency_graph_imports.json
 
 ```
@@ -27971,15 +28410,19 @@ validation.ts
         "src/App.tsx",
         "src/main.tsx",
         "src/vite-env.d.ts",
+        "src/types/graph.ts",
         "src/types/index.ts",
         "src/config/audio.ts",
         "src/config/api.ts",
         "src/config/constants.ts",
         "src/config/env.ts",
+        "src/utils/colors.ts",
         "src/utils/audio.ts",
+        "src/utils/entityColors.ts",
         "src/utils/export.ts",
-        "src/utils/logger.ts",
         "src/utils/format.ts",
+        "src/utils/processGraphData.ts",
+        "src/utils/keywords.ts",
         "src/utils/logger/status.ts",
         "src/utils/logger/types.ts",
         "src/utils/logger/core.ts",
@@ -27989,15 +28432,18 @@ validation.ts
         "src/utils/audio/error-handler.ts",
         "src/utils/audio/processing.ts",
         "src/utils/audio/logger.ts",
-        "src/utils/audio/constants.ts",
         "src/utils/audio/index.ts",
         "src/utils/text/processing.ts",
+        "src/components/NodeConnections.tsx",
+        "src/components/EntitySummaryModal.tsx",
         "src/components/ProcessStatus.tsx",
-        "src/components/TranscriptionViewer.tsx",
         "src/components/DebugPanel.tsx",
-        "src/components/TranscriptionControls.tsx",
+        "src/components/Graph.tsx",
+        "src/components/InputSection.tsx",
         "src/components/MeetingCard.tsx",
         "src/components/Sidebar.tsx",
+        "src/components/SummaryViewer.tsx",
+        "src/components/NodeSidebar.tsx",
         "src/components/TranscriptionControls/index.tsx",
         "src/components/TranscriptionControls/ExportButton.tsx",
         "src/components/TranscriptionControls/CopyButton.tsx",
@@ -28010,32 +28456,128 @@ validation.ts
         "src/components/TranscriptionViewer/TranscriptionHeader.tsx",
         "src/components/TranscriptionViewer/SpeakerEntry.tsx",
         "src/components/TranscriptionViewer/TranscriptionStats.tsx",
-        "src/hooks/useUpload.ts",
-        "src/hooks/useTranscriptionProcessing.ts",
+        "src/components/controls/FilterPanel.tsx",
+        "src/components/controls/TopEntitiesPanel.tsx",
         "src/hooks/useProcessStatus.ts",
         "src/hooks/useTranscriptionUpload.ts",
         "src/pages/UploadPage.tsx",
         "src/pages/MeetingHistory.tsx",
+        "src/pages/APITestPage.tsx",
         "src/pages/ChatPage.tsx",
-        "src/services/api.ts",
         "src/services/transcription/validation.ts",
         "src/services/transcription/processing.ts",
         "src/services/api/errors.ts",
         "src/services/api/utils.ts",
         "src/services/api/types.ts",
+        "src/services/api/knowledgeGraph.ts",
         "src/services/api/client.ts",
         "src/services/api/index.ts",
         "src/services/api/upload.ts",
         "src/services/api/transcription.ts",
-        "src/services/upload/validation.ts",
-        "src/services/upload/url-generator.ts",
-        "src/services/upload/xhr.ts",
-        "src/services/upload/types.ts",
-        "src/services/upload/uploader.ts",
-        "src/services/upload/client.ts",
         "src/store/transcription.ts"
     ],
     "edges": [
+        {
+            "from": "src/App.tsx",
+            "to": "src/pages/UploadPage.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "react-router-dom",
+                "./pages/UploadPage",
+                "./pages/MeetingHistory",
+                "./pages/ChatPage",
+                "./pages/APITestPage",
+                "./components/Sidebar",
+                "./components/DebugPanel"
+            ]
+        },
+        {
+            "from": "src/App.tsx",
+            "to": "src/pages/MeetingHistory.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "react-router-dom",
+                "./pages/UploadPage",
+                "./pages/MeetingHistory",
+                "./pages/ChatPage",
+                "./pages/APITestPage",
+                "./components/Sidebar",
+                "./components/DebugPanel"
+            ]
+        },
+        {
+            "from": "src/App.tsx",
+            "to": "src/pages/ChatPage.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "react-router-dom",
+                "./pages/UploadPage",
+                "./pages/MeetingHistory",
+                "./pages/ChatPage",
+                "./pages/APITestPage",
+                "./components/Sidebar",
+                "./components/DebugPanel"
+            ]
+        },
+        {
+            "from": "src/App.tsx",
+            "to": "src/pages/APITestPage.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "react-router-dom",
+                "./pages/UploadPage",
+                "./pages/MeetingHistory",
+                "./pages/ChatPage",
+                "./pages/APITestPage",
+                "./components/Sidebar",
+                "./components/DebugPanel"
+            ]
+        },
+        {
+            "from": "src/App.tsx",
+            "to": "src/components/Sidebar.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "react-router-dom",
+                "./pages/UploadPage",
+                "./pages/MeetingHistory",
+                "./pages/ChatPage",
+                "./pages/APITestPage",
+                "./components/Sidebar",
+                "./components/DebugPanel"
+            ]
+        },
+        {
+            "from": "src/App.tsx",
+            "to": "src/components/DebugPanel.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "react-router-dom",
+                "./pages/UploadPage",
+                "./pages/MeetingHistory",
+                "./pages/ChatPage",
+                "./pages/APITestPage",
+                "./components/Sidebar",
+                "./components/DebugPanel"
+            ]
+        },
+        {
+            "from": "src/main.tsx",
+            "to": "src/App.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "react-dom/client",
+                "react-router-dom",
+                "./App"
+            ]
+        },
         {
             "from": "src/config/api.ts",
             "to": "src/config/env.ts",
@@ -28046,20 +28588,10 @@ validation.ts
         },
         {
             "from": "src/config/env.ts",
-            "to": "src/utils/logger/index.ts",
+            "to": "src/utils/logger/core.ts",
             "type": "import",
             "objects": [
-                "../utils/logger"
-            ]
-        },
-        {
-            "from": "src/utils/audio.ts",
-            "to": "src/utils/audio/constants.ts",
-            "type": "import",
-            "objects": [
-                "./audio/constants",
-                "./audio/validation",
-                "./audio/logger"
+                "../utils/logger/core"
             ]
         },
         {
@@ -28083,6 +28615,24 @@ validation.ts
             ]
         },
         {
+            "from": "src/utils/entityColors.ts",
+            "to": "src/utils/colors.ts",
+            "type": "import",
+            "objects": [
+                "./colors",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/utils/entityColors.ts",
+            "to": "src/types/graph.ts",
+            "type": "import",
+            "objects": [
+                "./colors",
+                "../types/graph"
+            ]
+        },
+        {
             "from": "src/utils/export.ts",
             "to": "src/types/index.ts",
             "type": "import",
@@ -28094,11 +28644,19 @@ validation.ts
             ]
         },
         {
-            "from": "src/utils/logger.ts",
-            "to": "src/config/constants.ts",
+            "from": "src/utils/processGraphData.ts",
+            "to": "src/types/graph.ts",
             "type": "import",
             "objects": [
-                "../config/constants"
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/utils/keywords.ts",
+            "to": "src/types/graph.ts",
+            "type": "import",
+            "objects": [
+                "../types/graph"
             ]
         },
         {
@@ -28171,20 +28729,20 @@ validation.ts
         },
         {
             "from": "src/utils/logger/index.ts",
-            "to": "src/utils/logger/core.ts",
+            "to": "src/config/constants.ts",
             "type": "import",
             "objects": [
-                "./core",
-                "./types"
+                "../../config/constants",
+                "./core"
             ]
         },
         {
             "from": "src/utils/logger/index.ts",
-            "to": "src/utils/logger/types.ts",
+            "to": "src/utils/logger/core.ts",
             "type": "import",
             "objects": [
-                "./core",
-                "./types"
+                "../../config/constants",
+                "./core"
             ]
         },
         {
@@ -28207,10 +28765,10 @@ validation.ts
         },
         {
             "from": "src/utils/audio/validation.ts",
-            "to": "src/utils/audio/constants.ts",
+            "to": "src/config/audio.ts",
             "type": "import",
             "objects": [
-                "./constants",
+                "../../config/audio",
                 "./logger",
                 "./error-handler",
                 "./processing",
@@ -28222,7 +28780,7 @@ validation.ts
             "to": "src/utils/audio/logger.ts",
             "type": "import",
             "objects": [
-                "./constants",
+                "../../config/audio",
                 "./logger",
                 "./error-handler",
                 "./processing",
@@ -28234,7 +28792,7 @@ validation.ts
             "to": "src/utils/audio/error-handler.ts",
             "type": "import",
             "objects": [
-                "./constants",
+                "../../config/audio",
                 "./logger",
                 "./error-handler",
                 "./processing",
@@ -28246,7 +28804,7 @@ validation.ts
             "to": "src/utils/audio/processing.ts",
             "type": "import",
             "objects": [
-                "./constants",
+                "../../config/audio",
                 "./logger",
                 "./error-handler",
                 "./processing",
@@ -28258,7 +28816,7 @@ validation.ts
             "to": "src/utils/format.ts",
             "type": "import",
             "objects": [
-                "./constants",
+                "../../config/audio",
                 "./logger",
                 "./error-handler",
                 "./processing",
@@ -28287,18 +28845,6 @@ validation.ts
             "to": "src/utils/audio/error-handler.ts",
             "type": "import",
             "objects": [
-                "./logger",
-                "./error-handler"
-            ]
-        },
-        {
-            "from": "src/utils/audio/index.ts",
-            "to": "src/utils/audio/constants.ts",
-            "type": "import",
-            "objects": [
-                "./constants",
-                "./validation",
-                "./processing",
                 "./logger",
                 "./error-handler"
             ]
@@ -28370,6 +28916,25 @@ validation.ts
             ]
         },
         {
+            "from": "src/components/NodeConnections.tsx",
+            "to": "src/types/graph.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/components/EntitySummaryModal.tsx",
+            "to": "src/types/index.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "lucide-react",
+                "../types"
+            ]
+        },
+        {
             "from": "src/components/ProcessStatus.tsx",
             "to": "src/types/index.ts",
             "type": "import",
@@ -28380,35 +28945,13 @@ validation.ts
             ]
         },
         {
-            "from": "src/components/TranscriptionViewer.tsx",
-            "to": "src/store/transcription.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "lucide-react",
-                "../store/transcription",
-                "../utils/format"
-            ]
-        },
-        {
-            "from": "src/components/TranscriptionViewer.tsx",
-            "to": "src/utils/format.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "lucide-react",
-                "../store/transcription",
-                "../utils/format"
-            ]
-        },
-        {
             "from": "src/components/DebugPanel.tsx",
             "to": "src/utils/logger/index.ts",
             "type": "import",
             "objects": [
                 "react",
                 "lucide-react",
-                "../utils/logger",
+                "../utils/logger/index",
                 "../config/constants",
                 "../utils/logger/types"
             ]
@@ -28420,7 +28963,7 @@ validation.ts
             "objects": [
                 "react",
                 "lucide-react",
-                "../utils/logger",
+                "../utils/logger/index",
                 "../config/constants",
                 "../utils/logger/types"
             ]
@@ -28432,33 +28975,50 @@ validation.ts
             "objects": [
                 "react",
                 "lucide-react",
-                "../utils/logger",
+                "../utils/logger/index",
                 "../config/constants",
                 "../utils/logger/types"
             ]
         },
         {
-            "from": "src/components/TranscriptionControls.tsx",
-            "to": "src/store/transcription.ts",
+            "from": "src/components/Graph.tsx",
+            "to": "src/types/graph.ts",
             "type": "import",
             "objects": [
                 "react",
-                "lucide-react",
-                "../store/transcription",
-                "../utils/export",
-                "sonner"
+                "react-force-graph-2d",
+                "../types/graph"
             ]
         },
         {
-            "from": "src/components/TranscriptionControls.tsx",
-            "to": "src/utils/export.ts",
+            "from": "src/components/InputSection.tsx",
+            "to": "src/components/FileUpload/index.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "./FileUpload"
+            ]
+        },
+        {
+            "from": "src/components/NodeSidebar.tsx",
+            "to": "src/types/graph.ts",
             "type": "import",
             "objects": [
                 "react",
                 "lucide-react",
-                "../store/transcription",
-                "../utils/export",
-                "sonner"
+                "../types/graph",
+                "./NodeConnections"
+            ]
+        },
+        {
+            "from": "src/components/NodeSidebar.tsx",
+            "to": "src/components/NodeConnections.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "lucide-react",
+                "../types/graph",
+                "./NodeConnections"
             ]
         },
         {
@@ -28508,6 +29068,36 @@ validation.ts
         },
         {
             "from": "src/components/TranscriptionControls/index.tsx",
+            "to": "src/components/TranscriptionControls/CopyButton.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../../store/transcription",
+                "../../utils/export",
+                "../../utils/text/processing",
+                "./CopyButton",
+                "./ExportButton",
+                "../../types"
+            ]
+        },
+        {
+            "from": "src/components/TranscriptionControls/index.tsx",
+            "to": "src/components/TranscriptionControls/ExportButton.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../../store/transcription",
+                "../../utils/export",
+                "../../utils/text/processing",
+                "./CopyButton",
+                "./ExportButton",
+                "../../types"
+            ]
+        },
+        {
+            "from": "src/components/TranscriptionControls/index.tsx",
             "to": "src/types/index.ts",
             "type": "import",
             "objects": [
@@ -28523,25 +29113,11 @@ validation.ts
         },
         {
             "from": "src/components/TranscriptionControls/ExportButton.tsx",
-            "to": "src/utils/export.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "lucide-react",
-                "sonner",
-                "../../utils/export",
-                "../../types"
-            ]
-        },
-        {
-            "from": "src/components/TranscriptionControls/ExportButton.tsx",
             "to": "src/types/index.ts",
             "type": "import",
             "objects": [
                 "react",
                 "lucide-react",
-                "sonner",
-                "../../utils/export",
                 "../../types"
             ]
         },
@@ -28578,6 +29154,36 @@ validation.ts
         {
             "from": "src/components/FileUpload/index.tsx",
             "to": "src/config/audio.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../../store/transcription",
+                "../../hooks/useTranscriptionUpload",
+                "../../config/audio",
+                "./DropZone",
+                "./UploadProgress",
+                "../../utils/logger"
+            ]
+        },
+        {
+            "from": "src/components/FileUpload/index.tsx",
+            "to": "src/components/FileUpload/DropZone.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../../store/transcription",
+                "../../hooks/useTranscriptionUpload",
+                "../../config/audio",
+                "./DropZone",
+                "./UploadProgress",
+                "../../utils/logger"
+            ]
+        },
+        {
+            "from": "src/components/FileUpload/index.tsx",
+            "to": "src/components/FileUpload/UploadProgress.tsx",
             "type": "import",
             "objects": [
                 "react",
@@ -28647,7 +29253,33 @@ validation.ts
                 "./TranscriptionHeader",
                 "./SpeakerEntry",
                 "../../utils/text/processing",
-                "../../utils/logger"
+                "../../utils/logger/core"
+            ]
+        },
+        {
+            "from": "src/components/TranscriptionViewer/index.tsx",
+            "to": "src/components/TranscriptionViewer/TranscriptionHeader.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "../../store/transcription",
+                "./TranscriptionHeader",
+                "./SpeakerEntry",
+                "../../utils/text/processing",
+                "../../utils/logger/core"
+            ]
+        },
+        {
+            "from": "src/components/TranscriptionViewer/index.tsx",
+            "to": "src/components/TranscriptionViewer/SpeakerEntry.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "../../store/transcription",
+                "./TranscriptionHeader",
+                "./SpeakerEntry",
+                "../../utils/text/processing",
+                "../../utils/logger/core"
             ]
         },
         {
@@ -28660,12 +29292,12 @@ validation.ts
                 "./TranscriptionHeader",
                 "./SpeakerEntry",
                 "../../utils/text/processing",
-                "../../utils/logger"
+                "../../utils/logger/core"
             ]
         },
         {
             "from": "src/components/TranscriptionViewer/index.tsx",
-            "to": "src/utils/logger/index.ts",
+            "to": "src/utils/logger/core.ts",
             "type": "import",
             "objects": [
                 "react",
@@ -28673,7 +29305,7 @@ validation.ts
                 "./TranscriptionHeader",
                 "./SpeakerEntry",
                 "../../utils/text/processing",
-                "../../utils/logger"
+                "../../utils/logger/core"
             ]
         },
         {
@@ -28721,152 +29353,13 @@ validation.ts
             ]
         },
         {
-            "from": "src/hooks/useUpload.ts",
-            "to": "src/services/api/upload.ts",
+            "from": "src/components/controls/TopEntitiesPanel.tsx",
+            "to": "src/types/graph.ts",
             "type": "import",
             "objects": [
                 "react",
-                "../services/api/upload",
-                "../services/api/transcription",
-                "../services/upload/xhr",
-                "../services/upload/validation",
-                "../utils/logger",
-                "../services/upload/types"
-            ]
-        },
-        {
-            "from": "src/hooks/useUpload.ts",
-            "to": "src/services/api/transcription.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/upload",
-                "../services/api/transcription",
-                "../services/upload/xhr",
-                "../services/upload/validation",
-                "../utils/logger",
-                "../services/upload/types"
-            ]
-        },
-        {
-            "from": "src/hooks/useUpload.ts",
-            "to": "src/services/upload/xhr.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/upload",
-                "../services/api/transcription",
-                "../services/upload/xhr",
-                "../services/upload/validation",
-                "../utils/logger",
-                "../services/upload/types"
-            ]
-        },
-        {
-            "from": "src/hooks/useUpload.ts",
-            "to": "src/services/upload/validation.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/upload",
-                "../services/api/transcription",
-                "../services/upload/xhr",
-                "../services/upload/validation",
-                "../utils/logger",
-                "../services/upload/types"
-            ]
-        },
-        {
-            "from": "src/hooks/useUpload.ts",
-            "to": "src/utils/logger/index.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/upload",
-                "../services/api/transcription",
-                "../services/upload/xhr",
-                "../services/upload/validation",
-                "../utils/logger",
-                "../services/upload/types"
-            ]
-        },
-        {
-            "from": "src/hooks/useUpload.ts",
-            "to": "src/services/upload/types.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/upload",
-                "../services/api/transcription",
-                "../services/upload/xhr",
-                "../services/upload/validation",
-                "../utils/logger",
-                "../services/upload/types"
-            ]
-        },
-        {
-            "from": "src/hooks/useTranscriptionProcessing.ts",
-            "to": "src/services/api/transcription.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/transcription",
-                "../utils/logger",
-                "../config/api",
-                "../services/api/errors",
-                "../types"
-            ]
-        },
-        {
-            "from": "src/hooks/useTranscriptionProcessing.ts",
-            "to": "src/utils/logger/index.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/transcription",
-                "../utils/logger",
-                "../config/api",
-                "../services/api/errors",
-                "../types"
-            ]
-        },
-        {
-            "from": "src/hooks/useTranscriptionProcessing.ts",
-            "to": "src/config/api.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/transcription",
-                "../utils/logger",
-                "../config/api",
-                "../services/api/errors",
-                "../types"
-            ]
-        },
-        {
-            "from": "src/hooks/useTranscriptionProcessing.ts",
-            "to": "src/services/api/errors.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/transcription",
-                "../utils/logger",
-                "../config/api",
-                "../services/api/errors",
-                "../types"
-            ]
-        },
-        {
-            "from": "src/hooks/useTranscriptionProcessing.ts",
-            "to": "src/types/index.ts",
-            "type": "import",
-            "objects": [
-                "react",
-                "../services/api/transcription",
-                "../utils/logger",
-                "../config/api",
-                "../services/api/errors",
-                "../types"
+                "lucide-react",
+                "../../types/graph"
             ]
         },
         {
@@ -28912,6 +29405,7 @@ validation.ts
                 "../services/api/upload",
                 "../services/api/transcription",
                 "../utils/logger",
+                "../config/env",
                 "../types"
             ]
         },
@@ -28925,6 +29419,7 @@ validation.ts
                 "../services/api/upload",
                 "../services/api/transcription",
                 "../utils/logger",
+                "../config/env",
                 "../types"
             ]
         },
@@ -28938,6 +29433,7 @@ validation.ts
                 "../services/api/upload",
                 "../services/api/transcription",
                 "../utils/logger",
+                "../config/env",
                 "../types"
             ]
         },
@@ -28951,6 +29447,21 @@ validation.ts
                 "../services/api/upload",
                 "../services/api/transcription",
                 "../utils/logger",
+                "../config/env",
+                "../types"
+            ]
+        },
+        {
+            "from": "src/hooks/useTranscriptionUpload.ts",
+            "to": "src/config/env.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "../store/transcription",
+                "../services/api/upload",
+                "../services/api/transcription",
+                "../utils/logger",
+                "../config/env",
                 "../types"
             ]
         },
@@ -28964,7 +29475,83 @@ validation.ts
                 "../services/api/upload",
                 "../services/api/transcription",
                 "../utils/logger",
+                "../config/env",
                 "../types"
+            ]
+        },
+        {
+            "from": "src/pages/UploadPage.tsx",
+            "to": "src/components/FileUpload/index.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../components/FileUpload",
+                "../components/ProcessStatus",
+                "../components/TranscriptionControls",
+                "../components/TranscriptionViewer",
+                "../components/DebugPanel",
+                "../store/transcription"
+            ]
+        },
+        {
+            "from": "src/pages/UploadPage.tsx",
+            "to": "src/components/ProcessStatus.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../components/FileUpload",
+                "../components/ProcessStatus",
+                "../components/TranscriptionControls",
+                "../components/TranscriptionViewer",
+                "../components/DebugPanel",
+                "../store/transcription"
+            ]
+        },
+        {
+            "from": "src/pages/UploadPage.tsx",
+            "to": "src/components/TranscriptionControls/index.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../components/FileUpload",
+                "../components/ProcessStatus",
+                "../components/TranscriptionControls",
+                "../components/TranscriptionViewer",
+                "../components/DebugPanel",
+                "../store/transcription"
+            ]
+        },
+        {
+            "from": "src/pages/UploadPage.tsx",
+            "to": "src/components/TranscriptionViewer/index.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../components/FileUpload",
+                "../components/ProcessStatus",
+                "../components/TranscriptionControls",
+                "../components/TranscriptionViewer",
+                "../components/DebugPanel",
+                "../store/transcription"
+            ]
+        },
+        {
+            "from": "src/pages/UploadPage.tsx",
+            "to": "src/components/DebugPanel.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "sonner",
+                "../components/FileUpload",
+                "../components/ProcessStatus",
+                "../components/TranscriptionControls",
+                "../components/TranscriptionViewer",
+                "../components/DebugPanel",
+                "../store/transcription"
             ]
         },
         {
@@ -28983,11 +29570,235 @@ validation.ts
             ]
         },
         {
-            "from": "src/services/api.ts",
-            "to": "src/config/api.ts",
+            "from": "src/pages/MeetingHistory.tsx",
+            "to": "src/components/MeetingCard.tsx",
             "type": "import",
             "objects": [
-                "../config/api"
+                "react",
+                "lucide-react",
+                "date-fns",
+                "../components/MeetingCard",
+                "../components/calendar/WeekHeader",
+                "../components/calendar/FilterDropdown",
+                "../store/transcription",
+                "../utils/logger/core",
+                "../components/EntitySummaryModal"
+            ]
+        },
+        {
+            "from": "src/pages/MeetingHistory.tsx",
+            "to": "src/components/calendar/WeekHeader.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "lucide-react",
+                "date-fns",
+                "../components/MeetingCard",
+                "../components/calendar/WeekHeader",
+                "../components/calendar/FilterDropdown",
+                "../store/transcription",
+                "../utils/logger/core",
+                "../components/EntitySummaryModal"
+            ]
+        },
+        {
+            "from": "src/pages/MeetingHistory.tsx",
+            "to": "src/components/calendar/FilterDropdown.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "lucide-react",
+                "date-fns",
+                "../components/MeetingCard",
+                "../components/calendar/WeekHeader",
+                "../components/calendar/FilterDropdown",
+                "../store/transcription",
+                "../utils/logger/core",
+                "../components/EntitySummaryModal"
+            ]
+        },
+        {
+            "from": "src/pages/MeetingHistory.tsx",
+            "to": "src/store/transcription.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "lucide-react",
+                "date-fns",
+                "../components/MeetingCard",
+                "../components/calendar/WeekHeader",
+                "../components/calendar/FilterDropdown",
+                "../store/transcription",
+                "../utils/logger/core",
+                "../components/EntitySummaryModal"
+            ]
+        },
+        {
+            "from": "src/pages/MeetingHistory.tsx",
+            "to": "src/utils/logger/core.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "lucide-react",
+                "date-fns",
+                "../components/MeetingCard",
+                "../components/calendar/WeekHeader",
+                "../components/calendar/FilterDropdown",
+                "../store/transcription",
+                "../utils/logger/core",
+                "../components/EntitySummaryModal"
+            ]
+        },
+        {
+            "from": "src/pages/MeetingHistory.tsx",
+            "to": "src/components/EntitySummaryModal.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "lucide-react",
+                "date-fns",
+                "../components/MeetingCard",
+                "../components/calendar/WeekHeader",
+                "../components/calendar/FilterDropdown",
+                "../store/transcription",
+                "../utils/logger/core",
+                "../components/EntitySummaryModal"
+            ]
+        },
+        {
+            "from": "src/pages/APITestPage.tsx",
+            "to": "src/config/env.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "../config/env",
+                "../utils/logger/index",
+                "sonner",
+                "../components/SummaryViewer",
+                "../utils/processGraphData",
+                "../utils/entityColors",
+                "../components/Graph",
+                "../components/Sidebar",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/pages/APITestPage.tsx",
+            "to": "src/utils/logger/index.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "../config/env",
+                "../utils/logger/index",
+                "sonner",
+                "../components/SummaryViewer",
+                "../utils/processGraphData",
+                "../utils/entityColors",
+                "../components/Graph",
+                "../components/Sidebar",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/pages/APITestPage.tsx",
+            "to": "src/components/SummaryViewer.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "../config/env",
+                "../utils/logger/index",
+                "sonner",
+                "../components/SummaryViewer",
+                "../utils/processGraphData",
+                "../utils/entityColors",
+                "../components/Graph",
+                "../components/Sidebar",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/pages/APITestPage.tsx",
+            "to": "src/utils/processGraphData.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "../config/env",
+                "../utils/logger/index",
+                "sonner",
+                "../components/SummaryViewer",
+                "../utils/processGraphData",
+                "../utils/entityColors",
+                "../components/Graph",
+                "../components/Sidebar",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/pages/APITestPage.tsx",
+            "to": "src/utils/entityColors.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "../config/env",
+                "../utils/logger/index",
+                "sonner",
+                "../components/SummaryViewer",
+                "../utils/processGraphData",
+                "../utils/entityColors",
+                "../components/Graph",
+                "../components/Sidebar",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/pages/APITestPage.tsx",
+            "to": "src/components/Graph.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "../config/env",
+                "../utils/logger/index",
+                "sonner",
+                "../components/SummaryViewer",
+                "../utils/processGraphData",
+                "../utils/entityColors",
+                "../components/Graph",
+                "../components/Sidebar",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/pages/APITestPage.tsx",
+            "to": "src/components/Sidebar.tsx",
+            "type": "import",
+            "objects": [
+                "react",
+                "../config/env",
+                "../utils/logger/index",
+                "sonner",
+                "../components/SummaryViewer",
+                "../utils/processGraphData",
+                "../utils/entityColors",
+                "../components/Graph",
+                "../components/Sidebar",
+                "../types/graph"
+            ]
+        },
+        {
+            "from": "src/pages/APITestPage.tsx",
+            "to": "src/types/graph.ts",
+            "type": "import",
+            "objects": [
+                "react",
+                "../config/env",
+                "../utils/logger/index",
+                "sonner",
+                "../components/SummaryViewer",
+                "../utils/processGraphData",
+                "../utils/entityColors",
+                "../components/Graph",
+                "../components/Sidebar",
+                "../types/graph"
             ]
         },
         {
@@ -29031,6 +29842,50 @@ validation.ts
             "to": "src/services/api/errors.ts",
             "type": "import",
             "objects": [
+                "./errors"
+            ]
+        },
+        {
+            "from": "src/services/api/knowledgeGraph.ts",
+            "to": "src/types/index.ts",
+            "type": "import",
+            "objects": [
+                "../../types",
+                "../../config/env",
+                "../../utils/logger",
+                "./errors"
+            ]
+        },
+        {
+            "from": "src/services/api/knowledgeGraph.ts",
+            "to": "src/config/env.ts",
+            "type": "import",
+            "objects": [
+                "../../types",
+                "../../config/env",
+                "../../utils/logger",
+                "./errors"
+            ]
+        },
+        {
+            "from": "src/services/api/knowledgeGraph.ts",
+            "to": "src/utils/logger/index.ts",
+            "type": "import",
+            "objects": [
+                "../../types",
+                "../../config/env",
+                "../../utils/logger",
+                "./errors"
+            ]
+        },
+        {
+            "from": "src/services/api/knowledgeGraph.ts",
+            "to": "src/services/api/errors.ts",
+            "type": "import",
+            "objects": [
+                "../../types",
+                "../../config/env",
+                "../../utils/logger",
                 "./errors"
             ]
         },
@@ -29167,183 +30022,23 @@ validation.ts
             ]
         },
         {
-            "from": "src/services/upload/validation.ts",
-            "to": "src/utils/logger/index.ts",
-            "type": "import",
-            "objects": [
-                "../../utils/logger",
-                "../../config/audio",
-                "../../utils/format"
-            ]
-        },
-        {
-            "from": "src/services/upload/validation.ts",
-            "to": "src/config/audio.ts",
-            "type": "import",
-            "objects": [
-                "../../utils/logger",
-                "../../config/audio",
-                "../../utils/format"
-            ]
-        },
-        {
-            "from": "src/services/upload/validation.ts",
-            "to": "src/utils/format.ts",
-            "type": "import",
-            "objects": [
-                "../../utils/logger",
-                "../../config/audio",
-                "../../utils/format"
-            ]
-        },
-        {
-            "from": "src/services/upload/url-generator.ts",
-            "to": "src/config/api.ts",
-            "type": "import",
-            "objects": [
-                "../../config/api",
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/url-generator.ts",
-            "to": "src/utils/logger/index.ts",
-            "type": "import",
-            "objects": [
-                "../../config/api",
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/url-generator.ts",
-            "to": "src/services/upload/types.ts",
-            "type": "import",
-            "objects": [
-                "../../config/api",
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/xhr.ts",
-            "to": "src/utils/logger/index.ts",
-            "type": "import",
-            "objects": [
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/xhr.ts",
-            "to": "src/services/upload/types.ts",
-            "type": "import",
-            "objects": [
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/types.ts",
-            "to": "src/services/api/errors.ts",
-            "type": "import",
-            "objects": [
-                "../api/errors"
-            ]
-        },
-        {
-            "from": "src/services/upload/uploader.ts",
-            "to": "src/utils/logger/index.ts",
-            "type": "import",
-            "objects": [
-                "../../utils/logger",
-                "../api/errors",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/uploader.ts",
-            "to": "src/services/api/errors.ts",
-            "type": "import",
-            "objects": [
-                "../../utils/logger",
-                "../api/errors",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/uploader.ts",
-            "to": "src/services/upload/types.ts",
-            "type": "import",
-            "objects": [
-                "../../utils/logger",
-                "../api/errors",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/client.ts",
-            "to": "src/config/api.ts",
-            "type": "import",
-            "objects": [
-                "../../config/api",
-                "../api/errors",
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/client.ts",
-            "to": "src/services/api/errors.ts",
-            "type": "import",
-            "objects": [
-                "../../config/api",
-                "../api/errors",
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/client.ts",
-            "to": "src/utils/logger/index.ts",
-            "type": "import",
-            "objects": [
-                "../../config/api",
-                "../api/errors",
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
-            "from": "src/services/upload/client.ts",
-            "to": "src/services/upload/types.ts",
-            "type": "import",
-            "objects": [
-                "../../config/api",
-                "../api/errors",
-                "../../utils/logger",
-                "./types"
-            ]
-        },
-        {
             "from": "src/store/transcription.ts",
             "to": "src/types/index.ts",
             "type": "import",
             "objects": [
                 "zustand",
                 "../types",
-                "../utils/logger"
+                "../utils/logger/core"
             ]
         },
         {
             "from": "src/store/transcription.ts",
-            "to": "src/utils/logger/index.ts",
+            "to": "src/utils/logger/core.ts",
             "type": "import",
             "objects": [
                 "zustand",
                 "../types",
-                "../utils/logger"
+                "../utils/logger/core"
             ]
         }
     ]
@@ -29359,15 +30054,19 @@ validation.ts
         "src/App.tsx",
         "src/main.tsx",
         "src/vite-env.d.ts",
+        "src/types/graph.ts",
         "src/types/index.ts",
         "src/config/audio.ts",
         "src/config/api.ts",
         "src/config/constants.ts",
         "src/config/env.ts",
+        "src/utils/colors.ts",
         "src/utils/audio.ts",
+        "src/utils/entityColors.ts",
         "src/utils/export.ts",
-        "src/utils/logger.ts",
         "src/utils/format.ts",
+        "src/utils/processGraphData.ts",
+        "src/utils/keywords.ts",
         "src/utils/logger/status.ts",
         "src/utils/logger/types.ts",
         "src/utils/logger/core.ts",
@@ -29377,15 +30076,18 @@ validation.ts
         "src/utils/audio/error-handler.ts",
         "src/utils/audio/processing.ts",
         "src/utils/audio/logger.ts",
-        "src/utils/audio/constants.ts",
         "src/utils/audio/index.ts",
         "src/utils/text/processing.ts",
+        "src/components/NodeConnections.tsx",
+        "src/components/EntitySummaryModal.tsx",
         "src/components/ProcessStatus.tsx",
-        "src/components/TranscriptionViewer.tsx",
         "src/components/DebugPanel.tsx",
-        "src/components/TranscriptionControls.tsx",
+        "src/components/Graph.tsx",
+        "src/components/InputSection.tsx",
         "src/components/MeetingCard.tsx",
         "src/components/Sidebar.tsx",
+        "src/components/SummaryViewer.tsx",
+        "src/components/NodeSidebar.tsx",
         "src/components/TranscriptionControls/index.tsx",
         "src/components/TranscriptionControls/ExportButton.tsx",
         "src/components/TranscriptionControls/CopyButton.tsx",
@@ -29398,32 +30100,553 @@ validation.ts
         "src/components/TranscriptionViewer/TranscriptionHeader.tsx",
         "src/components/TranscriptionViewer/SpeakerEntry.tsx",
         "src/components/TranscriptionViewer/TranscriptionStats.tsx",
-        "src/hooks/useUpload.ts",
-        "src/hooks/useTranscriptionProcessing.ts",
+        "src/components/controls/FilterPanel.tsx",
+        "src/components/controls/TopEntitiesPanel.tsx",
         "src/hooks/useProcessStatus.ts",
         "src/hooks/useTranscriptionUpload.ts",
         "src/pages/UploadPage.tsx",
         "src/pages/MeetingHistory.tsx",
+        "src/pages/APITestPage.tsx",
         "src/pages/ChatPage.tsx",
-        "src/services/api.ts",
         "src/services/transcription/validation.ts",
         "src/services/transcription/processing.ts",
         "src/services/api/errors.ts",
         "src/services/api/utils.ts",
         "src/services/api/types.ts",
+        "src/services/api/knowledgeGraph.ts",
         "src/services/api/client.ts",
         "src/services/api/index.ts",
         "src/services/api/upload.ts",
         "src/services/api/transcription.ts",
-        "src/services/upload/validation.ts",
-        "src/services/upload/url-generator.ts",
-        "src/services/upload/xhr.ts",
-        "src/services/upload/types.ts",
-        "src/services/upload/uploader.ts",
-        "src/services/upload/client.ts",
         "src/store/transcription.ts"
     ],
     "edges": []
+}
+```
+
+### repindex/detailed_structure.json
+
+```
+{
+    "vite.config.ts": {
+        "language": "typescript",
+        "functions": [
+            "defineConfig"
+        ],
+        "classes": []
+    },
+    "src/App.tsx": {
+        "language": "typescript",
+        "functions": [
+            "App"
+        ],
+        "classes": []
+    },
+    "src/main.tsx": {
+        "language": "typescript",
+        "functions": [],
+        "classes": []
+    },
+    "src/vite-env.d.ts": {
+        "language": "typescript",
+        "functions": [],
+        "classes": []
+    },
+    "src/types/graph.ts": {
+        "language": "typescript",
+        "functions": [
+            "Entity",
+            "Relationship",
+            "GraphData",
+            "ProcessedNode",
+            "ProcessedLink"
+        ],
+        "classes": []
+    },
+    "src/types/index.ts": {
+        "language": "typescript",
+        "functions": [
+            "Speaker",
+            "TranscriptionResponse",
+            "KnowledgeGraphEntity",
+            "KnowledgeGraphRelationship",
+            "KnowledgeGraph",
+            "ExportFormat",
+            "ProcessStatus",
+            "ProcessError",
+            "TranscriptionState",
+            "EntityMapResponse",
+            "EntityMapRequest",
+            "SummarizeRequest",
+            "SummarizeResponse"
+        ],
+        "classes": []
+    },
+    "src/config/audio.ts": {
+        "language": "typescript",
+        "functions": [
+            "AUDIO_CONFIG"
+        ],
+        "classes": []
+    },
+    "src/config/api.ts": {
+        "language": "typescript",
+        "functions": [
+            "API_CONFIG"
+        ],
+        "classes": []
+    },
+    "src/config/constants.ts": {
+        "language": "typescript",
+        "functions": [
+            "RETRY_CONFIG",
+            "LOG_CONFIG",
+            "PROCESS_STEPS"
+        ],
+        "classes": []
+    },
+    "src/config/env.ts": {
+        "language": "typescript",
+        "functions": [
+            "ENV"
+        ],
+        "classes": []
+    },
+    "src/utils/colors.ts": {
+        "language": "typescript",
+        "functions": [
+            "ENTITY_COLORS",
+            "DEFAULT_COLOR"
+        ],
+        "classes": []
+    },
+    "src/utils/audio.ts": {
+        "language": "typescript",
+        "functions": [],
+        "classes": []
+    },
+    "src/utils/entityColors.ts": {
+        "language": "typescript",
+        "functions": [
+            "getEntityColorMap"
+        ],
+        "classes": []
+    },
+    "src/utils/export.ts": {
+        "language": "typescript",
+        "functions": [
+            "async"
+        ],
+        "classes": []
+    },
+    "src/utils/format.ts": {
+        "language": "typescript",
+        "functions": [
+            "formatTimestamp",
+            "formatDuration",
+            "formatFileSize"
+        ],
+        "classes": []
+    },
+    "src/utils/processGraphData.ts": {
+        "language": "typescript",
+        "functions": [
+            "processGraphData"
+        ],
+        "classes": []
+    },
+    "src/utils/keywords.ts": {
+        "language": "typescript",
+        "functions": [
+            "extractKeywords"
+        ],
+        "classes": []
+    },
+    "src/utils/logger/status.ts": {
+        "language": "typescript",
+        "functions": [
+            "logStatusChange",
+            "logProcessStep"
+        ],
+        "classes": []
+    },
+    "src/utils/logger/types.ts": {
+        "language": "typescript",
+        "functions": [
+            "LogLevel",
+            "LogEntry",
+            "LoggerConfig"
+        ],
+        "classes": []
+    },
+    "src/utils/logger/core.ts": {
+        "language": "typescript",
+        "functions": [
+            "logger"
+        ],
+        "classes": []
+    },
+    "src/utils/logger/index.ts": {
+        "language": "typescript",
+        "functions": [
+            "LogLevel",
+            "LogEntry",
+            "LoggerConfig"
+        ],
+        "classes": []
+    },
+    "src/utils/logger/formatter.ts": {
+        "language": "typescript",
+        "functions": [
+            "formatLogEntry"
+        ],
+        "classes": []
+    },
+    "src/utils/audio/validation.ts": {
+        "language": "typescript",
+        "functions": [
+            "AudioValidationResult",
+            "validateAudioFile",
+            "getAcceptedFileTypes",
+            "async"
+        ],
+        "classes": []
+    },
+    "src/utils/audio/error-handler.ts": {
+        "language": "typescript",
+        "functions": [
+            "ErrorLogData",
+            "AudioProcessingError",
+            "createErrorLog",
+            "handleAudioError"
+        ],
+        "classes": []
+    },
+    "src/utils/audio/processing.ts": {
+        "language": "typescript",
+        "functions": [
+            "AudioProcessingResult",
+            "async"
+        ],
+        "classes": []
+    },
+    "src/utils/audio/logger.ts": {
+        "language": "typescript",
+        "functions": [
+            "logger"
+        ],
+        "classes": []
+    },
+    "src/utils/audio/index.ts": {
+        "language": "typescript",
+        "functions": [],
+        "classes": []
+    },
+    "src/utils/text/processing.ts": {
+        "language": "typescript",
+        "functions": [
+            "ProcessedBlock",
+            "concatenateTextBlocks"
+        ],
+        "classes": []
+    },
+    "src/components/NodeConnections.tsx": {
+        "language": "typescript",
+        "functions": [
+            "NodeConnections"
+        ],
+        "classes": []
+    },
+    "src/components/EntitySummaryModal.tsx": {
+        "language": "typescript",
+        "functions": [
+            "EntitySummaryModal"
+        ],
+        "classes": []
+    },
+    "src/components/ProcessStatus.tsx": {
+        "language": "typescript",
+        "functions": [
+            "ProcessStatus"
+        ],
+        "classes": []
+    },
+    "src/components/DebugPanel.tsx": {
+        "language": "typescript",
+        "functions": [
+            "DebugPanel"
+        ],
+        "classes": []
+    },
+    "src/components/Graph.tsx": {
+        "language": "typescript",
+        "functions": [
+            "Graph"
+        ],
+        "classes": []
+    },
+    "src/components/InputSection.tsx": {
+        "language": "typescript",
+        "functions": [
+            "InputSection"
+        ],
+        "classes": []
+    },
+    "src/components/MeetingCard.tsx": {
+        "language": "typescript",
+        "functions": [
+            "MeetingCard"
+        ],
+        "classes": []
+    },
+    "src/components/Sidebar.tsx": {
+        "language": "typescript",
+        "functions": [
+            "Sidebar"
+        ],
+        "classes": []
+    },
+    "src/components/SummaryViewer.tsx": {
+        "language": "typescript",
+        "functions": [
+            "SummaryViewer"
+        ],
+        "classes": []
+    },
+    "src/components/NodeSidebar.tsx": {
+        "language": "typescript",
+        "functions": [
+            "NodeSidebar"
+        ],
+        "classes": []
+    },
+    "src/components/TranscriptionControls/index.tsx": {
+        "language": "typescript",
+        "functions": [
+            "TranscriptionControls",
+            "as"
+        ],
+        "classes": []
+    },
+    "src/components/TranscriptionControls/ExportButton.tsx": {
+        "language": "typescript",
+        "functions": [
+            "ExportButton"
+        ],
+        "classes": []
+    },
+    "src/components/TranscriptionControls/CopyButton.tsx": {
+        "language": "typescript",
+        "functions": [
+            "CopyButton"
+        ],
+        "classes": []
+    },
+    "src/components/FileUpload/index.tsx": {
+        "language": "typescript",
+        "functions": [
+            "FileUpload"
+        ],
+        "classes": []
+    },
+    "src/components/FileUpload/DropZone.tsx": {
+        "language": "typescript",
+        "functions": [
+            "DropZone"
+        ],
+        "classes": []
+    },
+    "src/components/FileUpload/UploadProgress.tsx": {
+        "language": "typescript",
+        "functions": [
+            "UploadProgress"
+        ],
+        "classes": []
+    },
+    "src/components/calendar/WeekHeader.tsx": {
+        "language": "typescript",
+        "functions": [
+            "WeekHeader"
+        ],
+        "classes": []
+    },
+    "src/components/calendar/FilterDropdown.tsx": {
+        "language": "typescript",
+        "functions": [
+            "FilterDropdown"
+        ],
+        "classes": []
+    },
+    "src/components/TranscriptionViewer/index.tsx": {
+        "language": "typescript",
+        "functions": [
+            "TranscriptionViewer"
+        ],
+        "classes": []
+    },
+    "src/components/TranscriptionViewer/TranscriptionHeader.tsx": {
+        "language": "typescript",
+        "functions": [
+            "TranscriptionHeader"
+        ],
+        "classes": []
+    },
+    "src/components/TranscriptionViewer/SpeakerEntry.tsx": {
+        "language": "typescript",
+        "functions": [
+            "SpeakerEntry"
+        ],
+        "classes": []
+    },
+    "src/components/TranscriptionViewer/TranscriptionStats.tsx": {
+        "language": "typescript",
+        "functions": [
+            "TranscriptionStats"
+        ],
+        "classes": []
+    },
+    "src/components/controls/FilterPanel.tsx": {
+        "language": "typescript",
+        "functions": [
+            "FilterPanel"
+        ],
+        "classes": []
+    },
+    "src/components/controls/TopEntitiesPanel.tsx": {
+        "language": "typescript",
+        "functions": [
+            "TopEntitiesPanel"
+        ],
+        "classes": []
+    },
+    "src/hooks/useProcessStatus.ts": {
+        "language": "typescript",
+        "functions": [
+            "useProcessStatus"
+        ],
+        "classes": []
+    },
+    "src/hooks/useTranscriptionUpload.ts": {
+        "language": "typescript",
+        "functions": [
+            "useTranscriptionUpload"
+        ],
+        "classes": []
+    },
+    "src/pages/UploadPage.tsx": {
+        "language": "typescript",
+        "functions": [
+            "UploadPage"
+        ],
+        "classes": []
+    },
+    "src/pages/MeetingHistory.tsx": {
+        "language": "typescript",
+        "functions": [
+            "MeetingHistory"
+        ],
+        "classes": []
+    },
+    "src/pages/APITestPage.tsx": {
+        "language": "typescript",
+        "functions": [
+            "APITestPage"
+        ],
+        "classes": []
+    },
+    "src/pages/ChatPage.tsx": {
+        "language": "typescript",
+        "functions": [
+            "ChatPage"
+        ],
+        "classes": []
+    },
+    "src/services/transcription/validation.ts": {
+        "language": "typescript",
+        "functions": [
+            "ValidationResult",
+            "validateTranscriptionResponse"
+        ],
+        "classes": []
+    },
+    "src/services/transcription/processing.ts": {
+        "language": "typescript",
+        "functions": [
+            "ProcessedTranscription",
+            "processTranscriptionResponse"
+        ],
+        "classes": []
+    },
+    "src/services/api/errors.ts": {
+        "language": "typescript",
+        "functions": [
+            "APIErrorOptions",
+            "APIError"
+        ],
+        "classes": []
+    },
+    "src/services/api/utils.ts": {
+        "language": "typescript",
+        "functions": [
+            "async"
+        ],
+        "classes": []
+    },
+    "src/services/api/types.ts": {
+        "language": "typescript",
+        "functions": [
+            "APIResponse",
+            "SignedUrlResponse",
+            "APIRequestContext",
+            "UploadProgress",
+            "UploadOptions"
+        ],
+        "classes": []
+    },
+    "src/services/api/knowledgeGraph.ts": {
+        "language": "typescript",
+        "functions": [
+            "async",
+            "async",
+            "async"
+        ],
+        "classes": []
+    },
+    "src/services/api/client.ts": {
+        "language": "typescript",
+        "functions": [
+            "async"
+        ],
+        "classes": []
+    },
+    "src/services/api/index.ts": {
+        "language": "typescript",
+        "functions": [],
+        "classes": []
+    },
+    "src/services/api/upload.ts": {
+        "language": "typescript",
+        "functions": [
+            "async",
+            "async"
+        ],
+        "classes": []
+    },
+    "src/services/api/transcription.ts": {
+        "language": "typescript",
+        "functions": [
+            "async",
+            "async"
+        ],
+        "classes": []
+    },
+    "src/store/transcription.ts": {
+        "language": "typescript",
+        "functions": [
+            "useTranscriptionStore"
+        ],
+        "classes": []
+    }
 }
 ```
 
@@ -29433,29 +30656,35 @@ validation.ts
 // src/App.tsx
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Sidebar } from './components/Sidebar';
 import { UploadPage } from './pages/UploadPage';
 import { MeetingHistory } from './pages/MeetingHistory';
 import { ChatPage } from './pages/ChatPage';
+import { APITestPage } from './pages/APITestPage';
+import { Sidebar } from './components/Sidebar'; // Navigation Sidebar
+import { DebugPanel } from './components/DebugPanel';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-50 flex">
+    <div className="min-h-screen bg-[#1A1A1A] text-white flex">
+      {/* Navigation Sidebar */}
       <Sidebar />
-      <div className="flex-1 p-6">
+
+      {/* Main Content Area */}
+      <div className="flex-1 relative">
         <Routes>
-          <Route path="/" element={<Navigate to="/upload" replace />} />
           <Route path="/upload" element={<UploadPage />} />
           <Route path="/history" element={<MeetingHistory />} />
           <Route path="/chat" element={<ChatPage />} />
+          <Route path="/api-test" element={<APITestPage />} />
+          <Route path="*" element={<Navigate to="/upload" replace />} />
         </Routes>
+        <DebugPanel />
       </div>
     </div>
   );
 }
 
 export default App;
-
 ```
 
 ### src/main.tsx
@@ -29479,23 +30708,43 @@ createRoot(document.getElementById('root')!).render(
 
 ### src/.DS_Store
 
+Error reading file.
 
-Error: Could not read file content
+### src/asd.json
 
+```
+
+```
 
 ### src/index.css
 
 ```css
-/* src/index.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+html {
+  color-scheme: dark;
+}
+body {
+  @apply bg-gray-900 text-gray-100;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 4px;
+}
 ```
 
 ### src/vite-env.d.ts
 
 ```typescript
-// src/vite-env.d.ts
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
@@ -29510,6 +30759,46 @@ interface Window {
   AudioContext: typeof AudioContext
   webkitAudioContext: typeof AudioContext
 }
+```
+
+### src/types/graph.ts
+
+```typescript
+export interface Entity {
+    name: string;
+    type: string;
+    description: string;
+    meeting_id: string;
+    created_at: number;
+  }
+  
+  export interface Relationship {
+    source: string;
+    target: string;
+    description: string;
+    keywords: string[];
+    strength: number;
+    meeting_id: string;
+    created_at: number;
+  }
+  
+  export interface GraphData {
+    graph: {
+      entities: Entity[];
+      relationships: Relationship[];
+    };
+  }
+  
+  export interface ProcessedNode extends Entity {
+    id: string;
+    connections: number;
+  }
+  
+  export interface ProcessedLink extends Omit<Relationship, 'source' | 'target'> {
+    id: string;
+    source: ProcessedNode;
+    target: ProcessedNode;
+  }
 ```
 
 ### src/types/index.ts
@@ -29531,6 +30820,25 @@ export interface TranscriptionResponse {
     }[];
     text: string;
   };
+}
+
+export interface KnowledgeGraphEntity {
+  name: string;
+  type: string;
+  description: string;
+}
+
+export interface KnowledgeGraphRelationship {
+  source: string;
+  target: string;
+  description: string;
+  keywords: string[];
+  strength: number;
+}
+
+export interface KnowledgeGraph {
+  entities: KnowledgeGraphEntity[];
+  relationships: KnowledgeGraphRelationship[];
 }
 
 export type ExportFormat = 'txt' | 'md' | 'pdf' | 'docx' | 'rtf';
@@ -29559,20 +30867,43 @@ export interface TranscriptionState {
   error: ProcessError | null;
   transcription: TranscriptionResponse | null;
   speakerMap: Record<string, string>;
+  knowledgeGraph: KnowledgeGraph | null;
+  summary: string | null;
+
   setSpeakerName: (speaker: string, name: string) => void;
   setFile: (file: File) => void;
   setFileId: (id: string) => void;
   setStatus: (status: ProcessStatus) => void;
   setError: (error: ProcessError | null) => void;
   setTranscription: (transcription: TranscriptionResponse) => void;
+  setKnowledgeGraph: (kg: KnowledgeGraph | null) => void;
+  setSummary: (summary: string | null) => void;
   reset: () => void;
 }
+
+export interface EntityMapResponse {
+  graph: KnowledgeGraph;
+}
+
+export interface EntityMapRequest {
+  text: string;
+}
+
+export interface SummarizeRequest {
+  text: string;
+  knowledge_graph: KnowledgeGraph;
+  system_prompt: string;
+}
+
+export interface SummarizeResponse {
+  summary: string;
+}
+
 ```
 
 ### src/config/audio.ts
 
 ```typescript
-// src/config/audio.ts
 export const AUDIO_CONFIG = {
   FORMATS: {
     'audio/mpeg': ['.mp3'],
@@ -29588,16 +30919,15 @@ export const AUDIO_CONFIG = {
     'audio/flac': ['.flac'],
     'audio/x-flac': ['.flac']
   },
-  MAX_FILE_SIZE: 500 * 1024 * 1024, // 500MB
-  MIN_FILE_SIZE: 1024, // 1KB
-  PREVIEW_CHUNK_SIZE: 256 * 1024, // 256KB
+  MAX_FILE_SIZE: 500 * 1024 * 1024,
+  MIN_FILE_SIZE: 1024,
+  PREVIEW_CHUNK_SIZE: 256 * 1024,
 } as const;
 ```
 
 ### src/config/api.ts
 
 ```typescript
-// src/config/api.ts
 import { ENV } from './env';
 
 export const API_CONFIG = {
@@ -29623,7 +30953,7 @@ export const API_CONFIG = {
       'Content-Type': 'application/octet-stream',
     },
   },
-  timeout: 600000, // 10 minutes
+  timeout: 600000,
   polling: {
     interval: 5000,
     maxAttempts: 60,
@@ -29687,6 +31017,7 @@ export const LOG_CONFIG = {
 export const PROCESS_STEPS = {
   VALIDATION: {
     start: 'Starting file validation',
+    progress: 'Validation in progress', // Added this line
     success: 'File validation successful',
     error: 'File validation failed'
   },
@@ -29710,19 +31041,15 @@ export const PROCESS_STEPS = {
 ```
 VITE_API_KEY=FySHbrXGZ_xVV53LJgTdrl__Iko-Hh7QS2r7uia3kro
 VITE_API_URL=https://api-service-1040094048579.us-central1.run.app
+VITE_API_KEY_SECONDARY=FySHbrXGZ_xVV53LJgTdrl__Iko-Hh7QS2r7uia3kro
+VITE_API_URL_SECONDARY=https://meeting-minutes-service-1040094048579.us-central1.run.app
 ```
 
 ### src/config/env.ts
 
 ```typescript
 // src/config/env.ts
-import { logger } from '../utils/logger';
-
-// Instead of using import.meta.env directly, we can rely on vite to define them as global vars via define or just cast
-// Or ensure that tsconfig module is set to esnext and vite is configured properly.
-// Given that we've set module to esnext now, import.meta should be allowed.
-
-// After setting "module": "esnext" in tsconfig.json, we can leave this code as is:
+import { logger } from '../utils/logger/core';
 
 const getEnvVar = (key: string): string => {
   const value = import.meta.env[key];
@@ -29735,15 +31062,49 @@ const getEnvVar = (key: string): string => {
 
 export const ENV = {
   API_URL: import.meta.env.VITE_API_URL || 'https://api-service-1040094048579.us-central1.run.app',
+  API_URL_SECONDARY: import.meta.env.VITE_API_URL_SECONDARY || 'https://meeting-minutes-service-1040094048579.us-central1.run.app',
   API_KEY: getEnvVar('VITE_API_KEY'),
+  API_KEY_SECONDARY: getEnvVar('VITE_API_KEY_SECONDARY'),
   IS_DEV: import.meta.env.DEV,
 } as const;
 
 logger.info('Environment configuration loaded', {
   API_URL: ENV.API_URL,
+  API_URL_SECONDARY: ENV.API_URL_SECONDARY,
   IS_DEV: ENV.IS_DEV,
-  HAS_API_KEY: !!ENV.API_KEY
+  HAS_API_KEY: !!ENV.API_KEY,
+  HAS_API_KEY_SECONDARY: !!ENV.API_KEY_SECONDARY
 });
+
+```
+
+### src/utils/colors.ts
+
+```typescript
+export const ENTITY_COLORS = [
+    '#FF6B6B',
+    '#4ECDC4',
+    '#45B7D1',
+    '#96CEB4',
+    '#FFEEAD',
+    '#D4A5A5',
+    '#9ED2C6',
+    '#FFD93D',
+    '#FF9A8B',
+    '#98DDCA',
+    '#D4A5FF',
+    '#FF8B94',
+    '#91A6FF',
+    '#88D8B0',
+    '#FFAAA5',
+    '#B5EAD7',
+    '#C7CEEA',
+    '#E2F0CB',
+    '#FFDAC1',
+    '#E0BBE4',
+  ];
+  
+  export const DEFAULT_COLOR = '#607D8B';
 ```
 
 ### src/utils/audio.ts
@@ -29770,6 +31131,31 @@ export {
   getAcceptedFileTypes,
   // Logger
   logger as audioLogger,
+};
+```
+
+### src/utils/entityColors.ts
+
+```typescript
+import { ENTITY_COLORS, DEFAULT_COLOR } from './colors';
+import { ProcessedNode } from '../types/graph';
+
+export const getEntityColorMap = (nodes: ProcessedNode[]) => {
+  const typeCounts = nodes.reduce((acc, node) => {
+    acc[node.type] = (acc[node.type] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
+  const sortedTypes = Object.entries(typeCounts)
+    .sort(([, a], [, b]) => b - a)
+    .map(([type]) => type);
+
+  const colorMap = new Map<string, string>();
+  sortedTypes.forEach((type, index) => {
+    colorMap.set(type, index < ENTITY_COLORS.length ? ENTITY_COLORS[index] : DEFAULT_COLOR);
+  });
+
+  return colorMap;
 };
 ```
 
@@ -29892,134 +31278,6 @@ export async function exportTranscription(
 }
 ```
 
-### src/utils/logger.ts
-
-```typescript
-import { LOG_CONFIG } from '../config/constants';
-
-type LogLevel = typeof LOG_CONFIG.LEVELS[keyof typeof LOG_CONFIG.LEVELS];
-
-interface LogEntry {
-  id: string;
-  timestamp: string;
-  level: LogLevel;
-  message: string;
-  data?: unknown;
-  error?: Error;
-  context?: Record<string, unknown>;
-}
-
-class Logger {
-  private static instance: Logger;
-  private logs: LogEntry[] = [];
-  private readonly isDevelopment = import.meta.env.DEV;
-  private readonly maxLogs = LOG_CONFIG.MAX_LOGS;
-
-  private constructor() {
-    this.info('Logger initialized', { isDevelopment: this.isDevelopment });
-  }
-
-  static getInstance(): Logger {
-    if (!Logger.instance) {
-      Logger.instance = new Logger();
-    }
-    return Logger.instance;
-  }
-
-  private generateId(): string {
-    return Math.random().toString(36).substring(2, 15);
-  }
-
-  private createEntry(
-    level: LogLevel,
-    message: string,
-    error?: Error,
-    data?: unknown,
-    context?: Record<string, unknown>
-  ): LogEntry {
-    return {
-      id: this.generateId(),
-      timestamp: new Date().toISOString(),
-      level,
-      message,
-      error,
-      data,
-      context
-    };
-  }
-
-  private addLog(entry: LogEntry): void {
-    this.logs.unshift(entry);
-    if (this.logs.length > this.maxLogs) {
-      this.logs.pop();
-    }
-
-    if (this.isDevelopment) {
-      const prefix = `[${entry.level.toUpperCase()}]`;
-      const style = LOG_CONFIG.COLORS[entry.level];
-      
-      console.groupCollapsed(
-        `%c${prefix} %c${entry.message}`,
-        `color: ${style}; font-weight: bold`,
-        'color: inherit'
-      );
-      
-      if (entry.data) {
-        console.log('Data:', entry.data);
-      }
-      
-      if (entry.context) {
-        console.log('Context:', entry.context);
-      }
-      
-      if (entry.error) {
-        console.error('Error:', entry.error);
-        if (entry.error.stack) {
-          console.log('Stack:', entry.error.stack);
-        }
-      }
-      
-      console.groupEnd();
-    }
-  }
-
-  debug(message: string, data?: unknown, context?: Record<string, unknown>): void {
-    this.addLog(this.createEntry(LOG_CONFIG.LEVELS.DEBUG, message, undefined, data, context));
-  }
-
-  info(message: string, data?: unknown, context?: Record<string, unknown>): void {
-    this.addLog(this.createEntry(LOG_CONFIG.LEVELS.INFO, message, undefined, data, context));
-  }
-
-  warn(message: string, data?: unknown, context?: Record<string, unknown>): void {
-    this.addLog(this.createEntry(LOG_CONFIG.LEVELS.WARN, message, undefined, data, context));
-  }
-
-  error(message: string, error: Error, context?: Record<string, unknown>): void {
-    this.addLog(this.createEntry(LOG_CONFIG.LEVELS.ERROR, message, error, undefined, context));
-  }
-
-  getLogs(): LogEntry[] {
-    return [...this.logs];
-  }
-
-  getLogsByLevel(level: LogLevel): LogEntry[] {
-    return this.logs.filter(log => log.level === level);
-  }
-
-  getErrorLogs(): LogEntry[] {
-    return this.getLogsByLevel(LOG_CONFIG.LEVELS.ERROR);
-  }
-
-  clearLogs(): void {
-    this.logs = [];
-    this.info('Logs cleared');
-  }
-}
-
-export const logger = Logger.getInstance();
-```
-
 ### src/utils/format.ts
 
 ```typescript
@@ -30049,16 +31307,83 @@ export function formatFileSize(bytes: number): string {
 }
 ```
 
+### src/utils/processGraphData.ts
+
+```typescript
+import { GraphData, ProcessedNode, ProcessedLink } from '../types/graph';
+
+export const processGraphData = (data: GraphData) => {
+  const nodes = new Map<string, ProcessedNode>();
+  const links: ProcessedLink[] = [];
+
+  data.graph.entities.forEach((entity) => {
+    nodes.set(entity.name, {
+      ...entity,
+      id: entity.name,
+      connections: 0,
+    });
+  });
+
+  data.graph.relationships.forEach((rel) => {
+    const sourceNode = nodes.get(rel.source);
+    const targetNode = nodes.get(rel.target);
+
+    if (sourceNode && targetNode) {
+      sourceNode.connections++;
+      targetNode.connections++;
+
+      links.push({
+        ...rel,
+        id: `${rel.source}-${rel.target}`,
+        source: sourceNode,
+        target: targetNode,
+      });
+    }
+  });
+
+  return {
+    nodes: Array.from(nodes.values()),
+    links,
+  };
+};
+```
+
+### src/utils/keywords.ts
+
+```typescript
+import { ProcessedLink } from '../types/graph';
+
+interface KeywordCount {
+  keyword: string;
+  count: number;
+}
+
+export const extractKeywords = (links: ProcessedLink[]): KeywordCount[] => {
+  const keywordCounts = new Map<string, number>();
+  
+  links.forEach(link => {
+    link.keywords.forEach(keyword => {
+      keywordCounts.set(keyword, (keywordCounts.get(keyword) || 0) + 1);
+    });
+  });
+  
+  return Array.from(keywordCounts.entries())
+    .map(([keyword, count]) => ({ keyword, count }))
+    .sort((a, b) => b.count - a.count);
+};
+```
+
 ### src/utils/logger/status.ts
 
 ```typescript
+// src/utils/logger/status.ts
 import { LOG_CONFIG, PROCESS_STEPS } from '../../config/constants';
 import { logger } from './core';
 import type { ProcessStatus } from '../../types';
 
 export function logStatusChange(from: ProcessStatus, to: ProcessStatus): void {
-  logger.info('Status change', { 
-    from, 
+  logger.info('Status change', {
+    from,
     to,
     fromMessage: LOG_CONFIG.STATUS_MESSAGES[from],
     toMessage: LOG_CONFIG.STATUS_MESSAGES[to]
@@ -30070,8 +31395,9 @@ export function logProcessStep(
   status: 'start' | 'progress' | 'success' | 'error',
   details?: Record<string, unknown>
 ): void {
-  const message = PROCESS_STEPS[step][status];
-  
+  // After updating PROCESS_STEPS so all steps have all keys (start, progress, success, error):
+  const message = PROCESS_STEPS[step][status]; // Now safe, as all keys exist
+
   switch (status) {
     case 'start':
       logger.info(message, details);
@@ -30127,10 +31453,9 @@ class Logger {
   private constructor() {
     this.config = {
       maxLogs: LOG_CONFIG.MAX_LOGS,
-      isDevelopment: import.meta.env.DEV
+      isDevelopment: true // For consistent logging in dev
     };
-    // Initialize with a startup log
-    this.info('Logger initialized', { isDevelopment: this.config.isDevelopment });
+    this.info('Logger initialized', { forcedLogging: true });
   }
 
   static getInstance(): Logger {
@@ -30155,10 +31480,10 @@ class Logger {
       id: this.generateId(),
       timestamp: new Date().toISOString(),
       level,
-      message: String(message),
+      message
     };
 
-    if (error !== undefined) entry.error = error;
+    if (error) entry.error = error;
     if (data !== undefined) entry.data = data;
     if (context !== undefined) entry.context = context;
 
@@ -30167,21 +31492,13 @@ class Logger {
 
   private addLog(entry: LogEntry): void {
     try {
-      // Add to the beginning of the array for chronological order
       this.logs.unshift(entry);
-      
-      // Trim logs if we exceed the maximum
       if (this.logs.length > this.config.maxLogs) {
         this.logs.pop();
       }
-
-      // Format and display in console if in development
-      if (this.config.isDevelopment) {
-        formatLogEntry(entry);
-      }
-    } catch (error) {
-      // Fallback error handling if logging fails
-      console.error('Failed to add log entry:', error);
+      formatLogEntry(entry);
+    } catch (err) {
+      console.error('Failed to add log entry:', err);
       console.error('Problematic entry:', {
         ...entry,
         error: entry.error ? {
@@ -30193,28 +31510,24 @@ class Logger {
   }
 
   debug(message: string, data?: unknown, context?: Record<string, unknown>): void {
-    this.addLog(
-      this.createEntry(LOG_CONFIG.LEVELS.DEBUG, message, undefined, data, context)
-    );
+    console.log(`[DEBUG STDOUT] ${message}`, data, context);
+    this.addLog(this.createEntry(LOG_CONFIG.LEVELS.DEBUG, message, undefined, data, context));
   }
 
   info(message: string, data?: unknown, context?: Record<string, unknown>): void {
-    this.addLog(
-      this.createEntry(LOG_CONFIG.LEVELS.INFO, message, undefined, data, context)
-    );
+    console.log(`[INFO STDOUT] ${message}`, data, context);
+    this.addLog(this.createEntry(LOG_CONFIG.LEVELS.INFO, message, undefined, data, context));
   }
 
   warn(message: string, data?: unknown, context?: Record<string, unknown>): void {
-    this.addLog(
-      this.createEntry(LOG_CONFIG.LEVELS.WARN, message, undefined, data, context)
-    );
+    console.warn(`[WARN STDOUT] ${message}`, data, context);
+    this.addLog(this.createEntry(LOG_CONFIG.LEVELS.WARN, message, undefined, data, context));
   }
 
-  error(message: string, error: Error | unknown, context?: Record<string, unknown>): void {
+  error(message: string, error: unknown, context?: Record<string, unknown>): void {
     const normalizedError = error instanceof Error ? error : new Error(String(error));
-    this.addLog(
-      this.createEntry(LOG_CONFIG.LEVELS.ERROR, message, normalizedError, undefined, context)
-    );
+    console.error(`[ERROR STDOUT] ${message}`, normalizedError, context);
+    this.addLog(this.createEntry(LOG_CONFIG.LEVELS.ERROR, message, normalizedError, undefined, context));
   }
 
   getLogs(): LogEntry[] {
@@ -30235,23 +31548,32 @@ class Logger {
   }
 }
 
-// Export the singleton instance
 export const logger = Logger.getInstance();
 ```
 
 ### src/utils/logger/index.ts
 
 ```typescript
+import type { LOG_CONFIG } from '../../config/constants';
 import { logger } from './core';
-import type { LogEntry, LogLevel, LoggerConfig } from './types';
+export { logger };
+export type LogLevel = typeof LOG_CONFIG.LEVELS[keyof typeof LOG_CONFIG.LEVELS];
 
-export {
-  logger,
-  // Types
-  LogEntry,
-  LogLevel,
-  LoggerConfig
-};
+
+export interface LogEntry {
+  id: string;
+  timestamp: string;
+  level: LogLevel;
+  message: string;
+  data?: unknown;
+  error?: Error;
+  context?: Record<string, unknown>;
+}
+
+export interface LoggerConfig {
+  maxLogs: number;
+  isDevelopment: boolean;
+}
 ```
 
 ### src/utils/logger/formatter.ts
@@ -30263,7 +31585,7 @@ import type { LogEntry } from './types';
 function stringifyValue(value: unknown): string {
   try {
     return JSON.stringify(value, null, 2);
-  } catch (error) {
+  } catch {
     return String(value);
   }
 }
@@ -30272,31 +31594,21 @@ export function formatLogEntry(entry: LogEntry): void {
   const timestamp = new Date(entry.timestamp).toLocaleTimeString();
   const prefix = `[${timestamp}] [${entry.level.toUpperCase()}]`;
   const style = LOG_CONFIG.STYLES[entry.level];
-  
+
   console.groupCollapsed(
     `%c${prefix}%c ${entry.message}`,
     style,
     'color: inherit'
   );
-  
+
   if (entry.data !== undefined) {
-    console.log(
-      '%cData:%c\n',
-      'color: #4B5563; font-weight: bold',
-      'color: inherit',
-      stringifyValue(entry.data)
-    );
+    console.log('%cData:%c\n', 'color: #4B5563; font-weight: bold', 'color: inherit', stringifyValue(entry.data));
   }
-  
+
   if (entry.context) {
-    console.log(
-      '%cContext:%c\n',
-      'color: #4B5563; font-weight: bold',
-      'color: inherit',
-      stringifyValue(entry.context)
-    );
+    console.log('%cContext:%c\n', 'color: #4B5563; font-weight: bold', 'color: inherit', stringifyValue(entry.context));
   }
-  
+
   if (entry.error) {
     console.group('%cError Details:', 'color: #DC2626; font-weight: bold');
     console.error(entry.error);
@@ -30308,7 +31620,7 @@ export function formatLogEntry(entry: LogEntry): void {
     }
     console.groupEnd();
   }
-  
+
   console.groupEnd();
 }
 ```
@@ -30316,7 +31628,8 @@ export function formatLogEntry(entry: LogEntry): void {
 ### src/utils/audio/validation.ts
 
 ```typescript
-import { AUDIO_CONFIG } from './constants';
+// src/utils/audio/validation.ts
+import { AUDIO_CONFIG } from '../../config/audio';
 import { logger } from './logger';
 import { handleAudioError } from './error-handler';
 import { processAudioChunk } from './processing';
@@ -30494,6 +31807,7 @@ export function handleAudioError(error: Error, file?: File, context?: Record<str
 ### src/utils/audio/processing.ts
 
 ```typescript
+// src/utils/audio/processing.ts
 import { logger } from './logger';
 import { handleAudioError } from './error-handler';
 
@@ -30507,8 +31821,8 @@ export interface AudioProcessingResult {
 export async function processAudioChunk(chunk: ArrayBuffer): Promise<AudioProcessingResult> {
   logger.debug('Processing audio chunk', { size: chunk.byteLength });
 
+  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
   try {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     const audioBuffer = await audioContext.decodeAudioData(chunk);
 
     logger.debug('Audio chunk processed', {
@@ -30532,11 +31846,7 @@ export async function processAudioChunk(chunk: ArrayBuffer): Promise<AudioProces
       isValid: false
     };
   } finally {
-    // Clean up AudioContext
-    if (window.AudioContext || window.webkitAudioContext) {
-      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      await audioContext.close();
-    }
+    await audioContext.close();
   }
 }
 ```
@@ -30599,32 +31909,6 @@ class Logger {
 }
 
 export const logger = Logger.getInstance();
-```
-
-### src/utils/audio/constants.ts
-
-```typescript
-export const AUDIO_CONFIG = {
-  FORMATS: {
-    // Common formats
-    'audio/mpeg': ['.mp3'],
-    'audio/wav': ['.wav'],
-    'audio/wave': ['.wav'],
-    'audio/x-wav': ['.wav'],
-    'audio/mp4': ['.m4a', '.mp4a'],
-    'audio/x-m4a': ['.m4a'],
-    // Additional formats
-    'audio/aac': ['.aac'],
-    'audio/ogg': ['.ogg', '.oga'],
-    'audio/webm': ['.weba'],
-    'audio/x-aiff': ['.aif', '.aiff'],
-    'audio/flac': ['.flac'],
-    'audio/x-flac': ['.flac'],
-  },
-  MAX_FILE_SIZE: 500 * 1024 * 1024, // 500MB
-  MIN_FILE_SIZE: 1024, // 1KB
-  PREVIEW_CHUNK_SIZE: 256 * 1024, // 256KB for audio preview validation
-} as const;
 ```
 
 ### src/utils/audio/index.ts
@@ -30726,11 +32010,177 @@ export function concatenateTextBlocks(speakers: Speaker[]): ProcessedBlock[] {
 }
 ```
 
-### src/components/ProcessStatus.tsx
+### src/components/NodeConnections.tsx
 
 ```typescript
 import React from 'react';
-import { Loader2 } from 'lucide-react';
+import { ProcessedLink, ProcessedNode } from '../types/graph';
+
+interface NodeConnectionsProps {
+  node: ProcessedNode;
+  links: ProcessedLink[];
+  nodes: ProcessedNode[];
+  colorMap: Map<string, string>;
+}
+
+export const NodeConnections: React.FC<NodeConnectionsProps> = ({
+  node,
+  links,
+  nodes,
+  colorMap,
+}) => {
+  const nodeConnections = links.filter(
+    (link) => link.source.id === node.id || link.target.id === node.id
+  );
+
+  return (
+    <div className="space-y-4">
+      <h3 className="text-lg font-semibold border-b border-gray-700 pb-2">
+        Connections ({nodeConnections.length})
+      </h3>
+      <div className="space-y-3 max-h-[calc(100vh-400px)] overflow-y-auto pr-2">
+        {nodeConnections.map((connection) => {
+          const isSource = connection.source.id === node.id;
+          const connectedNode = isSource ? connection.target : connection.source;
+          const connectionKey = `${connection.id}-${isSource ? 'source' : 'target'}`;
+
+          return (
+            <div
+              key={connectionKey}
+              className="bg-gray-800 rounded-lg p-4 space-y-2"
+            >
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <div
+                    className="w-3 h-3 rounded-full"
+                    style={{ backgroundColor: colorMap.get(connectedNode.type) }}
+                  />
+                  <span className="font-medium">{connectedNode.name}</span>
+                </div>
+                <span className="text-sm text-gray-400 capitalize">
+                  {connectedNode.type}
+                </span>
+              </div>
+              
+              <div className="flex items-center text-sm text-gray-400 mt-1">
+                <span className="flex-1 text-center">
+                  {isSource ? 'Connects to' : 'Connected from'}
+                </span>
+              </div>
+              
+              <p className="text-sm text-gray-300">{connection.description}</p>
+              
+              <div className="flex flex-wrap gap-2 mt-2">
+                {connection.keywords.map((keyword) => (
+                  <span
+                    key={`${connectionKey}-${keyword}`}
+                    className="px-2 py-1 text-xs bg-gray-700 rounded-full"
+                  >
+                    {keyword}
+                  </span>
+                ))}
+              </div>
+              
+              <div className="flex justify-between text-sm text-gray-400 mt-2">
+                <span>Strength: {connection.strength}</span>
+                <span>{new Date(connection.created_at).toLocaleDateString()}</span>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+```
+
+### src/components/EntitySummaryModal.tsx
+
+```typescript
+// src/components/EntitySummaryModal.tsx
+import React from 'react';
+import { X } from 'lucide-react';
+import type { KnowledgeGraph } from '../types';
+
+interface EntitySummaryModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  summary?: string | null;
+  knowledgeGraph?: KnowledgeGraph | null;
+}
+
+export function EntitySummaryModal({ isOpen, onClose, summary, knowledgeGraph }: EntitySummaryModalProps) {
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+      <div className="bg-gray-800 w-full max-w-2xl rounded-lg shadow-lg p-6 relative text-gray-200">
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 p-1 text-gray-400 hover:bg-gray-700 rounded-full"
+          aria-label="Close"
+        >
+          <X className="w-5 h-5" />
+        </button>
+
+        <h2 className="text-xl font-bold mb-4">Extracted Summary & Entities</h2>
+        
+        {summary && (
+          <div className="mb-6">
+            <h3 className="text-lg font-semibold mb-2 text-gray-200">Summary</h3>
+            <p className="text-gray-300 whitespace-pre-line">
+              {summary}
+            </p>
+          </div>
+        )}
+        
+        {knowledgeGraph?.entities && knowledgeGraph.entities.length > 0 && (
+          <div className="mb-6">
+            <h3 className="text-lg font-semibold mb-2 text-gray-200">Entities</h3>
+            <ul className="list-disc list-inside text-gray-300 space-y-1">
+              {knowledgeGraph.entities.map((e, i) => (
+                <li key={i}>
+                  <span className="font-semibold text-gray-200">{e.name}</span> ({e.type}): {e.description}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {knowledgeGraph?.relationships && knowledgeGraph.relationships.length > 0 && (
+          <div className="mb-6">
+            <h3 className="text-lg font-semibold mb-2 text-gray-200">Relationships</h3>
+            <ul className="list-disc list-inside text-gray-300 space-y-1">
+              {knowledgeGraph.relationships.map((r, i) => (
+                <li key={i}>
+                  <span className="font-semibold text-gray-200">{r.source}</span> → <span className="font-semibold text-gray-200">{r.target}</span>: {r.description} (Keywords: {r.keywords.join(', ')}, Strength: {r.strength})
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        <div className="text-right">
+          <button
+            onClick={onClose}
+            className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+```
+
+### src/components/ProcessStatus.tsx
+
+```typescript
+// src/components/ProcessStatus.tsx
+import React from 'react';
+import { Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import type { ProcessStatus } from '../types';
 
 const statusMessages: Record<ProcessStatus, string> = {
@@ -30745,103 +32195,24 @@ const statusMessages: Record<ProcessStatus, string> = {
   error: 'An error occurred'
 };
 
-interface ProcessStatusProps {
-  status: ProcessStatus;
-}
-
-export function ProcessStatus({ status }: ProcessStatusProps) {
+export function ProcessStatus({ status }: { status: ProcessStatus }) {
   const message = statusMessages[status];
-  const isProcessing = status !== 'completed' && status !== 'error' && status !== 'idle';
+  const isProcessing = !['completed', 'error', 'idle'].includes(status);
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 text-gray-200">
       {isProcessing && (
-        <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
+        <Loader2 className="w-4 h-4 animate-spin text-blue-400" />
       )}
-      <span className="text-sm font-medium text-gray-700">{message}</span>
-    </div>
-  );
-}
-```
-
-### src/components/TranscriptionViewer.tsx
-
-```typescript
-import React, { useState } from 'react';
-import { Clock, User, Edit2 } from 'lucide-react';
-import { useTranscriptionStore } from '../store/transcription';
-import { formatTimestamp } from '../utils/format';
-
-export function TranscriptionViewer() {
-  const { transcription, speakerMap, setSpeakerName } = useTranscriptionStore();
-  const [showTimestamps, setShowTimestamps] = useState(true);
-  const [editingSpeaker, setEditingSpeaker] = useState<string | null>(null);
-
-  if (!transcription) return null;
-
-  const handleSpeakerEdit = (speaker: string, newName: string) => {
-    setSpeakerName(speaker, newName);
-    setEditingSpeaker(null);
-  };
-
-  return (
-    <div className="bg-white rounded-lg shadow">
-      <div className="p-4 border-b">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold">Transcription</h2>
-          <label className="flex items-center gap-2">
-            <input
-              type="checkbox"
-              checked={showTimestamps}
-              onChange={(e) => setShowTimestamps(e.target.checked)}
-              className="rounded border-gray-300"
-            />
-            <span className="text-sm text-gray-600">Show timestamps</span>
-          </label>
-        </div>
-      </div>
-      <div className="p-4 space-y-4">
-        {transcription.transcription.speakers.map((entry, index) => (
-          <div key={index} className="flex gap-4">
-            <div className="flex-shrink-0 w-32">
-              <div className="flex items-center gap-2">
-                <User className="w-4 h-4 text-gray-400" />
-                {editingSpeaker === entry.speaker ? (
-                  <input
-                    type="text"
-                    defaultValue={speakerMap[entry.speaker] || entry.speaker}
-                    className="w-full px-2 py-1 text-sm border rounded"
-                    onBlur={(e) => handleSpeakerEdit(entry.speaker, e.target.value)}
-                    onKeyDown={(e) => {
-                      if (e.key === 'Enter') {
-                        handleSpeakerEdit(entry.speaker, e.currentTarget.value);
-                      }
-                    }}
-                    autoFocus
-                  />
-                ) : (
-                  <button
-                    onClick={() => setEditingSpeaker(entry.speaker)}
-                    className="flex items-center gap-1 text-sm text-gray-700 hover:text-blue-600"
-                  >
-                    <span>{speakerMap[entry.speaker] || entry.speaker}</span>
-                    <Edit2 className="w-3 h-3" />
-                  </button>
-                )}
-              </div>
-              {showTimestamps && (
-                <div className="flex items-center gap-1 mt-1 text-xs text-gray-400">
-                  <Clock className="w-3 h-3" />
-                  <span>
-                    {formatTimestamp(entry.timestamp[0])}
-                  </span>
-                </div>
-              )}
-            </div>
-            <p className="flex-1 text-gray-800">{entry.text}</p>
-          </div>
-        ))}
-      </div>
+      {status === 'completed' && (
+        <CheckCircle className="w-4 h-4 text-green-400" />
+      )}
+      {status === 'error' && (
+        <AlertCircle className="w-4 h-4 text-red-400" />
+      )}
+      <span className="text-sm font-medium">
+        {message}
+      </span>
     </div>
   );
 }
@@ -30850,76 +32221,78 @@ export function TranscriptionViewer() {
 ### src/components/DebugPanel.tsx
 
 ```typescript
+// src/components/DebugPanel.tsx
 import React, { useState, useEffect, useCallback } from 'react';
 import { Terminal, X, ChevronUp, ChevronDown, RefreshCw } from 'lucide-react';
-import { logger } from '../utils/logger';
+import { logger } from '../utils/logger/index';
 import { LOG_CONFIG } from '../config/constants';
 import type { LogEntry } from '../utils/logger/types';
 
 function LogDisplay({ id, timestamp, level, message, data, error, context }: LogEntry) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const hasDetails = data !== undefined || error || context;
-  
+  const hasDetails = data !== undefined || error !== undefined || context !== undefined;
+
   const colorClass = {
-    [LOG_CONFIG.LEVELS.ERROR]: 'text-red-600',
-    [LOG_CONFIG.LEVELS.WARN]: 'text-yellow-600',
-    [LOG_CONFIG.LEVELS.INFO]: 'text-blue-600',
-    [LOG_CONFIG.LEVELS.DEBUG]: 'text-gray-500'
-  }[level] || 'text-gray-500';
+    [LOG_CONFIG.LEVELS.ERROR]: 'text-red-500',
+    [LOG_CONFIG.LEVELS.WARN]: 'text-yellow-400',
+    [LOG_CONFIG.LEVELS.INFO]: 'text-blue-400',
+    [LOG_CONFIG.LEVELS.DEBUG]: 'text-gray-400'
+  }[level] || 'text-gray-400';
 
   return (
-    <div key={id} className="border-b border-gray-200 py-2">
+    <div className="border-b border-gray-700 py-2">
       <div className="flex items-start gap-2">
-        <span className="text-xs text-gray-400 whitespace-nowrap">
+        <span className="text-xs text-gray-500 whitespace-nowrap">
           {new Date(timestamp).toLocaleTimeString()}
         </span>
         <span className={`text-xs font-medium ${colorClass}`}>
           {level.toUpperCase()}
         </span>
-        <span className="text-xs text-gray-700 break-all">{message}</span>
+        <span className="text-xs text-gray-200 break-all flex-1">{message}</span>
         {hasDetails && (
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="ml-auto p-1 hover:bg-gray-100 rounded shrink-0"
+            className="ml-auto p-1 hover:bg-gray-600 rounded shrink-0"
+            aria-label={isExpanded ? 'Collapse details' : 'Expand details'}
           >
             {isExpanded ? (
-              <ChevronUp className="w-3 h-3" />
+              <ChevronUp className="w-3 h-3 text-gray-300" />
             ) : (
-              <ChevronDown className="w-3 h-3" />
+              <ChevronDown className="w-3 h-3 text-gray-300" />
             )}
           </button>
         )}
       </div>
       {isExpanded && hasDetails && (
-        <div className="mt-2 space-y-2 text-xs">
+        <div className="mt-2 space-y-2 text-xs text-gray-200">
           {context && (
-            <details className="bg-gray-50 rounded p-2" open>
-              <summary className="font-medium text-gray-500 cursor-pointer">Context</summary>
-              <pre className="mt-1 overflow-x-auto whitespace-pre-wrap">
+            <details className="bg-gray-700 rounded p-2" open>
+              <summary className="font-medium text-gray-300 cursor-pointer">Context</summary>
+              <pre className="mt-1 overflow-x-auto whitespace-pre-wrap text-gray-200">
                 {JSON.stringify(context, null, 2)}
               </pre>
             </details>
           )}
           {data !== undefined && (
-            <details className="bg-gray-50 rounded p-2" open>
-              <summary className="font-medium text-gray-500 cursor-pointer">Data</summary>
-              <pre className="mt-1 overflow-x-auto whitespace-pre-wrap">
+            <details className="bg-gray-700 rounded p-2" open>
+              <summary className="font-medium text-gray-300 cursor-pointer">Data</summary>
+              <pre className="mt-1 overflow-x-auto whitespace-pre-wrap text-gray-200">
                 {JSON.stringify(data, null, 2)}
               </pre>
             </details>
           )}
           {error && (
-            <details className="bg-red-50 rounded p-2" open>
-              <summary className="font-medium text-red-500 cursor-pointer">Error</summary>
-              <div className="mt-1">
+            <details className="bg-red-900 rounded p-2" open>
+              <summary className="font-medium text-red-400 cursor-pointer">Error</summary>
+              <div className="mt-1 text-gray-200">
                 <div className="font-medium">Message:</div>
-                <pre className="text-red-600 overflow-x-auto whitespace-pre-wrap">
+                <pre className="text-red-300 overflow-x-auto whitespace-pre-wrap">
                   {error.message}
                 </pre>
                 {error.stack && (
                   <>
                     <div className="font-medium mt-2">Stack:</div>
-                    <pre className="text-red-600 overflow-x-auto whitespace-pre-wrap">
+                    <pre className="text-red-300 overflow-x-auto whitespace-pre-wrap">
                       {error.stack}
                     </pre>
                   </>
@@ -30933,8 +32306,8 @@ function LogDisplay({ id, timestamp, level, message, data, error, context }: Log
   );
 }
 
-export function DebugPanel() {
-  const [isOpen, setIsOpen] = useState(true);
+export const DebugPanel = () => {
+  const [isOpen, setIsOpen] = useState(false);
   const [logs, setLogs] = useState<LogEntry[]>([]);
   const [autoRefresh, setAutoRefresh] = useState(true);
 
@@ -30942,7 +32315,6 @@ export function DebugPanel() {
     setLogs(logger.getLogs());
   }, []);
 
-  // Initialize with a test log to verify logging is working
   useEffect(() => {
     logger.debug('Debug panel initialized', { timestamp: new Date().toISOString() });
     refreshLogs();
@@ -30952,14 +32324,12 @@ export function DebugPanel() {
     if (!isOpen) return;
 
     refreshLogs();
-    
     if (autoRefresh) {
-      const interval = setInterval(refreshLogs, LOG_CONFIG.UPDATE_INTERVAL);
+      const interval = setInterval(refreshLogs, LOG_CONFIG.UPDATE_INTERVAL || 1000);
       return () => clearInterval(interval);
     }
   }, [isOpen, autoRefresh, refreshLogs]);
 
-  // Force development mode check
   if (!import.meta.env.DEV) {
     logger.warn('Debug panel disabled in production');
     return null;
@@ -30968,12 +32338,12 @@ export function DebugPanel() {
   return (
     <div className="fixed bottom-4 right-4 z-50">
       {isOpen ? (
-        <div className="bg-white rounded-lg shadow-lg border w-[32rem] max-h-[600px] flex flex-col">
-          <div className="p-2 border-b flex items-center justify-between bg-gray-50 sticky top-0">
+        <div className="bg-gray-800 rounded-lg shadow-lg border border-gray-700 w-[32rem] max-h-[600px] flex flex-col text-gray-200">
+          <div className="p-2 border-b border-gray-700 flex items-center justify-between bg-gray-700 sticky top-0">
             <div className="flex items-center gap-2">
-              <Terminal className="w-4 h-4" />
+              <Terminal className="w-4 h-4 text-gray-300" />
               <span className="text-sm font-medium">Debug Logs</span>
-              <span className="text-xs text-gray-500">({logs.length})</span>
+              <span className="text-xs text-gray-400">({logs.length})</span>
             </div>
             <div className="flex items-center gap-2">
               <button
@@ -30981,8 +32351,8 @@ export function DebugPanel() {
                   refreshLogs();
                   setAutoRefresh(!autoRefresh);
                 }}
-                className={`p-1 rounded hover:bg-gray-200 ${
-                  autoRefresh ? 'text-blue-600' : 'text-gray-400'
+                className={`p-1 rounded hover:bg-gray-600 ${
+                  autoRefresh ? 'text-blue-400' : 'text-gray-500'
                 }`}
                 title={autoRefresh ? 'Auto-refresh enabled' : 'Auto-refresh disabled'}
               >
@@ -30993,27 +32363,26 @@ export function DebugPanel() {
                   logger.clearLogs();
                   refreshLogs();
                 }}
-                className="text-xs text-gray-500 hover:text-gray-700 px-2 py-1 hover:bg-gray-200 rounded"
+                className="text-xs text-gray-400 hover:text-gray-200 px-2 py-1 hover:bg-gray-600 rounded"
               >
                 Clear
               </button>
               <button
                 onClick={() => setIsOpen(false)}
-                className="p-1 hover:bg-gray-200 rounded"
+                className="p-1 hover:bg-gray-600 rounded"
+                aria-label="Close debug panel"
               >
-                <X className="w-4 h-4" />
+                <X className="w-4 h-4 text-gray-300" />
               </button>
             </div>
           </div>
-          <div className="overflow-y-auto flex-1 p-2">
+          <div className="overflow-y-auto flex-1 p-2 text-gray-200">
             {logs.length === 0 ? (
-              <div className="text-center py-4 text-sm text-gray-500">
+              <div className="text-center py-4 text-sm text-gray-400">
                 No logs yet
               </div>
             ) : (
-              logs.map((log) => (
-                <LogDisplay key={log.id} {...log} />
-              ))
+              logs.map((log) => <LogDisplay key={log.id} {...log} />)
             )}
           </div>
         </div>
@@ -31023,7 +32392,7 @@ export function DebugPanel() {
             setIsOpen(true);
             refreshLogs();
           }}
-          className="bg-gray-800 text-white p-2 rounded-full shadow-lg hover:bg-gray-700"
+          className="bg-gray-800 text-gray-200 p-2 rounded-full shadow-lg hover:bg-gray-700"
           title="Open Debug Panel"
         >
           <Terminal className="w-5 h-5" />
@@ -31031,90 +32400,178 @@ export function DebugPanel() {
       )}
     </div>
   );
-}
+};
 ```
 
-### src/components/TranscriptionControls.tsx
+### src/components/Graph.tsx
 
 ```typescript
-import React from 'react';
-import { Download, Copy, Loader2 } from 'lucide-react';
-import { useTranscriptionStore } from '../store/transcription';
-import { exportTranscription } from '../utils/export';
-import { toast } from 'sonner';
+import React, { useCallback, useRef, useState } from 'react';
+import ForceGraph2D from 'react-force-graph-2d';
+import { ProcessedNode, ProcessedLink } from '../types/graph';
 
-const EXPORT_FORMATS = ['txt', 'md', 'pdf', 'docx', 'rtf'] as const;
+interface GraphProps {
+  nodes: ProcessedNode[];
+  links: ProcessedLink[];
+  onNodeClick: (node: ProcessedNode) => void;
+  colorMap: Map<string, string>;
+  selectedNode: ProcessedNode | null;
+  filteredNodeIds?: Set<string>;
+}
 
-export function TranscriptionControls() {
-  const { transcription, status, speakerMap } = useTranscriptionStore();
+export const Graph: React.FC<GraphProps> = ({
+  nodes,
+  links,
+  onNodeClick,
+  colorMap,
+  selectedNode,
+  filteredNodeIds,
+}) => {
+  const fgRef = useRef<any>();
+  const [hoveredNode, setHoveredNode] = useState<ProcessedNode | null>(null);
 
-  const handleCopy = async () => {
-    if (!transcription) return;
+  const getNodeColor = useCallback((node: ProcessedNode) => {
+    const baseColor = colorMap.get(node.type) || '#607D8B';
+    if (filteredNodeIds && !filteredNodeIds.has(node.id)) {
+      return `${baseColor}33`;
+    }
     
-    try {
-      const text = transcription.transcription.speakers
-        .map(s => `${speakerMap[s.speaker] || s.speaker}: ${s.text}`)
-        .join('\n\n');
-      
-      await navigator.clipboard.writeText(text);
-      toast.success('Copied to clipboard');
-    } catch (error) {
-      toast.error('Failed to copy to clipboard');
+    const isSelected = selectedNode?.id === node.id;
+    const isConnected = selectedNode && links.some(
+      link => 
+        (link.source.id === selectedNode.id && link.target.id === node.id) ||
+        (link.target.id === selectedNode.id && link.source.id === node.id)
+    );
+    
+    if (isSelected) return `${baseColor}FF`;
+    if (isConnected) return `${baseColor}EE`;
+    return selectedNode ? `${baseColor}44` : `${baseColor}CC`;
+  }, [colorMap, selectedNode, links, filteredNodeIds]);
+
+  const getLinkColor = useCallback((link: ProcessedLink) => {
+    if (filteredNodeIds && (!filteredNodeIds.has(link.source.id) || !filteredNodeIds.has(link.target.id))) {
+      return '#88ccff22';
     }
-  };
-
-  const handleExport = async (format: string) => {
-    if (!transcription) return;
-
-    try {
-      await exportTranscription(
-        format,
-        {
-          speakers: transcription.transcription.speakers,
-          speakerMap,
-          text: transcription.transcription.text,
-        },
-        `transcription-${Date.now()}`
-      );
-      toast.success(`Exported as ${format.toUpperCase()}`);
-    } catch (error) {
-      toast.error(`Failed to export as ${format.toUpperCase()}`);
+    
+    if (selectedNode) {
+      const isConnected = link.source.id === selectedNode.id || link.target.id === selectedNode.id;
+      return isConnected ? '#88ccffFF' : '#88ccff22';
     }
-  };
+    return '#88ccffAA';
+  }, [selectedNode, filteredNodeIds]);
 
-  if (status !== 'completed') return null;
+  const paintNode = useCallback((node: any, ctx: CanvasRenderingContext2D) => {
+    const size = 6 + (node.connections * 2);
+    const finalSize = Math.min(size, 20);
+    const nodeColor = getNodeColor(node);
+    
+    if (selectedNode && (node.id === selectedNode.id || links.some(
+      link => 
+        (link.source.id === selectedNode.id && link.target.id === node.id) ||
+        (link.target.id === selectedNode.id && link.source.id === node.id)
+    ))) {
+      ctx.beginPath();
+      ctx.arc(node.x, node.y, finalSize * 1.4, 0, 2 * Math.PI);
+      ctx.fillStyle = '#ffffff22';
+      ctx.fill();
+    }
+    
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, finalSize * 1.1, 0, 2 * Math.PI);
+    ctx.fillStyle = '#ffffff33';
+    ctx.fill();
+    
+    ctx.beginPath();
+    ctx.arc(node.x, node.y, finalSize, 0, 2 * Math.PI);
+    ctx.fillStyle = nodeColor;
+    ctx.fill();
+    
+    ctx.strokeStyle = '#ffffff44';
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }, [getNodeColor, selectedNode, links]);
 
   return (
-    <div className="flex gap-4">
-      <button
-        onClick={handleCopy}
-        className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
-      >
-        <Copy className="w-4 h-4" />
-        Copy
-      </button>
-      <div className="relative group">
-        <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">
-          <Download className="w-4 h-4" />
-          Export
+<ForceGraph2D
+  ref={fgRef}
+  graphData={{ nodes, links }}
+  nodeId="id"
+  nodeCanvasObject={paintNode}
+  nodeRelSize={6}
+  linkWidth={(link) => {
+    const strength = (link as ProcessedLink).strength;
+    return 0.5 + (strength * 2.5);
+  }}
+  linkColor={getLinkColor}
+  linkDirectionalParticles={2}
+  linkDirectionalParticleWidth={2}
+  // REMOVE linkOpacity={0.6}
+  backgroundColor="#1A1A1A"
+  linkDirectionalArrowLength={4}
+  linkDirectionalArrowRelPos={1}
+  linkDirectionalArrowColor={getLinkColor}
+  d3VelocityDecay={0.3}
+  cooldownTicks={100}
+  onNodeClick={(node) => onNodeClick(node as ProcessedNode)}
+  onNodeHover={setHoveredNode}
+  onEngineStop={() => {
+    if (fgRef.current) {
+      fgRef.current.zoomToFit(400, 50);
+    }
+  }}
+/>
+  );
+};
+```
+
+### src/components/InputSection.tsx
+
+```typescript
+import React, { useState } from 'react';
+import { FileUpload } from './FileUpload';
+
+interface InputSectionProps {
+  onDataLoad: (data: any) => void;
+}
+
+export const InputSection: React.FC<InputSectionProps> = ({ onDataLoad }) => {
+  const [jsonInput, setJsonInput] = useState('');
+
+  const handleJsonSubmit = () => {
+    try {
+      const data = JSON.parse(jsonInput);
+      onDataLoad(data);
+    } catch (error) {
+      console.error('Invalid JSON:', error);
+    }
+  };
+
+  return (
+    <div className="space-y-6 p-6 bg-gray-900 rounded-lg">
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-white">Upload Graph Data</h2>
+        {/* Pass onDataLoad here if you want FileUpload to handle JSON uploads */}
+        <FileUpload onDataLoad={onDataLoad} />
+      </div>
+
+      <div className="space-y-4">
+        <h2 className="text-xl font-bold text-white">Or Paste JSON</h2>
+        <textarea
+          value={jsonInput}
+          onChange={(e) => setJsonInput(e.target.value)}
+          className="w-full h-40 p-3 bg-gray-800 text-white rounded-lg border border-gray-700 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+          placeholder="Paste your JSON here..."
+        />
+        <button
+          onClick={handleJsonSubmit}
+          className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors"
+        >
+          Load Graph
         </button>
-        <div className="absolute right-0 z-10 hidden w-48 mt-2 origin-top-right bg-white rounded-md shadow-lg group-hover:block">
-          <div className="py-1">
-            {EXPORT_FORMATS.map((format) => (
-              <button
-                key={format}
-                onClick={() => handleExport(format)}
-                className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100"
-              >
-                Export as {format.toUpperCase()}
-              </button>
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   );
-}
+};
 ```
 
 ### src/components/MeetingCard.tsx
@@ -31122,7 +32579,7 @@ export function TranscriptionControls() {
 ```typescript
 // src/components/MeetingCard.tsx
 import React from 'react';
-import { Calendar, Clock, Users, Tag, BarChart } from 'lucide-react';
+import { Calendar, Clock, Users, Tag, BarChart, Link as LinkIcon } from 'lucide-react';
 
 interface MeetingProps {
   title: string;
@@ -31132,6 +32589,13 @@ interface MeetingProps {
   participants: string[];
   summary: string;
   tags?: string[];
+  relationships?: {
+    source: string;
+    target: string;
+    description: string;
+    keywords: string[];
+    strength: number;
+  }[];
   isWeeklySummary?: boolean;
   onClick?: () => void;
 }
@@ -31144,12 +32608,13 @@ export function MeetingCard({
   participants,
   summary,
   tags = [],
+  relationships = [],
   isWeeklySummary = false,
   onClick
 }: MeetingProps) {
   return (
     <div 
-      className={`p-6 hover:bg-gray-700/30 transition-colors cursor-pointer ${
+      className={`p-6 hover:bg-gray-700/50 transition-colors cursor-pointer ${
         isWeeklySummary ? 'bg-purple-900/20' : 'bg-gray-800/30'
       }`}
       onClick={onClick}
@@ -31162,7 +32627,7 @@ export function MeetingCard({
             <Calendar className="w-5 h-5 text-blue-400" />
           )}
           <div>
-            <h4 className="text-lg font-semibold text-white">{title}</h4>
+            <h4 className="text-lg font-semibold text-gray-200">{title}</h4>
             {time && (
               <div className="flex items-center gap-2 text-sm text-gray-400 mt-1">
                 <Clock className="w-4 h-4" />
@@ -31175,23 +32640,38 @@ export function MeetingCard({
         </div>
       </div>
 
-      <p className="text-gray-300 mb-4">{summary}</p>
+      {summary && summary.trim().length > 0 && (
+        <p className="text-gray-300 mb-4 whitespace-pre-line">{summary}</p>
+      )}
 
-      <div className="flex flex-wrap gap-2 mb-4">
-        {tags.map(tag => (
-          <span
-            key={tag}
-            className={`px-2 py-1 rounded-full text-sm font-medium flex items-center ${
-              tag === 'Weekly Summary'
-                ? 'bg-purple-500/20 text-purple-300'
-                : 'bg-gray-700 text-gray-300'
-            }`}
-          >
-            <Tag className="w-3 h-3 mr-1" />
-            {tag}
-          </span>
-        ))}
-      </div>
+      {relationships.length > 0 && (
+        <div className="mb-4">
+          <h5 className="text-sm font-semibold text-gray-300 flex items-center gap-1 mb-2">
+            <LinkIcon className="w-4 h-4" /> Relationships
+          </h5>
+          <ul className="text-sm text-gray-400 list-disc list-inside space-y-1">
+            {relationships.map((r, idx) => (
+              <li key={idx}>
+                <span className="text-gray-200 font-medium">{r.source}</span> → <span className="text-gray-200 font-medium">{r.target}</span>: {r.description} (strength: {r.strength})
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {tags.length > 0 && (
+        <div className="flex flex-wrap gap-2 mb-4">
+          {tags.map(tag => (
+            <span
+              key={tag}
+              className="px-2 py-1 rounded-full text-sm font-medium flex items-center bg-gray-700 text-gray-300"
+            >
+              <Tag className="w-3 h-3 mr-1" />
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
 
       <div className="flex justify-between items-center">
         <div className="flex -space-x-2">
@@ -31223,20 +32703,20 @@ export function MeetingCard({
 // src/components/Sidebar.tsx
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { Upload, List, MessageSquare } from 'lucide-react';
+import { Upload, List, MessageSquare, Server } from 'lucide-react';
 
 export function Sidebar() {
   return (
-    <div className="w-64 bg-white border-r border-gray-200 flex flex-col">
-      <div className="p-4 border-b border-gray-200">
-        <h1 className="text-2xl font-bold text-gray-900">Transcribio</h1>
+    <div className="w-64 bg-gray-800 flex flex-col text-gray-100 border-r border-gray-700">
+      <div className="p-4 border-b border-gray-700">
+        <h1 className="text-2xl font-bold text-white">Transcribio</h1>
       </div>
       <nav className="flex-1 p-4 space-y-2">
         <NavLink
           to="/upload"
           className={({ isActive }) =>
             `flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
-              isActive ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-100'
+              isActive ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
             }`
           }
         >
@@ -31247,7 +32727,7 @@ export function Sidebar() {
           to="/history"
           className={({ isActive }) =>
             `flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
-              isActive ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-100'
+              isActive ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
             }`
           }
         >
@@ -31258,23 +32738,168 @@ export function Sidebar() {
           to="/chat"
           className={({ isActive }) =>
             `flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
-              isActive ? 'bg-blue-50 text-blue-700' : 'text-gray-700 hover:bg-gray-100'
+              isActive ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
             }`
           }
         >
           <MessageSquare className="w-4 h-4" />
           Chat
         </NavLink>
+        <NavLink
+          to="/api-test"
+          className={({ isActive }) =>
+            `flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium ${
+              isActive ? 'bg-gray-700 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white'
+            }`
+          }
+        >
+          <Server className="w-4 h-4" />
+          API Test
+        </NavLink>
       </nav>
     </div>
   );
 }
+```
 
+### src/components/SummaryViewer.tsx
+
+```typescript
+// src/components/SummaryViewer.tsx
+import React from 'react';
+
+interface SummaryViewerProps {
+  summary: string;
+}
+
+export function SummaryViewer({ summary }: SummaryViewerProps) {
+  const lines = summary.split('\n').map(l => l.trim()).filter(l => l.length > 0);
+
+  const recognizedSections = ["Action Items:", "Decisions:", "Timeline:", "Summary:", "Key Points:"];
+
+  return (
+    <div className="bg-gray-800 text-gray-200 rounded p-4 shadow space-y-2">
+      <h2 className="text-lg font-semibold mb-2">Meeting Summary</h2>
+      {lines.map((line, i) => {
+        const isSectionTitle = recognizedSections.some(sec => line.toLowerCase().startsWith(sec.toLowerCase()));
+        return (
+          <div key={i}>
+            {isSectionTitle ? (
+              <h3 className="font-bold text-blue-400 mt-2">{line}</h3>
+            ) : (
+              <p className="text-sm text-gray-300 leading-relaxed">{line}</p>
+            )}
+          </div>
+        );
+      })}
+      {lines.length === 0 && (
+        <p className="text-sm text-gray-400 italic">No summary returned or summary is empty.</p>
+      )}
+    </div>
+  );
+}
+```
+
+### src/components/NodeSidebar.tsx
+
+```typescript
+// src/components/NodeSidebar.tsx
+import React from 'react';
+import { X } from 'lucide-react';
+import { ProcessedNode, ProcessedLink } from '../types/graph';
+import { NodeConnections } from './NodeConnections';
+
+interface NodeSidebarProps {
+  selectedNode: ProcessedNode | null;
+  onClose: () => void;
+  links: ProcessedLink[];
+  nodes: ProcessedNode[];
+  colorMap: Map<string, string>;
+}
+
+export const NodeSidebar: React.FC<NodeSidebarProps> = ({
+  selectedNode,
+  onClose,
+  links,
+  nodes,
+  colorMap,
+}) => {
+  if (!selectedNode) {
+    return (
+      <div className="fixed right-0 top-0 h-full w-64 bg-gray-900 text-white p-4 shadow-lg overflow-hidden">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-xl font-bold">Node Sidebar</h2>
+          <button
+            onClick={onClose}
+            className="p-1 hover:bg-gray-800 rounded-full transition-colors"
+          >
+            <X className="w-5 h-5" />
+          </button>
+        </div>
+        <p className="text-gray-400">No node selected. Select a node from the graph.</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="fixed right-0 top-0 h-full w-96 bg-gray-900 text-white p-6 shadow-lg transform transition-transform overflow-hidden">
+      <div className="flex justify-between items-center mb-6">
+        <div className="flex items-center space-x-2">
+          <div
+            className="w-4 h-4 rounded-full"
+            style={{ backgroundColor: colorMap.get(selectedNode.type) }}
+          />
+          <h2 className="text-xl font-bold">Node Details</h2>
+        </div>
+        <button
+          onClick={onClose}
+          className="p-1 hover:bg-gray-800 rounded-full transition-colors"
+        >
+          <X className="w-5 h-5" />
+        </button>
+      </div>
+
+      <div className="space-y-6">
+        <div className="space-y-4">
+          <div>
+            <h3 className="text-sm text-gray-400">Name</h3>
+            <p className="text-lg">{selectedNode.name}</p>
+          </div>
+
+          <div>
+            <h3 className="text-sm text-gray-400">Type</h3>
+            <p className="text-lg capitalize">{selectedNode.type}</p>
+          </div>
+
+          <div>
+            <h3 className="text-sm text-gray-400">Description</h3>
+            <p className="text-lg">{selectedNode.description}</p>
+          </div>
+
+          <div>
+            <h3 className="text-sm text-gray-400">Created</h3>
+            <p className="text-lg">
+              {new Date(selectedNode.created_at).toLocaleDateString()}
+            </p>
+          </div>
+        </div>
+
+        <NodeConnections
+          node={selectedNode}
+          links={links}
+          nodes={nodes}
+          colorMap={colorMap}
+        />
+      </div>
+    </div>
+  );
+};
 ```
 
 ### src/components/TranscriptionControls/index.tsx
 
 ```typescript
+// src/components/TranscriptionControls/index.tsx
 import React from 'react';
 import { toast } from 'sonner';
 import { useTranscriptionStore } from '../../store/transcription';
@@ -31291,13 +32916,12 @@ export function TranscriptionControls() {
 
   const handleCopy = async () => {
     if (!transcription) return;
-    
     try {
       const processedBlocks = concatenateTextBlocks(transcription.transcription.speakers);
       const text = processedBlocks
         .map(block => `${speakerMap[block.speaker] || block.speaker}: ${block.text}`)
         .join('\n\n');
-      
+
       await navigator.clipboard.writeText(text);
       toast.success('Copied to clipboard');
     } catch (error) {
@@ -31339,10 +32963,9 @@ export function TranscriptionControls() {
 ### src/components/TranscriptionControls/ExportButton.tsx
 
 ```typescript
+// src/components/TranscriptionControls/ExportButton.tsx
 import React from 'react';
 import { Download } from 'lucide-react';
-import { toast } from 'sonner';
-import { exportTranscription } from '../../utils/export';
 import type { ExportFormat } from '../../types';
 
 interface ExportButtonProps {
@@ -31353,17 +32976,17 @@ interface ExportButtonProps {
 export function ExportButton({ onExport, formats }: ExportButtonProps) {
   return (
     <div className="relative group">
-      <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700">
+      <button className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-200 bg-gray-700 rounded-md hover:bg-gray-600">
         <Download className="w-4 h-4" />
         Export
       </button>
-      <div className="absolute right-0 z-10 hidden w-48 mt-2 origin-top-right bg-white rounded-md shadow-lg group-hover:block">
+      <div className="absolute right-0 z-10 hidden w-48 mt-2 origin-top-right bg-gray-800 rounded-md shadow-lg border border-gray-700 group-hover:block">
         <div className="py-1">
           {formats.map((format) => (
             <button
               key={format}
               onClick={() => onExport(format)}
-              className="block w-full px-4 py-2 text-sm text-left text-gray-700 hover:bg-gray-100"
+              className="block w-full px-4 py-2 text-sm text-left text-gray-200 hover:bg-gray-700"
             >
               Export as {format.toUpperCase()}
             </button>
@@ -31378,6 +33001,7 @@ export function ExportButton({ onExport, formats }: ExportButtonProps) {
 ### src/components/TranscriptionControls/CopyButton.tsx
 
 ```typescript
+// src/components/TranscriptionControls/CopyButton.tsx
 import React from 'react';
 import { Copy } from 'lucide-react';
 
@@ -31389,7 +33013,7 @@ export function CopyButton({ onCopy }: CopyButtonProps) {
   return (
     <button
       onClick={onCopy}
-      className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded-md hover:bg-gray-50"
+      className="flex items-center gap-2 px-4 py-2 text-sm font-medium text-gray-200 bg-gray-700 border border-gray-600 rounded-md hover:bg-gray-600"
     >
       <Copy className="w-4 h-4" />
       Copy
@@ -31410,13 +33034,39 @@ import { DropZone } from './DropZone';
 import { UploadProgress } from './UploadProgress';
 import { logger } from '../../utils/logger';
 
-export function FileUpload() {
+interface FileUploadProps {
+  onDataLoad?: (data: any) => void; // Make this optional if not always needed
+}
+
+export function FileUpload({ onDataLoad }: FileUploadProps) {
   const { setFile, status } = useTranscriptionStore();
   const { upload, uploadProgress, cancel } = useTranscriptionUpload();
 
   const handleFile = useCallback(async (selectedFile: File) => {
     if (!selectedFile) return;
 
+    const fileName = selectedFile.name.toLowerCase();
+    if (fileName.endsWith('.json') && onDataLoad) {
+      // Handle JSON file scenario
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const result = e.target?.result;
+          if (typeof result === 'string') {
+            const data = JSON.parse(result);
+            onDataLoad(data);
+          } else {
+            toast.error('Invalid file content.');
+          }
+        } catch (err) {
+          toast.error('Failed to parse JSON file.');
+        }
+      };
+      reader.readAsText(selectedFile);
+      return;
+    }
+
+    // Otherwise, handle audio upload
     logger.debug('File selected', {
       name: selectedFile.name,
       size: selectedFile.size,
@@ -31431,7 +33081,7 @@ export function FileUpload() {
       logger.error('File upload failed', error instanceof Error ? error : new Error(message));
       toast.error(message);
     }
-  }, [setFile, upload]);
+  }, [setFile, upload, onDataLoad]);
 
   const handleDrop = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -31450,6 +33100,7 @@ export function FileUpload() {
 
   const acceptedTypes = Object.entries(AUDIO_CONFIG.FORMATS)
     .flatMap(([mime, exts]) => [mime, ...exts])
+    .concat('.json') // Add json if you want to allow json uploads
     .join(',');
 
   const showProgress = ['uploading', 'requesting-transcription', 'generating-url'].includes(status);
@@ -31478,6 +33129,7 @@ export function FileUpload() {
 ### src/components/FileUpload/DropZone.tsx
 
 ```typescript
+// src/components/FileUpload/DropZone.tsx
 import React from 'react';
 import { Upload } from 'lucide-react';
 import { formatFileSize } from '../../utils/format';
@@ -31495,12 +33147,12 @@ export function DropZone({ onDrop, onFileSelect, acceptedTypes, isUploading }: D
     <div
       onDrop={onDrop}
       onDragOver={(e) => e.preventDefault()}
-      className="p-8 border-2 border-dashed rounded-lg text-center"
+      className="p-8 border-2 border-dashed rounded-lg text-center bg-gray-800 border-gray-700 text-gray-200"
     >
       <Upload className="mx-auto h-12 w-12 text-gray-400" />
       <div className="mt-4">
         <label htmlFor="file-upload" className="cursor-pointer">
-          <span className="text-blue-600 hover:text-blue-500">Upload a file</span>
+          <span className="text-blue-400 hover:text-blue-300">Upload a file</span>
           <input
             id="file-upload"
             type="file"
@@ -31510,10 +33162,10 @@ export function DropZone({ onDrop, onFileSelect, acceptedTypes, isUploading }: D
             disabled={isUploading}
           />
         </label>
-        <p className="mt-1 text-sm text-gray-500">or drag and drop</p>
+        <p className="mt-1 text-sm text-gray-400">or drag and drop</p>
       </div>
 
-      <p className="mt-2 text-xs text-gray-500">
+      <p className="mt-2 text-xs text-gray-400">
         Maximum file size: {formatFileSize(AUDIO_CONFIG.MAX_FILE_SIZE)}
       </p>
     </div>
@@ -31524,6 +33176,7 @@ export function DropZone({ onDrop, onFileSelect, acceptedTypes, isUploading }: D
 ### src/components/FileUpload/UploadProgress.tsx
 
 ```typescript
+// src/components/FileUpload/UploadProgress.tsx
 import React from 'react';
 import { X, Loader2 } from 'lucide-react';
 import type { ProcessStatus } from '../../types';
@@ -31543,33 +33196,33 @@ export function UploadProgress({
   const progressValue = Math.min(100, Math.max(0, progress));
 
   return (
-    <div className="bg-white p-4 rounded-lg shadow-sm border">
+    <div className="bg-gray-800 p-4 rounded-lg shadow-sm border border-gray-700 text-gray-200">
       <div className="flex items-center justify-between mb-2">
         <div className="flex items-center gap-2">
-          <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
+          <Loader2 className="w-4 h-4 animate-spin text-blue-400" />
           {showProgress && (
-            <span className="text-sm font-medium text-gray-700">
+            <span className="text-sm font-medium">
               Uploading... {Math.round(progressValue)}%
             </span>
           )}
           {!showProgress && (
-            <span className="text-sm font-medium text-gray-700">
+            <span className="text-sm font-medium">
               Processing...
             </span>
           )}
         </div>
         <button
           onClick={onCancel}
-          className="p-1 hover:bg-gray-100 rounded-full transition-colors"
+          className="p-1 hover:bg-gray-600 rounded-full transition-colors"
           aria-label="Cancel upload"
         >
-          <X className="w-4 h-4 text-gray-500" />
+          <X className="w-4 h-4 text-gray-300" />
         </button>
       </div>
       {showProgress && (
-        <div className="relative w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+        <div className="relative w-full h-2 bg-gray-700 rounded-full overflow-hidden">
           <div
-            className="absolute left-0 top-0 h-full bg-blue-600 transition-all duration-300 ease-out"
+            className="absolute left-0 top-0 h-full bg-blue-500 transition-all duration-300 ease-out"
             style={{ width: `${progressValue}%` }}
           />
         </div>
@@ -31733,12 +33386,13 @@ export function FilterDropdown({ onToggle, isOpen }: FilterDropdownProps) {
 ### src/components/TranscriptionViewer/index.tsx
 
 ```typescript
+// src/components/TranscriptionViewer/index.tsx
 import React, { useState, useMemo } from 'react';
 import { useTranscriptionStore } from '../../store/transcription';
 import { TranscriptionHeader } from './TranscriptionHeader';
 import { SpeakerEntry } from './SpeakerEntry';
 import { concatenateTextBlocks } from '../../utils/text/processing';
-import { logger } from '../../utils/logger';
+import { logger } from '../../utils/logger/core';
 
 export function TranscriptionViewer() {
   const { transcription, speakerMap, setSpeakerName } = useTranscriptionStore();
@@ -31764,7 +33418,7 @@ export function TranscriptionViewer() {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow">
+    <div className="bg-gray-800 rounded-lg shadow text-gray-200">
       <TranscriptionHeader
         showTimestamps={showTimestamps}
         onToggleTimestamps={setShowTimestamps}
@@ -31790,6 +33444,7 @@ export function TranscriptionViewer() {
 ### src/components/TranscriptionViewer/TranscriptionHeader.tsx
 
 ```typescript
+// src/components/TranscriptionViewer/TranscriptionHeader.tsx
 import React from 'react';
 
 interface TranscriptionHeaderProps {
@@ -31802,17 +33457,17 @@ export function TranscriptionHeader({
   onToggleTimestamps 
 }: TranscriptionHeaderProps) {
   return (
-    <div className="p-4 border-b">
-      <div className="flex items-center justify-between">
+    <div className="p-4 border-b border-gray-700">
+      <div className="flex items-center justify-between text-gray-200">
         <h2 className="text-lg font-semibold">Transcription</h2>
         <label className="flex items-center gap-2">
           <input
             type="checkbox"
             checked={showTimestamps}
             onChange={(e) => onToggleTimestamps(e.target.checked)}
-            className="rounded border-gray-300"
+            className="rounded border-gray-600 bg-gray-800 text-blue-400 focus:ring-1 focus:ring-blue-400"
           />
-          <span className="text-sm text-gray-600">Show timestamps</span>
+          <span className="text-sm text-gray-300">Show timestamps</span>
         </label>
       </div>
     </div>
@@ -31823,6 +33478,7 @@ export function TranscriptionHeader({
 ### src/components/TranscriptionViewer/SpeakerEntry.tsx
 
 ```typescript
+// src/components/TranscriptionViewer/SpeakerEntry.tsx
 import React from 'react';
 import { User, Edit2, Clock } from 'lucide-react';
 import { formatTimestamp } from '../../utils/format';
@@ -31848,13 +33504,13 @@ export function SpeakerEntry({
   return (
     <div className="flex gap-4">
       <div className="flex-shrink-0 w-32">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 text-gray-200">
           <User className="w-4 h-4 text-gray-400" />
           {isEditing ? (
             <input
               type="text"
               defaultValue={speakerName}
-              className="w-full px-2 py-1 text-sm border rounded"
+              className="w-full px-2 py-1 text-sm border border-gray-600 rounded bg-gray-700 text-gray-200 focus:outline-none focus:ring-1 focus:ring-blue-400"
               onBlur={(e) => onSave(e.target.value)}
               onKeyDown={(e) => {
                 if (e.key === 'Enter') {
@@ -31866,7 +33522,7 @@ export function SpeakerEntry({
           ) : (
             <button
               onClick={onEdit}
-              className="flex items-center gap-1 text-sm text-gray-700 hover:text-blue-600"
+              className="flex items-center gap-1 text-sm text-gray-300 hover:text-blue-400"
             >
               <span>{speakerName}</span>
               <Edit2 className="w-3 h-3" />
@@ -31882,7 +33538,7 @@ export function SpeakerEntry({
           </div>
         )}
       </div>
-      <p className="flex-1 text-gray-800">{entry.text}</p>
+      <p className="flex-1 text-gray-200">{entry.text}</p>
     </div>
   );
 }
@@ -31929,205 +33585,211 @@ export function TranscriptionStats({ stats }: TranscriptionStatsProps) {
 }
 ```
 
-### src/hooks/useUpload.ts
+### src/components/controls/FilterPanel.tsx
 
 ```typescript
-import React, { useState, useCallback } from 'react';
-import { generateUploadUrl } from '../services/api/upload';
-import { requestTranscription } from '../services/api/transcription';
-import { uploadWithXHR } from '../services/upload/xhr';
-import { validateFile } from '../services/upload/validation';
-import { logger } from '../utils/logger';
-import type { UploadState } from '../services/upload/types';
+import React, { useState } from 'react';
+import { Filter, ChevronDown, ChevronUp } from 'lucide-react';
 
-export function useUpload() {
-  const [state, setState] = useState<UploadState>({
-    progress: 0,
-    status: 'idle',
-    error: null
-  });
-
-  const upload = useCallback(async (file: File) => {
-    // Start by validating the file
-    setState({ progress: 0, status: 'validating', error: null });
-
-    try {
-      logger.debug('Starting upload process', { fileName: file.name });
-
-      const validation = await validateFile(file);
-      if (!validation.isValid) {
-        throw new Error(validation.error);
-      }
-
-      // After validation, generate upload URL
-      setState((s: UploadState) => ({ ...s, status: 'generating-url' }));
-      const { upload_url, file_id } = await generateUploadUrl(file.name);
-
-      // Upload file
-      setState((s: UploadState) => ({ ...s, status: 'uploading' }));
-      await uploadWithXHR(upload_url, file, {
-        onProgress: (progress) => {
-          setState((s: UploadState) => ({ ...s, progress: progress.percentage }));
-        }
-      });
-
-      // Request transcription
-      setState((s: UploadState) => ({ ...s, status: 'requesting-transcription' }));
-      await requestTranscription(file_id);
-
-      setState({ progress: 100, status: 'completed', error: null });
-      return file_id;
-    } catch (error) {
-      logger.error(
-        'Upload failed',
-        error instanceof Error ? error : new Error('Unknown error'),
-        { fileName: file.name }
-      );
-      setState({
-        progress: 0,
-        status: 'error',
-        error: error instanceof Error ? error : new Error('Upload failed')
-      });
-      throw error;
-    }
-  }, []);
-
-  return {
-    upload,
-    progress: state.progress,
-    status: state.status,
-    error: state.error
-  };
+interface KeywordCount {
+  keyword: string;
+  count: number;
 }
 
+interface FilterPanelProps {
+  categories: string[];
+  keywords: KeywordCount[];
+  selectedCategories: string[];
+  selectedKeywords: string[];
+  onCategoryChange: (category: string) => void;
+  onKeywordChange: (keyword: string) => void;
+  colorMap: Map<string, string>;
+}
+
+export const FilterPanel: React.FC<FilterPanelProps> = ({
+  categories,
+  keywords,
+  selectedCategories,
+  selectedKeywords,
+  onCategoryChange,
+  onKeywordChange,
+  colorMap,
+}) => {
+  const [showAllCategories, setShowAllCategories] = useState(false);
+  const [showAllKeywords, setShowAllKeywords] = useState(false);
+
+  const visibleCategories = showAllCategories ? categories : categories.slice(0, 8);
+  const visibleKeywords = showAllKeywords ? keywords : keywords.slice(0, 8);
+
+  return (
+    <div className="absolute left-4 top-4 bg-gray-900 rounded-lg p-4 w-64 shadow-lg max-h-[calc(100vh-2rem)] overflow-y-auto">
+      <div className="flex items-center space-x-2 mb-4">
+        <Filter className="w-4 h-4" />
+        <h3 className="font-semibold">Filters</h3>
+      </div>
+
+      <div className="space-y-4">
+        <div>
+          <h4 className="text-sm text-gray-400 mb-2">Categories</h4>
+          <div className="space-y-2">
+            {visibleCategories.map((category) => (
+              <label key={category} className="flex items-center space-x-2">
+                <input
+                  type="checkbox"
+                  checked={selectedCategories.includes(category)}
+                  onChange={() => onCategoryChange(category)}
+                  className="rounded border-gray-600"
+                />
+                <span className="flex items-center space-x-2">
+                  <div
+                    className="w-3 h-3 rounded-full"
+                    style={{ backgroundColor: colorMap.get(category) }}
+                  />
+                  <span className="text-sm capitalize">{category}</span>
+                </span>
+              </label>
+            ))}
+          </div>
+          {categories.length > 8 && (
+            <button
+              onClick={() => setShowAllCategories(!showAllCategories)}
+              className="flex items-center space-x-1 text-sm text-gray-400 mt-2 hover:text-gray-300"
+            >
+              <span>{showAllCategories ? 'Show Less' : `Show ${categories.length - 8} More`}</span>
+              {showAllCategories ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </button>
+          )}
+        </div>
+
+        <div>
+          <h4 className="text-sm text-gray-400 mb-2">Keywords</h4>
+          <div className="space-y-2">
+            {visibleKeywords.map(({ keyword, count }) => (
+              <label key={keyword} className="flex items-center justify-between">
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    checked={selectedKeywords.includes(keyword)}
+                    onChange={() => onKeywordChange(keyword)}
+                    className="rounded border-gray-600"
+                  />
+                  <span className="text-sm">{keyword}</span>
+                </div>
+                <span className="text-xs text-gray-400">{count}</span>
+              </label>
+            ))}
+          </div>
+          {keywords.length > 8 && (
+            <button
+              onClick={() => setShowAllKeywords(!showAllKeywords)}
+              className="flex items-center space-x-1 text-sm text-gray-400 mt-2 hover:text-gray-300"
+            >
+              <span>{showAllKeywords ? 'Show Less' : `Show ${keywords.length - 8} More`}</span>
+              {showAllKeywords ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+            </button>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+};
 ```
 
-### src/hooks/useTranscriptionProcessing.ts
+### src/components/controls/TopEntitiesPanel.tsx
 
 ```typescript
-import React, { useState, useCallback } from 'react';
-import { getTranscriptionResult } from '../services/api/transcription';
-import { logger } from '../utils/logger';
-import { API_CONFIG } from '../config/api';
-import { APIError } from '../services/api/errors';
-import type { TranscriptionResponse, ProcessError } from '../types';
+import React, { useMemo } from 'react';
+import { BarChart2 } from 'lucide-react';
+import { ProcessedNode } from '../../types/graph';
 
-interface ProcessingState {
-  isProcessing: boolean;
-  error: ProcessError | null;
-  data: TranscriptionResponse | null;
-  progress: number;
+interface TopEntitiesPanelProps {
+  nodes: ProcessedNode[];
+  colorMap: Map<string, string>;
+  onNodeSelect: (node: ProcessedNode) => void;
 }
 
-export function useTranscriptionProcessing() {
-  const [state, setState] = useState<ProcessingState>({
-    isProcessing: false,
-    error: null,
-    data: null,
-    progress: 0,
-  });
+export const TopEntitiesPanel: React.FC<TopEntitiesPanelProps> = ({
+  nodes,
+  colorMap,
+  onNodeSelect,
+}) => {
+  const { topNodes, topCategories } = useMemo(() => {
+    const sortedNodes = [...nodes]
+      .sort((a, b) => b.connections - a.connections)
+      .slice(0, 10);
 
-  const processTranscription = useCallback(async (fileId: string) => {
-    setState((prev: ProcessingState) => ({ ...prev, isProcessing: true, error: null, progress: 0 }));
-    logger.debug('Starting transcription processing', { fileId });
+    const categoryStats = nodes.reduce((acc, node) => {
+      acc[node.type] = (acc[node.type] || 0) + node.connections;
+      return acc;
+    }, {} as Record<string, number>);
 
-    let attempts = 0;
-    const maxAttempts = API_CONFIG.polling.maxAttempts;
+    const sortedCategories = Object.entries(categoryStats)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 10)
+      .map(([category, connections]) => ({ category, connections }));
 
-    while (attempts < maxAttempts) {
-      try {
-        const data = await getTranscriptionResult(fileId);
-
-        if (data.transcription.speakers.length > 0) {
-          logger.info('Transcription completed', {
-            fileId,
-            speakerCount: data.transcription.speakers.length,
-          });
-
-          setState((prev: ProcessingState) => ({
-            ...prev,
-            isProcessing: false,
-            error: null,
-            data,
-            progress: 100,
-          }));
-
-          return data;
-        }
-
-        const progress = Math.min(90, ((attempts + 1) / maxAttempts) * 100);
-        setState((prev: ProcessingState) => ({ ...prev, progress }));
-
-        logger.debug('Transcription in progress', {
-          fileId,
-          attempt: attempts + 1,
-          maxAttempts,
-          progress,
-        });
-
-      } catch (error) {
-        if (error instanceof APIError && error.status === 404) {
-          logger.debug('Transcription not ready yet (404)', { fileId, attempts });
-          const progress = Math.min(90, ((attempts + 1) / maxAttempts) * 100);
-          setState((prev: ProcessingState) => ({ ...prev, progress }));
-        } else {
-          const processError: ProcessError = {
-            code: 'TRANSCRIPTION_PROCESSING_ERROR',
-            message: error instanceof Error ? error.message : 'Processing failed',
-          };
-
-          logger.error(
-            'Transcription processing failed',
-            error instanceof Error ? error : new Error(processError.message),
-            { fileId, attempts }
-          );
-
-          setState((prev: ProcessingState) => ({
-            ...prev,
-            isProcessing: false,
-            error: processError,
-            data: null,
-            progress: 0,
-          }));
-
-          throw processError;
-        }
-      }
-
-      attempts++;
-      await new Promise(resolve =>
-        setTimeout(resolve, API_CONFIG.polling.interval)
-      );
-    }
-
-    const timeoutError: ProcessError = {
-      code: 'TRANSCRIPTION_TIMEOUT',
-      message: 'Transcription processing timed out',
+    return {
+      topNodes: sortedNodes,
+      topCategories: sortedCategories,
     };
+  }, [nodes]);
 
-    logger.error(
-      'Transcription processing timed out',
-      new Error(timeoutError.message),
-      { fileId, attempts }
-    );
+  return (
+    <div className="absolute left-4 bottom-4 bg-gray-900 rounded-lg p-4 w-[400px] shadow-lg">
+      <div className="flex items-center space-x-2 mb-4">
+        <BarChart2 className="w-4 h-4" />
+        <h3 className="font-semibold">Top Entities & Categories</h3>
+      </div>
 
-    setState((prev: ProcessingState) => ({
-      ...prev,
-      isProcessing: false,
-      error: timeoutError,
-      data: null,
-      progress: 0,
-    }));
+      <div className="grid grid-cols-2 gap-4">
+        <div>
+          <h4 className="text-sm text-gray-400 mb-2">Most Connected Entities</h4>
+          <div className="space-y-2">
+            {topNodes.map((node) => (
+              <button
+                key={node.id}
+                onClick={() => onNodeSelect(node)}
+                className="w-full text-left p-2 hover:bg-gray-800 rounded-lg transition-colors"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-2">
+                    <div
+                      className="w-3 h-3 rounded-full"
+                      style={{ backgroundColor: colorMap.get(node.type) }}
+                    />
+                    <span className="text-sm truncate max-w-[120px]">{node.name}</span>
+                  </div>
+                  <span className="text-sm text-gray-400">{node.connections}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+        </div>
 
-    throw timeoutError;
-  }, []);
-
-  return {
-    ...state,
-    processTranscription,
-  };
-}
-
+        <div>
+          <h4 className="text-sm text-gray-400 mb-2">Top Categories</h4>
+          <div className="space-y-2">
+            {topCategories.map(({ category, connections }) => (
+              <div
+                key={category}
+                className="flex items-center justify-between p-2"
+              >
+                <div className="flex items-center space-x-2">
+                  <div
+                    className="w-3 h-3 rounded-full"
+                    style={{ backgroundColor: colorMap.get(category) }}
+                  />
+                  <span className="text-sm capitalize truncate max-w-[120px]">{category}</span>
+                </div>
+                <span className="text-sm text-gray-400">{connections}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 ```
 
 ### src/hooks/useProcessStatus.ts
@@ -32211,16 +33873,18 @@ export function useProcessStatus(initialStatus: ProcessStatus = 'idle') {
 ### src/hooks/useTranscriptionUpload.ts
 
 ```typescript
+// src/hooks/useTranscriptionUpload.ts
 import { useState, useCallback, useRef, useEffect } from 'react';
 import { useTranscriptionStore } from '../store/transcription';
 import { generateUploadUrl, uploadFile } from '../services/api/upload';
 import { requestTranscription } from '../services/api/transcription';
 import { logger } from '../utils/logger';
+import { ENV } from '../config/env';
 import type { ProcessError } from '../types';
 
 export function useTranscriptionUpload() {
   const [uploadProgress, setUploadProgress] = useState(0);
-  const { setStatus, setError, setFileId, setTranscription } = useTranscriptionStore();
+  const { setStatus, setError, setFileId, setTranscription, setKnowledgeGraph, setSummary } = useTranscriptionStore();
   const abortControllerRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
@@ -32254,25 +33918,114 @@ export function useTranscriptionUpload() {
       setError(null);
       setUploadProgress(0);
 
+      logger.debug('Requesting upload URL from primary API');
       const { upload_url, file_id } = await generateUploadUrl(file.name, signal);
-      logger.debug('Generated upload URL', { file_id });
+      logger.debug('Received upload URL and file_id', { file_id });
       setFileId(file_id);
 
       setStatus('uploading');
+      logger.debug('Uploading file to signed URL');
       await uploadFile(upload_url, file, {
         signal,
         onProgress: (progress) => {
           setUploadProgress(progress.percentage);
-          logger.debug('Upload progress', { progress });
+          logger.debug('Upload progress event', { progress: progress.percentage });
         }
       });
 
       setStatus('requesting-transcription');
+      logger.debug('Requesting transcription from primary API');
       const transcriptionData = await requestTranscription(file_id, signal);
+
+      if (!transcriptionData?.transcription?.speakers || !transcriptionData?.transcription?.chunks || !transcriptionData?.transcription?.text) {
+        throw new Error('Invalid transcription response structure.');
+      }
+
+      logger.info('Transcription retrieved successfully', {
+        speakerCount: transcriptionData.transcription.speakers.length,
+        textLength: transcriptionData.transcription.text.length
+      });
+
       setTranscription(transcriptionData);
       setStatus('completed');
-      
-      logger.info('Upload and transcription process completed', { file_id });
+
+      if (transcriptionData.transcription.text) {
+        const text = transcriptionData.transcription.text;
+        logger.debug('Starting entity extraction process with secondary API', {
+          textLength: text.length,
+          endpoint: `${ENV.API_URL_SECONDARY}/entity_map_new`
+        });
+
+        const emResp = await fetch(`${ENV.API_URL_SECONDARY}/entity_map_new`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-API-Key': ENV.API_KEY_SECONDARY || ENV.API_KEY
+          },
+          body: JSON.stringify({ text }),
+          signal
+        });
+
+        if (!emResp.ok) {
+          const errorText = await emResp.text();
+          logger.error('Entity map request failed', new Error('Entity map request failed'), { response: errorText });
+          throw new Error(`Entity map request failed: ${errorText}`);
+        }
+
+        const entity_map_data = await emResp.json();
+        logger.info('Entity map retrieved successfully', { 
+          entityCount: entity_map_data?.graph?.entities?.length || 0,
+          relationshipCount: entity_map_data?.graph?.relationships?.length || 0
+        });
+
+        const graph = entity_map_data.graph || { entities: [], relationships: [] };
+        const kg = {
+          entities: graph.entities || [],
+          relationships: graph.relationships || []
+        };
+
+        setKnowledgeGraph(kg);
+
+        logger.debug('Starting summarization with secondary API', {
+          textLength: text.length,
+          entityCount: kg.entities?.length || 0,
+          relationshipCount: kg.relationships?.length || 0,
+          endpoint: `${ENV.API_URL_SECONDARY}/summarize`
+        });
+
+        const summarizePayload = {
+          text,
+          knowledge_graph: kg,
+          system_prompt: "You are an expert assistant skilled at converting raw meeting transcripts into meeting minutes. Include the extracted entities and relationships to produce a coherent summary."
+        };
+
+        const summarizeResp = await fetch(`${ENV.API_URL_SECONDARY}/summarize`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-API-Key': ENV.API_KEY_SECONDARY || ENV.API_KEY
+          },
+          body: JSON.stringify(summarizePayload),
+          signal
+        });
+
+        if (!summarizeResp.ok) {
+          const errorText = await summarizeResp.text();
+          logger.error('Summarization request failed', new Error('Summarization request failed'), { response: errorText });
+          throw new Error(`Summarization request failed: ${errorText}`);
+        }
+
+        const summaryData = await summarizeResp.json();
+        const summary = summaryData.summary || "No summary returned.";
+        logger.info('Summarization completed successfully', { summaryLength: summary.length });
+
+        setSummary(summary);
+
+        logger.info('All processes (upload, transcription, entity extraction, summarization) completed successfully', { file_id });
+      } else {
+        logger.warn('No transcription text found, skipping entity extraction and summarization');
+      }
+
     } catch (error) {
       if (signal.aborted) {
         logger.info('Operation cancelled by user');
@@ -32286,10 +34039,9 @@ export function useTranscriptionUpload() {
         details: { fileName: file.name }
       };
       
-      logger.error('Upload process failed', 
-        error instanceof Error ? error : new Error(processError.message),
-        { fileName: file.name }
-      );
+      logger.error('Upload process failed', error instanceof Error ? error : new Error(processError.message), {
+        fileName: file.name
+      });
       
       setStatus('error');
       setError(processError);
@@ -32297,7 +34049,7 @@ export function useTranscriptionUpload() {
       setUploadProgress(0);
       abortControllerRef.current = null;
     }
-  }, [setStatus, setError, setFileId, setTranscription]);
+  }, [setStatus, setError, setFileId, setTranscription, setKnowledgeGraph, setSummary]);
 
   return { 
     upload, 
@@ -32305,7 +34057,6 @@ export function useTranscriptionUpload() {
     cancel 
   };
 }
-
 ```
 
 ### src/pages/UploadPage.tsx
@@ -32327,19 +34078,21 @@ export function UploadPage() {
   return (
     <div className="max-w-4xl mx-auto">
       <header className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Upload your Audio</h1>
-        <p className="mt-2 text-gray-600">
+        <h1 className="text-3xl font-bold text-white">Upload your Audio</h1>
+        <p className="mt-2 text-gray-400">
           Easily upload audio files and transcribe them.
         </p>
       </header>
       <main className="space-y-8">
-        <FileUpload />
+        <div className="bg-gray-800 p-4 rounded-lg shadow text-gray-200">
+          <FileUpload />
+        </div>
 
-        {status !== 'idle' && status !== 'completed' && (
-          <div className="bg-white p-4 rounded-lg shadow">
+        {(status !== 'idle' && status !== 'completed') && (
+          <div className="bg-gray-800 p-4 rounded-lg shadow text-gray-200">
             <ProcessStatus status={status} />
             {error && (
-              <div className="mt-2 text-sm text-red-600">
+              <div className="mt-2 text-sm text-red-400">
                 {error.message}
               </div>
             )}
@@ -32348,8 +34101,12 @@ export function UploadPage() {
 
         {status === 'completed' && (
           <>
-            <TranscriptionControls />
-            <TranscriptionViewer />
+            <div className="bg-gray-800 p-4 rounded-lg shadow text-gray-200">
+              <TranscriptionControls />
+            </div>
+            <div className="bg-gray-800 p-4 rounded-lg shadow text-gray-200">
+              <TranscriptionViewer />
+            </div>
           </>
         )}
       </main>
@@ -32366,86 +34123,68 @@ export function UploadPage() {
 ```typescript
 // src/pages/MeetingHistory.tsx
 import React, { useState } from 'react';
-import { Search, Calendar, Tag, Filter, ChevronDown, ChevronRight, BarChart, Clock } from 'lucide-react';
-import { format, parseISO, startOfWeek, endOfWeek } from 'date-fns';
+import { Search, Calendar, Filter, ChevronDown, ChevronRight, Clock } from 'lucide-react';
+import { format, startOfWeek, endOfWeek } from 'date-fns';
 import { MeetingCard } from '../components/MeetingCard';
 import { WeekHeader } from '../components/calendar/WeekHeader';
 import { FilterDropdown } from '../components/calendar/FilterDropdown';
-
-const MEETINGS_BY_DATE = {
-  'Today': [
-    {
-      id: 1,
-      title: "Q1 Planning Session",
-      date: "2024-03-15",
-      time: "10:00 AM",
-      duration: "1h 30m",
-      participants: ["Sarah Chen", "Michael Brown", "David Kim"],
-      summary: "Discussed Q1 objectives, budget allocation, and team expansion plans. Key decisions made on new product features.",
-      tags: ["Planning", "Q1", "Budget"]
-    }
-  ],
-  'Yesterday': [
-    {
-      id: 2,
-      title: "Product Design Review",
-      date: "2024-03-14",
-      time: "2:00 PM",
-      duration: "45m",
-      participants: ["Emma Wilson", "James Lee", "Lisa Park"],
-      summary: "Reviewed latest UI mockups, discussed user feedback, and finalized design system updates.",
-      tags: ["Design", "Product", "UI"]
-    },
-    {
-      id: 3,
-      title: "Team Sync",
-      date: "2024-03-14",
-      time: "4:30 PM",
-      duration: "30m",
-      participants: ["Emma Wilson", "James Lee"],
-      summary: "Weekly team sync to discuss ongoing projects and blockers.",
-      tags: ["Team", "Sync"]
-    }
-  ],
-  'Week 11': [
-    {
-      id: 'weekly-1',
-      title: "Week 11 Summary",
-      date: "2024-03-11/17",
-      duration: "12h 30m total",
-      participants: ["Team"],
-      summary: "8 meetings held this week. Key topics: Q1 Planning, Product Design, Team Syncs.",
-      tags: ["Weekly Summary"],
-      isWeeklySummary: true
-    }
-  ]
-};
+import { useTranscriptionStore } from '../store/transcription';
+import { logger } from '../utils/logger/core';
+import { EntitySummaryModal } from '../components/EntitySummaryModal';
 
 export function MeetingHistory() {
+  logger.debug('Rendering MeetingHistory page');
   const [searchTerm, setSearchTerm] = useState('');
   const [showFilters, setShowFilters] = useState(false);
-  const [expandedDates, setExpandedDates] = useState<string[]>(['Today', 'Yesterday']);
+  const [expandedDates, setExpandedDates] = useState<string[]>(['Today']);
   const [currentWeek, setCurrentWeek] = useState({
     start: startOfWeek(new Date()),
     end: endOfWeek(new Date())
   });
 
+  const { summary, knowledgeGraph } = useTranscriptionStore();
+  const [showModal, setShowModal] = useState(false);
+
+  let meetingsByDate: Record<string, any[]> = {};
+
+  // If we have a transcription summary and KG, let's show a "Transcribed Meeting"
+  if (summary) {
+    const entityTags = knowledgeGraph?.entities.map(e => e.name) || [];
+    const relationships = knowledgeGraph?.relationships || [];
+    meetingsByDate['Today'] = [{
+      id: 'meeting-1',
+      title: "Transcribed Meeting",
+      date: format(new Date(), 'yyyy-MM-dd'),
+      time: "9:00 AM",
+      duration: "45m",
+      participants: ["John Doe", "Jane Smith"],
+      summary: summary,
+      tags: entityTags,
+      relationships: relationships
+    }];
+  }
+
+  const filteredMeetings = Object.entries(meetingsByDate).reduce((acc, [date, meetings]) => {
+    const filtered = meetings.filter(m => {
+      const combinedText = `${m.title} ${m.summary} ${(m.tags || []).join(' ')} ${m.participants.join(' ')}`;
+      return combinedText.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+    if (filtered.length > 0) {
+      acc[date] = filtered;
+    }
+    return acc;
+  }, {} as Record<string, any[]>);
+
   const toggleDate = (date: string) => {
+    logger.debug('Toggling date expansion', { date });
     setExpandedDates(prev => 
       prev.includes(date) ? prev.filter(d => d !== date) : [...prev, date]
     );
   };
 
-  const formatDateHeader = (date: string) => {
-    if (date === 'Today' || date === 'Yesterday') return date;
-    if (date.startsWith('Week')) return date;
-    const parsedDate = parseISO(date);
-    return format(parsedDate, 'EEEE, MMMM d');
-  };
-
   return (
     <div className="max-w-6xl mx-auto">
-      <div className="sticky top-0 bg-gray-950 z-10 pb-6">
+      <div className="sticky top-0 bg-gray-900 z-10 pb-6">
         <header className="mb-6">
           <div className="flex justify-between items-center mb-6">
             <div>
@@ -32460,7 +34199,7 @@ export function MeetingHistory() {
                   placeholder="Search meetings..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-64 bg-gray-800 text-white rounded-lg pl-10 pr-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  className="w-64 bg-gray-800 text-gray-200 rounded-lg pl-10 pr-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
                 />
               </div>
               <FilterDropdown onToggle={() => setShowFilters(!showFilters)} isOpen={showFilters} />
@@ -32471,34 +34210,39 @@ export function MeetingHistory() {
         </header>
       </div>
 
+      {/* If summary and knowledgeGraph exist, show a button to view Entity Summary */}
+      {summary && knowledgeGraph && (
+        <div className="mb-4 flex justify-end">
+          <button
+            onClick={() => setShowModal(true)}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-400"
+          >
+            View Summary &amp; Entities
+          </button>
+        </div>
+      )}
+
       <div className="space-y-4">
-        {Object.entries(MEETINGS_BY_DATE).map(([date, meetings]) => (
-          <div key={date} className="bg-gray-800/50 rounded-xl overflow-hidden backdrop-blur-sm">
+        {Object.keys(filteredMeetings).length === 0 && (
+          <div className="text-gray-300 bg-gray-800 p-4 rounded-md">
+            No meetings found. Process a file to see results here.
+          </div>
+        )}
+
+        {Object.entries(filteredMeetings).map(([date, meetings]) => (
+          <div key={date} className="bg-gray-800/30 rounded-xl overflow-hidden backdrop-blur-sm border border-gray-700">
             <button
               onClick={() => toggleDate(date)}
-              className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-800/80 transition-colors"
+              className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-700 transition-colors text-gray-200"
             >
               <div className="flex items-center gap-3">
-                {date.includes('Week') ? (
-                  <BarChart className="w-5 h-5 text-purple-400" />
-                ) : (
-                  <Calendar className="w-5 h-5 text-blue-400" />
-                )}
-                <span className="font-medium text-white">{formatDateHeader(date)}</span>
+                <Calendar className="w-5 h-5 text-blue-400" />
+                <span className="font-medium text-gray-200">{date}</span>
                 <div className="flex items-center gap-2 text-gray-400 text-sm">
                   <Clock className="w-4 h-4" />
                   <span>
                     {meetings.reduce((acc, m: any) => {
-                      // This is just a placeholder calculation for total minutes.
-                      // In a real scenario, parse durations properly.
-                      if (m.duration.includes('h')) {
-                        const [hours, rest] = m.duration.split('h');
-                        const h = parseInt(hours.trim());
-                        const mins = rest.trim().split('m')[0];
-                        return acc + h * 60 + (parseInt(mins) || 0);
-                      } else {
-                        return acc + parseInt(m.duration);
-                      }
+                      return acc + 45; 
                     }, 0)} min
                   </span>
                   <span className="mx-2">•</span>
@@ -32518,7 +34262,7 @@ export function MeetingHistory() {
                   <MeetingCard
                     key={meeting.id}
                     {...meeting}
-                    onClick={() => console.log('Navigate to meeting', meeting.id)}
+                    onClick={() => logger.info('Meeting card clicked', { meetingId: meeting.id })}
                   />
                 ))}
               </div>
@@ -32526,10 +34270,242 @@ export function MeetingHistory() {
           </div>
         ))}
       </div>
+
+      {summary && knowledgeGraph && (
+        <EntitySummaryModal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          summary={summary}
+          knowledgeGraph={knowledgeGraph}
+        />
+      )}
     </div>
   );
 }
 
+```
+
+### src/pages/APITestPage.tsx
+
+```typescript
+// src/pages/APITestPage.tsx
+import React, { useState, useMemo } from 'react';
+import { ENV } from '../config/env';
+import { logger } from '../utils/logger/index';
+import { toast } from 'sonner';
+import { SummaryViewer } from '../components/SummaryViewer';
+import { processGraphData } from '../utils/processGraphData';
+import { getEntityColorMap } from '../utils/entityColors';
+import { Graph } from '../components/Graph';
+import { Sidebar } from '../components/Sidebar';
+import type { ProcessedNode, ProcessedLink } from '../types/graph';
+
+export function APITestPage() {
+  const [testText, setTestText] = useState("This is a sample meeting text about Product and Budget.");
+  const [graphData, setGraphData] = useState<{entities: any[], relationships: any[]}|null>(null);
+  const [summaryText, setSummaryText] = useState<string>('');
+  const [entityError, setEntityError] = useState<string | null>(null);
+  const [selectedNode, setSelectedNode] = useState<ProcessedNode | null>(null);
+  
+  const apiKey = ENV.API_KEY_SECONDARY || ENV.API_KEY;
+  const secondaryUrl = ENV.API_URL_SECONDARY;
+
+  const testEntityMap = async () => {
+    logger.info('Testing entity map API', { textLength: testText.length });
+    if (!apiKey || !secondaryUrl) {
+      toast.error('Missing API key or secondary URL. Check logs.');
+      logger.error('Entity map test aborted due to missing keys or URL.', new Error('Missing keys or URL'));
+      return;
+    }
+
+    try {
+      const resp = await fetch(`${secondaryUrl}/entity_map_new`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': apiKey
+        },
+        body: JSON.stringify({ text: testText })
+      });
+
+      if (!resp.ok) {
+        const errorText = await resp.text();
+        logger.error('Entity map request failed', new Error('Entity map request failed'), { response: errorText });
+        toast.error(`Entity map failed: ${errorText}`);
+        setEntityError(`Failed with status ${resp.status}: ${errorText}`);
+        return;
+      }
+
+      const data = await resp.json();
+      logger.info('Entity map success', data);
+
+      const { graph } = data;
+      if (!graph || !Array.isArray(graph.entities) || !Array.isArray(graph.relationships)) {
+        logger.error('Entity map schema mismatch', new Error('Invalid graph structure'), { data });
+        toast.error('Entity map schema mismatch. Check logs.');
+        setEntityError('Schema mismatch: graph.entities or graph.relationships missing.');
+        return;
+      }
+
+      if (graph.entities.length === 0 && graph.relationships.length === 0) {
+        logger.warn('Entity map returned empty entities and relationships', { data });
+        toast('Entity map is empty, nothing to visualize.');
+      }
+
+      setGraphData({ entities: graph.entities, relationships: graph.relationships });
+      toast.success('Entity map success! Visualization ready.');
+    } catch (error) {
+      const errObj = error instanceof Error ? error : new Error(String(error));
+      logger.error('Entity map request error', errObj);
+      toast.error('Entity map request error. Check logs.');
+      setEntityError(errObj.message);
+    }
+  };
+
+  const testSummarize = async () => {
+    logger.info('Testing summarization API', { textLength: testText.length });
+    if (!apiKey || !secondaryUrl) {
+      toast.error('Missing API key or secondary URL. Check logs.');
+      logger.error('Summarization test aborted due to missing keys or URL.', new Error('Missing keys or URL'));
+      return;
+    }
+
+    try {
+      const summarizePayload = {
+        text: testText,
+        knowledge_graph: { entities: [], relationships: [] },
+        system_prompt: "You are an expert assistant skilled at converting raw meeting transcripts into structured meeting minutes. Include extracted entities."
+      };
+
+      const resp = await fetch(`${secondaryUrl}/summarize`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-API-Key': apiKey
+        },
+        body: JSON.stringify(summarizePayload)
+      });
+
+      if (!resp.ok) {
+        const errorText = await resp.text();
+        logger.error('Summarization request failed', new Error('Summarization request failed'), { response: errorText });
+        toast.error(`Summarization failed: ${errorText}`);
+        return;
+      }
+
+      const data = await resp.json();
+      logger.info('Summarization success', data);
+      const summary = data.summary || 'No summary returned.';
+      setSummaryText(summary);
+      toast.success('Summarization success! Check logs and visualization.');
+    } catch (error) {
+      const errObj = error instanceof Error ? error : new Error(String(error));
+      logger.error('Summarization request error', errObj);
+      toast.error('Summarization request error. Check logs.');
+    }
+  };
+
+  let processedData: { nodes: ProcessedNode[], links: ProcessedLink[] } | null = null;
+  if (graphData) {
+    const processed = processGraphData({
+      graph: {
+        entities: graphData.entities.map(e => ({
+          ...e,
+          meeting_id: 'unknown',
+          created_at: Date.now()
+        })),
+        relationships: graphData.relationships.map(r => ({
+          ...r,
+          meeting_id: 'unknown',
+          created_at: Date.now()
+        }))
+      }
+    });
+    processedData = processed;
+  }
+
+  const colorMap = useMemo(() => {
+    if (!processedData) return new Map();
+    return getEntityColorMap(processedData.nodes);
+  }, [processedData]);
+
+  return (
+    <div className="max-w-4xl mx-auto space-y-4 text-gray-200">
+      <h1 className="text-3xl font-bold text-white">API Test Page</h1>
+      <p className="text-gray-400">Enter some text and test the secondary APIs</p>
+
+      <textarea
+        className="w-full h-32 p-2 bg-gray-800 text-gray-200 rounded border border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        value={testText}
+        onChange={(e) => setTestText(e.target.value)}
+      />
+
+      <div className="flex gap-4">
+        <button
+          onClick={testEntityMap}
+          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-400"
+        >
+          Test Entity Map
+        </button>
+        <button
+          onClick={testSummarize}
+          className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-400"
+        >
+          Test Summarize
+        </button>
+      </div>
+
+      {!apiKey && (
+        <div className="text-red-400 text-sm mt-4">
+          Warning: No API Key found. Please set VITE_API_KEY or VITE_API_KEY_SECONDARY.
+        </div>
+      )}
+      {!secondaryUrl && (
+        <div className="text-red-400 text-sm mt-2">
+          Warning: No secondary URL found. Please set VITE_API_URL_SECONDARY.
+        </div>
+      )}
+
+      {summaryText && (
+        <SummaryViewer summary={summaryText} />
+      )}
+
+      {entityError && (
+        <div className="bg-red-800 text-white p-4 rounded">
+          <h2 className="font-bold mb-2">Entity Map Error</h2>
+          <p className="text-sm">{entityError}</p>
+          <p className="text-xs mt-2">Check debug panel for more details.</p>
+        </div>
+      )}
+
+      {processedData && !entityError && (
+        processedData.nodes.length > 0 || processedData.links.length > 0 ? (
+          <div className="relative w-full h-[600px] bg-gray-900 rounded-lg p-4">
+            <Graph
+              nodes={processedData.nodes}
+              links={processedData.links}
+              onNodeClick={setSelectedNode}
+              colorMap={colorMap}
+              selectedNode={selectedNode}
+            />
+            <Sidebar
+              selectedNode={selectedNode}
+              onClose={() => setSelectedNode(null)}
+              links={processedData.links}
+              nodes={processedData.nodes}
+              colorMap={colorMap}
+            />
+          </div>
+        ) : (
+          <div className="bg-gray-700 p-4 rounded text-white">
+            <h2 className="font-semibold mb-2">No Entities/Relationships to Show</h2>
+            <p className="text-sm">The entity map is empty. Check logs or try different text.</p>
+          </div>
+        )
+      )}
+    </div>
+  );
+}
 ```
 
 ### src/pages/ChatPage.tsx
@@ -32539,72 +34515,37 @@ export function MeetingHistory() {
 import React from 'react';
 
 export function ChatPage() {
-  // In future this will have a chat interface
   return (
-    <div className="max-w-4xl mx-auto">
+    <div className="max-w-4xl mx-auto text-gray-200">
       <header className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">Chat with Your Meetings</h1>
-        <p className="mt-2 text-gray-600">
+        <h1 className="text-3xl font-bold text-white">Chat with Your Meetings</h1>
+        <p className="mt-2 text-gray-400">
           Interact with past meeting transcriptions and summaries.
         </p>
       </header>
       <main className="space-y-4">
-        {/* Placeholder for chat messages */}
-        <div className="bg-white p-4 rounded-lg shadow">
-          <p className="text-sm text-gray-800">User: Hi, can you summarize my last meeting?</p>
+        <div className="bg-gray-800 p-4 rounded-lg shadow">
+          <p className="text-sm text-gray-300">User: Hi, can you summarize my last meeting?</p>
         </div>
-        <div className="bg-white p-4 rounded-lg shadow">
-          <p className="text-sm text-gray-800">Bot: Sure, your last meeting was about...</p>
+        <div className="bg-gray-800 p-4 rounded-lg shadow">
+          <p className="text-sm text-gray-300">Bot: Sure, your last meeting was about...</p>
         </div>
-        {/* Placeholder for input */}
         <div className="mt-4">
           <input
             type="text"
             placeholder="Type a message..."
-            className="w-full px-4 py-2 border border-gray-300 rounded text-sm text-gray-700"
+            className="w-full px-4 py-2 border border-gray-700 bg-gray-800 text-gray-200 rounded text-sm focus:outline-none focus:ring-2 focus:ring-blue-400"
           />
         </div>
       </main>
     </div>
   );
 }
-
 ```
 
 ### src/services/.DS_Store
 
-
-Error: Could not read file content
-
-
-### src/services/api.ts
-
-```typescript
-import { API_CONFIG } from '../config/api';
-
-// NOTE: The above APIError definition must be removed as per corrections.
-// We have a better APIError in services/api/errors.ts.
-// We will remove this entire class and rely solely on the one from errors.ts.
-
-// After removal of the inline APIError and extra imports, the file becomes unnecessary.
-// The user requested all files that need corrections. If this file was originally part of the codebase,
-// we must show its corrected version, which no longer defines APIError internally.
-
-// The prompt code from "services/api.ts" was actually showing a repeated APIError. We must remove it.
-// The code snippet given at the start for `services/api.ts` is minimal and references no other code.
-// According to the initial code listing, `services/api.ts` only had references to `API_CONFIG` and `ENV`.
-// We'll present a corrected version without the inline APIError definition and no duplicate imports.
-
-
-// Final corrected version of services/api.ts:
-
-
-// If there's no other content here (the original snippet does not show more),
-// we can leave this file as is, just removing the inline APIError definition and duplicates.
-
-export { API_CONFIG };
-
-```
+Error reading file.
 
 ### src/services/transcription/validation.ts
 
@@ -32818,6 +34759,119 @@ export interface UploadOptions {
 }
 ```
 
+### src/services/api/knowledgeGraph.ts
+
+```typescript
+import { KnowledgeGraph } from '../../types';
+import { ENV } from '../../config/env';
+import { logger } from '../../utils/logger';
+import { APIError } from './errors';
+
+const SECONDARY_API_URL = ENV.API_URL_SECONDARY;
+const API_KEY = ENV.API_KEY_SECONDARY || ENV.API_KEY;
+
+export async function fetchKnowledgeGraph(): Promise<KnowledgeGraph> {
+  const response = await fetch('/api/knowledge-graph');
+  const data = await response.json();
+
+  console.log('Knowledge Graph API Response:', data);
+
+  // Expecting data to have a graph object
+  if (!data.graph || !Array.isArray(data.graph.entities) || !Array.isArray(data.graph.relationships)) {
+    throw new Error('Invalid API response: graph.entities or graph.relationships are not arrays');
+  }
+
+  return data.graph as KnowledgeGraph;
+}
+
+export async function generateEntityMap(text: string): Promise<KnowledgeGraph> {
+  if (!SECONDARY_API_URL || !API_KEY) {
+    throw new APIError({
+      code: 'CONFIG_ERROR',
+      message: 'Missing API configuration',
+    });
+  }
+
+  const payload = { text };
+
+  try {
+    const response = await fetch(`${SECONDARY_API_URL}/entity_map_new`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-API-Key': API_KEY,
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new APIError({
+        code: `HTTP_${response.status}`,
+        message: 'Entity map request failed',
+        status: response.status,
+      });
+    }
+
+    const data = await response.json();
+
+    if (!data.graph || !Array.isArray(data.graph.entities) || !Array.isArray(data.graph.relationships)) {
+      throw new APIError({
+        code: 'INVALID_RESPONSE',
+        message: 'Entity map response missing required arrays in graph',
+      });
+    }
+
+    return data.graph;
+  } catch (error) {
+    logger.error('Entity map request failed', error instanceof Error ? error : new Error(String(error)));
+    throw error;
+  }
+}
+
+export async function generateSummary(
+  text: string,
+  knowledgeGraph: KnowledgeGraph
+): Promise<string> {
+  if (!SECONDARY_API_URL || !API_KEY) {
+    throw new APIError({
+      code: 'CONFIG_ERROR',
+      message: 'Missing API configuration',
+    });
+  }
+
+  const payload = {
+    text,
+    knowledge_graph: knowledgeGraph,
+    system_prompt: "You are an expert assistant skilled at converting raw meeting transcripts into meeting minutes. Include the extracted entities and relationships to produce a coherent summary.",
+  };
+
+  try {
+    const response = await fetch(`${SECONDARY_API_URL}/summarize`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-API-Key': API_KEY,
+      },
+      body: JSON.stringify(payload),
+    });
+
+    if (!response.ok) {
+      throw new APIError({
+        code: `HTTP_${response.status}`,
+        message: 'Summarization request failed',
+        status: response.status,
+      });
+    }
+
+    const data = await response.json();
+    return data.summary;
+  } catch (error) {
+    logger.error('Summarization request failed', error instanceof Error ? error : new Error(String(error)));
+    throw error;
+  }
+}
+```
+
 ### src/services/api/client.ts
 
 ```typescript
@@ -32890,7 +34944,7 @@ export async function apiRequest<T>(
     context.duration = `${(performance.now() - startTime).toFixed(2)}ms`;
 
     if (error instanceof APIError) {
-      logger.error('API Error', error, context);
+      logger.error('API Error', error, { ...context }); 
       throw error;
     }
 
@@ -32904,7 +34958,7 @@ export async function apiRequest<T>(
         });
       }
 
-      logger.error('Request failed', error, context);
+      logger.error('Request failed', error, { ...context }); 
       throw new APIError({
         message: error.message,
         code: 'REQUEST_FAILED',
@@ -32912,8 +34966,7 @@ export async function apiRequest<T>(
       });
     }
 
-    logger.error('Unknown error', new Error('Unknown error'), context);
-    throw new APIError({
+logger.error('Unknown error', new Error('Unknown error'), { ...context });    throw new APIError({
       message: 'An unknown error occurred',
       code: 'UNKNOWN_ERROR',
       details: context
@@ -32930,7 +34983,8 @@ export * from './upload';
 export * from './errors';
 export * from './utils';
 export * from './types';
-export * from './client'; // Added this line to ensure apiRequest is exported
+export * from './client';
+export * from './knowledgeGraph';
 
 ```
 
@@ -33098,569 +35152,13 @@ export async function getTranscriptionResult(fileId: string, signal?: AbortSigna
 
 ```
 
-### src/services/upload/validation.ts
-
-```typescript
-import { logger } from '../../utils/logger';
-import { AUDIO_CONFIG } from '../../config/audio';
-import { formatFileSize } from '../../utils/format';
-
-export interface ValidationResult {
-  isValid: boolean;
-  error?: string;
-}
-
-export function validateFileType(file: File): ValidationResult {
-  const acceptedTypes = Object.keys(AUDIO_CONFIG.FORMATS);
-  if (!acceptedTypes.includes(file.type)) {
-    return {
-      isValid: false,
-      error: `Invalid file type. Supported formats: ${acceptedTypes.join(', ')}`
-    };
-  }
-  return { isValid: true };
-}
-
-export function validateFileSize(file: File): ValidationResult {
-  if (file.size > AUDIO_CONFIG.MAX_FILE_SIZE) {
-    return {
-      isValid: false,
-      error: `File size exceeds maximum limit of ${formatFileSize(AUDIO_CONFIG.MAX_FILE_SIZE)}`
-    };
-  }
-  if (file.size < AUDIO_CONFIG.MIN_FILE_SIZE) {
-    return {
-      isValid: false,
-      error: `File size is below minimum of ${formatFileSize(AUDIO_CONFIG.MIN_FILE_SIZE)}`
-    };
-  }
-  return { isValid: true };
-}
-
-export async function validateAudioContent(file: File): Promise<ValidationResult> {
-  try {
-    const chunk = file.slice(0, AUDIO_CONFIG.PREVIEW_CHUNK_SIZE);
-    const arrayBuffer = await chunk.arrayBuffer();
-    
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-    const audioBuffer = await audioContext.decodeAudioData(arrayBuffer);
-    
-    if (audioBuffer.duration < 0.1) {
-      return {
-        isValid: false,
-        error: 'Audio file appears to be empty or corrupted'
-      };
-    }
-    
-    if (audioBuffer.numberOfChannels === 0) {
-      return {
-        isValid: false,
-        error: 'Audio file contains no audio channels'
-      };
-    }
-    
-    return { isValid: true };
-  } catch (error) {
-    logger.error('Audio content validation failed', error instanceof Error ? error : new Error('Unknown error'));
-    return {
-      isValid: false,
-      error: 'Unable to validate audio content. The file may be corrupted.'
-    };
-  }
-}
-
-export async function validateFile(file: File): Promise<ValidationResult> {
-  logger.debug('Starting file validation', {
-    name: file.name,
-    size: file.size,
-    type: file.type
-  });
-
-  // Check file type
-  const typeValidation = validateFileType(file);
-  if (!typeValidation.isValid) {
-    logger.warn('File type validation failed', { error: typeValidation.error });
-    return typeValidation;
-  }
-
-  // Check file size
-  const sizeValidation = validateFileSize(file);
-  if (!sizeValidation.isValid) {
-    logger.warn('File size validation failed', { error: sizeValidation.error });
-    return sizeValidation;
-  }
-
-  // Validate audio content
-  const contentValidation = await validateAudioContent(file);
-  if (!contentValidation.isValid) {
-    logger.warn('Audio content validation failed', { error: contentValidation.error });
-    return contentValidation;
-  }
-
-  logger.debug('File validation successful');
-  return { isValid: true };
-}
-```
-
-### src/services/upload/url-generator.ts
-
-```typescript
-import { API_CONFIG } from '../../config/api';
-import { logger } from '../../utils/logger';
-import type { UploadUrlResponse } from './types';
-
-export async function generateUploadUrl(
-  filename: string,
-  signal?: AbortSignal
-): Promise<UploadUrlResponse> {
-  logger.debug('Generating upload URL', { 
-    filename,
-    apiUrl: API_CONFIG.baseUrl 
-  });
-
-  try {
-    const response = await fetch(
-      API_CONFIG.endpoints.generateUploadUrl(filename),
-      {
-        method: 'POST',
-        headers: {
-          ...API_CONFIG.headers.base,
-          'Content-Type': 'application/json'
-        },
-        signal
-      }
-    );
-
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({}));
-      logger.error('Failed to generate upload URL', new Error(error.message || 'Network error'), {
-        status: response.status,
-        filename,
-        endpoint: API_CONFIG.endpoints.generateUploadUrl(filename)
-      });
-      throw new Error(error.message || 'Failed to generate upload URL');
-    }
-
-    const data = await response.json();
-    
-    if (!data.upload_url || !data.file_id) {
-      logger.error('Invalid upload URL response', new Error('Missing required fields'), { 
-        data,
-        endpoint: API_CONFIG.endpoints.generateUploadUrl(filename)
-      });
-      throw new Error('Invalid response from server');
-    }
-
-    logger.info('Upload URL generated successfully', {
-      fileId: data.file_id,
-      uploadUrlLength: data.upload_url.length,
-      endpoint: API_CONFIG.endpoints.generateUploadUrl(filename)
-    });
-
-    return data;
-  } catch (error) {
-    logger.error(
-      'Error generating upload URL',
-      error instanceof Error ? error : new Error('Unknown error'),
-      { filename, apiUrl: API_CONFIG.baseUrl }
-    );
-    throw error;
-  }
-}
-```
-
-### src/services/upload/xhr.ts
-
-```typescript
-import { logger } from '../../utils/logger';
-import type { UploadOptions, UploadProgress } from './types';
-
-export function uploadWithXHR(url: string, file: File, options: UploadOptions = {}): Promise<void> {
-  const requestId = Math.random().toString(36).substring(7);
-  
-  logger.debug('Starting XHR upload', {
-    requestId,
-    fileName: file.name,
-    fileSize: file.size,
-    fileType: file.type
-  });
-
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-
-    if (options.signal) {
-      options.signal.addEventListener('abort', () => xhr.abort());
-    }
-
-    xhr.upload.addEventListener('progress', (event) => {
-      if (event.lengthComputable) {
-        const progress: UploadProgress = {
-          loaded: event.loaded,
-          total: event.total,
-          percentage: Math.round((event.loaded / event.total) * 100)
-        };
-        
-        logger.debug('Upload progress', {
-          requestId,
-          ...progress
-        });
-        
-        options.onProgress?.(progress);
-      }
-    });
-
-    xhr.addEventListener('load', () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        logger.debug('Upload completed successfully', {
-          requestId,
-          status: xhr.status
-        });
-        options.onComplete?.();
-        resolve();
-      } else {
-        const error = new Error(`Upload failed with status ${xhr.status}`);
-        logger.error('Upload failed', error, {
-          requestId,
-          status: xhr.status,
-          response: xhr.responseText
-        });
-        options.onError?.(error);
-        reject(error);
-      }
-    });
-
-    xhr.addEventListener('error', () => {
-      const error = new Error('Network error during upload');
-      logger.error('Upload network error', error, { requestId });
-      options.onError?.(error);
-      reject(error);
-    });
-
-    xhr.addEventListener('abort', () => {
-      const error = new Error('Upload was aborted');
-      logger.error('Upload aborted', error, { requestId });
-      options.onError?.(error);
-      reject(error);
-    });
-
-    xhr.open('PUT', url);
-    xhr.setRequestHeader('Content-Type', 'application/octet-stream');
-    xhr.send(file);
-  });
-}
-```
-
-### src/services/upload/types.ts
-
-```typescript
-import type { APIError } from '../api/errors';
-
-export interface UploadProgress {
-  loaded: number;
-  total: number;
-  percentage: number;
-}
-
-export interface UploadOptions {
-  onStart?: () => void;
-  onProgress?: (progress: UploadProgress) => void;
-  onComplete?: () => void;
-  onError?: (error: APIError) => void;
-  signal?: AbortSignal;
-}
-
-export interface SignedUrlResponse {
-  upload_url: string;
-  file_id: string;
-}
-
-export interface UploadState {
-  progress: number;
-  status: 'idle' | 'validating' | 'generating-url' | 'uploading' | 'requesting-transcription' | 'processing' | 'completed' | 'error';
-  error: Error | null;
-}
-
-```
-
-### src/services/upload/uploader.ts
-
-```typescript
-import { logger } from '../../utils/logger';
-import { APIError } from '../api/errors';
-import type { UploadOptions, UploadProgress } from './types';
-
-export function uploadToUrl(
-  url: string,
-  file: File,
-  options: UploadOptions = {}
-): Promise<void> {
-  const requestId = Math.random().toString(36).substring(7);
-  
-  logger.debug('Starting file upload', {
-    requestId,
-    fileName: file.name,
-    fileSize: file.size,
-    fileType: file.type,
-    uploadUrlLength: url.length
-  });
-
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-    xhr.withCredentials = false;
-    xhr.timeout = 300000; // 5 minutes for large files
-
-    if (options.signal) {
-      options.signal.addEventListener('abort', () => xhr.abort());
-    }
-
-    xhr.upload.addEventListener('loadstart', () => {
-      logger.debug('Upload started', { requestId });
-      options.onStart?.();
-    });
-
-    xhr.upload.addEventListener('progress', (event) => {
-      if (event.lengthComputable) {
-        const progress: UploadProgress = {
-          loaded: event.loaded,
-          total: event.total,
-          percentage: Math.round((event.loaded / event.total) * 100)
-        };
-        
-        logger.debug('Upload progress', {
-          requestId,
-          ...progress
-        });
-        
-        options.onProgress?.(progress);
-      }
-    });
-
-    xhr.addEventListener('load', () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        logger.info('Upload completed successfully', {
-          requestId,
-          status: xhr.status,
-          responseLength: xhr.responseText.length
-        });
-        options.onComplete?.();
-        resolve();
-      } else {
-        const error = new APIError({
-          message: `Upload failed with status ${xhr.status}`,
-          status: xhr.status,
-          code: `UPLOAD_ERROR_${xhr.status}`,
-          details: {
-            requestId,
-            status: xhr.status,
-            response: xhr.responseText
-          }
-        });
-        logger.error('Upload failed', error, { requestId });
-        options.onError?.(error);
-        reject(error);
-      }
-    });
-
-    xhr.addEventListener('error', () => {
-      const error = new APIError({
-        message: 'Network error during upload',
-        code: 'UPLOAD_NETWORK_ERROR',
-        details: {
-          requestId,
-          readyState: xhr.readyState,
-          status: xhr.status
-        }
-      });
-      logger.error('Upload network error', error, { requestId });
-      options.onError?.(error);
-      reject(error);
-    });
-
-    xhr.addEventListener('timeout', () => {
-      const error = new APIError({
-        message: 'Upload timeout',
-        code: 'UPLOAD_TIMEOUT',
-        details: {
-          requestId,
-          timeout: xhr.timeout
-        }
-      });
-      logger.error('Upload timeout', error, { requestId });
-      options.onError?.(error);
-      reject(error);
-    });
-
-    xhr.addEventListener('abort', () => {
-      const error = new APIError({
-        message: 'Upload was aborted',
-        code: 'UPLOAD_ABORTED',
-        details: { requestId }
-      });
-      logger.error('Upload aborted', error, { requestId });
-      options.onError?.(error);
-      reject(error);
-    });
-
-    try {
-      xhr.open('PUT', url, true);
-      xhr.setRequestHeader('Content-Type', 'application/octet-stream');
-      xhr.send(file);
-    } catch (error) {
-      const err = new APIError({
-        message: 'Failed to initiate upload',
-        code: 'UPLOAD_INIT_ERROR',
-        details: {
-          requestId,
-          error: error instanceof Error ? error.message : 'Unknown error'
-        }
-      });
-      logger.error('Failed to initiate upload', err, { requestId });
-      reject(err);
-    }
-  });
-}
-```
-
-### src/services/upload/client.ts
-
-```typescript
-import { API_CONFIG } from '../../config/api';
-import { APIError } from '../api/errors';
-import { logger } from '../../utils/logger';
-import type { SignedUrlResponse, UploadOptions } from './types';
-
-export async function generateSignedUrl(filename: string): Promise<SignedUrlResponse> {
-  const requestId = Math.random().toString(36).substr(2, 9);
-
-  logger.debug('Generating signed URL', {
-    requestId,
-    filename,
-    endpoint: API_CONFIG.endpoints.generateUploadUrl(filename)
-  });
-
-  try {
-    const response = await fetch(API_CONFIG.endpoints.generateUploadUrl(filename), {
-      method: 'POST',
-      headers: API_CONFIG.headers.base
-    });
-
-    if (!response.ok) {
-      const error = await response.json().catch(() => ({}));
-      throw new APIError({
-        code: error.code || `HTTP_${response.status}`,
-        message: error.message || 'Failed to generate signed URL',
-        status: response.status,
-        details: { filename, requestId }
-      });
-    }
-
-    const data = await response.json();
-    
-    logger.debug('Successfully generated signed URL', {
-      requestId,
-      fileId: data.file_id,
-      urlLength: data.upload_url.length
-    });
-
-    return data;
-  } catch (error) {
-    logger.error(
-      'Failed to generate signed URL',
-      error instanceof Error ? error : new Error('Unknown error'),
-      { requestId, filename }
-    );
-    throw error;
-  }
-}
-
-export async function uploadToSignedUrl(
-  url: string,
-  file: File,
-  options: UploadOptions = {}
-): Promise<void> {
-  const requestId = Math.random().toString(36).substr(2, 9);
-
-  logger.debug('Starting file upload', {
-    requestId,
-    fileName: file.name,
-    fileSize: file.size,
-    fileType: file.type
-  });
-
-  return new Promise((resolve, reject) => {
-    const xhr = new XMLHttpRequest();
-
-    xhr.upload.addEventListener('progress', (event) => {
-      if (event.lengthComputable) {
-        const progress = {
-          loaded: event.loaded,
-          total: event.total,
-          percentage: (event.loaded / event.total) * 100
-        };
-        
-        logger.debug('Upload progress', {
-          requestId,
-          ...progress
-        });
-        
-        options.onProgress?.(progress);
-      }
-    });
-
-    xhr.addEventListener('load', () => {
-      if (xhr.status >= 200 && xhr.status < 300) {
-        logger.debug('Upload completed successfully', {
-          requestId,
-          status: xhr.status
-        });
-        options.onComplete?.();
-        resolve();
-      } else {
-        const error = new APIError({
-          code: `UPLOAD_ERROR_${xhr.status}`,
-          message: `Upload failed with status ${xhr.status}`,
-          status: xhr.status
-        });
-        logger.error('Upload failed', error, { requestId });
-        options.onError?.(error);
-        reject(error);
-      }
-    });
-
-    xhr.addEventListener('error', () => {
-      const error = new APIError({
-        code: 'UPLOAD_NETWORK_ERROR',
-        message: 'Network error during upload'
-      });
-      logger.error('Upload network error', error, { requestId });
-      options.onError?.(error);
-      reject(error);
-    });
-
-    xhr.addEventListener('abort', () => {
-      const error = new APIError({
-        code: 'UPLOAD_ABORTED',
-        message: 'Upload was aborted'
-      });
-      logger.error('Upload aborted', error, { requestId });
-      options.onError?.(error);
-      reject(error);
-    });
-
-    xhr.open('PUT', url);
-    xhr.setRequestHeader('Content-Type', 'application/octet-stream');
-    xhr.send(file);
-  });
-}
-
-```
-
 ### src/store/transcription.ts
 
 ```typescript
+// src/store/transcription.ts
 import { create } from 'zustand';
-import type { TranscriptionState, ProcessError, ProcessStatus } from '../types';
-import { logger } from '../utils/logger';
+import type { TranscriptionState, ProcessError, ProcessStatus, KnowledgeGraph } from '../types';
+import { logger } from '../utils/logger/core';
 
 export const useTranscriptionStore = create<TranscriptionState>((set, get) => ({
   file: null,
@@ -33669,6 +35167,9 @@ export const useTranscriptionStore = create<TranscriptionState>((set, get) => ({
   error: null,
   transcription: null,
   speakerMap: {},
+  knowledgeGraph: null,
+  summary: null,
+
   setSpeakerName: (speaker, name) => {
     logger.debug('Updating speaker name', { speaker, name });
     set((state) => ({
@@ -33711,6 +35212,23 @@ export const useTranscriptionStore = create<TranscriptionState>((set, get) => ({
     });
     set({ transcription });
   },
+  setKnowledgeGraph: (kg: KnowledgeGraph | null) => {
+    if (kg) {
+      logger.info('Setting knowledge graph', {
+        entities: kg.entities?.length || 0,
+        relationships: kg.relationships?.length || 0
+      });
+    } else {
+      logger.info('Setting knowledge graph to null');
+    }
+    set({ knowledgeGraph: kg });
+  },
+  setSummary: (summary: string | null) => {
+    logger.info('Setting summary', {
+      length: summary?.length || 0
+    });
+    set({ summary });
+  },
   reset: () => {
     logger.info('Resetting transcription state');
     set({
@@ -33720,8 +35238,11 @@ export const useTranscriptionStore = create<TranscriptionState>((set, get) => ({
       error: null,
       transcription: null,
       speakerMap: {},
+      knowledgeGraph: null,
+      summary: null
     });
   },
 }));
+
 ```
 

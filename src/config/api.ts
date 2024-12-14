@@ -1,4 +1,3 @@
-// src/config/api.ts
 import { ENV } from './env';
 
 export const API_CONFIG = {
@@ -24,7 +23,7 @@ export const API_CONFIG = {
       'Content-Type': 'application/octet-stream',
     },
   },
-  timeout: 600000, // 10 minutes
+  timeout: 600000,
   polling: {
     interval: 5000,
     maxAttempts: 60,

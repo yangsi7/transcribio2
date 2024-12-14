@@ -1,4 +1,5 @@
-import { AUDIO_CONFIG } from './constants';
+// src/utils/audio/validation.ts
+import { AUDIO_CONFIG } from '../../config/audio';
 import { logger } from './logger';
 import { handleAudioError } from './error-handler';
 import { processAudioChunk } from './processing';

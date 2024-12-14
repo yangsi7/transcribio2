@@ -1,0 +1,293 @@
+{
+    "files": {
+        "tsconfig.node.json": {
+            "hash": "1a270cb8020d1fa879262423b9c222fa38d94b830ec61164a46b558ea9d2a526"
+        },
+        "index.html": {
+            "hash": "c7424cab79ba366bb2d8fca14db7d1caf8f2ae42217f4ddc3642bb2edc8ac6eb"
+        },
+        "tailwind.config.js": {
+            "hash": "2a8ceb3b21bc1309c4c04873305041a5d10fa0da67528c4ca900055a02b0f052"
+        },
+        ".DS_Store": {
+            "hash": "d4f82b635e9e83377de0f7223aed55c169854751f3e8e72f547db6430c9f6b27"
+        },
+        "tsconfig.app.json": {
+            "hash": "5dea726e0460f4b1c4c8cd0dab11544af8ae8f89445d8618f0d643762e2c5a0a"
+        },
+        ".gitignore": {
+            "hash": "fe718e7babb14f3cbad2d97f08889b9ce5215ed3fe0e43b2b8cfbfb3b9b844e8"
+        },
+        "package-lock.json": {
+            "hash": "d5e7a55fe801775734f8618b3a9be0d06dfb04cecd67a33aafad0f3004b4e129"
+        },
+        "package.json": {
+            "hash": "87fc9dd8f35527d6278157349fc10808bb891e81c9368fb611952d7335b1f71b"
+        },
+        ".env": {
+            "hash": "c868fba359fa6753304cebb5c84ac923362156764c27b11f9c88029b56a1b50e"
+        },
+        "tsconfig.json": {
+            "hash": "9291ee0956ec2516757003310e648d1b2081f6e349a461070a95c19dad1a0050"
+        },
+        "eslint.config.js": {
+            "hash": "fa3cc12579fb0ef678a3153b31ec396d81ef2fec284a1a5ecb779c0ff336cfe0"
+        },
+        "vite.config.ts": {
+            "hash": "c3557cefcd71a60913769380787d7777829a30d89ac572aaa0081410c173721f"
+        },
+        "postcss.config.js": {
+            "hash": "fa650b380adfabb151a0b352f7135e107e6352345f899060f1c5c231228f94bf"
+        },
+        "filelist.txt": {
+            "hash": "748ec9fb6d1d053c3d3fa4333b292e96a045e7645f2e4d970b066caa361ccfc5"
+        },
+        "repindex/dependency_graph_exports.json": {
+            "hash": "81c0a0f278c114eaafe72a22393c519e274333bd0baf9a68f4bcb6a9324a2271"
+        },
+        "repindex/tree_structure.txt": {
+            "hash": "afa6a9170c2525cf01a3ba9c07612edbac20ab912fc432e1a8cc75a1ce1ea529"
+        },
+        "repindex/dependency_graph_full.json": {
+            "hash": "d6922f56f37b8513b971c4fe662db12e7578230eca20c4d6866e9652ee7ac725"
+        },
+        "repindex/top_level_structure.json": {
+            "hash": "48b648cec12fe718046062b906d62085afa1713d252f378cf8a0aeef419d58c6"
+        },
+        "repindex/documentation_light.md": {
+            "hash": "47569283e8a3ac24aa78e682b5c0dd223a44b70338af9cf4fed7b2f5d3e45ffd"
+        },
+        "repindex/documentation.md": {
+            "hash": "658936838ecc50d4ef47e8defa684c16c145ef82ae10debf22e8eda0a960e755"
+        },
+        "repindex/dependency_graph_imports.json": {
+            "hash": "90353755b5ce1ad739900356d341a494e136d8da2aff32340fd7517a8202e5d7"
+        },
+        "repindex/dependency_graph_no_objects.json": {
+            "hash": "e68a6ee643263dd100273524220d116cb97faa1debfe488fe4396f5c6c682214"
+        },
+        "repindex/detailed_structure.json": {
+            "hash": "3f4f27dd1e46ea2422b3cd05f01c36f742ef7103be9346bc42a9468f534e6b94"
+        },
+        "src/App.tsx": {
+            "hash": "b308b81fb34e427db9ef085a38f6039dfc357a9b81e5d5bc854edbfb684e8873"
+        },
+        "src/main.tsx": {
+            "hash": "2f4980b18ce30205ac4a5e30a104bba8d529ad69ad64be2c95eeafc7d526132a"
+        },
+        "src/.DS_Store": {
+            "hash": "b42e3ea097f7ac2ecb0899dd66daee52756ed7789513d235838306d044f1ce93"
+        },
+        "src/asd.json": {
+            "hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "src/index.css": {
+            "hash": "a4657e9448d731036fb87f616636299789142a89fdbeb8f152616fe2973a1988"
+        },
+        "src/vite-env.d.ts": {
+            "hash": "40195ab3085f99bbf8cddaf73ba2f6f1ee5a8df349dd2c011c0ec1b3ca9bc205"
+        },
+        "src/types/graph.ts": {
+            "hash": "573f9757bea69c779e0008ec3812566a74d057f582b96daec3ad0a7770ae5b1c"
+        },
+        "src/types/index.ts": {
+            "hash": "5adfe6d06e5dbf03f0f2409c631fa72cb72604844618bd5e5970099ae5550109"
+        },
+        "src/config/audio.ts": {
+            "hash": "87d323d51776dd39e477f47b03899550dee1f6b22391a88618cdcc244066cf02"
+        },
+        "src/config/api.ts": {
+            "hash": "b7c20c7837a40d2801f157e689109fca82d21f3a44e207a795784aa6c21d7d22"
+        },
+        "src/config/constants.ts": {
+            "hash": "f9b164ed603d4c94e28d4a9976a75f0fb5550f24db0e72b89e6f170c4ef52ddd"
+        },
+        "src/config/.env": {
+            "hash": "c868fba359fa6753304cebb5c84ac923362156764c27b11f9c88029b56a1b50e"
+        },
+        "src/config/env.ts": {
+            "hash": "468e97ca17b27c93cf227b96aad92dabd87f141a40224b7a1bb66084e63a40b1"
+        },
+        "src/utils/colors.ts": {
+            "hash": "8e66c582ad96bfe23f324178b3991a5d575ef7d482921826b583d3155ea62c6e"
+        },
+        "src/utils/audio.ts": {
+            "hash": "81a04672b3b9fca43f256894df8cf156b009e9965b827c069e83841163138e24"
+        },
+        "src/utils/entityColors.ts": {
+            "hash": "813c0e3c70d4bfe98d45cbd5da9f33952594a19668e748d9925dcde0765b4f30"
+        },
+        "src/utils/export.ts": {
+            "hash": "8b0fa21b0029ccaa73d97cdf1166362a55532a2aca89fa0cf5d3a28416432320"
+        },
+        "src/utils/format.ts": {
+            "hash": "5e3f76f1b8e4ed0eb12dad686997782b85803ab0cef6b22df56ca01ddea5d4f5"
+        },
+        "src/utils/processGraphData.ts": {
+            "hash": "1ff0dd369652980ae43cec5b79965a664853a921203b784c8ad7f875e42768e8"
+        },
+        "src/utils/keywords.ts": {
+            "hash": "60441685af7729159c2bc2ecf5751886db22ae109734d29fb72043c22cd1c8db"
+        },
+        "src/utils/logger/status.ts": {
+            "hash": "34fdcb31e9c8dabe7edad10e5165c5c372268c296d6af0137a1dc0cde2d02924"
+        },
+        "src/utils/logger/types.ts": {
+            "hash": "a59ef2ab88577e46c49fe64d205cea8af9034a2955fe251f6ab2e81f8134903e"
+        },
+        "src/utils/logger/core.ts": {
+            "hash": "a60fdbd99659d725e1929ddf027af68a555c3a1a6e61af7a64b33efc553506db"
+        },
+        "src/utils/logger/index.ts": {
+            "hash": "499753dba29838a0d1b92c55e08da918fcd6d958beb12e9ee9e7316dbe4c83ff"
+        },
+        "src/utils/logger/formatter.ts": {
+            "hash": "9af0da1b25d15cdeb8cc0dd778a61be88d87985809b5c137737492a2959d98d9"
+        },
+        "src/utils/audio/validation.ts": {
+            "hash": "aa27ea986e8d224bcbeb67d60d6e85d65cb2b3aab140f42579ca381fb892c095"
+        },
+        "src/utils/audio/error-handler.ts": {
+            "hash": "5f4e84f5843116500ea39203d9a9e68d2484ac0e2a74d9c7154c6fd07ae7f89b"
+        },
+        "src/utils/audio/processing.ts": {
+            "hash": "86c2c3dcd52c2cdecc03c58300d0883155032a3ff831c978efc0eac031e919e8"
+        },
+        "src/utils/audio/logger.ts": {
+            "hash": "1044861eb9cce591f3efb6da94db0f9b91dddf7b191f5d8dcaa4677c983ce3a0"
+        },
+        "src/utils/audio/index.ts": {
+            "hash": "ab8d4cde984ddeec51a4eeba192596b41a342e31928feeee90915611e733f5d7"
+        },
+        "src/utils/text/processing.ts": {
+            "hash": "232c06aad8ed94f36919bf28e0b6a57bf22a5089612873df845ab52c6712202e"
+        },
+        "src/components/NodeConnections.tsx": {
+            "hash": "8e76a47aa834049b07d5c48a91d6e7d077ad9d006496eb635cf9a2894f614c8c"
+        },
+        "src/components/EntitySummaryModal.tsx": {
+            "hash": "44c2e0b6d38935089e54c6500df83eaef6506ebb90d7176d967fcbdae6f842e8"
+        },
+        "src/components/ProcessStatus.tsx": {
+            "hash": "d95c470cea6c3965feeba6426b0080cb2cdfe6e1ec940486f09011f9f4f2b1d1"
+        },
+        "src/components/DebugPanel.tsx": {
+            "hash": "9613b5166dd353a38bf6d20c6097767a0f232a0f16b4cf0af8ba604e31f34022"
+        },
+        "src/components/Graph.tsx": {
+            "hash": "40efb6fd6994ff7322e68e869d9dccbe1c9a8178294a05bd21c94355797a72f7"
+        },
+        "src/components/InputSection.tsx": {
+            "hash": "e02e02c71c23b53522700dc79b035347d143c0b856781476b9f3d69741139908"
+        },
+        "src/components/MeetingCard.tsx": {
+            "hash": "33d048f3aa7199b4790bd42f868ae274126c3602ac82ba29ff19456cf3311f03"
+        },
+        "src/components/Sidebar.tsx": {
+            "hash": "73560e5557b8ccbd0e80f4b85aadb30ddf4278a180333779028c2217e4bba645"
+        },
+        "src/components/SummaryViewer.tsx": {
+            "hash": "94162f7d1094c6a2ba739d5e3eabddd8ae83349b7d4b77ba37931466aebbcb9b"
+        },
+        "src/components/NodeSidebar.tsx": {
+            "hash": "847c5dd7c01b9bf234d3d09fa230999f1bfea572d9f537c61d263b8e2faa4cd7"
+        },
+        "src/components/TranscriptionControls/index.tsx": {
+            "hash": "438fe27d38e7221847a92d26629f3fc0a85267ec06d161719de32592ccff04e2"
+        },
+        "src/components/TranscriptionControls/ExportButton.tsx": {
+            "hash": "f15c304f076376018ebb2b8b3c465559b2da0a0763d26f8f593c4b4dd76ba2bf"
+        },
+        "src/components/TranscriptionControls/CopyButton.tsx": {
+            "hash": "8c89152233b7313c8deede9fb67642753dcd84617c4ef3f78b18479ecb156c43"
+        },
+        "src/components/FileUpload/index.tsx": {
+            "hash": "e46bb74897519f981c2a067c761f7ab3bcb43e638a63129e061c0db2d931f2b7"
+        },
+        "src/components/FileUpload/DropZone.tsx": {
+            "hash": "4bbc4a8efd51384f8358fe4ce21cd512a9628194ce409bb423fa2013b9d8ab84"
+        },
+        "src/components/FileUpload/UploadProgress.tsx": {
+            "hash": "8e9f17b7b8d11a91fb268dcfb95d6d9ea3da10dfd3cc753c53d0667106e81bdc"
+        },
+        "src/components/calendar/WeekHeader.tsx": {
+            "hash": "c7cc038f713efd108f833401e908bab6ffb7fcd985e9f341c3d730fa43d6d3c1"
+        },
+        "src/components/calendar/FilterDropdown.tsx": {
+            "hash": "d052b2b98f84906213733c1012451ae5cd1bba46ad8258775e46a2b9213084cb"
+        },
+        "src/components/TranscriptionViewer/index.tsx": {
+            "hash": "aca8f34b4a2f3209869dccacb725bbb672ada69062e5fffad7213f537abf929c"
+        },
+        "src/components/TranscriptionViewer/TranscriptionHeader.tsx": {
+            "hash": "7b513fe5bff6ad9cf9ff343fcd3649b2e767885ac958477b7deb498d029b6ac3"
+        },
+        "src/components/TranscriptionViewer/SpeakerEntry.tsx": {
+            "hash": "b875a7a6b80b049a688ea63ac85f06fd07f1215d676367b44ea51fffdba631d0"
+        },
+        "src/components/TranscriptionViewer/TranscriptionStats.tsx": {
+            "hash": "a8e44e4956d14b55cff814da0b7d87057ea040c15e8069aff249e1141e1de6c6"
+        },
+        "src/components/controls/FilterPanel.tsx": {
+            "hash": "35ba4e3e15fde995ec8af67570fca50c5e61cf43f62c64ea708e23db9f87a955"
+        },
+        "src/components/controls/TopEntitiesPanel.tsx": {
+            "hash": "7405c4d001fa3361315e585fcbc1146f4edc497e726550d71e67a184f4edefde"
+        },
+        "src/hooks/useProcessStatus.ts": {
+            "hash": "af1a0556cdabf64c127b7c7ab5a4ce35aceb99dc931bf64fc57e43ace6149301"
+        },
+        "src/hooks/useTranscriptionUpload.ts": {
+            "hash": "e0aa64dd664c09b3226f0e9d38e420395a32ffcbf56728b71fc86b26796f8398"
+        },
+        "src/pages/UploadPage.tsx": {
+            "hash": "7426a1d66fd52ead8b3629e4f32cd106cbe10089f6abfa05bcf867c3f9771bed"
+        },
+        "src/pages/MeetingHistory.tsx": {
+            "hash": "e48313073868f7d0e4a87fb557897aacb3264966d2df2edd02e8b0ce389b72d3"
+        },
+        "src/pages/APITestPage.tsx": {
+            "hash": "77c27515d5b8724277d3c8269c04476f49e405d922dba96ce1391da3b1919012"
+        },
+        "src/pages/ChatPage.tsx": {
+            "hash": "d3f9644117532987ac75537a151d09bf278d6c09b53cb15e7908faeb5c9d549b"
+        },
+        "src/services/.DS_Store": {
+            "hash": "1aeef05481f1a9f8defe4c443ed32200bfb747c8ab11468bd64d335fdda6d9a2"
+        },
+        "src/services/transcription/validation.ts": {
+            "hash": "b9f48e815531077ba41aa02ea15744e52e27b36f2550a033d028b40f5c5f4653"
+        },
+        "src/services/transcription/processing.ts": {
+            "hash": "9bd0c92e63bc6644fcd877af70a3ce6c8eefa4e741cff7aeab9e6ecb811f2e45"
+        },
+        "src/services/api/errors.ts": {
+            "hash": "e505ed11198110be038c119973a3919813e93d3c88a04138fae7869b68436195"
+        },
+        "src/services/api/utils.ts": {
+            "hash": "a9c2126bc010038cf9ab7c5245df11efae593e28479484a99be6ec8c37ad3715"
+        },
+        "src/services/api/types.ts": {
+            "hash": "273e023a0a3a75c1286e8eca778aa27de3df3ab903673b0dd95b2c376469a2a8"
+        },
+        "src/services/api/knowledgeGraph.ts": {
+            "hash": "d6aa42563592ff1227cc78eaeeaf0551b5a7dd3a4ec2452ffd4057d5e1d2a400"
+        },
+        "src/services/api/client.ts": {
+            "hash": "dafb041c027116dfca49a93561c5880d15429f383f7dfffc9126ab3a2628225c"
+        },
+        "src/services/api/index.ts": {
+            "hash": "3b770497c899c637c6f58fe910568fa90703ca579c2b9ba1fe340d95f92164be"
+        },
+        "src/services/api/upload.ts": {
+            "hash": "959d85b5c120e3cfa53a59ff3cb331fd1ad4ba175581fbdbb82554aaed9a48f0"
+        },
+        "src/services/api/transcription.ts": {
+            "hash": "c475d0cfe32321e383a591e48d1c7700d09191f698edde2d419d2ff160b5ebd8"
+        },
+        "src/store/transcription.ts": {
+            "hash": "d4287a3ac7911c16b5b40a526329622dc20da3ec3e8d0fc30334f99a47eadb69"
+        }
+    },
+    "timestamp": "2024-12-15T01:39:05.369827"
+}

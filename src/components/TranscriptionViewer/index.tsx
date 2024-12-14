@@ -1,9 +1,10 @@
+// src/components/TranscriptionViewer/index.tsx
 import React, { useState, useMemo } from 'react';
 import { useTranscriptionStore } from '../../store/transcription';
 import { TranscriptionHeader } from './TranscriptionHeader';
 import { SpeakerEntry } from './SpeakerEntry';
 import { concatenateTextBlocks } from '../../utils/text/processing';
-import { logger } from '../../utils/logger';
+import { logger } from '../../utils/logger/core';
 
 export function TranscriptionViewer() {
   const { transcription, speakerMap, setSpeakerName } = useTranscriptionStore();
@@ -29,7 +30,7 @@ export function TranscriptionViewer() {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow">
+    <div className="bg-gray-800 rounded-lg shadow text-gray-200">
       <TranscriptionHeader
         showTimestamps={showTimestamps}
         onToggleTimestamps={setShowTimestamps}

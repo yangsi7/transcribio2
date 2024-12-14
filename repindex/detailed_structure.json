@@ -1,0 +1,521 @@
+{
+    "vite.config.ts": {
+        "language": "typescript",
+        "functions": [
+            "defineConfig"
+        ],
+        "classes": []
+    },
+    "src/App.tsx": {
+        "language": "typescript",
+        "functions": [
+            "App"
+        ],
+        "classes": []
+    },
+    "src/main.tsx": {
+        "language": "typescript",
+        "functions": [],
+        "classes": []
+    },
+    "src/vite-env.d.ts": {
+        "language": "typescript",
+        "functions": [],
+        "classes": []
+    },
+    "src/types/graph.ts": {
+        "language": "typescript",
+        "functions": [
+            "Entity",
+            "Relationship",
+            "GraphData",
+            "ProcessedNode",
+            "ProcessedLink"
+        ],
+        "classes": []
+    },
+    "src/types/index.ts": {
+        "language": "typescript",
+        "functions": [
+            "Speaker",
+            "TranscriptionResponse",
+            "KnowledgeGraphEntity",
+            "KnowledgeGraphRelationship",
+            "KnowledgeGraph",
+            "ExportFormat",
+            "ProcessStatus",
+            "ProcessError",
+            "TranscriptionState",
+            "EntityMapResponse",
+            "EntityMapRequest",
+            "SummarizeRequest",
+            "SummarizeResponse"
+        ],
+        "classes": []
+    },
+    "src/config/audio.ts": {
+        "language": "typescript",
+        "functions": [
+            "AUDIO_CONFIG"
+        ],
+        "classes": []
+    },
+    "src/config/api.ts": {
+        "language": "typescript",
+        "functions": [
+            "API_CONFIG"
+        ],
+        "classes": []
+    },
+    "src/config/constants.ts": {
+        "language": "typescript",
+        "functions": [
+            "RETRY_CONFIG",
+            "LOG_CONFIG",
+            "PROCESS_STEPS"
+        ],
+        "classes": []
+    },
+    "src/config/env.ts": {
+        "language": "typescript",
+        "functions": [
+            "ENV"
+        ],
+        "classes": []
+    },
+    "src/utils/colors.ts": {
+        "language": "typescript",
+        "functions": [
+            "ENTITY_COLORS",
+            "DEFAULT_COLOR"
+        ],
+        "classes": []
+    },
+    "src/utils/audio.ts": {
+        "language": "typescript",
+        "functions": [],
+        "classes": []
+    },
+    "src/utils/entityColors.ts": {
+        "language": "typescript",
+        "functions": [
+            "getEntityColorMap"
+        ],
+        "classes": []
+    },
+    "src/utils/export.ts": {
+        "language": "typescript",
+        "functions": [
+            "async"
+        ],
+        "classes": []
+    },
+    "src/utils/format.ts": {
+        "language": "typescript",
+        "functions": [
+            "formatTimestamp",
+            "formatDuration",
+            "formatFileSize"
+        ],
+        "classes": []
+    },
+    "src/utils/processGraphData.ts": {
+        "language": "typescript",
+        "functions": [
+            "processGraphData"
+        ],
+        "classes": []
+    },
+    "src/utils/keywords.ts": {
+        "language": "typescript",
+        "functions": [
+            "extractKeywords"
+        ],
+        "classes": []
+    },
+    "src/utils/logger/status.ts": {
+        "language": "typescript",
+        "functions": [
+            "logStatusChange",
+            "logProcessStep"
+        ],
+        "classes": []
+    },
+    "src/utils/logger/types.ts": {
+        "language": "typescript",
+        "functions": [
+            "LogLevel",
+            "LogEntry",
+            "LoggerConfig"
+        ],
+        "classes": []
+    },
+    "src/utils/logger/core.ts": {
+        "language": "typescript",
+        "functions": [
+            "logger"
+        ],
+        "classes": []
+    },
+    "src/utils/logger/index.ts": {
+        "language": "typescript",
+        "functions": [
+            "LogLevel",
+            "LogEntry",
+            "LoggerConfig"
+        ],
+        "classes": []
+    },
+    "src/utils/logger/formatter.ts": {
+        "language": "typescript",
+        "functions": [
+            "formatLogEntry"
+        ],
+        "classes": []
+    },
+    "src/utils/audio/validation.ts": {
+        "language": "typescript",
+        "functions": [
+            "AudioValidationResult",
+            "validateAudioFile",
+            "getAcceptedFileTypes",
+            "async"
+        ],
+        "classes": []
+    },
+    "src/utils/audio/error-handler.ts": {
+        "language": "typescript",
+        "functions": [
+            "ErrorLogData",
+            "AudioProcessingError",
+            "createErrorLog",
+            "handleAudioError"
+        ],
+        "classes": []
+    },
+    "src/utils/audio/processing.ts": {
+        "language": "typescript",
+        "functions": [
+            "AudioProcessingResult",
+            "async"
+        ],
+        "classes": []
+    },
+    "src/utils/audio/logger.ts": {
+        "language": "typescript",
+        "functions": [
+            "logger"
+        ],
+        "classes": []
+    },
+    "src/utils/audio/index.ts": {
+        "language": "typescript",
+        "functions": [],
+        "classes": []
+    },
+    "src/utils/text/processing.ts": {
+        "language": "typescript",
+        "functions": [
+            "ProcessedBlock",
+            "concatenateTextBlocks"
+        ],
+        "classes": []
+    },
+    "src/components/NodeConnections.tsx": {
+        "language": "typescript",
+        "functions": [
+            "NodeConnections"
+        ],
+        "classes": []
+    },
+    "src/components/EntitySummaryModal.tsx": {
+        "language": "typescript",
+        "functions": [
+            "EntitySummaryModal"
+        ],
+        "classes": []
+    },
+    "src/components/ProcessStatus.tsx": {
+        "language": "typescript",
+        "functions": [
+            "ProcessStatus"
+        ],
+        "classes": []
+    },
+    "src/components/DebugPanel.tsx": {
+        "language": "typescript",
+        "functions": [
+            "DebugPanel"
+        ],
+        "classes": []
+    },
+    "src/components/Graph.tsx": {
+        "language": "typescript",
+        "functions": [
+            "Graph"
+        ],
+        "classes": []
+    },
+    "src/components/InputSection.tsx": {
+        "language": "typescript",
+        "functions": [
+            "InputSection"
+        ],
+        "classes": []
+    },
+    "src/components/MeetingCard.tsx": {
+        "language": "typescript",
+        "functions": [
+            "MeetingCard"
+        ],
+        "classes": []
+    },
+    "src/components/Sidebar.tsx": {
+        "language": "typescript",
+        "functions": [
+            "Sidebar"
+        ],
+        "classes": []
+    },
+    "src/components/SummaryViewer.tsx": {
+        "language": "typescript",
+        "functions": [
+            "SummaryViewer"
+        ],
+        "classes": []
+    },
+    "src/components/NodeSidebar.tsx": {
+        "language": "typescript",
+        "functions": [
+            "NodeSidebar"
+        ],
+        "classes": []
+    },
+    "src/components/TranscriptionControls/index.tsx": {
+        "language": "typescript",
+        "functions": [
+            "TranscriptionControls",
+            "as"
+        ],
+        "classes": []
+    },
+    "src/components/TranscriptionControls/ExportButton.tsx": {
+        "language": "typescript",
+        "functions": [
+            "ExportButton"
+        ],
+        "classes": []
+    },
+    "src/components/TranscriptionControls/CopyButton.tsx": {
+        "language": "typescript",
+        "functions": [
+            "CopyButton"
+        ],
+        "classes": []
+    },
+    "src/components/FileUpload/index.tsx": {
+        "language": "typescript",
+        "functions": [
+            "FileUpload"
+        ],
+        "classes": []
+    },
+    "src/components/FileUpload/DropZone.tsx": {
+        "language": "typescript",
+        "functions": [
+            "DropZone"
+        ],
+        "classes": []
+    },
+    "src/components/FileUpload/UploadProgress.tsx": {
+        "language": "typescript",
+        "functions": [
+            "UploadProgress"
+        ],
+        "classes": []
+    },
+    "src/components/calendar/WeekHeader.tsx": {
+        "language": "typescript",
+        "functions": [
+            "WeekHeader"
+        ],
+        "classes": []
+    },
+    "src/components/calendar/FilterDropdown.tsx": {
+        "language": "typescript",
+        "functions": [
+            "FilterDropdown"
+        ],
+        "classes": []
+    },
+    "src/components/TranscriptionViewer/index.tsx": {
+        "language": "typescript",
+        "functions": [
+            "TranscriptionViewer"
+        ],
+        "classes": []
+    },
+    "src/components/TranscriptionViewer/TranscriptionHeader.tsx": {
+        "language": "typescript",
+        "functions": [
+            "TranscriptionHeader"
+        ],
+        "classes": []
+    },
+    "src/components/TranscriptionViewer/SpeakerEntry.tsx": {
+        "language": "typescript",
+        "functions": [
+            "SpeakerEntry"
+        ],
+        "classes": []
+    },
+    "src/components/TranscriptionViewer/TranscriptionStats.tsx": {
+        "language": "typescript",
+        "functions": [
+            "TranscriptionStats"
+        ],
+        "classes": []
+    },
+    "src/components/controls/FilterPanel.tsx": {
+        "language": "typescript",
+        "functions": [
+            "FilterPanel"
+        ],
+        "classes": []
+    },
+    "src/components/controls/TopEntitiesPanel.tsx": {
+        "language": "typescript",
+        "functions": [
+            "TopEntitiesPanel"
+        ],
+        "classes": []
+    },
+    "src/hooks/useProcessStatus.ts": {
+        "language": "typescript",
+        "functions": [
+            "useProcessStatus"
+        ],
+        "classes": []
+    },
+    "src/hooks/useTranscriptionUpload.ts": {
+        "language": "typescript",
+        "functions": [
+            "useTranscriptionUpload"
+        ],
+        "classes": []
+    },
+    "src/pages/UploadPage.tsx": {
+        "language": "typescript",
+        "functions": [
+            "UploadPage"
+        ],
+        "classes": []
+    },
+    "src/pages/MeetingHistory.tsx": {
+        "language": "typescript",
+        "functions": [
+            "MeetingHistory"
+        ],
+        "classes": []
+    },
+    "src/pages/APITestPage.tsx": {
+        "language": "typescript",
+        "functions": [
+            "APITestPage"
+        ],
+        "classes": []
+    },
+    "src/pages/ChatPage.tsx": {
+        "language": "typescript",
+        "functions": [
+            "ChatPage"
+        ],
+        "classes": []
+    },
+    "src/services/transcription/validation.ts": {
+        "language": "typescript",
+        "functions": [
+            "ValidationResult",
+            "validateTranscriptionResponse"
+        ],
+        "classes": []
+    },
+    "src/services/transcription/processing.ts": {
+        "language": "typescript",
+        "functions": [
+            "ProcessedTranscription",
+            "processTranscriptionResponse"
+        ],
+        "classes": []
+    },
+    "src/services/api/errors.ts": {
+        "language": "typescript",
+        "functions": [
+            "APIErrorOptions",
+            "APIError"
+        ],
+        "classes": []
+    },
+    "src/services/api/utils.ts": {
+        "language": "typescript",
+        "functions": [
+            "async"
+        ],
+        "classes": []
+    },
+    "src/services/api/types.ts": {
+        "language": "typescript",
+        "functions": [
+            "APIResponse",
+            "SignedUrlResponse",
+            "APIRequestContext",
+            "UploadProgress",
+            "UploadOptions"
+        ],
+        "classes": []
+    },
+    "src/services/api/knowledgeGraph.ts": {
+        "language": "typescript",
+        "functions": [
+            "async",
+            "async",
+            "async"
+        ],
+        "classes": []
+    },
+    "src/services/api/client.ts": {
+        "language": "typescript",
+        "functions": [
+            "async"
+        ],
+        "classes": []
+    },
+    "src/services/api/index.ts": {
+        "language": "typescript",
+        "functions": [],
+        "classes": []
+    },
+    "src/services/api/upload.ts": {
+        "language": "typescript",
+        "functions": [
+            "async",
+            "async"
+        ],
+        "classes": []
+    },
+    "src/services/api/transcription.ts": {
+        "language": "typescript",
+        "functions": [
+            "async",
+            "async"
+        ],
+        "classes": []
+    },
+    "src/store/transcription.ts": {
+        "language": "typescript",
+        "functions": [
+            "useTranscriptionStore"
+        ],
+        "classes": []
+    }
+}

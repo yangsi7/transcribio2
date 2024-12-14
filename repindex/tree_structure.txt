@@ -1,5 +1,6 @@
 .
 ├── .DS_Store
+├── .env
 ├── .gitignore
 ├── eslint.config.js
 ├── filelist.txt
@@ -11,42 +12,50 @@
 ├── src
 │   ├── .DS_Store
 │   ├── App.tsx
+│   ├── asd.json
 │   ├── components
 │   │   ├── DebugPanel.tsx
+│   │   ├── EntitySummaryModal.tsx
 │   │   ├── FileUpload
 │   │   │   ├── DropZone.tsx
 │   │   │   ├── UploadProgress.tsx
 │   │   │   └── index.tsx
+│   │   ├── Graph.tsx
+│   │   ├── InputSection.tsx
 │   │   ├── MeetingCard.tsx
+│   │   ├── NodeConnections.tsx
+│   │   ├── NodeSidebar.tsx
 │   │   ├── ProcessStatus.tsx
 │   │   ├── Sidebar.tsx
+│   │   ├── SummaryViewer.tsx
 │   │   ├── TranscriptionControls
 │   │   │   ├── CopyButton.tsx
 │   │   │   ├── ExportButton.tsx
 │   │   │   └── index.tsx
-│   │   ├── TranscriptionControls.tsx
 │   │   ├── TranscriptionViewer
 │   │   │   ├── SpeakerEntry.tsx
 │   │   │   ├── TranscriptionHeader.tsx
 │   │   │   ├── TranscriptionStats.tsx
 │   │   │   └── index.tsx
-│   │   ├── TranscriptionViewer.tsx
-│   │   └── calendar
-│   │       ├── FilterDropdown.tsx
-│   │       └── WeekHeader.tsx
+│   │   ├── calendar
+│   │   │   ├── FilterDropdown.tsx
+│   │   │   └── WeekHeader.tsx
+│   │   └── controls
+│   │       ├── FilterPanel.tsx
+│   │       └── TopEntitiesPanel.tsx
 │   ├── config
+│   │   ├── .env
 │   │   ├── api.ts
 │   │   ├── audio.ts
 │   │   ├── constants.ts
 │   │   └── env.ts
 │   ├── hooks
 │   │   ├── useProcessStatus.ts
-│   │   ├── useTranscriptionProcessing.ts
-│   │   ├── useTranscriptionUpload.ts
-│   │   └── useUpload.ts
+│   │   └── useTranscriptionUpload.ts
 │   ├── index.css
 │   ├── main.tsx
 │   ├── pages
+│   │   ├── APITestPage.tsx
 │   │   ├── ChatPage.tsx
 │   │   ├── MeetingHistory.tsx
 │   │   └── UploadPage.tsx
@@ -56,43 +65,39 @@
 │   │   │   ├── client.ts
 │   │   │   ├── errors.ts
 │   │   │   ├── index.ts
+│   │   │   ├── knowledgeGraph.ts
 │   │   │   ├── transcription.ts
 │   │   │   ├── types.ts
 │   │   │   ├── upload.ts
 │   │   │   └── utils.ts
-│   │   ├── api.ts
-│   │   ├── transcription
-│   │   │   ├── processing.ts
-│   │   │   └── validation.ts
-│   │   └── upload
-│   │       ├── client.ts
-│   │       ├── types.ts
-│   │       ├── uploader.ts
-│   │       ├── url-generator.ts
-│   │       ├── validation.ts
-│   │       └── xhr.ts
+│   │   └── transcription
+│   │       ├── processing.ts
+│   │       └── validation.ts
 │   ├── store
 │   │   └── transcription.ts
 │   ├── types
+│   │   ├── graph.ts
 │   │   └── index.ts
 │   ├── utils
 │   │   ├── audio
-│   │   │   ├── constants.ts
 │   │   │   ├── error-handler.ts
 │   │   │   ├── index.ts
 │   │   │   ├── logger.ts
 │   │   │   ├── processing.ts
 │   │   │   └── validation.ts
 │   │   ├── audio.ts
+│   │   ├── colors.ts
+│   │   ├── entityColors.ts
 │   │   ├── export.ts
 │   │   ├── format.ts
+│   │   ├── keywords.ts
 │   │   ├── logger
 │   │   │   ├── core.ts
 │   │   │   ├── formatter.ts
 │   │   │   ├── index.ts
 │   │   │   ├── status.ts
 │   │   │   └── types.ts
-│   │   ├── logger.ts
+│   │   ├── processGraphData.ts
 │   │   └── text
 │   │       └── processing.ts
 │   └── vite-env.d.ts

@@ -1,90 +1,77 @@
 // src/pages/MeetingHistory.tsx
 import React, { useState } from 'react';
-import { Search, Calendar, Tag, Filter, ChevronDown, ChevronRight, BarChart, Clock } from 'lucide-react';
-import { format, parseISO, startOfWeek, endOfWeek } from 'date-fns';
+import { Search, Calendar, Filter, ChevronDown, ChevronRight, Clock, ArrowLeft } from 'lucide-react';
+import { format, startOfWeek, endOfWeek } from 'date-fns';
 import { MeetingCard } from '../components/MeetingCard';
 import { WeekHeader } from '../components/calendar/WeekHeader';
 import { FilterDropdown } from '../components/calendar/FilterDropdown';
-
-const MEETINGS_BY_DATE = {
-  'Today': [
-    {
-      id: 1,
-      title: "Q1 Planning Session",
-      date: "2024-03-15",
-      time: "10:00 AM",
-      duration: "1h 30m",
-      participants: ["Sarah Chen", "Michael Brown", "David Kim"],
-      summary: "Discussed Q1 objectives, budget allocation, and team expansion plans. Key decisions made on new product features.",
-      tags: ["Planning", "Q1", "Budget"]
-    }
-  ],
-  'Yesterday': [
-    {
-      id: 2,
-      title: "Product Design Review",
-      date: "2024-03-14",
-      time: "2:00 PM",
-      duration: "45m",
-      participants: ["Emma Wilson", "James Lee", "Lisa Park"],
-      summary: "Reviewed latest UI mockups, discussed user feedback, and finalized design system updates.",
-      tags: ["Design", "Product", "UI"]
-    },
-    {
-      id: 3,
-      title: "Team Sync",
-      date: "2024-03-14",
-      time: "4:30 PM",
-      duration: "30m",
-      participants: ["Emma Wilson", "James Lee"],
-      summary: "Weekly team sync to discuss ongoing projects and blockers.",
-      tags: ["Team", "Sync"]
-    }
-  ],
-  'Week 11': [
-    {
-      id: 'weekly-1',
-      title: "Week 11 Summary",
-      date: "2024-03-11/17",
-      duration: "12h 30m total",
-      participants: ["Team"],
-      summary: "8 meetings held this week. Key topics: Q1 Planning, Product Design, Team Syncs.",
-      tags: ["Weekly Summary"],
-      isWeeklySummary: true
-    }
-  ]
-};
+import { useTranscriptionStore } from '../store/transcription';
+import { logger } from '../utils/logger/core';
+import { EntitySummaryModal } from '../components/EntitySummaryModal';
 
 export function MeetingHistory() {
+  logger.debug('Rendering MeetingHistory page');
   const [searchTerm, setSearchTerm] = useState('');
   const [showFilters, setShowFilters] = useState(false);
-  const [expandedDates, setExpandedDates] = useState<string[]>(['Today', 'Yesterday']);
+  const [expandedDates, setExpandedDates] = useState<string[]>(['Today']);
   const [currentWeek, setCurrentWeek] = useState({
     start: startOfWeek(new Date()),
     end: endOfWeek(new Date())
   });
 
+  const { summary, knowledgeGraph } = useTranscriptionStore();
+  const [showModal, setShowModal] = useState(false);
+
+  let meetingsByDate: Record<string, any[]> = {};
+
+  // If we have a transcription summary and KG, let's show a "Transcribed Meeting"
+  if (summary) {
+    const entityTags = knowledgeGraph?.entities.map(e => e.name) || [];
+    const relationships = knowledgeGraph?.relationships || [];
+    meetingsByDate['Today'] = [{
+      id: 'meeting-1',
+      title: "Transcribed Meeting",
+      date: format(new Date(), 'yyyy-MM-dd'),
+      time: "9:00 AM",
+      duration: "45m",
+      participants: ["John Doe", "Jane Smith"],
+      summary: summary,
+      tags: entityTags,
+      relationships: relationships
+    }];
+  }
+
+  const filteredMeetings = Object.entries(meetingsByDate).reduce((acc, [date, meetings]) => {
+    const filtered = meetings.filter(m => {
+      const combinedText = `${m.title} ${m.summary} ${(m.tags || []).join(' ')} ${m.participants.join(' ')}`;
+      return combinedText.toLowerCase().includes(searchTerm.toLowerCase());
+    });
+    if (filtered.length > 0) {
+      acc[date] = filtered;
+    }
+    return acc;
+  }, {} as Record<string, any[]>);
+
   const toggleDate = (date: string) => {
+    logger.debug('Toggling date expansion', { date });
     setExpandedDates(prev => 
       prev.includes(date) ? prev.filter(d => d !== date) : [...prev, date]
     );
   };
 
-  const formatDateHeader = (date: string) => {
-    if (date === 'Today' || date === 'Yesterday') return date;
-    if (date.startsWith('Week')) return date;
-    const parsedDate = parseISO(date);
-    return format(parsedDate, 'EEEE, MMMM d');
-  };
-
   return (
     <div className="max-w-6xl mx-auto">
-      <div className="sticky top-0 bg-gray-950 z-10 pb-6">
+      <div className="sticky top-0 bg-gray-900 z-10 pb-6">
         <header className="mb-6">
           <div className="flex justify-between items-center mb-6">
-            <div>
-              <h2 className="text-3xl font-bold text-white">Meeting History</h2>
-              <p className="text-gray-400">Browse and search through your past meetings</p>
+            <div className="flex items-center gap-2">
+              <a href="/upload" className="text-gray-300 hover:text-white">
+                <ArrowLeft className="w-5 h-5" />
+              </a>
+              <div>
+                <h2 className="text-3xl font-bold text-white">Meeting History</h2>
+                <p className="text-gray-400">Browse and search through your past meetings</p>
+              </div>
             </div>
             <div className="flex items-center gap-4">
               <div className="relative">
@@ -94,7 +81,7 @@ export function MeetingHistory() {
                   placeholder="Search meetings..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-64 bg-gray-800 text-white rounded-lg pl-10 pr-4 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+                  className="w-64 bg-gray-800 text-gray-200 rounded-lg pl-10 pr-4 py-2 focus:ring-2 focus:ring-blue-400 focus:outline-none"
                 />
               </div>
               <FilterDropdown onToggle={() => setShowFilters(!showFilters)} isOpen={showFilters} />
@@ -105,35 +92,38 @@ export function MeetingHistory() {
         </header>
       </div>
 
+      {/* If summary and knowledgeGraph exist, show a button to view Entity Summary */}
+      {summary && knowledgeGraph && (
+        <div className="mb-4 flex justify-end">
+          <button
+            onClick={() => setShowModal(true)}
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-400"
+          >
+            View Summary &amp; Entities
+          </button>
+        </div>
+      )}
+
       <div className="space-y-4">
-        {Object.entries(MEETINGS_BY_DATE).map(([date, meetings]) => (
-          <div key={date} className="bg-gray-800/50 rounded-xl overflow-hidden backdrop-blur-sm">
+        {Object.keys(filteredMeetings).length === 0 && (
+          <div className="text-gray-300 bg-gray-800 p-4 rounded-md">
+            No meetings found. Process a file to see results here.
+          </div>
+        )}
+
+        {Object.entries(filteredMeetings).map(([date, meetings]) => (
+          <div key={date} className="bg-gray-800/30 rounded-xl overflow-hidden backdrop-blur-sm border border-gray-700">
             <button
               onClick={() => toggleDate(date)}
-              className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-800/80 transition-colors"
+              className="w-full px-6 py-4 flex items-center justify-between hover:bg-gray-700 transition-colors text-gray-200"
             >
               <div className="flex items-center gap-3">
-                {date.includes('Week') ? (
-                  <BarChart className="w-5 h-5 text-purple-400" />
-                ) : (
-                  <Calendar className="w-5 h-5 text-blue-400" />
-                )}
-                <span className="font-medium text-white">{formatDateHeader(date)}</span>
+                <Calendar className="w-5 h-5 text-blue-400" />
+                <span className="font-medium text-gray-200">{date}</span>
                 <div className="flex items-center gap-2 text-gray-400 text-sm">
                   <Clock className="w-4 h-4" />
                   <span>
-                    {meetings.reduce((acc, m: any) => {
-                      // This is just a placeholder calculation for total minutes.
-                      // In a real scenario, parse durations properly.
-                      if (m.duration.includes('h')) {
-                        const [hours, rest] = m.duration.split('h');
-                        const h = parseInt(hours.trim());
-                        const mins = rest.trim().split('m')[0];
-                        return acc + h * 60 + (parseInt(mins) || 0);
-                      } else {
-                        return acc + parseInt(m.duration);
-                      }
-                    }, 0)} min
+                    {meetings.reduce((acc: number) => acc + 45, 0)} min
                   </span>
                   <span className="mx-2">•</span>
                   <span>{meetings.length} {meetings.length === 1 ? 'meeting' : 'meetings'}</span>
@@ -152,7 +142,7 @@ export function MeetingHistory() {
                   <MeetingCard
                     key={meeting.id}
                     {...meeting}
-                    onClick={() => console.log('Navigate to meeting', meeting.id)}
+                    onClick={() => logger.info('Meeting card clicked', { meetingId: meeting.id })}
                   />
                 ))}
               </div>
@@ -160,6 +150,15 @@ export function MeetingHistory() {
           </div>
         ))}
       </div>
+
+      {summary && knowledgeGraph && (
+        <EntitySummaryModal
+          isOpen={showModal}
+          onClose={() => setShowModal(false)}
+          summary={summary}
+          knowledgeGraph={knowledgeGraph}
+        />
+      )}
     </div>
   );
 }

@@ -67,7 +67,7 @@ export async function apiRequest<T>(
     context.duration = `${(performance.now() - startTime).toFixed(2)}ms`;
 
     if (error instanceof APIError) {
-      logger.error('API Error', error, context);
+      logger.error('API Error', error, { ...context }); 
       throw error;
     }
 
@@ -81,7 +81,7 @@ export async function apiRequest<T>(
         });
       }
 
-      logger.error('Request failed', error, context);
+      logger.error('Request failed', error, { ...context }); 
       throw new APIError({
         message: error.message,
         code: 'REQUEST_FAILED',
@@ -89,8 +89,7 @@ export async function apiRequest<T>(
       });
     }
 
-    logger.error('Unknown error', new Error('Unknown error'), context);
-    throw new APIError({
+logger.error('Unknown error', new Error('Unknown error'), { ...context });    throw new APIError({
       message: 'An unknown error occurred',
       code: 'UNKNOWN_ERROR',
       details: context
