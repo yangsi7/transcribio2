@@ -1,3 +1,4 @@
+// src/components/TranscriptionControls/index.tsx
 import React from 'react';
 import { toast } from 'sonner';
 import { useTranscriptionStore } from '../../store/transcription';
@@ -14,13 +15,12 @@ export function TranscriptionControls() {
 
   const handleCopy = async () => {
     if (!transcription) return;
-    
     try {
       const processedBlocks = concatenateTextBlocks(transcription.transcription.speakers);
       const text = processedBlocks
         .map(block => `${speakerMap[block.speaker] || block.speaker}: ${block.text}`)
         .join('\n\n');
-      
+
       await navigator.clipboard.writeText(text);
       toast.success('Copied to clipboard');
     } catch (error) {

@@ -1,14 +1,29 @@
+// src/store/transcription.ts
 import { create } from 'zustand';
-import type { TranscriptionState, ProcessError, ProcessStatus } from '../types';
-import { logger } from '../utils/logger';
+import type { TranscriptionState, ProcessError, ProcessStatus, KnowledgeGraph } from '../types';
+import { logger } from '../utils/logger/core';
 
-export const useTranscriptionStore = create<TranscriptionState>((set, get) => ({
+interface ExtendedTranscriptionState extends TranscriptionState {
+  apiTestKnowledgeGraph: KnowledgeGraph | null;
+  apiTestSummary: string | null;
+
+  setApiTestKnowledgeGraph: (kg: KnowledgeGraph | null) => void;
+  setApiTestSummary: (summary: string | null) => void;
+}
+
+export const useTranscriptionStore = create<ExtendedTranscriptionState>((set, get) => ({
   file: null,
   fileId: null,
   status: 'idle',
   error: null,
   transcription: null,
   speakerMap: {},
+  knowledgeGraph: null,
+  summary: null,
+
+  apiTestKnowledgeGraph: null,
+  apiTestSummary: null,
+
   setSpeakerName: (speaker, name) => {
     logger.debug('Updating speaker name', { speaker, name });
     set((state) => ({
@@ -51,6 +66,23 @@ export const useTranscriptionStore = create<TranscriptionState>((set, get) => ({
     });
     set({ transcription });
   },
+  setKnowledgeGraph: (kg: KnowledgeGraph | null) => {
+    if (kg) {
+      logger.info('Setting knowledge graph', {
+        entities: kg.entities?.length || 0,
+        relationships: kg.relationships?.length || 0
+      });
+    } else {
+      logger.info('Setting knowledge graph to null');
+    }
+    set({ knowledgeGraph: kg });
+  },
+  setSummary: (summary: string | null) => {
+    logger.info('Setting summary', {
+      length: summary?.length || 0
+    });
+    set({ summary });
+  },
   reset: () => {
     logger.info('Resetting transcription state');
     set({
@@ -60,6 +92,29 @@ export const useTranscriptionStore = create<TranscriptionState>((set, get) => ({
       error: null,
       transcription: null,
       speakerMap: {},
+      knowledgeGraph: null,
+      summary: null,
+      apiTestKnowledgeGraph: null,
+      apiTestSummary: null,
     });
+  },
+
+  setApiTestKnowledgeGraph: (kg) => {
+    if (kg) {
+      logger.info('Setting API Test knowledge graph', {
+        entities: kg.entities?.length || 0,
+        relationships: kg.relationships?.length || 0
+      });
+    } else {
+      logger.info('Setting API Test knowledge graph to null');
+    }
+    set({ apiTestKnowledgeGraph: kg });
+  },
+
+  setApiTestSummary: (summary: string | null) => {
+    logger.info('Setting API Test summary', {
+      length: summary?.length || 0
+    });
+    set({ apiTestSummary: summary });
   },
 }));

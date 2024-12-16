@@ -13,7 +13,7 @@ export const AUDIO_CONFIG = {
     'audio/flac': ['.flac'],
     'audio/x-flac': ['.flac']
   },
-  MAX_FILE_SIZE: 500 * 1024 * 1024, // 500MB
-  MIN_FILE_SIZE: 1024, // 1KB
-  PREVIEW_CHUNK_SIZE: 256 * 1024, // 256KB
+  MAX_FILE_SIZE: 500 * 1024 * 1024,
+  MIN_FILE_SIZE: 1024,
+  PREVIEW_CHUNK_SIZE: 256 * 1024,
 } as const;

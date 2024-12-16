@@ -1,4 +1,7 @@
 export * from './transcription';
 export * from './upload';
 export * from './errors';
-export type * from './types';
+export * from './utils';
+export * from './types';
+export * from './client';
+export * from './knowledgeGraph';

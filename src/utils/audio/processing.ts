@@ -1,3 +1,4 @@
+// src/utils/audio/processing.ts
 import { logger } from './logger';
 import { handleAudioError } from './error-handler';
 
@@ -11,8 +12,8 @@ export interface AudioProcessingResult {
 export async function processAudioChunk(chunk: ArrayBuffer): Promise<AudioProcessingResult> {
   logger.debug('Processing audio chunk', { size: chunk.byteLength });
 
+  const audioContext = new (window.AudioContext || window.webkitAudioContext)();
   try {
-    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
     const audioBuffer = await audioContext.decodeAudioData(chunk);
 
     logger.debug('Audio chunk processed', {
@@ -36,10 +37,6 @@ export async function processAudioChunk(chunk: ArrayBuffer): Promise<AudioProces
       isValid: false
     };
   } finally {
-    // Clean up AudioContext
-    if (window.AudioContext || window.webkitAudioContext) {
-      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
-      await audioContext.close();
-    }
+    await audioContext.close();
   }
 }

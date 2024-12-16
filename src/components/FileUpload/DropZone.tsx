@@ -1,3 +1,4 @@
+// src/components/FileUpload/DropZone.tsx
 import React from 'react';
 import { Upload } from 'lucide-react';
 import { formatFileSize } from '../../utils/format';
@@ -15,12 +16,12 @@ export function DropZone({ onDrop, onFileSelect, acceptedTypes, isUploading }: D
     <div
       onDrop={onDrop}
       onDragOver={(e) => e.preventDefault()}
-      className="p-8 border-2 border-dashed rounded-lg text-center"
+      className="p-8 border-2 border-dashed rounded-lg text-center bg-gray-800 border-gray-700 text-gray-200"
     >
       <Upload className="mx-auto h-12 w-12 text-gray-400" />
       <div className="mt-4">
         <label htmlFor="file-upload" className="cursor-pointer">
-          <span className="text-blue-600 hover:text-blue-500">Upload a file</span>
+          <span className="text-blue-400 hover:text-blue-300">Upload a file</span>
           <input
             id="file-upload"
             type="file"
@@ -30,10 +31,10 @@ export function DropZone({ onDrop, onFileSelect, acceptedTypes, isUploading }: D
             disabled={isUploading}
           />
         </label>
-        <p className="mt-1 text-sm text-gray-500">or drag and drop</p>
+        <p className="mt-1 text-sm text-gray-400">or drag and drop</p>
       </div>
 
-      <p className="mt-2 text-xs text-gray-500">
+      <p className="mt-2 text-xs text-gray-400">
         Maximum file size: {formatFileSize(AUDIO_CONFIG.MAX_FILE_SIZE)}
       </p>
     </div>

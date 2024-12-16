@@ -1,5 +1,6 @@
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import { logStatusChange, logProcessStep } from '../utils/logger/status';
+import { PROCESS_STEPS } from '../config/constants';
 import type { ProcessStatus, ProcessError } from '../types';
 
 interface ProcessState {
@@ -16,18 +17,18 @@ export function useProcessStatus(initialStatus: ProcessStatus = 'idle') {
   });
 
   const setStatus = useCallback((newStatus: ProcessStatus) => {
-    setState(prev => {
+    setState((prev: ProcessState) => {
       logStatusChange(prev.status, newStatus);
       return { ...prev, status: newStatus };
     });
   }, []);
 
   const setError = useCallback((error: ProcessError | null) => {
-    setState(prev => ({ ...prev, error }));
+    setState((prev: ProcessState) => ({ ...prev, error }));
   }, []);
 
   const setProgress = useCallback((progress: number) => {
-    setState(prev => ({ ...prev, progress }));
+    setState((prev: ProcessState) => ({ ...prev, progress }));
   }, []);
 
   const reset = useCallback(() => {
@@ -48,10 +49,7 @@ export function useProcessStatus(initialStatus: ProcessStatus = 'idle') {
     setStatus('completed');
   }, [setStatus]);
 
-  const failProcess = useCallback((
-    step: keyof typeof PROCESS_STEPS,
-    error: Error | string
-  ) => {
+  const failProcess = useCallback((step: keyof typeof PROCESS_STEPS, error: Error | string) => {
     const processError: ProcessError = {
       code: `${step}_ERROR`,
       message: error instanceof Error ? error.message : error

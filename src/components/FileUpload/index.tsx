@@ -7,13 +7,39 @@ import { DropZone } from './DropZone';
 import { UploadProgress } from './UploadProgress';
 import { logger } from '../../utils/logger';
 
-export function FileUpload() {
+interface FileUploadProps {
+  onDataLoad?: (data: any) => void; // Make this optional if not always needed
+}
+
+export function FileUpload({ onDataLoad }: FileUploadProps) {
   const { setFile, status } = useTranscriptionStore();
   const { upload, uploadProgress, cancel } = useTranscriptionUpload();
 
   const handleFile = useCallback(async (selectedFile: File) => {
     if (!selectedFile) return;
 
+    const fileName = selectedFile.name.toLowerCase();
+    if (fileName.endsWith('.json') && onDataLoad) {
+      // Handle JSON file scenario
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const result = e.target?.result;
+          if (typeof result === 'string') {
+            const data = JSON.parse(result);
+            onDataLoad(data);
+          } else {
+            toast.error('Invalid file content.');
+          }
+        } catch (err) {
+          toast.error('Failed to parse JSON file.');
+        }
+      };
+      reader.readAsText(selectedFile);
+      return;
+    }
+
+    // Otherwise, handle audio upload
     logger.debug('File selected', {
       name: selectedFile.name,
       size: selectedFile.size,
@@ -28,7 +54,7 @@ export function FileUpload() {
       logger.error('File upload failed', error instanceof Error ? error : new Error(message));
       toast.error(message);
     }
-  }, [setFile, upload]);
+  }, [setFile, upload, onDataLoad]);
 
   const handleDrop = useCallback((e: React.DragEvent<HTMLDivElement>) => {
     e.preventDefault();
@@ -47,6 +73,7 @@ export function FileUpload() {
 
   const acceptedTypes = Object.entries(AUDIO_CONFIG.FORMATS)
     .flatMap(([mime, exts]) => [mime, ...exts])
+    .concat('.json') // Add json if you want to allow json uploads
     .join(',');
 
   const showProgress = ['uploading', 'requesting-transcription', 'generating-url'].includes(status);

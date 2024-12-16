@@ -1,0 +1,108 @@
+.
+├── .DS_Store
+├── .env
+├── .gitignore
+├── eslint.config.js
+├── filelist.txt
+├── index.html
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── repindex
+├── src
+│   ├── .DS_Store
+│   ├── App.tsx
+│   ├── asd.json
+│   ├── components
+│   │   ├── DebugPanel.tsx
+│   │   ├── EntitySummaryModal.tsx
+│   │   ├── FileUpload
+│   │   │   ├── DropZone.tsx
+│   │   │   ├── UploadProgress.tsx
+│   │   │   └── index.tsx
+│   │   ├── Graph.tsx
+│   │   ├── InputSection.tsx
+│   │   ├── MeetingCard.tsx
+│   │   ├── NodeConnections.tsx
+│   │   ├── NodeSidebar.tsx
+│   │   ├── ProcessStatus.tsx
+│   │   ├── Sidebar.tsx
+│   │   ├── SummaryViewer.tsx
+│   │   ├── TranscriptionControls
+│   │   │   ├── CopyButton.tsx
+│   │   │   ├── ExportButton.tsx
+│   │   │   └── index.tsx
+│   │   ├── TranscriptionViewer
+│   │   │   ├── SpeakerEntry.tsx
+│   │   │   ├── TranscriptionHeader.tsx
+│   │   │   ├── TranscriptionStats.tsx
+│   │   │   └── index.tsx
+│   │   ├── calendar
+│   │   │   ├── FilterDropdown.tsx
+│   │   │   └── WeekHeader.tsx
+│   │   └── controls
+│   │       ├── FilterPanel.tsx
+│   │       └── TopEntitiesPanel.tsx
+│   ├── config
+│   │   ├── .env
+│   │   ├── api.ts
+│   │   ├── audio.ts
+│   │   ├── constants.ts
+│   │   └── env.ts
+│   ├── hooks
+│   │   ├── useProcessStatus.ts
+│   │   └── useTranscriptionUpload.ts
+│   ├── index.css
+│   ├── main.tsx
+│   ├── pages
+│   │   ├── APITestPage.tsx
+│   │   ├── ChatPage.tsx
+│   │   ├── MeetingHistory.tsx
+│   │   └── UploadPage.tsx
+│   ├── services
+│   │   ├── .DS_Store
+│   │   ├── api
+│   │   │   ├── client.ts
+│   │   │   ├── errors.ts
+│   │   │   ├── index.ts
+│   │   │   ├── knowledgeGraph.ts
+│   │   │   ├── transcription.ts
+│   │   │   ├── types.ts
+│   │   │   ├── upload.ts
+│   │   │   └── utils.ts
+│   │   └── transcription
+│   │       ├── processing.ts
+│   │       └── validation.ts
+│   ├── store
+│   │   └── transcription.ts
+│   ├── types
+│   │   ├── graph.ts
+│   │   └── index.ts
+│   ├── utils
+│   │   ├── audio
+│   │   │   ├── error-handler.ts
+│   │   │   ├── index.ts
+│   │   │   ├── logger.ts
+│   │   │   ├── processing.ts
+│   │   │   └── validation.ts
+│   │   ├── audio.ts
+│   │   ├── colors.ts
+│   │   ├── entityColors.ts
+│   │   ├── export.ts
+│   │   ├── format.ts
+│   │   ├── keywords.ts
+│   │   ├── logger
+│   │   │   ├── core.ts
+│   │   │   ├── formatter.ts
+│   │   │   ├── index.ts
+│   │   │   ├── status.ts
+│   │   │   └── types.ts
+│   │   ├── processGraphData.ts
+│   │   └── text
+│   │       └── processing.ts
+│   └── vite-env.d.ts
+├── tailwind.config.js
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.node.json
+└── vite.config.ts

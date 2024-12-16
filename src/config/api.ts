@@ -23,10 +23,10 @@ export const API_CONFIG = {
       'Content-Type': 'application/octet-stream',
     },
   },
-  timeout: 600000, // 10 minutes
+  timeout: 600000,
   polling: {
-    interval: 5000, // 5 seconds
-    maxAttempts: 60, // 5 minutes total
+    interval: 5000,
+    maxAttempts: 60,
   },
   retries: {
     max: 3,

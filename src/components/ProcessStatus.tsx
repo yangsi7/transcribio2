@@ -1,5 +1,6 @@
+// src/components/ProcessStatus.tsx
 import React from 'react';
-import { Loader2 } from 'lucide-react';
+import { Loader2, CheckCircle, AlertCircle } from 'lucide-react';
 import type { ProcessStatus } from '../types';
 
 const statusMessages: Record<ProcessStatus, string> = {
@@ -14,20 +15,24 @@ const statusMessages: Record<ProcessStatus, string> = {
   error: 'An error occurred'
 };
 
-interface ProcessStatusProps {
-  status: ProcessStatus;
-}
-
-export function ProcessStatus({ status }: ProcessStatusProps) {
+export function ProcessStatus({ status }: { status: ProcessStatus }) {
   const message = statusMessages[status];
-  const isProcessing = status !== 'completed' && status !== 'error' && status !== 'idle';
+  const isProcessing = !['completed', 'error', 'idle'].includes(status);
 
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex items-center gap-2 text-gray-200">
       {isProcessing && (
-        <Loader2 className="w-4 h-4 animate-spin text-blue-600" />
+        <Loader2 className="w-4 h-4 animate-spin text-blue-400" />
       )}
-      <span className="text-sm font-medium text-gray-700">{message}</span>
+      {status === 'completed' && (
+        <CheckCircle className="w-4 h-4 text-green-400" />
+      )}
+      {status === 'error' && (
+        <AlertCircle className="w-4 h-4 text-red-400" />
+      )}
+      <span className="text-sm font-medium">
+        {message}
+      </span>
     </div>
   );
 }
